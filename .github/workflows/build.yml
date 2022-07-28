@@ -38,7 +38,3 @@ jobs:
         RINKEBY_NETWORK_ADDR: ${{ secrets.RINKEBY_NETWORK_ADDR }}
       run: |
         make test
-
-    - name: Run safety checks
-      run: |
-        make check-safety
