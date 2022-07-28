@@ -1,0 +1,3 @@
+importlib-metadata==4.12.0; python_version < "3.8"
+typing-extensions==4.3.0; python_version >= "3.7" and python_version < "3.8"
+zipp==3.8.1; python_version >= "3.7" and python_version < "3.8"
