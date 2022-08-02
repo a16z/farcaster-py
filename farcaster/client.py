@@ -1,8 +1,13 @@
 from typing import List, Optional
 
+import json
+from pathlib import Path
+
 import requests
 from eth_account.messages import encode_defunct
+from eth_account.signers.local import LocalAccount
 from web3 import Web3
+from web3.middleware import geth_poa_middleware
 
 from farcaster.types import Cast, HostDirectory
 
@@ -11,22 +16,30 @@ class FarcasterClient:
     # Farcaster registry Rinkeby contract addr
     __REGISTRY_CONTRACT_ADDRESS = "0xe3Be01D99bAa8dB9905b33a3cA391238234B79D1"
     # Farcaster registry ABI
-    __ABI = '[{"name":"getDirectoryUrl","inputs":[{"internalType":"bytes32","name":"username","type":"bytes32"}],"outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"addressToUsername","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"}]'
+    DEFAULT_DIRECTORY_URL = "https://guardian.farcaster.xyz/origin/directory/"
 
     def __init__(
         self,
         rinkeby_network_conn_str: str,
         registry_contract_address: Optional[str] = None,
+        signature_account: Optional[LocalAccount] = None,
     ):
+        self.signature_account = signature_account
         web3_provider = Web3.HTTPProvider(rinkeby_network_conn_str)
         self.w3 = Web3(web3_provider)
+        self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+
+        parent_path = Path(__file__).parent.resolve()
+        registry_abi = parent_path.joinpath(Path("registry_abi.json"))
+        with open(registry_abi) as f:
+            self.ABI = json.load(f)
         if registry_contract_address:
             self.registry_contract_address = registry_contract_address
         else:
             self.registry_contract_address = self.__REGISTRY_CONTRACT_ADDRESS
         self.registry = self.w3.eth.contract(
-            address=self.registry_contract_address, abi=self.__ABI
-        ).caller()
+            address=self.registry_contract_address, abi=self.ABI
+        )
 
     def get_profile(self, username: str) -> HostDirectory:
         host_addr = self.get_host_addr(username)
@@ -73,10 +86,40 @@ class FarcasterClient:
 
     def get_host_addr(self, username: str) -> str:
         encoded_username = Web3.toBytes(text=username)
-        return self.registry.getDirectoryUrl(encoded_username)
+        return self.registry.caller().getDirectoryUrl(encoded_username)
 
     def get_username(self, expected_address: str) -> str:
-        encoded_address = self.registry.addressToUsername(
+        encoded_address = self.registry.caller().addressToUsername(
             Web3.toChecksumAddress(expected_address)
         )
         return Web3.toText(encoded_address).rstrip("\x00")
+
+    def register(self, username: str, url: str = DEFAULT_DIRECTORY_URL) -> str:
+        assert self.signature_account
+        directory_url = url + Web3.toChecksumAddress(self.signature_account.address)
+        encoded_username = Web3.toBytes(text=username)
+        nonce = self.w3.eth.get_transaction_count(
+            self.signature_account.address, "pending"
+        )
+        transaction = self.registry.functions.register(
+            encoded_username, directory_url
+        ).build_transaction({"nonce": nonce})
+        signed_tx = self.w3.eth.account.sign_transaction(
+            transaction, self.signature_account.key
+        )
+        response = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        return response.hex()
+
+    def transfer(self, to: str) -> str:
+        assert self.signature_account
+        nonce = self.w3.eth.get_transaction_count(
+            self.signature_account.address, "pending"
+        )
+        transaction = self.registry.functions.transfer(
+            Web3.toChecksumAddress(to)
+        ).build_transaction({"nonce": nonce})
+        signed_tx = self.w3.eth.account.sign_transaction(
+            transaction, self.signature_account.key
+        )
+        response = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        return response.hex()
