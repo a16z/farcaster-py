@@ -9,7 +9,7 @@ from eth_account.signers.local import LocalAccount
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
-from farcaster.types import Cast, HostDirectory
+from farcaster.types import Cast, HostDirectory, User
 
 
 class FarcasterClient:
@@ -17,6 +17,7 @@ class FarcasterClient:
     __REGISTRY_CONTRACT_ADDRESS = "0xe3Be01D99bAa8dB9905b33a3cA391238234B79D1"
     # Farcaster registry ABI
     DEFAULT_DIRECTORY_URL = "https://guardian.farcaster.xyz/origin/directory/"
+    DEFAULT_HOST_URL = "https://guardian.farcaster.xyz/"
 
     def __init__(
         self,
@@ -86,7 +87,8 @@ class FarcasterClient:
 
     def get_host_addr(self, username: str) -> str:
         encoded_username = Web3.toBytes(text=username)
-        return self.registry.caller().getDirectoryUrl(encoded_username)
+        host_address: str = self.registry.caller().getDirectoryUrl(encoded_username)
+        return host_address
 
     def get_username(self, expected_address: str) -> str:
         encoded_address = self.registry.caller().addressToUsername(
@@ -123,3 +125,31 @@ class FarcasterClient:
         )
         response = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
         return response.hex()
+
+    # User Registry
+
+    def lookup_by_username(self, username: str) -> Optional[User]:
+        response = requests.get(self.DEFAULT_HOST_URL + "admin/usernames/" + username)
+        if response.status_code == 404:
+            return None
+        return User.parse_obj(response.json())
+
+    def get_all_users(self) -> Optional[List[User]]:
+        response = requests.get(self.DEFAULT_HOST_URL + "admin/usernames")
+        if response.status_code == 404:
+            return None
+        return [User.parse_obj(user) for user in response.json()]
+
+    def get_all_usernames(self) -> Optional[List[str]]:
+        users = self.get_all_users()
+        if users:
+            return [user.username for user in users]
+        return None
+
+    def lookup_by_address(self, address: str) -> Optional[User]:
+        users = self.get_all_users()
+        if users:
+            for user in users:
+                if user.address == address:
+                    return user
+        return None

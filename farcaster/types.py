@@ -82,3 +82,11 @@ class HostDirectory(BaseModel):
     body: HostBody
     merkle_root: str
     signature: str
+
+
+class User(BaseModel):
+    username: str
+    directory_url: str
+    created_at: int
+    modified_at: int
+    address: str
