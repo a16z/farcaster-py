@@ -1,5 +1,7 @@
 from typing import Any, List, Optional
 
+from enum import Enum
+
 import humps
 from pydantic import BaseModel as PydanticBaseModel
 
@@ -15,8 +17,12 @@ class CastData(BaseModel):
     reply_parent_merkle_root: Optional[str] = None
 
 
-class CastBody(BaseModel):
-    type: str
+class AddressActivityBodyType(Enum):
+    TEXT_SHORT = "text-short"
+
+
+class AddressActivityBody(BaseModel):
+    type: AddressActivityBodyType
     published_at: int
     sequence: int
     username: str
@@ -62,10 +68,13 @@ class Meta(BaseModel):
     attachments: Optional[Attachments]
 
 
-class Cast(BaseModel):
-    body: CastBody
+class SignedCast(BaseModel):
+    body: AddressActivityBody
     merkle_root: str
     signature: str
+
+
+class AddressActivity(SignedCast):
     meta: Meta
 
 

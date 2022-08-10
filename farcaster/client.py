@@ -1,6 +1,7 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 
 import json
+from datetime import datetime
 from pathlib import Path
 
 import requests
@@ -9,7 +10,7 @@ from eth_account.signers.local import LocalAccount
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
-from farcaster.types import Cast, HostDirectory, User
+from farcaster import types
 
 
 class FarcasterClient:
@@ -18,6 +19,7 @@ class FarcasterClient:
     # Farcaster registry ABI
     DEFAULT_DIRECTORY_URL = "https://guardian.farcaster.xyz/origin/directory/"
     DEFAULT_HOST_URL = "https://guardian.farcaster.xyz/"
+    CAST_CHARACTER_LIMIT = 280
 
     def __init__(
         self,
@@ -42,11 +44,12 @@ class FarcasterClient:
             address=self.registry_contract_address, abi=self.ABI
         )
 
-    def get_profile(self, username: str) -> HostDirectory:
+    def get_profile(self, username: str) -> types.HostDirectory:
         host_addr = self.get_host_addr(username)
-        return HostDirectory.parse_obj(requests.get(host_addr).json())
+        print(host_addr)
+        return types.HostDirectory.parse_obj(requests.get(host_addr).json())
 
-    def verify_cast(self, cast: Cast) -> bool:
+    def verify_cast(self, cast: types.AddressActivity) -> bool:
         calculated_hash = Web3.toHex(
             Web3.keccak(
                 Web3.toBytes(
@@ -80,10 +83,11 @@ class FarcasterClient:
 
         return True
 
-    def get_casts(self, username: str) -> List[Cast]:
+    def get_casts(self, username: str) -> List[types.AddressActivity]:
+        print(username)
         caster = self.get_profile(username)
         response = requests.get(caster.body.address_activity_url).json()
-        return [Cast.parse_obj(cast) for cast in response]
+        return [types.AddressActivity.parse_obj(cast) for cast in response]
 
     def get_host_addr(self, username: str) -> str:
         encoded_username = Web3.toBytes(text=username)
@@ -98,11 +102,13 @@ class FarcasterClient:
 
     def register(self, username: str, url: str = DEFAULT_DIRECTORY_URL) -> str:
         assert self.signature_account
+        print(self.signature_account.address)
         directory_url = url + Web3.toChecksumAddress(self.signature_account.address)
         encoded_username = Web3.toBytes(text=username)
         nonce = self.w3.eth.get_transaction_count(
             self.signature_account.address, "pending"
         )
+        print(nonce)
         transaction = self.registry.functions.register(
             encoded_username, directory_url
         ).build_transaction({"nonce": nonce})
@@ -110,6 +116,8 @@ class FarcasterClient:
             transaction, self.signature_account.key
         )
         response = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        print(response)
+
         return response.hex()
 
     def transfer(self, to: str) -> str:
@@ -128,17 +136,17 @@ class FarcasterClient:
 
     # User Registry
 
-    def lookup_by_username(self, username: str) -> Optional[User]:
+    def lookup_by_username(self, username: str) -> Optional[types.User]:
         response = requests.get(self.DEFAULT_HOST_URL + "admin/usernames/" + username)
         if response.status_code == 404:
             return None
-        return User.parse_obj(response.json())
+        return types.User.parse_obj(response.json())
 
-    def get_all_users(self) -> Optional[List[User]]:
+    def get_all_users(self) -> Optional[List[types.User]]:
         response = requests.get(self.DEFAULT_HOST_URL + "admin/usernames")
         if response.status_code == 404:
             return None
-        return [User.parse_obj(user) for user in response.json()]
+        return [types.User.parse_obj(user) for user in response.json()]
 
     def get_all_usernames(self) -> Optional[List[str]]:
         users = self.get_all_users()
@@ -146,10 +154,101 @@ class FarcasterClient:
             return [user.username for user in users]
         return None
 
-    def lookup_by_address(self, address: str) -> Optional[User]:
+    def lookup_by_address(self, address: str) -> Optional[types.User]:
         users = self.get_all_users()
         if users:
             for user in users:
                 if user.address == address:
                     return user
+        return None
+
+    def get_latest_activity_for_user(
+        self, username: str
+    ) -> Optional[types.AddressActivity]:
+        activity = self.get_casts(username)
+        if len(activity) > 0:
+            return activity[0]
+        return None
+
+    def prepare_cast(
+        self,
+        username: str,
+        text: str,
+        reply_to: Optional[Union[types.AddressActivity, str]],
+    ) -> types.AddressActivityBody:
+        assert self.signature_account
+        if len(text) >= self.CAST_CHARACTER_LIMIT:
+            raise ValueError(
+                f"Cast length must be less than {self.CAST_CHARACTER_LIMIT}"
+            )
+        reply_parent_merkle_root = None
+        if reply_to:
+            if type(reply_to) == str:
+                reply_parent_merkle_root = reply_to
+            else:
+                reply_parent_merkle_root = reply_to.merkle_root
+        user_activity = self.get_latest_activity_for_user(username)
+
+        if not user_activity:
+            user = self.lookup_by_address(self.signature_account.address)
+            if not user:
+                raise ValueError("no username registered for address")
+            address = user.address
+            prev_merkle_root = Web3.keccak(Web3.toBytes(text=""))
+            sequence = 0
+        else:
+            address = user_activity.body.address
+            prev_merkle_root = user_activity.merkle_root
+            sequence = user_activity.body.sequence + 1
+
+        data = types.CastData(
+            text=text, reply_parent_merkle_root=reply_parent_merkle_root
+        )
+
+        return types.AddressActivityBody(
+            type=types.AddressActivityBodyType.TEXT_SHORT,
+            published_at=int(datetime.now().timestamp()),
+            sequence=sequence,
+            username=username,
+            address=address,
+            data=data,
+            prev_merkle_root=prev_merkle_root,
+        )
+
+    def sign_cast(self, unsigned_cast: types.AddressActivityBody) -> types.SignedCast:
+        assert self.signature_account
+        serialized_cast = unsigned_cast.json(
+            by_alias=True, exclude_none=True, separators=(",", ":")
+        )
+        merkle_root = Web3.toHex(Web3.keccak(Web3.toBytes(text=serialized_cast)))
+        encoded = encode_defunct(text=merkle_root)
+
+        signature = self.signature_account.sign_message(encoded)
+        print(signature)
+        signed_cast = types.SignedCast(
+            body=unsigned_cast, merkle_root=merkle_root, signature=signature
+        )
+        return signed_cast
+
+    def publish_cast(
+        self, text: str, reply_to: Optional[Union[types.AddressActivity, str]] = None
+    ) -> types.SignedCast:
+        assert self.signature_account
+        user = self.lookup_by_address(self.signature_account.address)
+        if not user:
+            raise ValueError("no username registered for address")
+        unsigned_cast = self.prepare_cast(user.username, text, reply_to)
+
+        signed_cast = self.sign_cast(unsigned_cast)
+        self.post_cast_to_registry(signed_cast)
+        return signed_cast
+
+    def post_cast_to_registry(self, signed_cast: types.SignedCast) -> None:
+        response = requests.get(
+            self.DEFAULT_HOST_URL + "indexer/activity", signed_cast.json(by_alias=True)
+        )
+        if response.status_code == 404:
+            print("404")
+            return None
+        print(response.json())
         return None

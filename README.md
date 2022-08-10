@@ -30,8 +30,76 @@ poetry add farcaster
 ```
 
 
+## Usage
+Set ENV vars:
 
-### Makefile usage
+`RINKEBY_PKEY`: Your private key
+
+`RINKEBY_NETWORK_ADDR`: Alchemy, Infura, or local RPC for Rinkeby
+
+```python
+import os
+from eth_account.account import Account
+from eth_account.signers.local import LocalAccount
+from farcaster.client import FarcasterClient
+
+ETH_ACCOUNT_SIGNATURE: LocalAccount = Account.from_key(os.environ.get("RINKEBY_PKEY"))
+
+fcc = FarcasterClient(
+    os.getenv("RINKEBY_NETWORK_ADDR"), signature_account=ETH_ACCOUNT_SIGNATURE
+)
+
+print(fcc.get_profile("dwr"))
+```
+## Examples
+
+### Get a profile from a username
+```python
+fcc.get_profile("dwr")
+```
+### Get casts from a username
+```python
+fcc.get_casts("dwr")
+### Verify a cast
+```python
+casts = fcc.get_casts("v")
+fcc.verify_cast(casts[-1])
+```
+### Get host address from a username
+```python
+fcc.get_host_addr("dwr")
+```
+### Get user from an address
+```python
+fcc.lookup_by_address("0xC6C0b79d0034A9A44c01c7695EaE26c9A7d23e40")
+```
+### Get username from an address
+```python
+fcc.get_username("0xC6C0b79d0034A9A44c01c7695EaE26c9A7d23e40")
+```
+### Get all users
+```python
+fcc.get_all_users()
+```
+### Get all usernames
+```python
+fcc.get_all_usernames()
+```
+### Publish a Cast
+```python
+fcc.publish_cast("Hello world! This cast was published from the Python SDK")
+```
+### Register a user
+```python
+fcc.register("xxx")
+```
+### Transfer an account to a new address
+```python
+fcc.transfer("xxx")
+```
+
+
+## Makefile usage
 
 [`Makefile`](https://github.com/fmhall/farcaster/blob/master/Makefile) contains a lot of functions for faster development.
 
@@ -253,20 +321,3 @@ GitHub creates the `bug`, `enhancement`, and `documentation` labels for you. Dep
 [![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/fmhall/farcaster/blob/master/LICENSE)
 
 This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/fmhall/farcaster/blob/master/LICENSE) for more details.
-
-## 📃 Citation
-
-```bibtex
-@misc{farcaster,
-  author = {Mason Hall},
-  title = {farcaster is a Python  SDK for the Farcaster Protocol},
-  year = {2022},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/fmhall/farcaster}}
-}
-```
-
-## Credits [![🚀 Your next Python package needs a bleeding-edge project structure.](https://img.shields.io/badge/python--package--template-%F0%9F%9A%80-brightgreen)](https://github.com/TezRomacH/python-package-template)
-
-This project was generated with [`python-package-template`](https://github.com/TezRomacH/python-package-template)

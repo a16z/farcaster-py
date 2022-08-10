@@ -23,3 +23,8 @@ fcc = FarcasterClient(
 # def test_transfer():
 #     response_hash = fcc.transfer("xxx")
 #     assert False
+
+
+# def test_publish_cast():
+#     response = fcc.publish_cast("Hello world! This cast was published from my Python SDK")
+#     assert False
