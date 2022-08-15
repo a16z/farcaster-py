@@ -1,13 +1,13 @@
 # This file contains values from Cookiecutter
 
 default_context:
-  project_name: "farcaster"
-  project_description: "farcaster is a Python  SDK for the Farcaster Protocol"
-  organization: "Mason Hall"
+  project_name: "farcaster-py"
+  project_description: "farcaster-py is a Python SDK for the Farcaster Protocol"
+  organization: "Andreessen Horowitz"
   license: "MIT"
   minimal_python_version: 3.7
-  github_name: "fmhall"
-  email: "masonhall@gmail.com"
+  github_name: "a16z"
+  email: "crypto-engineering@a16z.com"
   version: "0.1.0"
   line_length: "88"
   create_example_template: "none"

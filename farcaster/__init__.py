@@ -1,4 +1,4 @@
-"""farcaster is a Python  SDK for the Farcaster Protocol"""
+"""farcaster-py is a Python SDK for the Farcaster Protocol"""
 
 import sys
 

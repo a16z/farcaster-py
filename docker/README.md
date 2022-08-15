@@ -1,4 +1,4 @@
-# Docker for farcaster
+# Docker for Farcaster
 
 ## Installation
 
