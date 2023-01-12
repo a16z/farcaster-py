@@ -1,254 +1,487 @@
-from typing import List, Optional, Union
+from __future__ import annotations
 
-import json
-from datetime import datetime
-from pathlib import Path
+from typing import Any, Dict, Optional
 
+import base64
+
+import canonicaljson
 import requests
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
-from web3 import Web3
-from web3.middleware import geth_poa_middleware
+from pydantic import PositiveInt
 
-from farcaster import types
+from farcaster.api_models import *
+from farcaster.config import *
 
 
-class FarcasterClient:
-    # Farcaster registry Rinkeby contract addr
-    __REGISTRY_CONTRACT_ADDRESS = "0xe3Be01D99bAa8dB9905b33a3cA391238234B79D1"
-    # Farcaster registry ABI
-    DEFAULT_DIRECTORY_URL = "https://guardian.farcaster.xyz/origin/directory/"
-    DEFAULT_HOST_URL = "https://guardian.farcaster.xyz/"
-    CAST_CHARACTER_LIMIT = 280
+class MerkleApiClient:
+    config: ConfigurationParams
+    wallet: LocalAccount | None
+    access_token: str | None
+    sessions: requests.Session
 
     def __init__(
         self,
-        rinkeby_network_conn_str: str,
-        registry_contract_address: Optional[str] = None,
-        signature_account: Optional[LocalAccount] = None,
+        wallet: LocalAccount | None = None,
+        access_token: str | None = None,
+        **data: Any,
     ):
-        self.signature_account = signature_account
-        web3_provider = Web3.HTTPProvider(rinkeby_network_conn_str)
-        self.w3 = Web3(web3_provider)
-        self.w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-
-        parent_path = Path(__file__).parent.resolve()
-        registry_abi = parent_path.joinpath(Path("registry_abi.json"))
-        with open(registry_abi) as f:
-            self.ABI = json.load(f)
-        if registry_contract_address:
-            self.registry_contract_address = registry_contract_address
-        else:
-            self.registry_contract_address = self.__REGISTRY_CONTRACT_ADDRESS
-        self.registry = self.w3.eth.contract(
-            address=self.registry_contract_address, abi=self.ABI
-        )
-
-    def get_profile(self, username: str) -> types.HostDirectory:
-        host_addr = self.get_host_addr(username)
-        print(host_addr)
-        return types.HostDirectory.parse_obj(requests.get(host_addr).json())
-
-    def verify_cast(self, cast: types.AddressActivity) -> bool:
-        calculated_hash = Web3.toHex(
-            Web3.keccak(
-                Web3.toBytes(
-                    text=cast.body.json(
-                        by_alias=True, exclude_none=True, separators=(",", ":")
-                    )
-                )
+        self.config = ConfigurationParams(**data)
+        self.wallet = wallet
+        self.access_token = access_token
+        self.session = requests.Session()
+        if self.access_token:
+            self.session.headers.update(
+                {"Authorization": f"Bearer {self.access_token}"}
             )
+
+    def get_base_path(self):
+        return self.config.base_path
+
+    def get_base_options(self):
+        return self.config.base_options
+
+    def get(
+        self,
+        path: str,
+        params: dict[Any, Any] = {},
+        json: dict[Any, Any] = {},
+        headers: dict[Any, Any] = {},
+    ) -> dict[Any, Any]:
+        response: dict[Any, Any] = self.session.get(
+            self.config.base_path + path, params=params, json=json, headers=headers
+        ).json()
+        if "error" in response:
+            raise Exception(response["error"])
+        return response
+
+    def post(
+        self,
+        path: str,
+        params: dict[Any, Any] = {},
+        json: dict[Any, Any] = {},
+        headers: dict[Any, Any] = {},
+    ) -> dict[Any, Any]:
+        response: dict[Any, Any] = self.session.post(
+            self.config.base_path + path, params=params, json=json, headers=headers
+        ).json()
+        if "error" in response:
+            raise Exception(response["error"])
+        return response
+
+    def put(
+        self,
+        path: str,
+        params: dict[Any, Any] = {},
+        json: dict[Any, Any] = {},
+        headers: dict[Any, Any] = {},
+    ) -> dict[Any, Any]:
+        response: dict[Any, Any] = self.session.put(
+            self.config.base_path + path, params=params, json=json, headers=headers
+        ).json()
+        if "error" in response:
+            raise Exception(response["error"])
+        return response
+
+    def delete(
+        self,
+        path: str,
+        params: dict[Any, Any] = {},
+        json: dict[Any, Any] = {},
+        headers: dict[Any, Any] = {},
+    ) -> dict[Any, Any]:
+        response: dict[Any, Any] = self.session.delete(
+            self.config.base_path + path, params=params, json=json, headers=headers
+        ).json()
+        if "error" in response:
+            raise Exception(response["error"])
+        return response
+
+    def get_healthcheck(self) -> bool:
+        response = self.session.get("https://api.farcaster.xyz/healthcheck")
+        return response.ok
+
+    def get_asset(self, token_id: int) -> AssetGetResponse:
+        response = self.get("asset", {"token_id": token_id})
+        return AssetGetResponse(**response)
+
+    def get_asset_events(
+        self,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> AssetEventsGetResponse:
+        response = self.get(
+            "asset-events",
+            params={"cursor": cursor, "limit": limit},
         )
-        expected_hash = cast.merkle_root
+        return AssetEventsGetResponse(**response)
 
-        if calculated_hash != expected_hash:
-            print(f"{calculated_hash} does not equal {expected_hash}!")
-            return False
+    def put_auth(self, body: AuthPutRequest) -> AuthPutResponse:
+        header = self.generate_custody_auth_header(body)
+        response = requests.put(
+            "https://api.farcaster.xyz/v2/auth",
+            json=body.dict(by_alias=True),
+            headers={"Authorization": header},
+        ).json()
+        return AuthPutResponse(**response)
 
-        encoded = encode_defunct(text=cast.merkle_root)
-        recovered_address = self.w3.eth.account.recover_message(
-            encoded, signature=cast.signature
+    def delete_auth(self, body: AuthDeleteRequest) -> StatusResponse:
+        response = self.delete(
+            "auth",
+            json=body.dict(by_alias=True),
         )
-        expected_address = cast.body.address
+        return StatusResponse(**response)
 
-        if recovered_address != expected_address:
-            print(f"{recovered_address} does not equal {expected_address}!")
-            return False
-
-        encoded_username = self.get_username(expected_address)
-
-        if encoded_username != cast.body.username:
-            print(f"{encoded_username} does not equal {cast.body.username}!")
-            return False
-
-        return True
-
-    def get_casts(self, username: str) -> List[types.AddressActivity]:
-        print(username)
-        caster = self.get_profile(username)
-        response = requests.get(caster.body.address_activity_url).json()
-        return [types.AddressActivity.parse_obj(cast) for cast in response]
-
-    def get_host_addr(self, username: str) -> str:
-        encoded_username = Web3.toBytes(text=username)
-        host_address: str = self.registry.caller().getDirectoryUrl(encoded_username)
-        return host_address
-
-    def get_username(self, expected_address: str) -> str:
-        encoded_address = self.registry.caller().addressToUsername(
-            Web3.toChecksumAddress(expected_address)
+    def get_cast_reactions(
+        self,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CastReactionsGetResponse:
+        response = self.get(
+            "cast-reactions",
+            params={"cursor": cursor, "limit": limit},
         )
-        return Web3.toText(encoded_address).rstrip("\x00")
+        return CastReactionsGetResponse(**response)
 
-    def register(self, username: str, url: str = DEFAULT_DIRECTORY_URL) -> str:
-        assert self.signature_account
-        print(self.signature_account.address)
-        directory_url = url + Web3.toChecksumAddress(self.signature_account.address)
-        encoded_username = Web3.toBytes(text=username)
-        nonce = self.w3.eth.get_transaction_count(
-            self.signature_account.address, "pending"
+    def put_cast_reactions(
+        self, body: CastReactionsPutRequest
+    ) -> CastReactionsPutResponse:
+        response = self.put(
+            "cast-reactions",
+            json=body.dict(by_alias=True),
         )
-        print(nonce)
-        transaction = self.registry.functions.register(
-            encoded_username, directory_url
-        ).build_transaction({"nonce": nonce})
-        signed_tx = self.w3.eth.account.sign_transaction(
-            transaction, self.signature_account.key
+        return CastReactionsPutResponse(**response)
+
+    def delete_cast_reactions(self, body: CastReactionsDeleteRequest) -> StatusResponse:
+        response = self.delete(
+            "cast-reactions",
+            json=body.dict(by_alias=True),
         )
-        response = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-        print(response)
+        return StatusResponse(**response)
 
-        return response.hex()
-
-    def transfer(self, to: str) -> str:
-        assert self.signature_account
-        nonce = self.w3.eth.get_transaction_count(
-            self.signature_account.address, "pending"
+    def get_cast_likes(
+        self,
+        cast_hash: str,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CastReactionsGetResponse:
+        response = self.get(
+            "cast-likes",
+            params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
         )
-        transaction = self.registry.functions.transfer(
-            Web3.toChecksumAddress(to)
-        ).build_transaction({"nonce": nonce})
-        signed_tx = self.w3.eth.account.sign_transaction(
-            transaction, self.signature_account.key
+        return CastReactionsGetResponse(**response)
+
+    def put_cast_likes(self, body: CastHash) -> CastReactionsPutResponse:
+        response = self.put(
+            "cast-likes",
+            json=body.dict(by_alias=True),
         )
-        response = self.w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-        return response.hex()
+        return CastReactionsPutResponse(**response)
 
-    # User Registry
+    def delete_cast_likes(self, cast_hash: str, body: CastHash) -> StatusResponse:
+        response = self.delete(
+            "cast-likes",
+            params={"castHash": cast_hash},
+            json=body.dict(by_alias=True),
+        )
+        return StatusResponse(**response)
 
-    def lookup_by_username(self, username: str) -> Optional[types.User]:
-        response = requests.get(self.DEFAULT_HOST_URL + "admin/usernames/" + username)
-        if response.status_code == 404:
-            return None
-        return types.User.parse_obj(response.json())
+    def get_cast_recasters(
+        self,
+        cast_hash: str,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CastRecastersGetResponse:
+        response = self.get(
+            "cast-recasters",
+            params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+        )
+        return CastRecastersGetResponse(**response)
 
-    def get_all_users(self) -> Optional[List[types.User]]:
-        response = requests.get(self.DEFAULT_HOST_URL + "admin/usernames")
-        if response.status_code == 404:
-            return None
-        return [types.User.parse_obj(user) for user in response.json()]
+    def get_cast(
+        self,
+        hash: str,
+    ) -> CastGetResponse:
+        response = self.get(
+            "cast",
+            params={"hash": hash},
+        )
+        return CastGetResponse(**response)
 
-    def get_all_usernames(self) -> Optional[List[str]]:
-        users = self.get_all_users()
-        if users:
-            return [user.username for user in users]
-        return None
+    def get_all_casts_in_thread(
+        self,
+        thread_hash: str,
+    ) -> CastsGetResponse:
+        response = self.get(
+            "all-casts-in-thread",
+            params={"threadHash": thread_hash},
+        )
+        return CastsGetResponse(**response)
 
-    def lookup_by_address(self, address: str) -> Optional[types.User]:
-        users = self.get_all_users()
-        if users:
-            for user in users:
-                if user.address == address:
-                    return user
-        return None
+    def get_casts(
+        self,
+        fid: int,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CastsGetResponse:
+        response = self.get(
+            "casts",
+            params={"fid": fid, "cursor": cursor, "limit": limit},
+        )
+        return CastsGetResponse(**response)
 
-    def get_latest_activity_for_user(
-        self, username: str
-    ) -> Optional[types.AddressActivity]:
-        activity = self.get_casts(username)
-        if len(activity) > 0:
-            return activity[0]
-        return None
+    def post_casts(self, body: CastsPostRequest) -> Union[None, CastsPostResponse]:
+        response = self.post(
+            "casts",
+            json=body.dict(by_alias=True),
+        )
+        return CastsPostResponse(**response)
 
-    def prepare_cast(
+    def delete_casts(self, body: CastHash) -> StatusResponse:
+        response = self.delete(
+            "casts",
+            json=body.dict(by_alias=True),
+        )
+        return StatusResponse(**response)
+
+    def get_collection(self, collection_id: str) -> CollectionGetResponse:
+        response = self.get(
+            "collection",
+            params={"collectionId": collection_id},
+        )
+        return CollectionGetResponse(**response)
+
+    def get_collection_activity(
+        self,
+        collection_id: str,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CollectionActivityGetResponse:
+        response = self.get(
+            "collection-activity",
+            params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
+        )
+        return CollectionActivityGetResponse(**response)
+
+    def get_collection_assets(
+        self,
+        collection_id: str,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CollectionAssetsGetResponse:
+        response = self.get(
+            "collection-assets",
+            params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
+        )
+        return CollectionAssetsGetResponse(**response)
+
+    def get_collection_owners(
+        self,
+        collection_id: str,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> CollectionOwnersGetResponse:
+        response = self.get(
+            "collection-owners",
+            params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
+        )
+        return CollectionOwnersGetResponse(**response)
+
+    def get_followers(
+        self,
+        fid: int,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> FollowersGetResponse:
+        response = self.get(
+            "followers",
+            params={"fid": fid, "cursor": cursor, "limit": limit},
+        )
+        return FollowersGetResponse(**response)
+
+    def get_following(
+        self,
+        fid: int,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> FollowingGetResponse:
+        response = self.get(
+            "following",
+            params={"fid": fid, "cursor": cursor, "limit": limit},
+        )
+        return FollowingGetResponse(**response)
+
+    def put_follows(self, body: FollowsPutRequest) -> StatusResponse:
+        response = self.put(
+            "follows",
+            json=body.dict(by_alias=True),
+        )
+        return StatusResponse(**response)
+
+    def delete_follows(self, body: FollowsDeleteRequest) -> StatusResponse:
+        response = self.delete(
+            "follows",
+            json=body.dict(by_alias=True),
+        )
+        return StatusResponse(**response)
+
+    def get_me(self) -> MeGetResponse:
+        response = self.get(
+            "me",
+        )
+        response_model = MeGetResponse(**response)
+        self.config.username = response_model.result.user.username
+        return response_model
+
+    def get_mention_and_reply_notifications(
+        self,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> MentionAndReplyNotificationsGetResponse:
+        response = self.get(
+            "mention-and-reply-notifications",
+            params={"cursor": cursor, "limit": limit},
+        )
+        return MentionAndReplyNotificationsGetResponse(**response)
+
+    def put_recasts(self, body: CastHash) -> RecastsPutResponse:
+        response = self.put(
+            "recasts",
+            json=body.dict(by_alias=True),
+        )
+        return RecastsPutResponse(**response)
+
+    def delete_recasts(self, body: CastHash) -> StatusResponse:
+        response = self.delete(
+            "recasts",
+            json=body.dict(by_alias=True),
+        )
+        return StatusResponse(**response)
+
+    def get_user(self, fid: str) -> UserGetResponse:
+        response = self.get(
+            "user",
+            params={"fid": fid},
+        )
+        return UserGetResponse(**response)
+
+    def get_user_by_username(
         self,
         username: str,
-        text: str,
-        reply_to: Optional[Union[types.AddressActivity, str]],
-    ) -> types.AddressActivityBody:
-        assert self.signature_account
-        if len(text) >= self.CAST_CHARACTER_LIMIT:
-            raise ValueError(
-                f"Cast length must be less than {self.CAST_CHARACTER_LIMIT}"
-            )
-        reply_parent_merkle_root = None
-        if reply_to:
-            if type(reply_to) == str:
-                reply_parent_merkle_root = reply_to
-            else:
-                reply_parent_merkle_root = reply_to.merkle_root
-        user_activity = self.get_latest_activity_for_user(username)
-
-        if not user_activity:
-            user = self.lookup_by_address(self.signature_account.address)
-            if not user:
-                raise ValueError("no username registered for address")
-            address = user.address
-            prev_merkle_root = Web3.keccak(Web3.toBytes(text=""))
-            sequence = 0
-        else:
-            address = user_activity.body.address
-            prev_merkle_root = user_activity.merkle_root
-            sequence = user_activity.body.sequence + 1
-
-        data = types.CastData(
-            text=text, reply_parent_merkle_root=reply_parent_merkle_root
+    ) -> UserByUsernameGetResponse:
+        response = self.get(
+            "user-by-username",
+            params={"username": username},
         )
+        return UserByUsernameGetResponse(**response)
 
-        return types.AddressActivityBody(
-            type=types.AddressActivityBodyType.TEXT_SHORT,
-            published_at=int(datetime.now().timestamp()),
-            sequence=sequence,
-            username=username,
-            address=address,
-            data=data,
-            prev_merkle_root=prev_merkle_root,
+    def get_user_by_verification(
+        self,
+        address: str,
+    ) -> UserByUsernameGetResponse:
+        response = self.get(
+            "user-by-verification",
+            params={"address": address},
         )
+        return UserByUsernameGetResponse(**response)
 
-    def sign_cast(self, unsigned_cast: types.AddressActivityBody) -> types.SignedCast:
-        assert self.signature_account
-        serialized_cast = unsigned_cast.json(
-            by_alias=True, exclude_none=True, separators=(",", ":")
+    def get_user_collections(
+        self,
+        owner_fid: int,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> UserCollectionsGetResponse:
+        response = self.get(
+            "user-collections",
+            params={"ownerFid": owner_fid, "cursor": cursor, "limit": limit},
         )
-        merkle_root = Web3.toHex(Web3.keccak(Web3.toBytes(text=serialized_cast)))
-        encoded = encode_defunct(text=merkle_root)
+        return UserCollectionsGetResponse(**response)
 
-        signature = self.signature_account.sign_message(encoded)
-        print(signature)
-        signed_cast = types.SignedCast(
-            body=unsigned_cast, merkle_root=merkle_root, signature=signature
+    def get_verifications(
+        self,
+        fid: int,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> VerificationsGetResponse:
+        response = self.get(
+            "verifications",
+            params={"fid": fid, "cursor": cursor, "limit": limit},
         )
-        return signed_cast
+        return VerificationsGetResponse(**response)
 
-    def publish_cast(
-        self, text: str, reply_to: Optional[Union[types.AddressActivity, str]] = None
-    ) -> types.SignedCast:
-        assert self.signature_account
-        user = self.lookup_by_address(self.signature_account.address)
-        if not user:
-            raise ValueError("no username registered for address")
-        unsigned_cast = self.prepare_cast(user.username, text, reply_to)
-
-        signed_cast = self.sign_cast(unsigned_cast)
-        self.post_cast_to_registry(signed_cast)
-        return signed_cast
-
-    def post_cast_to_registry(self, signed_cast: types.SignedCast) -> None:
-        response = requests.get(
-            self.DEFAULT_HOST_URL + "indexer/activity", signed_cast.json(by_alias=True)
+    def put_watched_casts(self, body: WatchedCastsPutRequest) -> StatusResponse:
+        response = self.put(
+            "watched-casts",
+            json=body.dict(by_alias=True),
         )
-        if response.status_code == 404:
-            print("404")
-            return None
-        print(response.json())
-        return None
+        return StatusResponse(**response)
+
+    def delete_watched_casts(self, body: WatchedCastsDeleteRequest) -> StatusResponse:
+        response = self.delete(
+            "watched-casts",
+            json=body.dict(by_alias=True),
+        )
+        return StatusResponse(**response)
+
+    def get_recent_users(
+        self,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> UsersGetResponse:
+        response = self.get(
+            "recent-users",
+            params={"cursor": cursor, "limit": limit},
+        )
+        return UsersGetResponse(**response)
+
+    def get_custody_address(
+        self,
+        fname: str,
+        fid: int,
+    ) -> CustodyAddressGetResponse:
+        response = self.get(
+            "custody-address",
+            params={"fname": fname, "fid": fid},
+        )
+        return CustodyAddressGetResponse(**response)
+
+    def get_user_cast_likes(
+        self,
+        fid: int,
+        cursor: str | None = None,
+        limit: PositiveInt = 25,
+    ) -> UserCastLikesGetResponse:
+        response = self.get(
+            "user-cast-likes",
+            params={"fid": fid, "cursor": cursor, "limit": limit},
+        )
+        return UserCastLikesGetResponse(**response)
+
+    def get_recent_casts(
+        self,
+        cursor: str | None = None,
+        limit: PositiveInt = 100,
+    ) -> CastsGetResponse:
+        response = self.get(
+            "recent-casts",
+            params={"cursor": cursor, "limit": limit},
+        )
+        return CastsGetResponse(**response)
+
+    def create_new_auth_token(self, params: AuthPutRequest) -> str:
+        response = self.put_auth(params)
+        self.access_token = response.result.token.secret
+        self.session.headers.update({"Authorization": f"Bearer {self.access_token}"})
+        return self.access_token
+
+    def generate_custody_auth_header(self, params: AuthPutRequest) -> str:
+        if not self.wallet:
+            raise Exception("Wallet not set")
+
+        payload = params.dict(by_alias=True)
+        encoded_payload = canonicaljson.encode_canonical_json(payload)
+        signable_message = encode_defunct(primitive=encoded_payload)
+        signed_message = self.wallet.sign_message(signable_message)
+        data_hex_array = bytearray(signed_message.signature)
+        encoded = base64.b64encode(data_hex_array).decode()
+        return f"Bearer eip191:{encoded}"

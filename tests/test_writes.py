@@ -4,15 +4,13 @@ from dotenv import load_dotenv
 from eth_account.account import Account
 from eth_account.signers.local import LocalAccount
 
-from farcaster.client import FarcasterClient
+from farcaster.client import MerkleApiClient
 
 load_dotenv()
 
-ETH_ACCOUNT_SIGNATURE: LocalAccount = Account.from_key(os.environ.get("RINKEBY_PKEY"))
+# ETH_ACCOUNT_SIGNATURE: LocalAccount = Account.from_key(os.environ.get("RINKEBY_PKEY"))
 
-fcc = FarcasterClient(
-    os.getenv("RINKEBY_NETWORK_ADDR"), signature_account=ETH_ACCOUNT_SIGNATURE
-)
+fcc = MerkleApiClient()
 
 
 # def test_register():

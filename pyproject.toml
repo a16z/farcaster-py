@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "farcaster"
-version = "0.1.0"
+version = "0.2.0"
 description = "farcaster-py is a Python SDK for the Farcaster Protocol"
 readme = "README.md"
 authors = ["Andreessen Horowitz <crypto-engineering@a16z.com>"]
@@ -27,6 +27,7 @@ classifiers = [  #! Update me
   "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
 ]
 
 
@@ -34,11 +35,13 @@ classifiers = [  #! Update me
 [tool.poetry.dependencies]
 python = ">3.7.1,<4.0.0"
 importlib_metadata = {version = "^4.5.0", python = "<3.8"}
-web3 = "^5.30.0"
 python-dotenv = "^0.20.0"
 pydantic = "^1.9.2"
 pyhumps = "^3.7.2"
 requests = "^2.28.1"
+canonicaljson = "^1.6.4"
+eth-account = "^0.8.0"
+fastapi-camelcase = "^1.0.5"
 [tool.poetry.dev-dependencies]
 bandit = "^1.7.1"
 black = {version = "^22.3.0", allow-prereleases = true}
@@ -59,7 +62,7 @@ pytest-cov = "^3.0.0"
 
 [tool.black]
 # https://github.com/psf/black
-target-version = ["py37"]
+target-version = ["py310"]
 line-length = 88
 color = true
 
@@ -81,7 +84,7 @@ exclude = '''
 
 [tool.isort]
 # https://github.com/timothycrosley/isort/
-py_version = 37
+py_version = 310
 line_length = 88
 
 known_typing = ["typing", "types", "typing_extensions", "mypy", "mypy_extensions"]
@@ -94,7 +97,6 @@ color_output = true
 
 [tool.mypy]
 # https://mypy.readthedocs.io/en/latest/config_file.html#using-a-pyproject-toml-file
-python_version = 3.7
 pretty = true
 show_traceback = true
 color_output = true
@@ -104,7 +106,7 @@ check_untyped_defs = true
 disallow_any_generics = true
 disallow_incomplete_defs = true
 ignore_missing_imports = true
-implicit_reexport = false
+implicit_reexport = true
 no_implicit_optional = true
 show_column_numbers = true
 show_error_codes = true
@@ -117,7 +119,6 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = true
-
 
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
