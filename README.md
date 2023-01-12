@@ -52,7 +52,7 @@ expiry = int(now + 600000) # This auth token will be valid for 10 minutes. You c
 
 client = MerkleApiClient(wallet=ETH_ACCOUNT_SIGNER)
 
-auth_params = V2AuthPutRequest(params=Params(timestamp=now, expires_at=expiry))
+auth_params = AuthPutRequest(params=Params(timestamp=now, expires_at=expiry))
 
 response = client.create_new_auth_token(auth_params)
 

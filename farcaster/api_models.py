@@ -144,7 +144,7 @@ class ApiAsset(BaseModel):
 
 class ApiAssetGroup(BaseModel):
     collection: ApiAssetCollection
-    assets: List[ApiAsset]
+    assets: list[ApiAsset]
 
 
 class ApiAssetEvent(BaseModel):
@@ -160,7 +160,7 @@ class ApiAssetEventFeedItem(BaseModel):
     id: str
     type: str
     latest_timestamp: PositiveInt = Field(..., alias="latestTimestamp")
-    events: List[ApiAssetEvent]
+    events: list[ApiAssetEvent]
 
 
 class ApiVerification(BaseModel):
@@ -619,7 +619,9 @@ class FollowsDeleteRequest(BaseModel):
 
 
 class CustodyAddress(BaseModel):
-    custody_address: str = Field(..., alias="custodyAddress", regex=r"^0[xX][0-9a-fA-F]{40}$")
+    custody_address: str = Field(
+        ..., alias="custodyAddress", regex=r"^0[xX][0-9a-fA-F]{40}$"
+    )
 
 
 class CustodyAddressGetResponse(BaseModel):

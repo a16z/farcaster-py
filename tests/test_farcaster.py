@@ -11,21 +11,21 @@ fcc = MerkleApiClient(access_token=os.getenv("AUTH"))
 
 def test_get_cast():
     # get cast
-    response = fcc.get_cast("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
-    print(response)
-    assert (
-        response.result.cast.author.fid
-        == 3
+    response = fcc.get_cast(
+        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
     )
+    print(response)
+    assert response.result.cast.author.fid == 3
+
 
 def test_get_all_casts_in_thread():
     # get cast
-    response = fcc.get_all_casts_in_thread("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
-    print(response)
-    assert (
-        response.result.casts[0].author.fid
-        == 3
+    response = fcc.get_all_casts_in_thread(
+        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
     )
+    print(response)
+    assert response.result.casts[0].author.fid == 3
+
 
 # def test_get_host_addr():
 #     # get user's host address
