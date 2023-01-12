@@ -51,8 +51,8 @@ class MerkleApiClient:
         response: dict[Any, Any] = self.session.get(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
-        if "error" in response:
-            raise Exception(response["error"])
+        if "errors" in response:
+            raise Exception(response["errors"])
         return response
 
     def post(
@@ -65,8 +65,8 @@ class MerkleApiClient:
         response: dict[Any, Any] = self.session.post(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
-        if "error" in response:
-            raise Exception(response["error"])
+        if "errors" in response:
+            raise Exception(response["errors"])
         return response
 
     def put(
@@ -79,8 +79,8 @@ class MerkleApiClient:
         response: dict[Any, Any] = self.session.put(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
-        if "error" in response:
-            raise Exception(response["error"])
+        if "errors" in response:
+            raise Exception(response["errors"])
         return response
 
     def delete(
@@ -93,8 +93,8 @@ class MerkleApiClient:
         response: dict[Any, Any] = self.session.delete(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
-        if "error" in response:
-            raise Exception(response["error"])
+        if "errors" in response:
+            raise Exception(response["errors"])
         return response
 
     def get_healthcheck(self) -> bool:
