@@ -1,7 +1,8 @@
 import os
 
-from dotenv import load_dotenv
 import pytest
+from dotenv import load_dotenv
+
 from farcaster.client import MerkleApiClient
 
 load_dotenv()
@@ -16,6 +17,7 @@ def test_get_cast():
     )
     print(response)
 
+
 def test_nonexistent_get_cast():
     # get cast
     with pytest.raises(Exception):
@@ -23,6 +25,7 @@ def test_nonexistent_get_cast():
             "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d861"
         )
         # Should raise error
+
 
 def test_get_all_casts_in_thread():
     # get cast

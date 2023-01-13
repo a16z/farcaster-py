@@ -143,9 +143,7 @@ class MerkleApiClient:
         )
         return CastReactionsGetResponse(**response).result
 
-    def put_cast_reactions(
-        self, body: CastReactionsPutRequest
-    ) -> ReactionResult:
+    def put_cast_reactions(self, body: CastReactionsPutRequest) -> ReactionResult:
         response = self.put(
             "cast-reactions",
             json=body.dict(by_alias=True),
