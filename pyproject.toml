@@ -58,7 +58,7 @@ safety = "^2.1.1"
 coverage = "^7.0.5"
 coverage-badge = "^1.1.0"
 pytest-html = "^3.1.1"
-pytest-cov = "^3.0.0"
+pytest-cov = "^4.0.0"
 
 [tool.black]
 # https://github.com/psf/black
