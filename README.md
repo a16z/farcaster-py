@@ -30,72 +30,54 @@ poetry add farcaster
 
 
 ## Usage
-Set ENV vars:
-
-`RINKEBY_PKEY`: Your private key
-
-`RINKEBY_NETWORK_ADDR`: Alchemy, Infura, or local RPC for Rinkeby
+To access the Farcaster API you need to generate an access token. Here is one way to do that:
 
 ```python
+import time
 import os
+
+from farcaster import MerkleApiClient
+from farcaster.api_models import AuthPutRequest, Params
 from eth_account.account import Account
 from eth_account.signers.local import LocalAccount
-from farcaster.client import FarcasterClient
+from dotenv import load_dotenv
 
-ETH_ACCOUNT_SIGNATURE: LocalAccount = Account.from_key(os.environ.get("RINKEBY_PKEY"))
+load_dotenv()
+Account.enable_unaudited_hdwallet_features()
+ETH_ACCOUNT_SIGNER: LocalAccount = Account.from_mnemonic(os.environ.get("MNEMONIC ENV VAR"))
 
-fcc = FarcasterClient(
-    os.getenv("RINKEBY_NETWORK_ADDR"), signature_account=ETH_ACCOUNT_SIGNATURE
-)
 
-print(fcc.get_profile("dwr"))
+now = int(time.time()*1000)
+expiry = int(now + 600000) # This auth token will be valid for 10 minutes. You can increase this up to 1 year
+
+client = MerkleApiClient(wallet=ETH_ACCOUNT_SIGNER)
+
+auth_params = AuthPutRequest(params=Params(timestamp=now, expires_at=expiry))
+
+response = client.create_new_auth_token(auth_params)
+
+print(response)
 ```
+
+Save the auth token somewhere like a `.env`.
+
+From now on you can initialize your client like this:
+
+```python
+from farcaster import MerkleApiClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client = MerkleApiClient(access_token="MK-....")
+
+print(client.get_healthcheck())
+```
+
+
 ## Examples
 
-### Get a profile from a username
-```python
-fcc.get_profile("dwr")
-```
-### Get casts from a username
-```python
-fcc.get_casts("dwr")
-### Verify a cast
-```python
-casts = fcc.get_casts("v")
-fcc.verify_cast(casts[-1])
-```
-### Get host address from a username
-```python
-fcc.get_host_addr("dwr")
-```
-### Get user from an address
-```python
-fcc.lookup_by_address("0xC6C0b79d0034A9A44c01c7695EaE26c9A7d23e40")
-```
-### Get username from an address
-```python
-fcc.get_username("0xC6C0b79d0034A9A44c01c7695EaE26c9A7d23e40")
-```
-### Get all users
-```python
-fcc.get_all_users()
-```
-### Get all usernames
-```python
-fcc.get_all_usernames()
-```
-### Publish a Cast
-```python
-fcc.publish_cast("Hello world! This cast was published from the Python SDK")
-```
-### Register a user
-```python
-fcc.register("xxx")
-```
-### Transfer an account to a new address
-```python
-fcc.transfer("xxx")
-```
+TODO
 
 
 ## Makefile usage
