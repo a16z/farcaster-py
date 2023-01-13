@@ -101,29 +101,29 @@ class MerkleApiClient:
         response = self.session.get("https://api.farcaster.xyz/healthcheck")
         return response.ok
 
-    def get_asset(self, token_id: int) -> AssetGetResponse:
+    def get_asset(self, token_id: int) -> AssetResult:
         response = self.get("asset", {"token_id": token_id})
-        return AssetGetResponse(**response)
+        return AssetGetResponse(**response).result
 
     def get_asset_events(
         self,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> AssetEventsGetResponse:
+    ) -> EventsResult:
         response = self.get(
             "asset-events",
             params={"cursor": cursor, "limit": limit},
         )
-        return AssetEventsGetResponse(**response)
+        return AssetEventsGetResponse(**response).result
 
-    def put_auth(self, body: AuthPutRequest) -> AuthPutResponse:
+    def put_auth(self, body: AuthPutRequest) -> TokenResult:
         header = self.generate_custody_auth_header(body)
         response = requests.put(
             "https://api.farcaster.xyz/v2/auth",
             json=body.dict(by_alias=True),
             headers={"Authorization": header},
         ).json()
-        return AuthPutResponse(**response)
+        return AuthPutResponse(**response).result
 
     def delete_auth(self, body: AuthDeleteRequest) -> StatusResponse:
         response = self.delete(
@@ -136,21 +136,21 @@ class MerkleApiClient:
         self,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CastReactionsGetResponse:
+    ) -> ReactionsResult:
         response = self.get(
             "cast-reactions",
             params={"cursor": cursor, "limit": limit},
         )
-        return CastReactionsGetResponse(**response)
+        return CastReactionsGetResponse(**response).result
 
     def put_cast_reactions(
         self, body: CastReactionsPutRequest
-    ) -> CastReactionsPutResponse:
+    ) -> ReactionResult:
         response = self.put(
             "cast-reactions",
             json=body.dict(by_alias=True),
         )
-        return CastReactionsPutResponse(**response)
+        return CastReactionsPutResponse(**response).result
 
     def delete_cast_reactions(self, body: CastReactionsDeleteRequest) -> StatusResponse:
         response = self.delete(
@@ -164,19 +164,19 @@ class MerkleApiClient:
         cast_hash: str,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CastReactionsGetResponse:
+    ) -> ReactionsResult:
         response = self.get(
             "cast-likes",
             params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
         )
-        return CastReactionsGetResponse(**response)
+        return CastReactionsGetResponse(**response).result
 
-    def put_cast_likes(self, body: CastHash) -> CastReactionsPutResponse:
+    def put_cast_likes(self, body: CastHash) -> ReactionResult:
         response = self.put(
             "cast-likes",
             json=body.dict(by_alias=True),
         )
-        return CastReactionsPutResponse(**response)
+        return CastReactionsPutResponse(**response).result
 
     def delete_cast_likes(self, cast_hash: str, body: CastHash) -> StatusResponse:
         response = self.delete(
@@ -191,51 +191,51 @@ class MerkleApiClient:
         cast_hash: str,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CastRecastersGetResponse:
+    ) -> UsersResult:
         response = self.get(
             "cast-recasters",
             params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
         )
-        return CastRecastersGetResponse(**response)
+        return CastRecastersGetResponse(**response).result
 
     def get_cast(
         self,
         hash: str,
-    ) -> CastGetResponse:
+    ) -> CastContent:
         response = self.get(
             "cast",
             params={"hash": hash},
         )
-        return CastGetResponse(**response)
+        return CastGetResponse(**response).result
 
     def get_all_casts_in_thread(
         self,
         thread_hash: str,
-    ) -> CastsGetResponse:
+    ) -> CastsResult:
         response = self.get(
             "all-casts-in-thread",
             params={"threadHash": thread_hash},
         )
-        return CastsGetResponse(**response)
+        return CastsGetResponse(**response).result
 
     def get_casts(
         self,
         fid: int,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CastsGetResponse:
+    ) -> CastsResult:
         response = self.get(
             "casts",
             params={"fid": fid, "cursor": cursor, "limit": limit},
         )
-        return CastsGetResponse(**response)
+        return CastsGetResponse(**response).result
 
-    def post_casts(self, body: CastsPostRequest) -> Union[None, CastsPostResponse]:
+    def post_casts(self, body: CastsPostRequest) -> Union[None, CastContent]:
         response = self.post(
             "casts",
             json=body.dict(by_alias=True),
         )
-        return CastsPostResponse(**response)
+        return CastsPostResponse(**response).result
 
     def delete_casts(self, body: CastHash) -> StatusResponse:
         response = self.delete(
@@ -244,72 +244,72 @@ class MerkleApiClient:
         )
         return StatusResponse(**response)
 
-    def get_collection(self, collection_id: str) -> CollectionGetResponse:
+    def get_collection(self, collection_id: str) -> CollectionResult:
         response = self.get(
             "collection",
             params={"collectionId": collection_id},
         )
-        return CollectionGetResponse(**response)
+        return CollectionGetResponse(**response).result
 
     def get_collection_activity(
         self,
         collection_id: str,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CollectionActivityGetResponse:
+    ) -> EventsResult:
         response = self.get(
             "collection-activity",
             params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
         )
-        return CollectionActivityGetResponse(**response)
+        return CollectionActivityGetResponse(**response).result
 
     def get_collection_assets(
         self,
         collection_id: str,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CollectionAssetsGetResponse:
+    ) -> AssetsResult:
         response = self.get(
             "collection-assets",
             params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
         )
-        return CollectionAssetsGetResponse(**response)
+        return CollectionAssetsGetResponse(**response).result
 
     def get_collection_owners(
         self,
         collection_id: str,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> CollectionOwnersGetResponse:
+    ) -> UsersResult:
         response = self.get(
             "collection-owners",
             params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
         )
-        return CollectionOwnersGetResponse(**response)
+        return CollectionOwnersGetResponse(**response).result
 
     def get_followers(
         self,
         fid: int,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> FollowersGetResponse:
+    ) -> UsersResult:
         response = self.get(
             "followers",
             params={"fid": fid, "cursor": cursor, "limit": limit},
         )
-        return FollowersGetResponse(**response)
+        return FollowersGetResponse(**response).result
 
     def get_following(
         self,
         fid: int,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> FollowingGetResponse:
+    ) -> UsersResult:
         response = self.get(
             "following",
             params={"fid": fid, "cursor": cursor, "limit": limit},
         )
-        return FollowingGetResponse(**response)
+        return FollowingGetResponse(**response).result
 
     def put_follows(self, body: FollowsPutRequest) -> StatusResponse:
         response = self.put(
@@ -325,31 +325,31 @@ class MerkleApiClient:
         )
         return StatusResponse(**response)
 
-    def get_me(self) -> MeGetResponse:
+    def get_me(self) -> UserResult:
         response = self.get(
             "me",
         )
-        response_model = MeGetResponse(**response)
-        self.config.username = response_model.result.user.username
+        response_model = MeGetResponse(**response).result
+        self.config.username = response_model.user.username
         return response_model
 
     def get_mention_and_reply_notifications(
         self,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> MentionAndReplyNotificationsGetResponse:
+    ) -> NotificationsResult:
         response = self.get(
             "mention-and-reply-notifications",
             params={"cursor": cursor, "limit": limit},
         )
-        return MentionAndReplyNotificationsGetResponse(**response)
+        return MentionAndReplyNotificationsGetResponse(**response).result
 
-    def put_recasts(self, body: CastHash) -> RecastsPutResponse:
+    def put_recasts(self, body: CastHash) -> CastHash:
         response = self.put(
             "recasts",
             json=body.dict(by_alias=True),
         )
-        return RecastsPutResponse(**response)
+        return RecastsPutResponse(**response).result
 
     def delete_recasts(self, body: CastHash) -> StatusResponse:
         response = self.delete(
@@ -358,56 +358,56 @@ class MerkleApiClient:
         )
         return StatusResponse(**response)
 
-    def get_user(self, fid: str) -> UserGetResponse:
+    def get_user(self, fid: str) -> UserResult:
         response = self.get(
             "user",
             params={"fid": fid},
         )
-        return UserGetResponse(**response)
+        return UserGetResponse(**response).result
 
     def get_user_by_username(
         self,
         username: str,
-    ) -> UserByUsernameGetResponse:
+    ) -> UserResult:
         response = self.get(
             "user-by-username",
             params={"username": username},
         )
-        return UserByUsernameGetResponse(**response)
+        return UserByUsernameGetResponse(**response).result
 
     def get_user_by_verification(
         self,
         address: str,
-    ) -> UserByUsernameGetResponse:
+    ) -> UserResult:
         response = self.get(
             "user-by-verification",
             params={"address": address},
         )
-        return UserByUsernameGetResponse(**response)
+        return UserByUsernameGetResponse(**response).result
 
     def get_user_collections(
         self,
         owner_fid: int,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> UserCollectionsGetResponse:
+    ) -> CollectionsResult:
         response = self.get(
             "user-collections",
             params={"ownerFid": owner_fid, "cursor": cursor, "limit": limit},
         )
-        return UserCollectionsGetResponse(**response)
+        return UserCollectionsGetResponse(**response).result
 
     def get_verifications(
         self,
         fid: int,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> VerificationsGetResponse:
+    ) -> VerificationsResult:
         response = self.get(
             "verifications",
             params={"fid": fid, "cursor": cursor, "limit": limit},
         )
-        return VerificationsGetResponse(**response)
+        return VerificationsGetResponse(**response).result
 
     def put_watched_casts(self, body: WatchedCastsPutRequest) -> StatusResponse:
         response = self.put(
@@ -427,50 +427,50 @@ class MerkleApiClient:
         self,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> UsersGetResponse:
+    ) -> UsersResult:
         response = self.get(
             "recent-users",
             params={"cursor": cursor, "limit": limit},
         )
-        return UsersGetResponse(**response)
+        return UsersGetResponse(**response).result
 
     def get_custody_address(
         self,
         fname: str,
         fid: int,
-    ) -> CustodyAddressGetResponse:
+    ) -> CustodyAddress:
         response = self.get(
             "custody-address",
             params={"fname": fname, "fid": fid},
         )
-        return CustodyAddressGetResponse(**response)
+        return CustodyAddressGetResponse(**response).result
 
     def get_user_cast_likes(
         self,
         fid: int,
         cursor: str | None = None,
         limit: PositiveInt = 25,
-    ) -> UserCastLikesGetResponse:
+    ) -> Likes:
         response = self.get(
             "user-cast-likes",
             params={"fid": fid, "cursor": cursor, "limit": limit},
         )
-        return UserCastLikesGetResponse(**response)
+        return UserCastLikesGetResponse(**response).result
 
     def get_recent_casts(
         self,
         cursor: str | None = None,
         limit: PositiveInt = 100,
-    ) -> CastsGetResponse:
+    ) -> CastsResult:
         response = self.get(
             "recent-casts",
             params={"cursor": cursor, "limit": limit},
         )
-        return CastsGetResponse(**response)
+        return CastsGetResponse(**response).result
 
     def create_new_auth_token(self, params: AuthPutRequest) -> str:
         response = self.put_auth(params)
-        self.access_token = response.result.token.secret
+        self.access_token = response.token.secret
         self.session.headers.update({"Authorization": f"Bearer {self.access_token}"})
         return self.access_token
 
