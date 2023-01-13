@@ -125,7 +125,11 @@ warn_unused_ignores = true
 # Directories that are not visited by pytest collector:
 norecursedirs =["hooks", "*.egg", ".eggs", "dist", "build", "docs", ".tox", ".git", "__pycache__"]
 doctest_optionflags = ["NUMBER", "NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
-
+filterwarnings = [
+    "ignore::DeprecationWarning",
+  ]
+log_cli = true
+log_cli_level = 10
 # Extra options:
 addopts = [
   "--strict-markers",
