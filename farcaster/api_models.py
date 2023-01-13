@@ -1,9 +1,18 @@
 from __future__ import annotations
 
-from typing import Any, List, Optional, Type, TypeAlias, Union
+from typing import Any, Dict, List, Optional, Type, TypeAlias, Union
 
 from fastapi_camelcase import CamelModel
-from pydantic import AnyUrl, BaseModel, Field, NoneStr, PositiveInt, conint, constr
+from pydantic import AnyUrl
+from pydantic import BaseModel as PydanticBaseModel
+from pydantic import Field, NoneStr, PositiveInt, conint, constr
+
+
+class BaseModel(PydanticBaseModel):
+    def dict(self, *args: Any, **kwargs: Any) -> dict[str, Any]:
+        if hasattr(kwargs, "exclude_none"):
+            _ignored = kwargs.pop("exclude_none")
+        return super().dict(*args, exclude_none=True, **kwargs)
 
 
 class ApiError(BaseModel):
@@ -35,7 +44,7 @@ class ApiOpenGraphMetadata(BaseModel):
     title: constr(min_length=0, max_length=256) | None = None  # type: ignore
     description: constr(min_length=0, max_length=512) | None = None  # type: ignore
     domain: constr(min_length=0, max_length=253) | None = None  # type: ignore
-    image: AnyUrl | None = None
+    image: str | None = None
     logo: AnyUrl | None = None
     use_large_image: bool | None = Field(None, alias="useLargeImage")
     stripped_cast_text: NoneStr = Field(None, alias="strippedCastText")
@@ -515,9 +524,7 @@ class Parent(BaseModel):
 
 class CastsPostRequest(BaseModel):
     text: str
-    embeds: list[AnyUrl] | None = Field(
-        None, max_items=2, min_items=0, unique_items=True
-    )
+    embeds: list[AnyUrl] | None = None
     parent: Parent | None = None
 
 
@@ -534,7 +541,7 @@ class CastHash(BaseModel):
 
 
 class ReactionsResult(BaseModel):
-    reactions: list[ApiCastReaction]
+    likes: list[ApiCastReaction]
 
 
 class CastReactionsGetResponse(BaseModel):
@@ -548,12 +555,8 @@ class CastReactionsPutRequest(BaseModel):
     cast_hash: str = Field(..., alias="castHash")
 
 
-class ReactionResult(BaseModel):
-    reaction: ApiCastReaction
-
-
 class CastReactionsPutResponse(BaseModel):
-    result: ReactionResult
+    result: ReactionsResult
 
 
 class CastReactionsDeleteRequest(BaseModel):
@@ -717,7 +720,7 @@ class WatchedCastsDeleteRequest(BaseModel):
 
 
 class CastLikesPutResponse(BaseModel):
-    result: ReactionResult
+    result: ReactionsResult
 
 
 class CastLikesGetResponse(BaseModel):

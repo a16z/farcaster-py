@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any, Dict, Optional
 
 import base64
+import logging
 
 import canonicaljson
 import requests
@@ -48,6 +49,7 @@ class MerkleApiClient:
         json: dict[Any, Any] = {},
         headers: dict[Any, Any] = {},
     ) -> dict[Any, Any]:
+        logging.debug(f"GET {path} {params} {json} {headers}")
         response: dict[Any, Any] = self.session.get(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
@@ -62,6 +64,7 @@ class MerkleApiClient:
         json: dict[Any, Any] = {},
         headers: dict[Any, Any] = {},
     ) -> dict[Any, Any]:
+        logging.debug(f"POST {path} {params} {json} {headers}")
         response: dict[Any, Any] = self.session.post(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
@@ -76,6 +79,7 @@ class MerkleApiClient:
         json: dict[Any, Any] = {},
         headers: dict[Any, Any] = {},
     ) -> dict[Any, Any]:
+        logging.debug(f"PUT {path} {params} {json} {headers}")
         response: dict[Any, Any] = self.session.put(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
@@ -90,6 +94,7 @@ class MerkleApiClient:
         json: dict[Any, Any] = {},
         headers: dict[Any, Any] = {},
     ) -> dict[Any, Any]:
+        logging.debug(f"DELETE {path} {params} {json} {headers}")
         response: dict[Any, Any] = self.session.delete(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
@@ -132,31 +137,6 @@ class MerkleApiClient:
         )
         return StatusResponse(**response)
 
-    def get_cast_reactions(
-        self,
-        cursor: str | None = None,
-        limit: PositiveInt = 25,
-    ) -> ReactionsResult:
-        response = self.get(
-            "cast-reactions",
-            params={"cursor": cursor, "limit": limit},
-        )
-        return CastReactionsGetResponse(**response).result
-
-    def put_cast_reactions(self, body: CastReactionsPutRequest) -> ReactionResult:
-        response = self.put(
-            "cast-reactions",
-            json=body.dict(by_alias=True),
-        )
-        return CastReactionsPutResponse(**response).result
-
-    def delete_cast_reactions(self, body: CastReactionsDeleteRequest) -> StatusResponse:
-        response = self.delete(
-            "cast-reactions",
-            json=body.dict(by_alias=True),
-        )
-        return StatusResponse(**response)
-
     def get_cast_likes(
         self,
         cast_hash: str,
@@ -169,7 +149,7 @@ class MerkleApiClient:
         )
         return CastReactionsGetResponse(**response).result
 
-    def put_cast_likes(self, body: CastHash) -> ReactionResult:
+    def put_cast_likes(self, body: CastHash) -> ReactionsResult:
         response = self.put(
             "cast-likes",
             json=body.dict(by_alias=True),
@@ -228,7 +208,7 @@ class MerkleApiClient:
         )
         return CastsGetResponse(**response).result
 
-    def post_casts(self, body: CastsPostRequest) -> Union[None, CastContent]:
+    def post_cast(self, body: CastsPostRequest) -> Union[None, CastContent]:
         response = self.post(
             "casts",
             json=body.dict(by_alias=True),
@@ -356,7 +336,7 @@ class MerkleApiClient:
         )
         return StatusResponse(**response)
 
-    def get_user(self, fid: str) -> UserResult:
+    def get_user(self, fid: int) -> UserResult:
         response = self.get(
             "user",
             params={"fid": fid},
@@ -434,9 +414,10 @@ class MerkleApiClient:
 
     def get_custody_address(
         self,
-        fname: str,
-        fid: int,
+        fname: NoneStr = None,
+        fid: int | None = None,
     ) -> CustodyAddress:
+        assert fname or fid, "fname or fid must be provided"
         response = self.get(
             "custody-address",
             params={"fname": fname, "fid": fid},

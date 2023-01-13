@@ -1,7 +1,5 @@
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, NoneStr
-
 from farcaster.api_models import *
 
 FARCASTER_API_BASE_URL = "https://api.farcaster.xyz/v2/"
