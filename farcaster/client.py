@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import Any, Dict, Optional
 
 import base64
@@ -9,7 +7,7 @@ import canonicaljson
 import requests
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
-from pydantic import PositiveInt
+from pydantic import NoneStr, PositiveInt
 
 from farcaster.api_models import *
 from farcaster.config import *
@@ -17,14 +15,14 @@ from farcaster.config import *
 
 class MerkleApiClient:
     config: ConfigurationParams
-    wallet: LocalAccount | None
-    access_token: str | None
+    wallet: Optional[LocalAccount]
+    access_token: NoneStr
     sessions: requests.Session
 
     def __init__(
         self,
-        wallet: LocalAccount | None = None,
-        access_token: str | None = None,
+        wallet: Optional[LocalAccount] = None,
+        access_token: NoneStr = None,
         **data: Any,
     ):
         self.config = ConfigurationParams(**data)
@@ -45,12 +43,12 @@ class MerkleApiClient:
     def get(
         self,
         path: str,
-        params: dict[Any, Any] = {},
-        json: dict[Any, Any] = {},
-        headers: dict[Any, Any] = {},
-    ) -> dict[Any, Any]:
+        params: Dict[Any, Any] = {},
+        json: Dict[Any, Any] = {},
+        headers: Dict[Any, Any] = {},
+    ) -> Dict[Any, Any]:
         logging.debug(f"GET {path} {params} {json} {headers}")
-        response: dict[Any, Any] = self.session.get(
+        response: Dict[Any, Any] = self.session.get(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
@@ -60,12 +58,12 @@ class MerkleApiClient:
     def post(
         self,
         path: str,
-        params: dict[Any, Any] = {},
-        json: dict[Any, Any] = {},
-        headers: dict[Any, Any] = {},
-    ) -> dict[Any, Any]:
+        params: Dict[Any, Any] = {},
+        json: Dict[Any, Any] = {},
+        headers: Dict[Any, Any] = {},
+    ) -> Dict[Any, Any]:
         logging.debug(f"POST {path} {params} {json} {headers}")
-        response: dict[Any, Any] = self.session.post(
+        response: Dict[Any, Any] = self.session.post(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
@@ -75,12 +73,12 @@ class MerkleApiClient:
     def put(
         self,
         path: str,
-        params: dict[Any, Any] = {},
-        json: dict[Any, Any] = {},
-        headers: dict[Any, Any] = {},
-    ) -> dict[Any, Any]:
+        params: Dict[Any, Any] = {},
+        json: Dict[Any, Any] = {},
+        headers: Dict[Any, Any] = {},
+    ) -> Dict[Any, Any]:
         logging.debug(f"PUT {path} {params} {json} {headers}")
-        response: dict[Any, Any] = self.session.put(
+        response: Dict[Any, Any] = self.session.put(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
@@ -90,12 +88,12 @@ class MerkleApiClient:
     def delete(
         self,
         path: str,
-        params: dict[Any, Any] = {},
-        json: dict[Any, Any] = {},
-        headers: dict[Any, Any] = {},
-    ) -> dict[Any, Any]:
+        params: Dict[Any, Any] = {},
+        json: Dict[Any, Any] = {},
+        headers: Dict[Any, Any] = {},
+    ) -> Dict[Any, Any]:
         logging.debug(f"DELETE {path} {params} {json} {headers}")
-        response: dict[Any, Any] = self.session.delete(
+        response: Dict[Any, Any] = self.session.delete(
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
@@ -112,7 +110,7 @@ class MerkleApiClient:
 
     def get_asset_events(
         self,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> EventsResult:
         response = self.get(
@@ -140,7 +138,7 @@ class MerkleApiClient:
     def get_cast_likes(
         self,
         cast_hash: str,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> ReactionsResult:
         response = self.get(
@@ -167,7 +165,7 @@ class MerkleApiClient:
     def get_cast_recasters(
         self,
         cast_hash: str,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> UsersResult:
         response = self.get(
@@ -199,7 +197,7 @@ class MerkleApiClient:
     def get_casts(
         self,
         fid: int,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> CastsResult:
         response = self.get(
@@ -232,7 +230,7 @@ class MerkleApiClient:
     def get_collection_activity(
         self,
         collection_id: str,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> EventsResult:
         response = self.get(
@@ -244,7 +242,7 @@ class MerkleApiClient:
     def get_collection_assets(
         self,
         collection_id: str,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> AssetsResult:
         response = self.get(
@@ -256,7 +254,7 @@ class MerkleApiClient:
     def get_collection_owners(
         self,
         collection_id: str,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> UsersResult:
         response = self.get(
@@ -268,7 +266,7 @@ class MerkleApiClient:
     def get_followers(
         self,
         fid: int,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> UsersResult:
         response = self.get(
@@ -280,7 +278,7 @@ class MerkleApiClient:
     def get_following(
         self,
         fid: int,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> UsersResult:
         response = self.get(
@@ -313,7 +311,7 @@ class MerkleApiClient:
 
     def get_mention_and_reply_notifications(
         self,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> NotificationsResult:
         response = self.get(
@@ -366,7 +364,7 @@ class MerkleApiClient:
     def get_user_collections(
         self,
         owner_fid: int,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> CollectionsResult:
         response = self.get(
@@ -378,7 +376,7 @@ class MerkleApiClient:
     def get_verifications(
         self,
         fid: int,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> VerificationsResult:
         response = self.get(
@@ -403,7 +401,7 @@ class MerkleApiClient:
 
     def get_recent_users(
         self,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> UsersResult:
         response = self.get(
@@ -415,7 +413,7 @@ class MerkleApiClient:
     def get_custody_address(
         self,
         fname: NoneStr = None,
-        fid: int | None = None,
+        fid: Optional[int] = None,
     ) -> CustodyAddress:
         assert fname or fid, "fname or fid must be provided"
         response = self.get(
@@ -427,7 +425,7 @@ class MerkleApiClient:
     def get_user_cast_likes(
         self,
         fid: int,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 25,
     ) -> Likes:
         response = self.get(
@@ -438,7 +436,7 @@ class MerkleApiClient:
 
     def get_recent_casts(
         self,
-        cursor: str | None = None,
+        cursor: NoneStr = None,
         limit: PositiveInt = 100,
     ) -> CastsResult:
         response = self.get(

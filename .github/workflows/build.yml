@@ -40,7 +40,6 @@ jobs:
 
       - name: Run tests
         env:
-          RINKEBY_NETWORK_ADDR: ${{ secrets.RINKEBY_NETWORK_ADDR }}
-          AUTH: ${{ secrets.AUTH }}
+          AUTH: "DUMMY"
         run: |
           make test
