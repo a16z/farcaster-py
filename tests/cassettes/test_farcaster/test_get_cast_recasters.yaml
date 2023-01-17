@@ -1,0 +1,94 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.farcaster.xyz/v2/cast-recasters?castHash=0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f&limit=25
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0SQX24TMRjEr2J9Dzw5/xN2a6lCDaVNm5Q2CiIFVFUu++3GrO1vsb3ZpNHeoGpP
+        gHjhEJyHC8ARUFJKn0b6zWg0mg049KUOIDZQenQexKcNpCoBMYg7Md9BKw2CAJk4hdYicEiUL7Rc
+        v300Dp6NIi12VU6DgEUIhRetlmp6lIltKmplEluDveNx56Q7OprNeoVcG3l0HH35OM0p7s2jcbR3
+        M+qevK8uG/PzC1mNog/Dybx/VrWHZf9gKvvZrB++TjrL9vXtmTmdzU8b03eUjw/zw9UkJxtdIvnu
+        y8Yge1XtD9rtF7IMtJ+SMzIAhyU6lSpMQARXYs2hcJQqjdvRN4q2EnAVQMAbmymL6DgzZNiK9Tir
+        yOXKZiwQMzJHFha4ZTphhhyyz2QK6b0iKwOyP9/v7n99+/H75wOTGV77RamNtM1QqRDQMeBg0AZF
+        dnv5VV1zSElrqtC9ptIGEJ1u/MSUzZ5g3OOwVLiL2cepm+cUiFRqj/+7kuH6H6rrq7r+CwAA//8D
+        AGuKo/zuAQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 78b1869a2b1f18d0-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 17 Jan 2023 19:34:00 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=R8QxHJm4WMSAKchEXEYJO2XSlHPi2DTQKBngLbVEbTe3fB%2Bs118Z2KwAMTB3joivakDmEp7ZKW77qE0lb%2Boq8CnBEhF1mtQTM8wqlcULqQ2DemQK7fQPXWWniHgakoaGyIWY%2FyC%2BkuRigI97RbzA"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"1hobf2j"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '998'
+      x-ratelimit-reset:
+      - '59'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1
