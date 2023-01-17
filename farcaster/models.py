@@ -476,14 +476,14 @@ class AssetGetResponse(BaseModel):
     result: AssetResult
 
 
-class Params(CamelModel):
+class AuthParams(CamelModel):
     timestamp: PositiveInt
     expires_at: Optional[PositiveInt] = Field(None, alias="expiresAt")
 
 
 class AuthPutRequest(BaseModel):
     method: str = "generateToken"
-    params: Params
+    params: AuthParams
 
 
 class TokenResult(BaseModel):

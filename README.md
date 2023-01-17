@@ -37,7 +37,7 @@ import time
 import os
 
 from farcaster import MerkleApiClient
-from farcaster.api_models import AuthPutRequest, Params
+from farcaster.models import AuthParams
 from eth_account.account import Account
 from eth_account.signers.local import LocalAccount
 from dotenv import load_dotenv
@@ -52,7 +52,7 @@ expiry = int(now + 600000) # This auth token will be valid for 10 minutes. You c
 
 client = MerkleApiClient(wallet=ETH_ACCOUNT_SIGNER)
 
-auth_params = AuthPutRequest(params=Params(timestamp=now, expires_at=expiry))
+auth_params = AuthParams(timestamp=now, expires_at=expiry)
 
 response = client.create_new_auth_token(auth_params)
 
@@ -77,7 +77,54 @@ print(client.get_healthcheck())
 
 ## Examples
 
-TODO
+Get a cast
+
+```python3
+
+response = fcc.get_cast(
+        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
+    )
+print(response.cast.author.username) # "dwr"
+```
+
+Publish a cast
+
+```python3
+from farcaster.models import CastsPostRequest
+
+cast_body = CastsPostRequest(text="Hello world!")
+response = fcc.post_cast(cast_body)
+if response:
+    print(response.cast.hash)
+else:
+    raise Exception("Failed to post cast")
+```
+
+Get a user by username
+
+```python3
+response = fcc.get_user_by_username(
+        "mason"
+    )
+print(response.user.username) # "mason"
+```
+
+Get a user's followers using a fid (farcaster ID)
+
+```python3
+response = fcc.get_followers(
+        fid=50
+    )
+print(response.users) # [user1, user2, user3]
+```
+
+Get recent users
+
+```python3
+response = fcc.get_recent_users()
+print(response.users) # [user1, user2, user3]
+```
+
 
 
 ## Makefile usage
