@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: AUTH
     strategy:
       matrix:
         python-version: ["3.7.15", "3.10"]
@@ -40,6 +41,6 @@ jobs:
 
       - name: Run tests
         env:
-          AUTH: "DUMMY"
+          AUTH: ${{ secrets.AUTH }}
         run: |
           make test
