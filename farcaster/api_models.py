@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional, Type, TypeAlias, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
 from fastapi_camelcase import CamelModel
 from pydantic import AnyUrl
