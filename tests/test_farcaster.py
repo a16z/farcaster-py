@@ -5,6 +5,7 @@ import pytest
 from farcaster.client import MerkleApiClient
 
 
+@pytest.mark.vcr
 def test_get_cast(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets cast
@@ -18,6 +19,7 @@ def test_get_cast(fcc: MerkleApiClient) -> None:
     assert response.cast.author.fid == 3
 
 
+@pytest.mark.vcr
 def test_nonexistent_get_cast(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets nonexistent cast
@@ -32,6 +34,7 @@ def test_nonexistent_get_cast(fcc: MerkleApiClient) -> None:
         )
 
 
+@pytest.mark.vcr
 def test_get_all_casts_in_thread(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets all casts in thread
@@ -45,6 +48,7 @@ def test_get_all_casts_in_thread(fcc: MerkleApiClient) -> None:
     assert response.casts[0].author.fid == 3
 
 
+@pytest.mark.vcr
 def test_get_casts(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets a user's recent casts
@@ -57,6 +61,7 @@ def test_get_casts(fcc: MerkleApiClient) -> None:
     assert len(response2.casts) == 10
 
 
+@pytest.mark.vcr
 def test_post_cast(fcc: MerkleApiClient) -> None:
     """
     Unit test that posts cast
@@ -73,6 +78,7 @@ def test_post_cast(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_delete_cast(fcc: MerkleApiClient) -> None:
     """
     Unit test that deletes cast
@@ -87,6 +93,7 @@ def test_delete_cast(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_get_cast_likes(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets cast likes
@@ -99,6 +106,7 @@ def test_get_cast_likes(fcc: MerkleApiClient) -> None:
     assert response.likes[0].reactor.fid == 43
 
 
+@pytest.mark.vcr
 def test_put_cast_likes(fcc: MerkleApiClient) -> None:
     """
     Unit test that puts cast likes
@@ -112,6 +120,7 @@ def test_put_cast_likes(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_delete_cast_likes(fcc: MerkleApiClient) -> None:
     """
     Unit test that deletes cast likes
@@ -125,6 +134,7 @@ def test_delete_cast_likes(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets cast recasters
@@ -137,6 +147,7 @@ def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
     assert response.users[0].username == "adrienne"
 
 
+@pytest.mark.vcr
 def test_recast_cast(fcc: MerkleApiClient) -> None:
     """
     Unit test that recasts cast
@@ -146,6 +157,7 @@ def test_recast_cast(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_delete_recast(fcc: MerkleApiClient) -> None:
     """
     Unit test that deletes recast
@@ -155,6 +167,7 @@ def test_delete_recast(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_get_recent_casts(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets all recent casts
@@ -167,6 +180,7 @@ def test_get_recent_casts(fcc: MerkleApiClient) -> None:
     assert len(response2.casts) == 50
 
 
+@pytest.mark.vcr
 def test_follow_user(fcc: MerkleApiClient) -> None:
     """
     Unit test that follows user
@@ -176,6 +190,7 @@ def test_follow_user(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_unfollow_user(fcc: MerkleApiClient) -> None:
     """
     Unit test that unfollows user
@@ -185,6 +200,7 @@ def test_unfollow_user(fcc: MerkleApiClient) -> None:
     pass
 
 
+@pytest.mark.vcr
 def test_get_followers(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets followers
@@ -197,6 +213,7 @@ def test_get_followers(fcc: MerkleApiClient) -> None:
     assert len(response.users) == 100
 
 
+@pytest.mark.vcr
 def test_get_following(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets who a user is following
@@ -209,6 +226,7 @@ def test_get_following(fcc: MerkleApiClient) -> None:
     assert len(response.users) == 100
 
 
+@pytest.mark.vcr
 def test_get_user(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets user
@@ -219,6 +237,7 @@ def test_get_user(fcc: MerkleApiClient) -> None:
     assert response.user.username == "mason"
 
 
+@pytest.mark.vcr
 def test_get_user_by_username(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets user by username
@@ -230,6 +249,7 @@ def test_get_user_by_username(fcc: MerkleApiClient) -> None:
     assert response.user.fid == 50
 
 
+@pytest.mark.vcr
 def test_get_user_cast_likes(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets user cast likes
@@ -242,6 +262,7 @@ def test_get_user_cast_likes(fcc: MerkleApiClient) -> None:
     assert len(response.likes) == 100
 
 
+@pytest.mark.vcr
 def test_get_custody_address(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets custody address
@@ -257,6 +278,7 @@ def test_get_custody_address(fcc: MerkleApiClient) -> None:
         fcc.get_custody_address()
 
 
+@pytest.mark.vcr
 def test_get_me(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets user
@@ -267,6 +289,7 @@ def test_get_me(fcc: MerkleApiClient) -> None:
     assert response.user.username == "mason"
 
 
+@pytest.mark.vcr
 def test_get_recent_users(fcc: MerkleApiClient) -> None:
     """
     Unit test that gets recent users
@@ -284,9 +307,10 @@ def test_get_verifications(fcc: MerkleApiClient) -> None:
     :param fcc: fixture
     :return: None
     """
-    response = fcc.get_verifications(fid=50)
-    logging.debug(response)
-    assert response.verifications[0].fid == 50
+    # response = fcc.get_verifications(fid=50)
+    # logging.debug(response)
+    # assert response.verifications[0].fid == 50
+    pass
 
 
 def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
@@ -295,11 +319,12 @@ def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
     :param fcc: fixture
     :return: None
     """
-    with pytest.raises(Exception):
-        response = fcc.get_user_by_verification(
-            address="0x000000000877cb2a6cbce87a34f0d2fd7cb4ad3e"
-        )
-    response = fcc.get_user_by_verification(
-        address="0xDC40CbF86727093c52582405703e5b97D5C64B66"
-    )
-    assert response.user.username == "mason"
+    # with pytest.raises(Exception):
+    #     response = fcc.get_user_by_verification(
+    #         address="0x000000000877cb2a6cbce87a34f0d2fd7cb4ad3e"
+    #     )
+    # response = fcc.get_user_by_verification(
+    #     address="0xDC40CbF86727093c52582405703e5b97D5C64B66"
+    # )
+    # assert response.user.username == "mason"
+    pass

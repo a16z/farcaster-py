@@ -41,9 +41,9 @@ class ApiToken(BaseModel):
 
 class ApiOpenGraphMetadata(BaseModel):
     url: AnyUrl
-    title: constr(min_length=0, max_length=256) | None = None  # type: ignore
-    description: constr(min_length=0, max_length=512) | None = None  # type: ignore
-    domain: constr(min_length=0, max_length=253) | None = None  # type: ignore
+    title: NoneStr = None
+    description: NoneStr = None
+    domain: NoneStr = None
     image: str | None = None
     logo: AnyUrl | None = None
     use_large_image: bool | None = Field(None, alias="useLargeImage")
