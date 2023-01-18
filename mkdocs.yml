@@ -1,5 +1,6 @@
 site_name: farcaster-py documentation
 repo_url: https://github.com/a16z/farcaster-py
+site_url: https://a16z.github.io/farcaster-py
 theme:
   name: "material"
   icon:
