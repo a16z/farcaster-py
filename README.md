@@ -30,7 +30,7 @@ poetry add farcaster
 
 
 ## Usage
-To access the Farcaster API you need to generate an access token. Here is one way to do that:
+To use the Farcaster API you need to generate an access token. Here is one way to do that:
 
 First install eth-account and dotenv:
 ```bash
@@ -44,26 +44,20 @@ import time
 import os
 
 from farcaster import MerkleApiClient
-from farcaster.models import AuthParams
 from eth_account.account import Account
-from eth_account.signers.local import LocalAccount
 from dotenv import load_dotenv
 
 load_dotenv()
 Account.enable_unaudited_hdwallet_features()
-ETH_ACCOUNT_SIGNER: LocalAccount = Account.from_mnemonic(os.environ.get("<MNEMONIC_ENV_VAR>"))
-
-
-now = int(time.time()*1000)
-expiry = int(now + 600000) # This auth token will be valid for 10 minutes. You can increase this up to 1 year
+ETH_ACCOUNT_SIGNER = Account.from_mnemonic(os.environ.get("<MNEMONIC_ENV_VAR>"))
 
 client = MerkleApiClient(wallet=ETH_ACCOUNT_SIGNER)
 
-auth_params = AuthParams(timestamp=now, expires_at=expiry)
+expiry_ms = int(time.time() + 600)*1000 # This auth token will be valid for 10 minutes. You can increase this up to 1 year
 
-response = client.create_new_auth_token(auth_params)
+access_token = client.create_new_auth_token(expires_at=expiry_ms)
 
-print(response)
+print(access_token) # "MK-...."
 ```
 
 Save the auth token somewhere like a `.env` file in your working directory.
@@ -87,9 +81,7 @@ print(client.get_healthcheck())
 Get a cast
 
 ```python
-response = fcc.get_cast(
-        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
-    )
+response = fcc.get_cast("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
 print(response.cast.author.username) # "dwr"
 ```
 
@@ -134,8 +126,9 @@ print(response.user.username) # "you"
 Recast a cast
 
 ```python
-response = fcc.recast(cast_hash="0x....")
+response = fcc.recast("0x....")
 print(response.cast.hash) # "0x...."
+```
 
 and many, many more things. Documentation coming soon!
 

@@ -1,20 +1,37 @@
 import logging
+import time
 
 import pytest
 
 from farcaster.client import MerkleApiClient
+from farcaster.models import *
 
 
 @pytest.mark.vcr
-def test_put_auth(fcc: MerkleApiClient) -> None:
+def test_auth_params(fcc: MerkleApiClient) -> None:
     """
-    Unit test that puts auth
+    Unit test that tests auth params model
     :param fcc: fixture
     :return: None
     """
     # response = fcc.put_auth()
     # assert response
-    pass
+    now = int(time.time())
+    obj = {"timestamp": now * 1000, "expiresAt": int(now + 600) * 1000}
+    ap = AuthParams(**obj)
+    assert ap.dict(by_alias=True) == obj
+
+
+@pytest.mark.vcr
+def test_create_new_auth_token(fcc: MerkleApiClient) -> None:
+    """
+    Unit test that puts auth
+    :param fcc: fixture
+    :return: None
+    """
+    with pytest.raises(Exception, match="^Wallet not set$"):
+        expiry_ms = int(time.time() + 600) * 1000
+        fcc.create_new_auth_token(expires_at=expiry_ms)
 
 
 @pytest.mark.vcr

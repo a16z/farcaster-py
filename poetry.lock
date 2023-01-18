@@ -831,21 +831,6 @@ files = [
 test = ["pytest (>=6)"]
 
 [[package]]
-name = "fastapi-camelcase"
-version = "1.0.5"
-description = "Package provides an easy way to have camelcase request/response bodies for Pydantic"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "fastapi_camelcase-1.0.5.tar.gz", hash = "sha256:2cee005fb1b75649491b9f7cfccc640b12f028eb88084565f7d8cf415192026a"},
-]
-
-[package.dependencies]
-pydantic = "*"
-pyhumps = "*"
-
-[[package]]
 name = "filelock"
 version = "3.9.0"
 description = "A platform independent file lock."
@@ -2283,4 +2268,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">3.7.1,<4.0.0"
-content-hash = "edc1d41a987fa77941de989ab7fbe0ccba8996a352bf28df42c577e98b483d8a"
+content-hash = "d1596ec10d9ca0065aa70741decfeb975150ae4d44802130d8b0ba9a99ba23ca"
