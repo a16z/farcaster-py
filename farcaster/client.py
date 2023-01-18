@@ -306,13 +306,13 @@ class MerkleApiClient:
         )
         return CastsGetResponse(**response).result
 
-    def post_cast(self, body: CastsPostRequest) -> Union[None, CastContent]:
+    def post_cast(self, body: CastsPostRequest) -> CastContent:
         """Post a cast to Farcaster
 
         :param body: The cast data structure
         :type body: CastsPostRequest
         :return: The result of posting the cast
-        :rtype: Union[None, CastContent]
+        :rtype: CastContent
         """
         response = self._post(
             "casts",

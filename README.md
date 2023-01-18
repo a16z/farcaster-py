@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
 ![Coverage Report](assets/images/coverage.svg)
 
-farcaster-py is a Python SDK for the Farcaster Protocol
+farcaster-py is a modern Python SDK for the Farcaster Protocol
 
 </div>
 
@@ -100,18 +100,13 @@ from farcaster.models import CastsPostRequest
 
 cast_body = CastsPostRequest(text="Hello world!")
 response = fcc.post_cast(cast_body)
-if response:
-    print(response.cast.hash) # "0x...."
-else:
-    raise Exception("Failed to post cast")
+print(response.cast.hash) # "0x...."
 ```
 
 Get a user by username
 
 ```python
-response = fcc.get_user_by_username(
-        "mason"
-    )
+response = fcc.get_user_by_username("mason")
 print(response.user.username) # "mason"
 ```
 
@@ -139,15 +134,8 @@ print(response.user.username) # "you"
 Recast a cast
 
 ```python
-from farcaster.models import CastsPostRequest
-
-cast_body = CastsPostRequest(text="Hello world!")
-response = fcc.post_cast(cast_body)
-if response:
-    print(response.cast.hash) # "0x...."
-else:
-    raise Exception("Failed to post cast")
-```
+response = fcc.recast(cast_hash="0x....")
+print(response.cast.hash) # "0x...."
 
 and many, many more things. Documentation coming soon!
 
