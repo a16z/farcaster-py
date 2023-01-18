@@ -1426,14 +1426,14 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 name = "pydocstyle"
-version = "6.2.3"
+version = "6.3.0"
 description = "Python docstring style checker"
 category = "dev"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "pydocstyle-6.2.3-py3-none-any.whl", hash = "sha256:a04ed1e6fe0be0970eddbb1681a7ab59b11eb92729fdb4b9b24f0eb11a25629e"},
-    {file = "pydocstyle-6.2.3.tar.gz", hash = "sha256:d867acad25e48471f2ad8a40ef9813125e954ad675202245ca836cb6e28b2297"},
+    {file = "pydocstyle-6.3.0-py3-none-any.whl", hash = "sha256:118762d452a49d6b05e194ef344a55822987a462831ade91ec5c06fd2169d019"},
+    {file = "pydocstyle-6.3.0.tar.gz", hash = "sha256:7ce43f0c0ac87b07494eb9c0b462c0b73e6ff276807f204d6b53edc72b7e44e1"},
 ]
 
 [package.dependencies]
@@ -2283,4 +2283,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">3.7.1,<4.0.0"
-content-hash = "defdae45f07030f4bff81c9d57f2e6538661e76fe4a05c1144085e26317aa911"
+content-hash = "edc1d41a987fa77941de989ab7fbe0ccba8996a352bf28df42c577e98b483d8a"
