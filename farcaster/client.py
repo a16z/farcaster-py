@@ -2,6 +2,7 @@ from typing import Any, Dict, Optional
 
 import base64
 import logging
+import time
 
 import canonicaljson
 import requests
@@ -735,15 +736,20 @@ class MerkleApiClient:
         )
         return CastsGetResponse(**response).result
 
-    def create_new_auth_token(self, params: AuthParams) -> str:
+    def create_new_auth_token(
+        self, expires_at: PositiveInt, timestamp: PositiveInt = int(time.time() * 1000)
+    ) -> str:
         """Create a new access token for a user from the wallet credentials
 
-        :param params: authorization parameters
-        :type params: AuthParams
+        :param expires_at: Expiration date of the token
+        :type expires_at: PositiveInt
+        :param timestamp: Current timestamp, defaults to current time in milliseconds
+        :type timestamp: PositiveInt, optional
         :return: access token
         :rtype: str
         """
-        response = self.put_auth(params)
+        auth_params = AuthParams(timestamp=timestamp, expires_at=expires_at)
+        response = self.put_auth(auth_params)
         self.access_token = response.token.secret
         self.session.headers.update({"Authorization": f"Bearer {self.access_token}"})
         return self.access_token
