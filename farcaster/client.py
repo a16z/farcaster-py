@@ -320,14 +320,15 @@ class MerkleApiClient:
         )
         return CastsPostResponse(**response).result
 
-    def delete_casts(self, body: CastHash) -> StatusResponse:
+    def delete_cast(self, cast_hash: str) -> StatusResponse:
         """Delete a cast
 
-        :param body: the hash of the cast to delete
-        :type body: CastHash
+        :param cast_hash: the hash of the cast to delete
+        :type cast_hash: str
         :return: Status of the deletion
         :rtype: StatusResponse
         """
+        body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "casts",
             json=body.dict(by_alias=True),
@@ -526,28 +527,30 @@ class MerkleApiClient:
         )
         return MentionAndReplyNotificationsGetResponse(**response).result
 
-    def recast(self, body: CastHash) -> CastHash:
+    def recast(self, cast_hash: str) -> CastHash:
         """Recast a cast
 
-        :param body: model containing the cast hash
-        :type body: CastHash
+        :param cast_hash: the cast hash
+        :type cast_hash: str
         :return: model containing the cast hash
         :rtype: CastHash
         """
+        body = CastHash(cast_hash=cast_hash)
         response = self._put(
             "recasts",
             json=body.dict(by_alias=True),
         )
         return RecastsPutResponse(**response).result
 
-    def delete_recast(self, body: CastHash) -> StatusResponse:
+    def delete_recast(self, cast_hash: str) -> StatusResponse:
         """Delete a recast
 
-        :param body: model containing the cast hash
-        :type body: CastHash
+        :param cast_hash: the cast hash
+        :type cast_hash: str
         :return: Status of the recast deletion
         :rtype: StatusResponse
         """
+        body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "recasts",
             json=body.dict(by_alias=True),

@@ -118,9 +118,7 @@ print(response.user.username) # "mason"
 Get a user's followers using a fid (farcaster ID)
 
 ```python
-response = fcc.get_followers(
-        fid=50
-    )
+response = fcc.get_followers(fid=50)
 print(response.users) # [user1, user2, user3]
 ```
 
@@ -129,6 +127,26 @@ Get users who recently joined Farcaster
 ```python
 response = fcc.get_recent_users()
 print(response.users) # [user1, user2, user3]
+```
+
+Get your own user object
+
+```python
+response = fcc.get_me()
+print(response.user.username) # "you"
+```
+
+Recast a cast
+
+```python
+from farcaster.models import CastsPostRequest
+
+cast_body = CastsPostRequest(text="Hello world!")
+response = fcc.post_cast(cast_body)
+if response:
+    print(response.cast.hash) # "0x...."
+else:
+    raise Exception("Failed to post cast")
 ```
 
 and many, many more things. Documentation coming soon!
