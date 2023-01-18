@@ -15,6 +15,11 @@ from farcaster.models import *
 
 
 class MerkleApiClient:
+    """The MerkleApiClient class is a wrapper around the Farcaster API.
+    It also provides a number of helpful methods and utilities for interacting with the protocol.
+    Pydantic models are used under the hood to validate the data returned from the API.
+    """
+
     config: ConfigurationParams
     wallet: Optional[LocalAccount]
     access_token: NoneStr
@@ -104,8 +109,8 @@ class MerkleApiClient:
     def get_healthcheck(self) -> bool:
         """Check if API is up and running
 
-        :return: Status of the API
-        :rtype: bool
+        Returns:
+            bool: Status of the API
         """
         response = self.session.get("https://api.farcaster.xyz/healthcheck")
         return response.ok
@@ -113,10 +118,11 @@ class MerkleApiClient:
     def get_asset(self, token_id: int) -> AssetResult:
         """Get asset information
 
-        :param token_id: token ID
-        :type token_id: int
-        :return: token information
-        :rtype: AssetResult
+        Args:
+            token_id (int): token ID
+
+        Returns:
+            AssetResult: token information
         """
         response = self._get("asset", {"token_id": token_id})
         return AssetGetResponse(**response).result
@@ -128,12 +134,13 @@ class MerkleApiClient:
     ) -> EventsResult:
         """Get events for a given asset
 
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: events to receive, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: Returns the EventsResult model
-        :rtype: EventsResult
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): events to receive, defaults
+                to 25
+
+        Returns:
+            EventsResult: Returns the EventsResult model
         """
         response = self._get(
             "asset-events",
@@ -144,10 +151,11 @@ class MerkleApiClient:
     def put_auth(self, auth_params: AuthParams) -> TokenResult:
         """Generate a custody bearer token and use it to generate an access token
 
-        :param auth_params: _description_
-        :type auth_params: AuthParams
-        :return: _description_
-        :rtype: TokenResult
+        Args:
+            auth_params (AuthParams): _description_
+
+        Returns:
+            TokenResult: _description_
         """
         header = self.generate_custody_auth_header(auth_params)
         body = AuthPutRequest(params=auth_params)
@@ -161,10 +169,12 @@ class MerkleApiClient:
     def delete_auth(self, timestamp: PositiveInt) -> StatusResponse:
         """Delete an access token
 
-        :param timestamp: The timestamp of the access token to delete
-        :type timestamp: AuthDeleteRequest
-        :return: Status of the deletion
-        :rtype: StatusResponse
+        Args:
+            timestamp (PositiveInt): The timestamp of the access
+                token to delete
+
+        Returns:
+            StatusResponse: Status of the deletion
         """
         body = AuthDeleteRequest(params=Timestamp(timestamp=timestamp))
         response = self._delete(
@@ -181,14 +191,13 @@ class MerkleApiClient:
     ) -> ReactionsResult:
         """Get the likes for a given cast
 
-        :param cast_hash: cast hash
-        :type cast_hash: str
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: ReactionsResult model of likes
-        :rtype: ReactionsResult
+        Args:
+            cast_hash (str): cast hash
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            ReactionsResult: ReactionsResult model of likes
         """
         response = self._get(
             "cast-likes",
@@ -199,10 +208,11 @@ class MerkleApiClient:
     def like_cast(self, body: CastHash) -> ReactionsResult:
         """Like a given cast
 
-        :param body: hash of the cast to like
-        :type body: CastHash
-        :return: Result of liking the cast
-        :rtype: ReactionsResult
+        Args:
+            body (CastHash): hash of the cast to like
+
+        Returns:
+            ReactionsResult: Result of liking the cast
         """
         response = self._put(
             "cast-likes",
@@ -213,12 +223,12 @@ class MerkleApiClient:
     def delete_cast_likes(self, cast_hash: str, body: CastHash) -> StatusResponse:
         """Remove a like from a cast
 
-        :param cast_hash: hash of the cast to unlike
-        :type cast_hash: str
-        :param body: hash of the cast to unlike
-        :type body: CastHash
-        :return: Status of the deletion
-        :rtype: StatusResponse
+        Args:
+            cast_hash (str): hash of the cast to unlike
+            body (CastHash): hash of the cast to unlike
+
+        Returns:
+            StatusResponse: Status of the deletion
         """
         response = self._delete(
             "cast-likes",
@@ -235,14 +245,13 @@ class MerkleApiClient:
     ) -> UsersResult:
         """Get the recasters for a given cast
 
-        :param cast_hash: cast hash
-        :type cast_hash: str
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: Model containing the recasters
-        :rtype: UsersResult
+        Args:
+            cast_hash (str): cast hash
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            UsersResult: Model containing the recasters
         """
         response = self._get(
             "cast-recasters",
@@ -256,10 +265,11 @@ class MerkleApiClient:
     ) -> CastContent:
         """Get a specific cast
 
-        :param hash: cast hash
-        :type hash: str
-        :return: The cast content
-        :rtype: CastContent
+        Args:
+            hash (str): cast hash
+
+        Returns:
+            CastContent: The cast content
         """
         response = self._get(
             "cast",
@@ -273,10 +283,11 @@ class MerkleApiClient:
     ) -> CastsResult:
         """Get all casts in a thread
 
-        :param thread_hash: hash of the thread
-        :type thread_hash: str
-        :return: Model containing the casts
-        :rtype: CastsResult
+        Args:
+            thread_hash (str): hash of the thread
+
+        Returns:
+            CastsResult: Model containing the casts
         """
         response = self._get(
             "all-casts-in-thread",
@@ -292,14 +303,13 @@ class MerkleApiClient:
     ) -> CastsResult:
         """Get the casts for a given fid of a user
 
-        :param fid: Farcaster ID of the user
-        :type fid: int
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: Model containing the casts
-        :rtype: CastsResult
+        Args:
+            fid (int): Farcaster ID of the user
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            CastsResult: Model containing the casts
         """
         response = self._get(
             "casts",
@@ -310,10 +320,11 @@ class MerkleApiClient:
     def post_cast(self, body: CastsPostRequest) -> CastContent:
         """Post a cast to Farcaster
 
-        :param body: The cast data structure
-        :type body: CastsPostRequest
-        :return: The result of posting the cast
-        :rtype: CastContent
+        Args:
+            body (CastsPostRequest): The cast data structure
+
+        Returns:
+            CastContent: The result of posting the cast
         """
         response = self._post(
             "casts",
@@ -324,10 +335,11 @@ class MerkleApiClient:
     def delete_cast(self, cast_hash: str) -> StatusResponse:
         """Delete a cast
 
-        :param cast_hash: the hash of the cast to delete
-        :type cast_hash: str
-        :return: Status of the deletion
-        :rtype: StatusResponse
+        Args:
+            cast_hash (str): the hash of the cast to delete
+
+        Returns:
+            StatusResponse: Status of the deletion
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
@@ -339,10 +351,11 @@ class MerkleApiClient:
     def get_collection(self, collection_id: str) -> CollectionResult:
         """Get a specific collection
 
-        :param collection_id: OpenSea collection ID
-        :type collection_id: str
-        :return: collection
-        :rtype: CollectionResult
+        Args:
+            collection_id (str): OpenSea collection ID
+
+        Returns:
+            CollectionResult: collection
         """
         response = self._get(
             "collection",
@@ -358,14 +371,13 @@ class MerkleApiClient:
     ) -> EventsResult:
         """Get collection activity
 
-        :param collection_id: OpenSea collection ID
-        :type collection_id: str
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: Model containing events
-        :rtype: EventsResult
+        Args:
+            collection_id (str): OpenSea collection ID
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            EventsResult: Model containing events
         """
         response = self._get(
             "collection-activity",
@@ -381,14 +393,13 @@ class MerkleApiClient:
     ) -> AssetsResult:
         """Get assets in an OpenSea collection
 
-        :param collection_id: OpenSea collection ID
-        :type collection_id: str
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing assets
-        :rtype: AssetsResult
+        Args:
+            collection_id (str): OpenSea collection ID
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            AssetsResult: model containing assets
         """
         response = self._get(
             "collection-assets",
@@ -404,14 +415,13 @@ class MerkleApiClient:
     ) -> UsersResult:
         """Get the owners of an OpenSea collection
 
-        :param collection_id: OpenSea collection ID
-        :type collection_id: str
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing users
-        :rtype: UsersResult
+        Args:
+            collection_id (str): OpenSea collection ID
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            UsersResult: model containing users
         """
         response = self._get(
             "collection-owners",
@@ -427,14 +437,13 @@ class MerkleApiClient:
     ) -> UsersResult:
         """Get the followers of a user
 
-        :param fid: Farcaster ID of the user
-        :type fid: int
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing users
-        :rtype: UsersResult
+        Args:
+            fid (int): Farcaster ID of the user
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            UsersResult: model containing users
         """
         response = self._get(
             "followers",
@@ -450,14 +459,13 @@ class MerkleApiClient:
     ) -> UsersResult:
         """Get the users a user is following
 
-        :param fid: Farcaster ID of the user
-        :type fid: int
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing users
-        :rtype: UsersResult
+        Args:
+            fid (int): Farcaster ID of the user
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            UsersResult: model containing users
         """
         response = self._get(
             "following",
@@ -468,10 +476,11 @@ class MerkleApiClient:
     def follow_user(self, fid: PositiveInt) -> StatusResponse:
         """Follow a user
 
-        :param fid: Farcaster ID of the user to follow
-        :type fid: PositiveInt
-        :return: Status of the follow
-        :rtype: StatusResponse
+        Args:
+            fid (PositiveInt): Farcaster ID of the user to follow
+
+        Returns:
+            StatusResponse: Status of the follow
         """
         body = FollowsPutRequest(target_fid=fid)
         response = self._put(
@@ -483,10 +492,11 @@ class MerkleApiClient:
     def unfollow_user(self, fid: PositiveInt) -> StatusResponse:
         """Unfollow a user
 
-        :param fid: Farcaster ID of the user to unfollow
-        :type fid: PositiveInt
-        :return: Status of the unfollow
-        :rtype: StatusResponse
+        Args:
+            fid (PositiveInt): Farcaster ID of the user to unfollow
+
+        Returns:
+            StatusResponse: Status of the unfollow
         """
         body = FollowsDeleteRequest(target_fid=fid)
         response = self._delete(
@@ -498,8 +508,8 @@ class MerkleApiClient:
     def get_me(self) -> UserResult:
         """Get the current user
 
-        :return: model containing the current user
-        :rtype: UserResult
+        Returns:
+            UserResult: model containing the current user
         """
         response = self._get(
             "me",
@@ -515,12 +525,12 @@ class MerkleApiClient:
     ) -> NotificationsResult:
         """Get mention and reply notifications
 
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing notifications
-        :rtype: NotificationsResult
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            NotificationsResult: model containing notifications
         """
         response = self._get(
             "mention-and-reply-notifications",
@@ -531,10 +541,11 @@ class MerkleApiClient:
     def recast(self, cast_hash: str) -> CastHash:
         """Recast a cast
 
-        :param cast_hash: the cast hash
-        :type cast_hash: str
-        :return: model containing the cast hash
-        :rtype: CastHash
+        Args:
+            cast_hash (str): the cast hash
+
+        Returns:
+            CastHash: model containing the cast hash
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._put(
@@ -546,10 +557,11 @@ class MerkleApiClient:
     def delete_recast(self, cast_hash: str) -> StatusResponse:
         """Delete a recast
 
-        :param cast_hash: the cast hash
-        :type cast_hash: str
-        :return: Status of the recast deletion
-        :rtype: StatusResponse
+        Args:
+            cast_hash (str): the cast hash
+
+        Returns:
+            StatusResponse: Status of the recast deletion
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
@@ -561,10 +573,11 @@ class MerkleApiClient:
     def get_user(self, fid: int) -> UserResult:
         """Get a user
 
-        :param fid: Farcaster ID of the user
-        :type fid: int
-        :return: model containing the user
-        :rtype: UserResult
+        Args:
+            fid (int): Farcaster ID of the user
+
+        Returns:
+            UserResult: model containing the user
         """
         response = self._get(
             "user",
@@ -578,10 +591,11 @@ class MerkleApiClient:
     ) -> UserResult:
         """Get a user by username
 
-        :param username: username of the user
-        :type username: str
-        :return: model containing the user
-        :rtype: UserResult
+        Args:
+            username (str): username of the user
+
+        Returns:
+            UserResult: model containing the user
         """
         response = self._get(
             "user-by-username",
@@ -595,10 +609,11 @@ class MerkleApiClient:
     ) -> UserResult:
         """Get a user by verification address
 
-        :param address: address of the user
-        :type address: str
-        :return: model containing the user
-        :rtype: UserResult
+        Args:
+            address (str): address of the user
+
+        Returns:
+            UserResult: model containing the user
         """
         response = self._get(
             "user-by-verification",
@@ -614,14 +629,13 @@ class MerkleApiClient:
     ) -> CollectionsResult:
         """Get the collections of a user
 
-        :param owner_fid: Farcaster ID of the user
-        :type owner_fid: int
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing collections
-        :rtype: CollectionsResult
+        Args:
+            owner_fid (int): Farcaster ID of the user
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            CollectionsResult: model containing collections
         """
         response = self._get(
             "user-collections",
@@ -637,14 +651,13 @@ class MerkleApiClient:
     ) -> VerificationsResult:
         """Get the verifications of a user
 
-        :param fid: Farcaster ID of the user
-        :type fid: int
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing verifications
-        :rtype: VerificationsResult
+        Args:
+            fid (int): Farcaster ID of the user
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            VerificationsResult: model containing verifications
         """
         response = self._get(
             "verifications",
@@ -659,12 +672,12 @@ class MerkleApiClient:
     ) -> UsersResult:
         """Get recent users
 
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing users
-        :rtype: UsersResult
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            UsersResult: model containing users
         """
         response = self._get(
             "recent-users",
@@ -679,12 +692,14 @@ class MerkleApiClient:
     ) -> CustodyAddress:
         """Get the custody address of a user
 
-        :param username: username of a user, defaults to None
-        :type username: NoneStr, optional
-        :param fid: Farcaster ID, defaults to None
-        :type fid: Optional[int], optional
-        :return: model containing the custody address
-        :rtype: CustodyAddress
+        Args:
+            username (NoneStr, optional): username of a user, defaults
+                to None
+            fid (Optional[int], optional): Farcaster ID, defaults to
+                None
+
+        Returns:
+            CustodyAddress: model containing the custody address
         """
         assert username or fid, "fname or fid must be provided"
         response = self._get(
@@ -701,14 +716,13 @@ class MerkleApiClient:
     ) -> Likes:
         """Get the likes of a user
 
-        :param fid: Farcaster ID of the user
-        :type fid: int
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 25
-        :type limit: PositiveInt, optional
-        :return: model containing likes
-        :rtype: Likes
+        Args:
+            fid (int): Farcaster ID of the user
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            Likes: model containing likes
         """
         response = self._get(
             "user-cast-likes",
@@ -723,12 +737,12 @@ class MerkleApiClient:
     ) -> CastsResult:
         """Get all recent casts
 
-        :param cursor: cursor, defaults to None
-        :type cursor: NoneStr, optional
-        :param limit: limit, defaults to 100
-        :type limit: PositiveInt, optional
-        :return: model containing casts
-        :rtype: CastsResult
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 100
+
+        Returns:
+            CastsResult: model containing casts
         """
         response = self._get(
             "recent-casts",
@@ -741,12 +755,13 @@ class MerkleApiClient:
     ) -> str:
         """Create a new access token for a user from the wallet credentials
 
-        :param expires_at: Expiration date of the token
-        :type expires_at: PositiveInt
-        :param timestamp: Current timestamp, defaults to current time in milliseconds
-        :type timestamp: PositiveInt, optional
-        :return: access token
-        :rtype: str
+        Args:
+            expires_at (PositiveInt): Expiration date of the token
+            timestamp (PositiveInt, optional): Current timestamp,
+                defaults to current time in milliseconds
+
+        Returns:
+            str: access token
         """
         auth_params = AuthParams(timestamp=timestamp, expires_at=expires_at)
         response = self.put_auth(auth_params)
@@ -757,11 +772,14 @@ class MerkleApiClient:
     def generate_custody_auth_header(self, params: AuthParams) -> str:
         """Generate a custody authorization header. Usually invoked from create_new_auth_token.
 
-        :param params: authorization parameters
-        :type params: AuthParams
-        :raises Exception: Wallet is required
-        :return: custody authorization header
-        :rtype: str
+        Args:
+            params (AuthParams): authorization parameters
+
+        Raises:
+            Exception: Wallet is required
+
+        Returns:
+            str: custody authorization header
         """
         if not self.wallet:
             raise Exception("Wallet not set")
