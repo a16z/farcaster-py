@@ -132,7 +132,7 @@ response = fcc.recast("0x....")
 print(response.cast.hash) # "0x...."
 ```
 
-and many, many more things.
+and many, many more things. The full specification can be found on the [Reference page](https://a16z.github.io/farcaster-py/reference).
 
 
 
