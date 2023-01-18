@@ -109,5 +109,18 @@ pytestcache-remove:
 build-remove:
 	rm -rf build/
 
+.PHONY: build-docs
+build-docs:
+	poetry run mkdocs build
+
+.PHONY: serve-docs
+serve-docs:
+	poetry run mkdocs serve
+
+.PHONY: deploy-docs
+deploy-docs:
+	poetry run mkdocs build
+	poetry run mkdocs gh-deploy
+
 .PHONY: cleanup
 cleanup: pycache-remove dsstore-remove mypycache-remove ipynbcheckpoints-remove pytestcache-remove
