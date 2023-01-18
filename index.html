@@ -54,12 +54,16 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -107,6 +111,26 @@
       </div>
     </div>
     
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
     
     
       <label class="md-header__button md-icon" for="__search">
@@ -128,6 +152,8 @@
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -142,6 +168,18 @@
   </div>
 </div>
     
+    
+      <div class="md-header__source">
+        <a href="https://github.com/a16z/farcaster-py" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
     
   </nav>
   
@@ -175,6 +213,18 @@
     </a>
     farcaster-py Documentation
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/a16z/farcaster-py" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -236,33 +286,6 @@
         <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#releases" class="md-nav__link">
-    📈 Releases
-  </a>
-  
-    <nav class="md-nav" aria-label="📈 Releases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-of-labels-and-corresponding-titles" class="md-nav__link">
-    List of labels and corresponding titles
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    🛡 License
   </a>
   
 </li>
@@ -337,33 +360,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#releases" class="md-nav__link">
-    📈 Releases
-  </a>
-  
-    <nav class="md-nav" aria-label="📈 Releases">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-of-labels-and-corresponding-titles" class="md-nav__link">
-    List of labels and corresponding titles
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
-    🛡 License
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -378,144 +374,89 @@
                 
                   
 
+  
+  
+
 
 
 <h1 id="farcaster-py">farcaster-py</h1>
-<div align="center">
-
-[![Build status](https://github.com/a16z/farcaster-py/workflows/build/badge.svg?branch=master&event=push)](https://github.com/fmhall/farcaster/actions?query=workflow%3Abuild)
-[![Python Version](https://img.shields.io/pypi/pyversions/farcaster.svg)](https://pypi.org/project/farcaster/)
-[![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/a16z/farcaster-py/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
-[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/a16z/farcaster-py/blob/master/.pre-commit-config.yaml)
-[![Semantic Versions](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/a16z/farcaster-py/releases)
-[![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
-![Coverage Report](assets/images/coverage.svg)
-
-farcaster-py is a modern Python SDK for the Farcaster Protocol
-
-</div>
-
+<p>farcaster-py is a modern Python SDK for the Farcaster Protocol.</p>
 <h2 id="installation">Installation</h2>
-<pre><code class="language-bash">pip install -U farcaster
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>farcaster
+</code></pre></div>
 <p>or install with <code>Poetry</code></p>
-<pre><code class="language-bash">poetry add farcaster
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>poetry<span class="w"> </span>add<span class="w"> </span>farcaster
+</code></pre></div>
 <h2 id="usage">Usage</h2>
 <p>To use the Farcaster API you need to generate an access token. Here is one way to do that:</p>
-<p>First install eth-account and dotenv:</p>
-<pre><code class="language-bash">pip install eth-account python-dotenv # Or 'poetry add eth-account python-dotenv'
-</code></pre>
+<p>First install eth-account and dotenv:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>eth-account<span class="w"> </span>python-dotenv<span class="w"> </span><span class="c1"># Or &#39;poetry add eth-account python-dotenv&#39;</span>
+</code></pre></div></p>
 <p>Then you can use a script like this to generate the access token. Note that you can increase the expiration date of the token if you don't want to worry about rotation.</p>
-<pre><code class="language-python">import time
-import os
-
-from farcaster import MerkleApiClient
-from eth_account.account import Account
-from dotenv import load_dotenv
-
-load_dotenv()
-Account.enable_unaudited_hdwallet_features()
-ETH_ACCOUNT_SIGNER = Account.from_mnemonic(os.environ.get(&quot;&lt;MNEMONIC_ENV_VAR&gt;&quot;))
-
-client = MerkleApiClient(wallet=ETH_ACCOUNT_SIGNER)
-
-expiry_ms = int(time.time() + 600)*1000 # This auth token will be valid for 10 minutes. You can increase this up to 1 year
-
-access_token = client.create_new_auth_token(expires_at=expiry_ms)
-
-print(access_token) # &quot;MK-....&quot;
-</code></pre>
+<div class="highlight"><span class="filename">script.py</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">time</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">os</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kn">from</span> <span class="nn">farcaster</span> <span class="kn">import</span> <span class="n">MerkleApiClient</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">from</span> <span class="nn">eth_account.account</span> <span class="kn">import</span> <span class="n">Account</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">Account</span><span class="o">.</span><span class="n">enable_unaudited_hdwallet_features</span><span class="p">()</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">ETH_ACCOUNT_SIGNER</span> <span class="o">=</span> <span class="n">Account</span><span class="o">.</span><span class="n">from_mnemonic</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;&lt;MNEMONIC_ENV_VAR&gt;&quot;</span><span class="p">))</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">client</span> <span class="o">=</span> <span class="n">MerkleApiClient</span><span class="p">(</span><span class="n">wallet</span><span class="o">=</span><span class="n">ETH_ACCOUNT_SIGNER</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">expiry_ms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">600</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span> <span class="c1"># This auth token will be valid for 10 minutes. You can increase this up to 1 year</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">access_token</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_new_auth_token</span><span class="p">(</span><span class="n">expires_at</span><span class="o">=</span><span class="n">expiry_ms</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">access_token</span><span class="p">)</span> <span class="c1"># &quot;MK-....&quot;</span>
+</code></pre></div>
 <p>Save the auth token somewhere like a <code>.env</code> file in your working directory.</p>
 <p>From now on you can initialize your client like this:</p>
-<pre><code class="language-python">from farcaster import MerkleApiClient
-from dotenv import load_dotenv
-
-load_dotenv()
-
-client = MerkleApiClient(access_token=os.environ.get(&quot;&lt;AUTH_ENV_VAR&gt;&quot;))
-
-print(client.get_healthcheck())
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">farcaster</span> <span class="kn">import</span> <span class="n">MerkleApiClient</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">load_dotenv</span><span class="p">()</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">client</span> <span class="o">=</span> <span class="n">MerkleApiClient</span><span class="p">(</span><span class="n">access_token</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;&lt;AUTH_ENV_VAR&gt;&quot;</span><span class="p">))</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_healthcheck</span><span class="p">())</span>
+</code></pre></div>
 <h2 id="examples">Examples</h2>
 <p>Get a cast</p>
-<pre><code class="language-python">response = fcc.get_cast(&quot;0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f&quot;)
-print(response.cast.author.username) # &quot;dwr&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">get_cast</span><span class="p">(</span><span class="s2">&quot;0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cast</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="c1"># &quot;dwr&quot;</span>
+</code></pre></div>
 <p>Publish a cast</p>
-<pre><code class="language-python">from farcaster.models import CastsPostRequest
-
-cast_body = CastsPostRequest(text=&quot;Hello world!&quot;)
-response = fcc.post_cast(cast_body)
-print(response.cast.hash) # &quot;0x....&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">farcaster.models</span> <span class="kn">import</span> <span class="n">CastsPostRequest</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">cast_body</span> <span class="o">=</span> <span class="n">CastsPostRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">post_cast</span><span class="p">(</span><span class="n">cast_body</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cast</span><span class="o">.</span><span class="n">hash</span><span class="p">)</span> <span class="c1"># &quot;0x....&quot;</span>
+</code></pre></div>
 <p>Get a user by username</p>
-<pre><code class="language-python">response = fcc.get_user_by_username(&quot;mason&quot;)
-print(response.user.username) # &quot;mason&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">get_user_by_username</span><span class="p">(</span><span class="s2">&quot;mason&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="c1"># &quot;mason&quot;</span>
+</code></pre></div>
 <p>Get a user's followers using a fid (farcaster ID)</p>
-<pre><code class="language-python">response = fcc.get_followers(fid=50)
-print(response.users) # [user1, user2, user3]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">get_followers</span><span class="p">(</span><span class="n">fid</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">users</span><span class="p">)</span> <span class="c1"># [user1, user2, user3]</span>
+</code></pre></div>
 <p>Get users who recently joined Farcaster</p>
-<pre><code class="language-python">response = fcc.get_recent_users()
-print(response.users) # [user1, user2, user3]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">get_recent_users</span><span class="p">()</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">users</span><span class="p">)</span> <span class="c1"># [user1, user2, user3]</span>
+</code></pre></div>
 <p>Get your own user object</p>
-<pre><code class="language-python">response = fcc.get_me()
-print(response.user.username) # &quot;you&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">get_me</span><span class="p">()</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="c1"># &quot;you&quot;</span>
+</code></pre></div>
 <p>Recast a cast</p>
-<pre><code class="language-python">response = fcc.recast(&quot;0x....&quot;)
-print(response.cast.hash) # &quot;0x....&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">recast</span><span class="p">(</span><span class="s2">&quot;0x....&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cast</span><span class="o">.</span><span class="n">hash</span><span class="p">)</span> <span class="c1"># &quot;0x....&quot;</span>
+</code></pre></div>
 <p>and many, many more things.</p>
-<h2 id="releases">📈 Releases</h2>
-<p>You can see the list of available releases on the <a href="https://github.com/fmhall/farcaster/releases">GitHub Releases</a> page.</p>
-<p>We follow <a href="https://semver.org/">Semantic Versions</a> specification.</p>
-<p>We use <a href="https://github.com/marketplace/actions/release-drafter"><code>Release Drafter</code></a>. As pull requests are merged, a draft release is kept up-to-date listing the changes, ready to publish when you’re ready. With the categories option, you can categorize pull requests in release notes using labels.</p>
-<h3 id="list-of-labels-and-corresponding-titles">List of labels and corresponding titles</h3>
-<table>
-<thead>
-<tr>
-<th align="center"><strong>Label</strong></th>
-<th align="center"><strong>Title in Releases</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><code>enhancement</code>, <code>feature</code></td>
-<td align="center">🚀 Features</td>
-</tr>
-<tr>
-<td align="center"><code>bug</code>, <code>refactoring</code>, <code>bugfix</code>, <code>fix</code></td>
-<td align="center">🔧 Fixes &amp; Refactoring</td>
-</tr>
-<tr>
-<td align="center"><code>build</code>, <code>ci</code>, <code>testing</code></td>
-<td align="center">📦 Build System &amp; CI/CD</td>
-</tr>
-<tr>
-<td align="center"><code>breaking</code></td>
-<td align="center">💥 Breaking Changes</td>
-</tr>
-<tr>
-<td align="center"><code>documentation</code></td>
-<td align="center">📝 Documentation</td>
-</tr>
-<tr>
-<td align="center"><code>dependencies</code></td>
-<td align="center">⬆️ Dependencies updates</td>
-</tr>
-</tbody>
-</table>
-<p>You can update it in <a href="https://github.com/fmhall/farcaster/blob/master/.github/release-drafter.yml"><code>release-drafter.yml</code></a>.</p>
-<p>GitHub creates the <code>bug</code>, <code>enhancement</code>, and <code>documentation</code> labels for you. Dependabot creates the <code>dependencies</code> label. Create the remaining labels on the Issues tab of your GitHub repository, when you need them.</p>
-<h2 id="license">🛡 License</h2>
-<p><a href="https://github.com/fmhall/farcaster/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/fmhall/farcaster" /></a></p>
-<p>This project is licensed under the terms of the <code>MIT</code> license. See <a href="https://github.com/fmhall/farcaster/blob/master/LICENSE">LICENSE</a> for more details.</p>
+<p>The full specification can be found on the <a href="reference/">References</a> page.</p>
 
 
 
@@ -553,7 +494,7 @@ print(response.cast.hash) # &quot;0x....&quot;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["search.suggest", "content.code.copy", "content.code.annotate"], "search": "assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="assets/javascripts/bundle.51d95adb.min.js"></script>
