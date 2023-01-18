@@ -32,19 +32,26 @@ poetry add farcaster
 ## Usage
 To access the Farcaster API you need to generate an access token. Here is one way to do that:
 
+First install eth-account and dotenv:
+```bash
+pip install eth-account python-dotenv # Or 'poetry add eth-account python-dotenv'
+```
+
+Then you can use a script like this to generate the access token. Note that you can increase the expiration date of the token if you don't want to worry about rotation.
+
 ```python
 import time
 import os
 
 from farcaster import MerkleApiClient
-from farcaster.api_models import AuthPutRequest, Params
+from farcaster.models import AuthParams
 from eth_account.account import Account
 from eth_account.signers.local import LocalAccount
 from dotenv import load_dotenv
 
 load_dotenv()
 Account.enable_unaudited_hdwallet_features()
-ETH_ACCOUNT_SIGNER: LocalAccount = Account.from_mnemonic(os.environ.get("MNEMONIC ENV VAR"))
+ETH_ACCOUNT_SIGNER: LocalAccount = Account.from_mnemonic(os.environ.get("<MNEMONIC_ENV_VAR>"))
 
 
 now = int(time.time()*1000)
@@ -52,14 +59,14 @@ expiry = int(now + 600000) # This auth token will be valid for 10 minutes. You c
 
 client = MerkleApiClient(wallet=ETH_ACCOUNT_SIGNER)
 
-auth_params = AuthPutRequest(params=Params(timestamp=now, expires_at=expiry))
+auth_params = AuthParams(timestamp=now, expires_at=expiry)
 
 response = client.create_new_auth_token(auth_params)
 
 print(response)
 ```
 
-Save the auth token somewhere like a `.env`.
+Save the auth token somewhere like a `.env` file in your working directory.
 
 From now on you can initialize your client like this:
 
@@ -69,7 +76,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = MerkleApiClient(access_token="MK-....")
+client = MerkleApiClient(access_token=os.environ.get("<AUTH_ENV_VAR>"))
 
 print(client.get_healthcheck())
 ```
@@ -77,202 +84,56 @@ print(client.get_healthcheck())
 
 ## Examples
 
-TODO
+Get a cast
 
-
-## Makefile usage
-
-[`Makefile`](https://github.com/fmhall/farcaster/blob/master/Makefile) contains a lot of functions for faster development.
-
-<details>
-<summary>1. Download and remove Poetry</summary>
-<p>
-
-To download and install Poetry run:
-
-```bash
-make poetry-download
+```python
+response = fcc.get_cast(
+        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
+    )
+print(response.cast.author.username) # "dwr"
 ```
 
-To uninstall
+Publish a cast
 
-```bash
-make poetry-remove
+```python
+from farcaster.models import CastsPostRequest
+
+cast_body = CastsPostRequest(text="Hello world!")
+response = fcc.post_cast(cast_body)
+if response:
+    print(response.cast.hash) # "0x...."
+else:
+    raise Exception("Failed to post cast")
 ```
 
-</p>
-</details>
+Get a user by username
 
-<details>
-<summary>2. Install all dependencies and pre-commit hooks</summary>
-<p>
-
-Install requirements:
-
-```bash
-make install
+```python
+response = fcc.get_user_by_username(
+        "mason"
+    )
+print(response.user.username) # "mason"
 ```
 
-Pre-commit hooks coulb be installed after `git init` via
+Get a user's followers using a fid (farcaster ID)
 
-```bash
-make pre-commit-install
+```python
+response = fcc.get_followers(
+        fid=50
+    )
+print(response.users) # [user1, user2, user3]
 ```
 
-</p>
-</details>
+Get users who recently joined Farcaster
 
-<details>
-<summary>3. Codestyle</summary>
-<p>
-
-Automatic formatting uses `pyupgrade`, `isort` and `black`.
-
-```bash
-make codestyle
-
-# or use synonym
-make formatting
+```python
+response = fcc.get_recent_users()
+print(response.users) # [user1, user2, user3]
 ```
 
-Codestyle checks only, without rewriting files:
+and many, many more things. Documentation coming soon!
 
-```bash
-make check-codestyle
-```
 
-> Note: `check-codestyle` uses `isort`, `black` and `darglint` library
-
-Update all dev libraries to the latest version using one comand
-
-```bash
-make update-dev-deps
-```
-
-<details>
-<summary>4. Code security</summary>
-<p>
-
-```bash
-make check-safety
-```
-
-This command launches `Poetry` integrity checks as well as identifies security issues with `Safety` and `Bandit`.
-
-```bash
-make check-safety
-```
-
-</p>
-</details>
-
-</details>
-
-<details>
-<summary>5. Type checks</summary>
-<p>
-
-Run `mypy` static type checker
-
-```bash
-make mypy
-```
-
-</p>
-</details>
-
-<details>
-<summary>6. Tests with coverage badges</summary>
-<p>
-
-Run `pytest`
-
-```bash
-make test
-```
-
-</p>
-</details>
-
-<details>
-<summary>7. All linters</summary>
-<p>
-
-Of course there is a command to ~~rule~~ run all linters in one:
-
-```bash
-make lint
-```
-
-the same as:
-
-```bash
-make test && make check-codestyle && make mypy && make check-safety
-```
-
-</p>
-</details>
-
-<details>
-<summary>8. Docker</summary>
-<p>
-
-```bash
-make docker-build
-```
-
-which is equivalent to:
-
-```bash
-make docker-build VERSION=latest
-```
-
-Remove docker image with
-
-```bash
-make docker-remove
-```
-
-More information [about docker](https://github.com/fmhall/farcaster/tree/master/docker).
-
-</p>
-</details>
-
-<details>
-<summary>9. Cleanup</summary>
-<p>
-Delete pycache files
-
-```bash
-make pycache-remove
-```
-
-Remove package build
-
-```bash
-make build-remove
-```
-
-Delete .DS_STORE files
-
-```bash
-make dsstore-remove
-```
-
-Remove .mypycache
-
-```bash
-make mypycache-remove
-```
-
-Or to remove all above run:
-
-```bash
-make cleanup
-```
-
-</p>
-</details>
 
 ## 📈 Releases
 
