@@ -8,7 +8,7 @@ farcaster-py is a modern Python SDK for the Farcaster Protocol.
 pip install -U farcaster
 ```
 
-or install with `Poetry`
+or install with [Poetry](https://python-poetry.org/):
 
 ```bash
 poetry add farcaster
