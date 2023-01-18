@@ -12,6 +12,9 @@ class BaseModel(PydanticBaseModel):
             _ignored = kwargs.pop("exclude_none")
         return super().dict(*args, exclude_none=True, **kwargs)
 
+    class Config:
+        allow_population_by_field_name = True
+
 
 class ApiError(BaseModel):
     message: str
@@ -707,16 +710,6 @@ class VerificationsResult(BaseModel):
 class VerificationsGetResponse(BaseModel):
     result: VerificationsResult
     next: Optional[Next] = None
-
-
-class WatchedCastsPutRequest(BaseModel):
-    cast_fid: PositiveInt = Field(..., alias="castFid")
-    cast_hash: str = Field(..., alias="castHash")
-
-
-class WatchedCastsDeleteRequest(BaseModel):
-    cast_fid: PositiveInt = Field(..., alias="castFid")
-    cast_hash: str = Field(..., alias="castHash")
 
 
 class CastLikesPutResponse(BaseModel):

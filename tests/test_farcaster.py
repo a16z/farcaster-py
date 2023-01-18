@@ -107,7 +107,7 @@ def test_get_cast_likes(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_put_cast_likes(fcc: MerkleApiClient) -> None:
+def test_like_cast(fcc: MerkleApiClient) -> None:
     """
     Unit test that puts cast likes
     :param fcc: fixture
@@ -115,7 +115,7 @@ def test_put_cast_likes(fcc: MerkleApiClient) -> None:
     """
     # cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
     # # post cast
-    # response = fcc.put_cast_likes(cast_body)
+    # response = fcc.like_cast(cast_body)
     # if response:
     pass
 
@@ -269,7 +269,7 @@ def test_get_custody_address(fcc: MerkleApiClient) -> None:
     :param fcc: fixture
     :return: None
     """
-    response = fcc.get_custody_address(fname="mason")
+    response = fcc.get_custody_address(username="mason")
     assert response.custody_address == "0x044991055877cb2a6cbce87a34f0d2fd7cb4ad3e"
     response = fcc.get_custody_address(fid=50)
     assert response.custody_address == "0x044991055877cb2a6cbce87a34f0d2fd7cb4ad3e"
