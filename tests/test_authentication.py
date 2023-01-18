@@ -9,10 +9,13 @@ from farcaster.models import *
 
 @pytest.mark.vcr
 def test_auth_params(fcc: MerkleApiClient) -> None:
-    """
-    Unit test that tests auth params model
-    :param fcc: fixture
-    :return: None
+    """Unit test that tests auth params model
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
     """
     # response = fcc.put_auth()
     # assert response
@@ -24,10 +27,13 @@ def test_auth_params(fcc: MerkleApiClient) -> None:
 
 @pytest.mark.vcr
 def test_create_new_auth_token(fcc: MerkleApiClient) -> None:
-    """
-    Unit test that puts auth
-    :param fcc: fixture
-    :return: None
+    """Unit test that puts auth
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
     """
     with pytest.raises(Exception, match="^Wallet not set$"):
         expiry_ms = int(time.time() + 600) * 1000
@@ -36,10 +42,13 @@ def test_create_new_auth_token(fcc: MerkleApiClient) -> None:
 
 @pytest.mark.vcr
 def test_delete_auth(fcc: MerkleApiClient) -> None:
-    """
-    Unit test that deletes auth
-    :param fcc: fixture
-    :return: None
+    """Unit test that deletes auth
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
     """
     # response = fcc.delete_auth()
     # assert response

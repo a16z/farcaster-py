@@ -1,0 +1,12 @@
+site_name: farcaster-py Documentation
+theme:
+  name: "material"
+
+
+plugins:
+  - search
+  - mkdocstrings
+
+nav:
+  - farcaster-py docs: index.md
+  - reference.md
