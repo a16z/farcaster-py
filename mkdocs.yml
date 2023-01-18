@@ -1,11 +1,15 @@
-site_name: farcaster-py Documentation
+site_name: farcaster-py documentation
 repo_url: https://github.com/a16z/farcaster-py
 theme:
   name: "material"
+  icon:
+    logo: material/home
+  favicon: images/favicon.ico
   features:
     - search.suggest
     - content.code.copy
     - content.code.annotate
+    - navigation.footer
   palette:
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
@@ -27,6 +31,7 @@ theme:
 plugins:
   - search
   - mkdocstrings
+  - social
 
 nav:
   - farcaster-py docs: index.md
@@ -38,3 +43,12 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/a16zcrypto
+    - icon: fontawesome/brands/github 
+      link: https://github.com/a16z
+    - icon: material/web-box
+      link: https://a16zcrypto.com/
