@@ -148,7 +148,7 @@ def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_recast_cast(fcc: MerkleApiClient) -> None:
+def test_recast(fcc: MerkleApiClient) -> None:
     """
     Unit test that recasts cast
     :param fcc: fixture
