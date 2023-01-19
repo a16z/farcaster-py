@@ -29,7 +29,7 @@ Then you can use a script like this to generate the access token. Note that you 
 import time
 import os
 
-from farcaster import MerkleApiClient
+from farcaster.client import MerkleApiClient
 from eth_account.account import Account
 from dotenv import load_dotenv
 
@@ -51,7 +51,7 @@ Save the auth token somewhere like a `.env` file in your working directory.
 From now on you can initialize your client like this:
 
 ```python
-from farcaster import MerkleApiClient
+from farcaster.client import MerkleApiClient
 from dotenv import load_dotenv
 
 load_dotenv()
