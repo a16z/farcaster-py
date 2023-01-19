@@ -53,3 +53,6 @@ extra:
       link: https://github.com/a16z
     - icon: material/web-box
       link: https://a16zcrypto.com/
+  generator: false
+
+copyright: Made with ❤️ by a16z crypto
