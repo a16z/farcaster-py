@@ -1067,14 +1067,14 @@ typing-extensions = {version = ">=3.7.4.3", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "griffe"
-version = "0.25.3"
+version = "0.25.4"
 description = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "griffe-0.25.3-py3-none-any.whl", hash = "sha256:c98e8471a4fc7675a7989f45563a9f7ccbfdfb1713725526d69dec1bbdcda74a"},
-    {file = "griffe-0.25.3.tar.gz", hash = "sha256:a71f156851649b3f0bdad6eb6bf7d7ac70e720a30da9f2d5a60e042480e92c03"},
+    {file = "griffe-0.25.4-py3-none-any.whl", hash = "sha256:919f935a358b31074d16e324e26b041883c60a8cf10504655e394afc3a7caad8"},
+    {file = "griffe-0.25.4.tar.gz", hash = "sha256:f190edf8ef58d43c856d2d6761ec324a043ff60deb8c14359263571e8b91fe68"},
 ]
 
 [package.dependencies]
