@@ -6,6 +6,7 @@ import time
 
 import canonicaljson
 import requests
+from eth_account.account import Account
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
 from pydantic import NoneStr, PositiveInt
@@ -27,18 +28,30 @@ class MerkleApiClient:
 
     def __init__(
         self,
-        wallet: Optional[LocalAccount] = None,
+        mnemonic: NoneStr = None,
+        private_key: NoneStr = None,
         access_token: NoneStr = None,
+        expires_at: Optional[PositiveInt] = None,
+        rotation_duration: PositiveInt = 10,
         **data: Any,
     ):
         self.config = ConfigurationParams(**data)
-        self.wallet = wallet
+        self.wallet = get_wallet(mnemonic, private_key)
         self.access_token = access_token
+        self.expires_at = expires_at
+        self.rotation_duration = rotation_duration
         self.session = requests.Session()
         if self.access_token:
             self.session.headers.update(
                 {"Authorization": f"Bearer {self.access_token}"}
             )
+            if not self.expires_at:
+                self.expires_at = 33228645430000  # 3000-01-01
+
+        elif not self.wallet:
+            raise Exception("No wallet or access token provided")
+        else:
+            self.create_new_auth_token(expires_in=self.rotation_duration)
 
     def get_base_path(self):
         return self.config.base_path
@@ -53,6 +66,7 @@ class MerkleApiClient:
         json: Dict[Any, Any] = {},
         headers: Dict[Any, Any] = {},
     ) -> Dict[Any, Any]:
+        self._check_auth_header()
         logging.debug(f"GET {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.get(
             self.config.base_path + path, params=params, json=json, headers=headers
@@ -68,6 +82,7 @@ class MerkleApiClient:
         json: Dict[Any, Any] = {},
         headers: Dict[Any, Any] = {},
     ) -> Dict[Any, Any]:
+        self._check_auth_header()
         logging.debug(f"POST {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.post(
             self.config.base_path + path, params=params, json=json, headers=headers
@@ -83,6 +98,7 @@ class MerkleApiClient:
         json: Dict[Any, Any] = {},
         headers: Dict[Any, Any] = {},
     ) -> Dict[Any, Any]:
+        self._check_auth_header()
         logging.debug(f"PUT {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.put(
             self.config.base_path + path, params=params, json=json, headers=headers
@@ -98,6 +114,7 @@ class MerkleApiClient:
         json: Dict[Any, Any] = {},
         headers: Dict[Any, Any] = {},
     ) -> Dict[Any, Any]:
+        self._check_auth_header()
         logging.debug(f"DELETE {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.delete(
             self.config.base_path + path, params=params, json=json, headers=headers
@@ -105,6 +122,11 @@ class MerkleApiClient:
         if "errors" in response:
             raise Exception(response["errors"])
         return response
+
+    def _check_auth_header(self):
+        assert self.expires_at
+        if self.expires_at < now_ms() + 1000:
+            self.create_new_auth_token(expires_in=self.rotation_duration)
 
     def get_healthcheck(self) -> bool:
         """Check if API is up and running
@@ -750,23 +772,28 @@ class MerkleApiClient:
         )
         return CastsGetResponse(**response).result
 
-    def create_new_auth_token(
-        self, expires_at: PositiveInt, timestamp: PositiveInt = int(time.time() * 1000)
-    ) -> str:
+    def create_new_auth_token(self, expires_in: PositiveInt = 10) -> str:
         """Create a new access token for a user from the wallet credentials
 
         Args:
-            expires_at (PositiveInt): Expiration date of the token
-            timestamp (PositiveInt, optional): Current timestamp,
-                defaults to current time in milliseconds
+            expires_in (PositiveInt): Expiration length of the token in minutes,
+                defaults to 10 minutes
 
         Returns:
             str: access token
         """
-        auth_params = AuthParams(timestamp=timestamp, expires_at=expires_at)
+        now = int(time.time())
+        auth_params = AuthParams(
+            timestamp=now * 1000, expires_at=(now + (expires_in * 60)) * 1000
+        )
+        logging.debug(f"Creating new auth token with params: {auth_params}")
         response = self.put_auth(auth_params)
         self.access_token = response.token.secret
+        self.expires_at = auth_params.expires_at
+        self.rotation_duration = expires_in
+
         self.session.headers.update({"Authorization": f"Bearer {self.access_token}"})
+
         return self.access_token
 
     def generate_custody_auth_header(self, params: AuthParams) -> str:
@@ -791,3 +818,33 @@ class MerkleApiClient:
         data_hex_array = bytearray(signed_message.signature)
         encoded = base64.b64encode(data_hex_array).decode()
         return f"Bearer eip191:{encoded}"
+
+
+def get_wallet(mnemonic: NoneStr, private_key: NoneStr) -> Optional[LocalAccount]:
+    """Get a wallet from mnemonic or private key
+
+    Args:
+        mnemonic (NoneStr): mnemonic
+        private_key (NoneStr): private key
+
+    Returns:
+        Optional[LocalAccount]: wallet
+    """
+    Account.enable_unaudited_hdwallet_features()
+
+    if mnemonic:
+        account: LocalAccount = Account.from_mnemonic(mnemonic)
+        return account
+    elif private_key:
+        account = Account.from_key(private_key)
+        return account
+    return None
+
+
+def now_ms() -> int:
+    """Get the current time in milliseconds
+
+    Returns:
+        int: current time in milliseconds
+    """
+    return int(time.time() * 1000)
