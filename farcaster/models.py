@@ -1,5 +1,7 @@
 from typing import Any, Dict, List, Optional, Type, Union
 
+import logging
+
 from humps import camelize
 from pydantic import AnyUrl
 from pydantic import BaseModel as PydanticBaseModel
@@ -7,10 +9,14 @@ from pydantic import Field, NoneStr, PositiveInt, conint, constr
 
 
 class BaseModel(PydanticBaseModel):
-    def dict(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:
-        if hasattr(kwargs, "exclude_none"):
-            _ignored = kwargs.pop("exclude_none")
-        return super().dict(*args, exclude_none=True, **kwargs)
+    # def dict(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:
+    #     logging.info(kwargs)
+    #     print(kwargs)
+    #     if hasattr(kwargs, "exclude_none"):
+    #         _ignored = kwargs.pop("exclude_none")
+    #         del kwargs["exclude_none"]
+    #     print(kwargs)
+    #     return super().dict(*args, exclude_none=True, **kwargs)
 
     class Config:
         alias_generator = camelize
@@ -474,7 +480,7 @@ class AssetGetResponse(BaseModel):
 
 class AuthParams(BaseModel):
     timestamp: PositiveInt
-    expires_at: Optional[PositiveInt]
+    expires_at: PositiveInt
 
 
 class AuthPutRequest(BaseModel):
