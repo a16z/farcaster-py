@@ -138,6 +138,6 @@ and many, many more things. The full specification can be found on the [Referenc
 
 ## 🛡 License
 
-[![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/fmhall/farcaster/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/a16z/farcaster-py/blob/main/LICENSE)
 
-This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/fmhall/farcaster/blob/master/LICENSE) for more details.
+This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/a16z/farcaster-py/blob/main/LICENSE) for more details.
