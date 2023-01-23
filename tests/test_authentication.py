@@ -36,8 +36,7 @@ def test_create_new_auth_token(fcc: MerkleApiClient) -> None:
         None
     """
     with pytest.raises(Exception, match="^Wallet not set$"):
-        expiry_ms = int(time.time() + 600) * 1000
-        fcc.create_new_auth_token(expires_at=expiry_ms)
+        fcc.create_new_auth_token(expires_in=10)
 
 
 @pytest.mark.vcr
