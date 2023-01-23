@@ -7,7 +7,8 @@
 
 Vulnerabilities can be reported by emailing core members:
 
-- Mason Hall [masonhall@gmail.com](mailto:masonhall@gmail.com)
+- Mason Hall [mhall@a16z.com](mailto:mhall@a16z.com)
+- Eddy Lazzarin [elazzarin@a16z.com](mailto:elazzarin@a16z.com)
 
 Please include the requested information listed below (as much as you can provide) to help us better understand the nature and scope of the possible issue:
 

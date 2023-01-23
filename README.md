@@ -2,14 +2,14 @@
 
 <div align="center">
 
-[![Build status](https://github.com/a16z/farcaster-py/workflows/build/badge.svg?branch=master&event=push)](https://github.com/fmhall/farcaster/actions?query=workflow%3Abuild)
+[![Build status](https://github.com/a16z/farcaster-py/workflows/build/badge.svg?branch=master&event=push)](https://github.com/a16z/farcaster-py/actions?query=workflow%3Abuild)
 [![Python Version](https://img.shields.io/pypi/pyversions/farcaster.svg)](https://pypi.org/project/farcaster/)
 [![Dependencies Status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)](https://github.com/a16z/farcaster-py/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/a16z/farcaster-py/blob/master/.pre-commit-config.yaml)
 [![Semantic Versions](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/a16z/farcaster-py/releases)
-[![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/a16z/farcaster-py)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
 ![Coverage Report](assets/images/coverage.svg)
 
 farcaster-py is a modern Python SDK for the Farcaster protocol<br></br>
@@ -21,7 +21,7 @@ Full documentation can be found [here](https://a16z.github.io/farcaster-py)
 ## Installation
 
 ```bash
-pip install -U farcaster
+pip install farcaster
 ```
 
 or install with [Poetry](https://python-poetry.org/):
@@ -30,11 +30,12 @@ or install with [Poetry](https://python-poetry.org/):
 poetry add farcaster
 ```
 
-
 ## Usage
+
 To use the Farcaster API you need to generate an access token. Here is one way to do that:
 
 First install eth-account and dotenv:
+
 ```bash
 pip install eth-account python-dotenv # Or 'poetry add eth-account python-dotenv'
 ```
@@ -76,7 +77,6 @@ client = MerkleApiClient(access_token=os.environ.get("<AUTH_ENV_VAR>"))
 
 print(client.get_healthcheck())
 ```
-
 
 ## Examples
 
@@ -134,10 +134,8 @@ print(response.cast.hash) # "0x...."
 
 and many, many more things. The full specification can be found on the [Reference page](https://a16z.github.io/farcaster-py/reference).
 
-
-
 ## 🛡 License
 
-[![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/fmhall/farcaster/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/a16z/farcaster-py)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
 
-This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/fmhall/farcaster/blob/master/LICENSE) for more details.
+This project is licensed under the terms of the `MIT` license. See [LICENSE](https://github.com/a16z/farcaster-py/blob/master/LICENSE) for more details.
