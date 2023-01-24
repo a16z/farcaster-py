@@ -43,8 +43,13 @@ test:
 	PYTHONPATH=$(PYTHONPATH) poetry run pytest --record-mode=once -c pyproject.toml --cov-report=html --cov=farcaster tests/
 	poetry run coverage-badge -o assets/images/coverage.svg -f
 
+.PHONY: test-record
+test-record:
+	PYTHONPATH=$(PYTHONPATH) poetry run pytest --record-mode=all -c pyproject.toml --cov-report=html --cov=farcaster tests/
+	poetry run coverage-badge -o assets/images/coverage.svg -f
+
 .PHONY: test-ci
-test:
+test-ci:
 	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov=farcaster tests/
 	poetry run coverage-badge -o assets/images/coverage.svg -f
 

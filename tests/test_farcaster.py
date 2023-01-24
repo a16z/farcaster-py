@@ -3,6 +3,7 @@ import logging
 import pytest
 
 from farcaster.client import MerkleApiClient
+from farcaster.models import CastHash, CastsPostRequest
 
 
 @pytest.mark.vcr
@@ -74,44 +75,6 @@ def test_get_casts(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_post_cast(fcc: MerkleApiClient) -> None:
-    """Unit test that posts cast
-
-    Args:
-        fcc: fixture
-
-    Returns:
-        None
-    """
-    # cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
-    # # post cast
-    # response = fcc.post_cast(cast_body)
-    # if response:
-    #     print(response.cast.hash)
-    # else:
-    #     raise Exception("Failed to post cast")
-    pass
-
-
-@pytest.mark.vcr
-def test_delete_cast(fcc: MerkleApiClient) -> None:
-    """Unit test that deletes cast
-
-    Args:
-        fcc: fixture
-
-    Returns:
-        None
-    """
-    # cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
-    # # post cast
-    # response = fcc.delete_cast(cast_body)
-    # if response:
-    #     print(response)
-    pass
-
-
-@pytest.mark.vcr
 def test_get_cast_likes(fcc: MerkleApiClient) -> None:
     """Unit test that gets cast likes
 
@@ -128,40 +91,6 @@ def test_get_cast_likes(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_like_cast(fcc: MerkleApiClient) -> None:
-    """Unit test that puts cast likes
-
-    Args:
-        fcc: fixture
-
-    Returns:
-        None
-    """
-    # cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
-    # # post cast
-    # response = fcc.like_cast(cast_body)
-    # if response:
-    pass
-
-
-@pytest.mark.vcr
-def test_delete_cast_likes(fcc: MerkleApiClient) -> None:
-    """Unit test that deletes cast likes
-
-    Args:
-        fcc: fixture
-
-    Returns:
-        None
-    """
-    # cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
-    # # post cast
-    # response = fcc.delete_cast_likes(cast_body)
-    # if response:
-    pass
-
-
-@pytest.mark.vcr
 def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
     """Unit test that gets cast recasters
 
@@ -175,32 +104,6 @@ def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
         "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
     )
     assert response.users[0].username == "adrienne"
-
-
-@pytest.mark.vcr
-def test_recast(fcc: MerkleApiClient) -> None:
-    """Unit test that recasts cast
-
-    Args:
-        fcc: fixture
-
-    Returns:
-        None
-    """
-    pass
-
-
-@pytest.mark.vcr
-def test_delete_recast(fcc: MerkleApiClient) -> None:
-    """Unit test that deletes recast
-
-    Args:
-        fcc: fixture
-
-    Returns:
-        None
-    """
-    pass
 
 
 @pytest.mark.vcr
@@ -403,3 +306,122 @@ def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
     # )
     # assert response.user.username == "mason"
     pass
+
+
+class TestRW:
+    """Read/write tests"""
+
+    cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
+    cast_hash = None
+
+    @pytest.mark.vcr
+    @pytest.mark.dependency()
+    def test_post_cast(this, fcc: MerkleApiClient) -> None:
+        """Unit test that posts cast
+
+        Args:
+            fcc: fixture
+
+        Returns:
+            None
+        """
+        # post cast
+        response = fcc.post_cast(this.cast_body)
+        if response:
+            print(response.cast.hash)
+            this.cast_hash = CastHash(response.cast.hash)
+        else:
+            raise Exception("Failed to post cast")
+        pass
+
+    @pytest.mark.vcr
+    @pytest.mark.dependency(depends=["test_post_cast"])
+    def test_like_cast(this, fcc: MerkleApiClient) -> None:
+        """Unit test that puts cast likes
+
+        Args:
+            fcc: fixture
+
+        Returns:
+            None
+        """
+        assert this.cast_hash
+        response = fcc.like_cast(this.cast_hash)
+        if response:
+            print(response)
+        else:
+            raise Exception("Failed to like cast")
+        pass
+
+    @pytest.mark.vcr
+    @pytest.mark.dependency(depends=["test_like_cast"])
+    def test_delete_cast_likes(this, fcc: MerkleApiClient) -> None:
+        """Unit test that deletes cast likes
+
+        Args:
+            fcc: fixture
+
+        Returns:
+            None
+        """
+        response = fcc.delete_cast_likes(this.cast_hash, this.cast_body)
+        if response:
+            print(response)
+        else:
+            raise Exception("Failed to 'unlike' cast")
+        pass
+
+    @pytest.mark.vcr
+    @pytest.mark.dependency(depends=["test_post_cast"])
+    def test_recast(this, fcc: MerkleApiClient) -> None:
+        """Unit test that recasts cast
+
+        Args:
+            fcc: fixture
+
+        Returns:
+            None
+        """
+        response = fcc.recast(this.cast_hash)
+        if response:
+            print(response)
+        else:
+            raise Exception("Failed to recast cast")
+        pass
+
+    @pytest.mark.vcr
+    @pytest.mark.dependency(depends=["test_recast"])
+    def test_delete_recast(this, fcc: MerkleApiClient) -> None:
+        """Unit test that deletes recast
+
+        Args:
+            fcc: fixture
+
+        Returns:
+            None
+        """
+        response = fcc.delete_recast(this.cast_hash)
+        if response:
+            print(response)
+        else:
+            raise Exception("Failed to recast cast")
+        pass
+
+    @pytest.mark.vcr
+    @pytest.mark.dependency(depends=["test_post_cast"])
+    def test_delete_cast(this, fcc: MerkleApiClient) -> None:
+        """Unit test that deletes cast
+
+        Args:
+            fcc: fixture
+
+        Returns:
+            None
+        """
+        # post cast
+        response = fcc.delete_cast(this.cast_hash)
+        if response:
+            print(response)
+        else:
+            raise Exception("Failed to delete cast")
+        pass

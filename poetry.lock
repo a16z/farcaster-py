@@ -23,7 +23,7 @@ wrapt = ">=1.11,<2"
 name = "attrs"
 version = "22.2.0"
 description = "Classes Without Boilerplate"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -487,7 +487,7 @@ importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
@@ -989,7 +989,7 @@ test = ["hypothesis (>=4.43.0,<5.0.0)", "pytest (>=6.2.5,<7)", "pytest-xdist", "
 name = "exceptiongroup"
 version = "1.1.0"
 description = "Backport of PEP 654 (exception groups)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1154,7 +1154,7 @@ testing = ["flake8 (<5)", "flufl.flake8", "importlib-resources (>=1.3)", "packag
 name = "iniconfig"
 version = "2.0.0"
 description = "brain-dead simple config-ini parsing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -1638,7 +1638,7 @@ setuptools = "*"
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -1801,7 +1801,7 @@ test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest (>=7.2)", "pytest-
 name = "pluggy"
 version = "1.0.0"
 description = "plugin and hook calling mechanisms for python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
@@ -2039,7 +2039,7 @@ markdown = ">=3.2"
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.8"
 files = [
@@ -2054,7 +2054,7 @@ diagrams = ["jinja2", "railroad-diagrams"]
 name = "pytest"
 version = "7.2.1"
 description = "pytest: simple powerful testing with Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -2093,6 +2093,20 @@ pytest = ">=4.6"
 
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtualenv"]
+
+[[package]]
+name = "pytest-dependency"
+version = "0.5.1"
+description = "Manage dependencies of tests"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytest-dependency-0.5.1.tar.gz", hash = "sha256:c2a892906192663f85030a6ab91304e508e546cddfe557d692d61ec57a1d946b"},
+]
+
+[package.dependencies]
+pytest = ">=3.6.0"
 
 [[package]]
 name = "pytest-html"
@@ -2680,7 +2694,7 @@ files = [
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
@@ -3038,4 +3052,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">3.7.1,<4.0.0"
-content-hash = "f87f710e5703f19a7fa88d93e694916c1dd3bf39a337217ee42dc2e85c1a990e"
+content-hash = "bb2351a97022c5abaa248c78d008c20d1012cc1398e93502ea1be9aa2fe2d239"
