@@ -227,7 +227,7 @@ class MerkleApiClient:
         )
         return CastReactionsGetResponse(**response).result
 
-    def like_cast(self, body: CastHash) -> ReactionsResult:
+    def like_cast(self, cast_hash: str) -> ReactionsResult:
         """Like a given cast
 
         Args:
@@ -236,25 +236,25 @@ class MerkleApiClient:
         Returns:
             ReactionsResult: Result of liking the cast
         """
+        body = CastHash(cast_hash=cast_hash)
         response = self._put(
             "cast-likes",
             json=body.dict(by_alias=True, exclude_none=True),
         )
         return CastReactionsPutResponse(**response).result
 
-    def delete_cast_likes(self, cast_hash: str, body: CastHash) -> StatusResponse:
+    def delete_cast_likes(self, cast_hash: str) -> StatusResponse:
         """Remove a like from a cast
 
         Args:
             cast_hash (str): hash of the cast to unlike
-            body (CastHash): hash of the cast to unlike
 
         Returns:
             StatusResponse: Status of the deletion
         """
+        body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "cast-likes",
-            params={"castHash": cast_hash},
             json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)

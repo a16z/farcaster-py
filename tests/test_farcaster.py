@@ -336,7 +336,7 @@ class TestRW:
         pass
 
     @pytest.mark.vcr
-    @pytest.mark.dependency(depends=["test_post_cast"])
+    @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
     def test_like_cast(this, fcc: MerkleApiClient) -> None:
         """Unit test that puts cast likes
 
@@ -355,7 +355,7 @@ class TestRW:
         pass
 
     @pytest.mark.vcr
-    @pytest.mark.dependency(depends=["test_like_cast"])
+    @pytest.mark.dependency(depends=["TestRW::test_like_cast"])
     def test_delete_cast_likes(this, fcc: MerkleApiClient) -> None:
         """Unit test that deletes cast likes
 
@@ -365,7 +365,7 @@ class TestRW:
         Returns:
             None
         """
-        response = fcc.delete_cast_likes(this.cast_hash, this.cast_body)
+        response = fcc.delete_cast_likes(this.cast_hash)
         if response:
             print(response)
         else:
@@ -373,7 +373,7 @@ class TestRW:
         pass
 
     @pytest.mark.vcr
-    @pytest.mark.dependency(depends=["test_post_cast"])
+    @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
     def test_recast(this, fcc: MerkleApiClient) -> None:
         """Unit test that recasts cast
 
@@ -391,7 +391,7 @@ class TestRW:
         pass
 
     @pytest.mark.vcr
-    @pytest.mark.dependency(depends=["test_recast"])
+    @pytest.mark.dependency(depends=["TestRW::test_recast"])
     def test_delete_recast(this, fcc: MerkleApiClient) -> None:
         """Unit test that deletes recast
 
@@ -409,7 +409,7 @@ class TestRW:
         pass
 
     @pytest.mark.vcr
-    @pytest.mark.dependency(depends=["test_post_cast"])
+    @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
     def test_delete_cast(this, fcc: MerkleApiClient) -> None:
         """Unit test that deletes cast
 
