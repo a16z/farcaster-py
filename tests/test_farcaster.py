@@ -5,6 +5,8 @@ import pytest
 from farcaster.client import MerkleApiClient
 from farcaster.models import CastHash, CastsPostRequest
 
+pytest.cast_hash = None
+
 
 @pytest.mark.vcr
 def test_get_cast(fcc: MerkleApiClient) -> None:
@@ -312,7 +314,6 @@ class TestRW:
     """Read/write tests"""
 
     cast_body = CastsPostRequest(text="Hello world from our WIP Farcaster Python SDK!")
-    cast_hash = None
 
     @pytest.mark.vcr
     @pytest.mark.dependency()
@@ -330,7 +331,7 @@ class TestRW:
         response = fcc.post_cast(this.cast_body)
         if response:
             logging.info(response.cast.hash)
-            this.cast_hash = CastHash(cast_hash=response.cast.hash)
+            pytest.cash_hash = response.cast.hash
         else:
             raise Exception("Failed to post cast")
         pass
@@ -346,8 +347,8 @@ class TestRW:
         Returns:
             None
         """
-        assert this.cast_hash
-        response = fcc.like_cast(this.cast_hash)
+        assert pytest.cash_hash
+        response = fcc.like_cast(pytest.cash_hash)
         if response:
             print(response)
         else:
@@ -365,7 +366,8 @@ class TestRW:
         Returns:
             None
         """
-        response = fcc.delete_cast_likes(this.cast_hash)
+        assert pytest.cash_hash
+        response = fcc.delete_cast_likes(pytest.cash_hash)
         if response:
             print(response)
         else:
@@ -383,7 +385,8 @@ class TestRW:
         Returns:
             None
         """
-        response = fcc.recast(this.cast_hash)
+        assert pytest.cash_hash
+        response = fcc.recast(pytest.cash_hash)
         if response:
             print(response)
         else:
@@ -401,7 +404,8 @@ class TestRW:
         Returns:
             None
         """
-        response = fcc.delete_recast(this.cast_hash)
+        assert pytest.cash_hash
+        response = fcc.delete_recast(pytest.cash_hash)
         if response:
             print(response)
         else:
@@ -420,7 +424,8 @@ class TestRW:
             None
         """
         # post cast
-        response = fcc.delete_cast(this.cast_hash)
+        assert pytest.cash_hash
+        response = fcc.delete_cast(pytest.cash_hash)
         if response:
             print(response)
         else:
