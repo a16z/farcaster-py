@@ -9,7 +9,7 @@
 [![Security: bandit](https://img.shields.io/badge/security-bandit-green.svg)](https://github.com/PyCQA/bandit)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/a16z/farcaster-py/blob/master/.pre-commit-config.yaml)
 [![Semantic Versions](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/a16z/farcaster-py/releases)
-[![License](https://img.shields.io/github/license/fmhall/farcaster)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/a16z/farcaster-py)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
 ![Coverage Report](assets/images/coverage.svg)
 
 farcaster-py is a modern Python SDK for the Farcaster protocol<br></br>
@@ -21,7 +21,7 @@ Full documentation can be found [here](https://a16z.github.io/farcaster-py)
 ## Installation
 
 ```bash
-pip install -U farcaster
+pip install farcaster
 ```
 
 or install with [Poetry](https://python-poetry.org/):
@@ -30,11 +30,12 @@ or install with [Poetry](https://python-poetry.org/):
 poetry add farcaster
 ```
 
-
 ## Usage
+
 To use the Farcaster API you need to have a Farcaster account. We will use the mnemonic or private key of the Farcaster custody account (not your main wallet) to connect to the API.
 
 First install dotenv:
+
 ```bash
 pip install python-dotenv # Or 'poetry add python-dotenv'
 ```
@@ -51,7 +52,6 @@ client = MerkleApiClient(mnemonic=os.environ.get("<MNEMONIC_ENV_VAR>"))
 
 print(client.get_healthcheck())
 ```
-
 
 ## Examples
 
@@ -108,8 +108,6 @@ print(response.cast.hash) # "0x...."
 ```
 
 and many, many more things. The full specification can be found on the [Reference page](https://a16z.github.io/farcaster-py/reference).
-
-
 
 ## 🛡 License
 
