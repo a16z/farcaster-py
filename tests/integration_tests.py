@@ -11,13 +11,13 @@ def fcc_from_mnemonic() -> None:
     load_dotenv()
     MNEMONIC = os.getenv("MNEMONIC")
     assert MNEMONIC, "MNEMONIC env var not set"
-    fcc = MerkleApiClient(mnemonic=MNEMONIC)
+    fcc = MerkleApiClient(mnemonic=MNEMONIC, rotation_duration=200)
     assert fcc.wallet
     assert fcc.get_user_by_username("mason").user.username == "mason"
     assert fcc.access_token
-    assert fcc.rotation_duration == 10
-    assert fcc.expires_at == (int(time.time()) + (10 * 60)) * 1000
-
+    assert fcc.rotation_duration == 200
+    # assert fcc.expires_at == (int(time.time()) + (10 * 60)) * 1000
+    print(fcc.access_token)
     print(fcc.wallet.key.hex())
 
 

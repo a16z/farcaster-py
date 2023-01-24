@@ -183,7 +183,7 @@ class MerkleApiClient:
         body = AuthPutRequest(params=auth_params)
         response = requests.put(
             "https://api.farcaster.xyz/v2/auth",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
             headers={"Authorization": header},
         ).json()
         return AuthPutResponse(**response).result
@@ -201,7 +201,7 @@ class MerkleApiClient:
         body = AuthDeleteRequest(params=Timestamp(timestamp=timestamp))
         response = self._delete(
             "auth",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)
 
@@ -238,7 +238,7 @@ class MerkleApiClient:
         """
         response = self._put(
             "cast-likes",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return CastReactionsPutResponse(**response).result
 
@@ -255,7 +255,7 @@ class MerkleApiClient:
         response = self._delete(
             "cast-likes",
             params={"castHash": cast_hash},
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)
 
@@ -350,7 +350,7 @@ class MerkleApiClient:
         """
         response = self._post(
             "casts",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return CastsPostResponse(**response).result
 
@@ -366,7 +366,7 @@ class MerkleApiClient:
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "casts",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)
 
@@ -507,7 +507,7 @@ class MerkleApiClient:
         body = FollowsPutRequest(target_fid=fid)
         response = self._put(
             "follows",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)
 
@@ -523,7 +523,7 @@ class MerkleApiClient:
         body = FollowsDeleteRequest(target_fid=fid)
         response = self._delete(
             "follows",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)
 
@@ -572,7 +572,7 @@ class MerkleApiClient:
         body = CastHash(cast_hash=cast_hash)
         response = self._put(
             "recasts",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return RecastsPutResponse(**response).result
 
@@ -588,7 +588,7 @@ class MerkleApiClient:
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "recasts",
-            json=body.dict(by_alias=True),
+            json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response)
 
@@ -811,7 +811,7 @@ class MerkleApiClient:
         if not self.wallet:
             raise Exception("Wallet not set")
         auth_put_request = AuthPutRequest(params=params)
-        payload = auth_put_request.dict(by_alias=True)
+        payload = auth_put_request.dict(by_alias=True, exclude_none=True)
         encoded_payload = canonicaljson.encode_canonical_json(payload)
         signable_message = encode_defunct(primitive=encoded_payload)
         signed_message = self.wallet.sign_message(signable_message)

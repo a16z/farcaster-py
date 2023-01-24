@@ -255,7 +255,7 @@ def test_get_me(fcc: MerkleApiClient) -> None:
         None
     """
     response = fcc.get_me()
-    assert response.user.username == "mason"
+    assert response.user.username == "apitest"
 
 
 @pytest.mark.vcr
@@ -326,10 +326,11 @@ class TestRW:
             None
         """
         # post cast
+        logging.info(this.cast_body.dict(by_alias=True))
         response = fcc.post_cast(this.cast_body)
         if response:
-            print(response.cast.hash)
-            this.cast_hash = CastHash(response.cast.hash)
+            logging.info(response.cast.hash)
+            this.cast_hash = CastHash(cast_hash=response.cast.hash)
         else:
             raise Exception("Failed to post cast")
         pass

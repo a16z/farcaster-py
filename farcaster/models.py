@@ -9,15 +9,6 @@ from pydantic import Field, NoneStr, PositiveInt, conint, constr
 
 
 class BaseModel(PydanticBaseModel):
-    # def dict(self, *args: Any, **kwargs: Any) -> Dict[str, Any]:
-    #     logging.info(kwargs)
-    #     print(kwargs)
-    #     if hasattr(kwargs, "exclude_none"):
-    #         _ignored = kwargs.pop("exclude_none")
-    #         del kwargs["exclude_none"]
-    #     print(kwargs)
-    #     return super().dict(*args, exclude_none=True, **kwargs)
-
     class Config:
         alias_generator = camelize
         allow_population_by_field_name = True
@@ -212,7 +203,7 @@ class ApiRecaster(BaseModel):
     fid: PositiveInt
     username: NoneStr = None
     display_name: NoneStr
-    recast_hash: str = Field(..., regex=r"^0[xX][0-9a-fA-F]{64}$")
+    recast_hash: str
 
 
 class Ancestors(BaseModel):
