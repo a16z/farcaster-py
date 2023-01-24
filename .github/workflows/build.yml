@@ -43,4 +43,4 @@ jobs:
         env:
           AUTH: ${{ secrets.AUTH }}
         run: |
-          make test
+          make test-ci
