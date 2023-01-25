@@ -21,7 +21,7 @@ Full documentation can be found [here](https://a16z.github.io/farcaster-py)
 ## Installation
 
 ```bash
-pip install farcaster
+pip install -U farcaster
 ```
 
 or install with [Poetry](https://python-poetry.org/):

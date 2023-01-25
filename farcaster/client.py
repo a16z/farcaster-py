@@ -188,16 +188,13 @@ class MerkleApiClient:
         ).json()
         return AuthPutResponse(**response).result
 
-    def delete_auth(self, timestamp: PositiveInt) -> StatusContent:
+    def delete_auth(self) -> StatusContent:
         """Delete an access token
-
-        Args:
-            timestamp (PositiveInt): The timestamp of the access
-                token to delete
 
         Returns:
             StatusContent: Status of the deletion
         """
+        timestamp = now_ms()
         body = AuthDeleteRequest(params=Timestamp(timestamp=timestamp))
         response = self._delete(
             "auth",
