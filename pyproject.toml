@@ -151,13 +151,11 @@ addopts = [
 source = ["tests"]
 
 [coverage.paths]
-include = ["farcaster/client.py", "farcaster/models.py"]
+source = "farcaster"
 
 [coverage.run]
 branch = true
-include = ["farcaster/client.py", "farcaster/models.py"]
 
 [coverage.report]
 fail_under = 50
 show_missing = true
-include = ["farcaster/client.py", "farcaster/models.py"]

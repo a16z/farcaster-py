@@ -107,7 +107,7 @@ def test_put_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
         return MockResponsePut()
 
     def mock_header(*args: Any, **kwargs: Any) -> str:
-        return "eip191:V5Opo6K5M6JECBNurxHDtbts3Uqh/QpisEwm0ZSPqQdXrnTBvBZDZSME3HPeq/1pGP7ISwKJocGeWZESM8am8xs"
+        return "eip191:V5Opo6K5M6JECBNurxHDtbts3Uqh/QpisEwm0ZSPqQdXrnTBvBZDZSME3HPeq/1pGP7ISwKJocGeWZESMxxxxxx"
 
     monkeypatch.setattr(requests, "put", mock_put)
     monkeypatch.setattr(MerkleApiClient, "generate_custody_auth_header", mock_header)
