@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: null
+    body: '{"castHash": "0xf1bcc34739a7eac76dbf715bba0f225c39916c5af9bb8658abde79f721ed44e3"}'
     headers:
       Accept:
       - '*/*'
@@ -8,30 +8,34 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
+      Content-Length:
+      - '82'
+      Content-Type:
+      - application/json
       User-Agent:
       - python-requests/2.28.2
-    method: GET
-    uri: https://api.farcaster.xyz/healthcheck
+    method: DELETE
+    uri: https://api.farcaster.xyz/v2/casts
   response:
     body:
-      string: '{"result":{"status":"ok"}}'
+      string: '{"result":{"success":true}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed976879a51825-EWR
+      - 78ed97609e088c0c-EWR
       Connection:
       - keep-alive
       Content-Length:
-      - '26'
+      - '27'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:14 GMT
+      - Wed, 25 Jan 2023 02:31:12 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ctpXbQGYGUSe3h47I4PXEF3Wa88HGyM9MHzr8%2FsiP7Fxk9Pn%2B13cSPPveJWEFCTFp1Ok9tkFESh3GNKWvfH53rxVU4XS07EuepgrDNNaGuFqjVBA3FZJ8YCzWl%2Fou1AzoLMQfbmr4VzGYTQDJ4ZU"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kjkN%2BzLMgjTEXoeX%2FXTKdguGVth5G%2Bj1pWxuj0sxYWrmjCxLj8d9P0LoYGAP4G6Sa%2FLyWVwbE4Dgs%2B4jvYrulrG4gn8WMnKV%2FeIi3nHUykkNkhfSlAysnf%2FCoMr2tpT%2F7lD%2Bqv8ZIcwn77dPggkd"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       alt-svc:
@@ -47,7 +51,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"epchm6"
+      - W/"1z12wlh"
       origin-agent-cluster:
       - ?1
       referrer-policy:
@@ -69,9 +73,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '993'
+      - '994'
       x-ratelimit-reset:
-      - '51'
+      - '54'
       x-xss-protection:
       - '0'
     status:

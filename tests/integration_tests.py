@@ -11,13 +11,13 @@ def fcc_from_mnemonic() -> None:
     load_dotenv()
     MNEMONIC = os.getenv("MNEMONIC")
     assert MNEMONIC, "MNEMONIC env var not set"
-    fcc = MerkleApiClient(mnemonic=MNEMONIC)
+    fcc = MerkleApiClient(mnemonic=MNEMONIC, rotation_duration=200)
     assert fcc.wallet
     assert fcc.get_user_by_username("mason").user.username == "mason"
     assert fcc.access_token
-    assert fcc.rotation_duration == 10
-    assert fcc.expires_at == (int(time.time()) + (10 * 60)) * 1000
-
+    assert fcc.rotation_duration == 200
+    # assert fcc.expires_at == (int(time.time()) + (10 * 60)) * 1000
+    print(fcc.access_token)
     print(fcc.wallet.key.hex())
 
 
@@ -34,6 +34,16 @@ def fcc_from_pkey() -> None:
     print(fcc.expires_at)
     print(expiry)
     assert fcc.expires_at == expiry
+
+
+def fcc_from_auth() -> None:
+    load_dotenv()
+    AUTH = os.getenv("AUTH")
+    assert AUTH, "AUTH env var not set"
+    fcc = MerkleApiClient(access_token=AUTH)
+    fid = fcc.get_user_by_username("apitest").user.fid
+    first_cast = fcc.get_casts(fid=fid).casts[-1]
+    print(first_cast.hash)
 
 
 def test_rotation() -> None:

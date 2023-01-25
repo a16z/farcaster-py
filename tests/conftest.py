@@ -3,7 +3,7 @@ import os
 import pytest
 from dotenv import load_dotenv
 
-from farcaster.client import MerkleApiClient
+from farcaster.client import ApiCast, MerkleApiClient
 
 
 @pytest.fixture(scope="session", autouse=True)

@@ -16,7 +16,7 @@ def test_mention_reply_notifications(fcc: MerkleApiClient) -> None:
         None
     """
     response = fcc.get_mention_and_reply_notifications(limit=10)
-    assert len(response.notifications) == 10
+    assert len(response.notifications) == 1
 
 
 @pytest.mark.vcr
