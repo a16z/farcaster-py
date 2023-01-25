@@ -50,8 +50,7 @@ test-record:
 
 .PHONY: test-ci
 test-ci:
-	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml --cov-report=html --cov=farcaster tests/
-	poetry run coverage-badge -o assets/images/coverage.svg -f
+	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml
 
 .PHONY: check-codestyle
 check-codestyle:

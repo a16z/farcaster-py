@@ -843,4 +843,196 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.farcaster.xyz/v2/mention-and-reply-notifications?limit=10
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+RTwXLTMBD9FXUvXERiO01i+wR0gGaGAQ6d6YHmsLHXsagtqZJMmmY8w50TR078
+        G1/AJzBynLSlUzrM9AQnSU/y233vrTdgyDaVg3QDUjlRiAydUNJC+mEDbq0JUsjQuqc1SX8BHEQO
+        KQSXozCZUhTFo3AyRoowSZJFGGFBcRJP40kchHkcjBd5HkwTjIq4iJEmh3kSTaJgFCUxcHCiJuuw
+        1pCGk+nheBqFozCKRxwwc8r4pgpfbRROEw6NJSOx9h2tqMpUTcAhF1ZXuH67xU+3OHuhHHDQhfYU
+        jakghdI5bdPhUAxEvWzMIFP18Cpanx5nV4OPegkcPpERhaAc0gIrSy0HbVQhKvIkC6H84ujS7esI
+        uWSSVsw3ZplT7BUa7xUZ4ND75Y2cty2HQlWVWpE5Uo10kE6CHSTkssfClkOmpCPZ5eGp/FqiLR/N
+        8dIQ5sePyIiNK//PqPoCP79//cLO5Jk8pjV7hlo4su6gQ3Yab9Y7YDPJlMnJeHhJjq1VwxrtT1YT
+        5Qwtu2hEdl6t/VYra8WiIlaSoR+fv1mGrBLWMVUw68kzVddKdo/PKWcXDdlODSuMqq9Fp76hYtdF
+        n8pCucHl+uqPv+INd/qM41EQ3cq4F30n4+fvZ+xke/FwwOfk3r1sBlr+ZcCzJzVDVhiSD0c5vptk
+        0M45oHOYlf5j65mVJvnaoC47zdc9p8Ph/Q7mqkYhIYX7nzSW3qBZ0qzGJfXSOFhnhNaUH6F1J//O
+        TLXzloMhXQnqTM12fnsUsz6m33DPdAvdgWS2mXJYocvKO5SfBHUxy+1UbLY19gO0o9kftyz7+Wrb
+        dt62vwAAAP//AwDX81JTDgcAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 78ed27d8287d2376-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 25 Jan 2023 01:15:04 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=n%2FqCEsBV75TXLSgcZAx3WourZ5k0EibEmwNPmFyzlML6o7x9pURSmcuURKyWX4KCK1iu%2B4exZUoyPNJOpVauq%2BmSvySb%2FkbQEJiNmkyUFbzZrENPJHMcJ9AdiK4Y2zDuXXoIAvGWlmQCsG3vV07m"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"m31fd3"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '996'
+      x-ratelimit-reset:
+      - '52'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.farcaster.xyz/v2/mention-and-reply-notifications?limit=10
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+RTwXLTMBD9FXUvXERiO01i+wR0gGaGAQ6d6YHmsLHXsagtqZJMmmY8w50TR078
+        G1/AJzBynLSlUzrM9AQnSU/y233vrTdgyDaVg3QDUjlRiAydUNJC+mEDbq0JUsjQuqc1SX8BHEQO
+        KQSXozCZUhTFo3AyRoowSZJFGGFBcRJP40kchHkcjBd5HkwTjIq4iJEmh3kSTaJgFCUxcHCiJuuw
+        1pCGk+nheBqFozCKRxwwc8r4pgpfbRROEw6NJSOx9h2tqMpUTcAhF1ZXuH67xU+3OHuhHHDQhfYU
+        jakghdI5bdPhUAxEvWzMIFP18Cpanx5nV4OPegkcPpERhaAc0gIrSy0HbVQhKvIkC6H84ujS7esI
+        uWSSVsw3ZplT7BUa7xUZ4ND75Y2cty2HQlWVWpE5Uo10kE6CHSTkssfClkOmpCPZ5eGp/FqiLR/N
+        8dIQ5sePyIiNK//PqPoCP79//cLO5Jk8pjV7hlo4su6gQ3Yab9Y7YDPJlMnJeHhJjq1VwxrtT1YT
+        5Qwtu2hEdl6t/VYra8WiIlaSoR+fv1mGrBLWMVUw68kzVddKdo/PKWcXDdlODSuMqq9Fp76hYtdF
+        n8pCucHl+uqPv+INd/qM41EQ3cq4F30n4+fvZ+xke/FwwOfk3r1sBlr+ZcCzJzVDVhiSD0c5vptk
+        0M45oHOYlf5j65mVJvnaoC47zdc9p8Ph/Q7mqkYhIYX7nzSW3qBZ0qzGJfXSOFhnhNaUH6F1J//O
+        TLXzloMhXQnqTM12fnsUsz6m33DPdAvdgWS2mXJYocvKO5SfBHUxy+1UbLY19gO0o9kftyz7+Wrb
+        dt62vwAAAP//AwDX81JTDgcAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 78ed2b9cf853c34b-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 25 Jan 2023 01:17:38 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ClmpqV9JDp%2BucXxypee5UofStIu7f9Uz2vkMaeaFjhAmzLr9b422Pd3lAU%2BuOeI7341%2Bcq91KnCQgXx2Bk%2FH%2FY9%2FOJ%2B0ds7dD49x31MunUjb0LawyKQmKvekBq4FavUGGuurib6%2F3YhT2o2T1XKz"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"m31fd3"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '998'
+      x-ratelimit-reset:
+      - '54'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1

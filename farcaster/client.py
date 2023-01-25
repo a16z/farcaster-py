@@ -227,14 +227,14 @@ class MerkleApiClient:
         )
         return CastReactionsGetResponse(**response).result
 
-    def like_cast(self, cast_hash: str) -> ReactionsResult:
+    def like_cast(self, cast_hash: str) -> ReactionsPutResult:
         """Like a given cast
 
         Args:
             cast_hash (str): hash of the cast to like
 
         Returns:
-            ReactionsResult: Result of liking the cast
+            ReactionsPutResult: Result of liking the cast
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._put(

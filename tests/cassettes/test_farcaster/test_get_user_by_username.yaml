@@ -803,4 +803,186 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.farcaster.xyz/v2/user-by-username?username=mason
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0SQX2viQBTFv0q4z7Mam20t87SosGpb2yK0YluWZHKjA5M76cydxCj57kvsv6cD
+        v3M4HM4JHPpgGOQJgkfXa6FzkJexOANKSwQJZeotgYBc+8qk7eqD3vU0mqfGgICqqM4tzoCEPXPl
+        5XBo9slgZ+3OYF+mLDESD5Qth7PxeHv3MNmQwlFzP2qXT+vV8VEdsstmksT77fUmrJY5typ5mizq
+        +0OTtXGIj89jeq/DzaKch9uHv9u8vEq2Fxd+ufeLf3FibrT6fVzPMgy/nt/XIKBGpwuNOUh2ATsB
+        lbOFNthPzbTthfHAICEdXR0j5dqKrYgqh3WEtNOE6KI/UWbsxtnAGJk08yKaWvJIvvWDV3ql+HB+
+        Yj7gRjOjAwElEmtLHuTLW9cJKKwxtkE3tYG4v3f8xTTtPuHoOhZQazzH6GPW6ScFskiNx++ufNJ+
+        I5XSGimfaYeKp6ln/2l1Xdf9BwAA//8DAG225W7lAQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 78ed27ba692a8c42-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 25 Jan 2023 01:14:59 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=iTpN76ORPyMWfZwnOxqMjMNoTSOX14o%2FgNSdrXywd%2F%2Bdrs0NzrcUFCyXJP5nmyH7aF3TC8PC75f2MogLHgQZi%2F820ZTXCptprIMJwV1mCBxLOBMS8ySS4oqvXoGb4MHWvMOqZZOwGJofUNkhXkcm"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"1qboo49"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '998'
+      x-ratelimit-reset:
+      - '57'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.farcaster.xyz/v2/user-by-username?username=mason
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA0SQX2viQBTFv0q4z7Mam20t87SosGpb2yK0YluWZHKjA5M76cydxCj57kvsv6cD
+        v3M4HM4JHPpgGOQJgkfXa6FzkJexOANKSwQJZeotgYBc+8qk7eqD3vU0mqfGgICqqM4tzoCEPXPl
+        5XBo9slgZ+3OYF+mLDESD5Qth7PxeHv3MNmQwlFzP2qXT+vV8VEdsstmksT77fUmrJY5typ5mizq
+        +0OTtXGIj89jeq/DzaKch9uHv9u8vEq2Fxd+ufeLf3FibrT6fVzPMgy/nt/XIKBGpwuNOUh2ATsB
+        lbOFNthPzbTthfHAICEdXR0j5dqKrYgqh3WEtNOE6KI/UWbsxtnAGJk08yKaWvJIvvWDV3ql+HB+
+        Yj7gRjOjAwElEmtLHuTLW9cJKKwxtkE3tYG4v3f8xTTtPuHoOhZQazzH6GPW6ScFskiNx++ufNJ+
+        I5XSGimfaYeKp6ln/2l1Xdf9BwAA//8DAG225W7lAQAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 78ed2b8418691a07-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 25 Jan 2023 01:17:34 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=fC%2FJHyJN1tvXCujn8zl%2BMTmJAIBmFRw%2F1YieHlX3a3dQfMW56rQ%2FDEc5Pwr7p8fJ%2FNHbP%2BkUSrPrH1ws1nofKngEaeeF0zGHY%2BaEOr1oEdeGrCvSQViov%2B49e%2BslOcvh%2Fq6bZnQbw8fejqAfMx2j"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"1qboo49"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '997'
+      x-ratelimit-reset:
+      - '56'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1

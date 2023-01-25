@@ -614,10 +614,6 @@ class StatusResponse(BaseModel):
     result: StatusContent
 
 
-class StatusResultResponse(BaseModel):
-    result: StatusResponse
-
-
 class FollowsDeleteRequest(BaseModel):
     target_fid: PositiveInt
 
