@@ -602,8 +602,12 @@ class FollowsPutRequest(BaseModel):
     target_fid: PositiveInt
 
 
-class StatusResponse(BaseModel):
+class StatusContent(BaseModel):
     success: bool
+
+
+class StatusResponse(BaseModel):
+    result: StatusContent
 
 
 class StatusResultResponse(BaseModel):

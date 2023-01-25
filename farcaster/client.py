@@ -354,7 +354,7 @@ class MerkleApiClient:
         )
         return CastsPostResponse(**response).result
 
-    def delete_cast(self, cast_hash: str) -> StatusResponse:
+    def delete_cast(self, cast_hash: str) -> StatusContent:
         """Delete a cast
 
         Args:
