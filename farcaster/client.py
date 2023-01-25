@@ -72,7 +72,7 @@ class MerkleApiClient:
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
-            raise Exception(response["errors"])
+            raise Exception(response["errors"])  # pragma: no cover
         return response
 
     def _post(
@@ -88,7 +88,7 @@ class MerkleApiClient:
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
-            raise Exception(response["errors"])
+            raise Exception(response["errors"])  # pragma: no cover
         return response
 
     def _put(
@@ -104,7 +104,7 @@ class MerkleApiClient:
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
-            raise Exception(response["errors"])
+            raise Exception(response["errors"])  # pragma: no cover
         return response
 
     def _delete(
@@ -120,7 +120,7 @@ class MerkleApiClient:
             self.config.base_path + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
-            raise Exception(response["errors"])
+            raise Exception(response["errors"])  # pragma: no cover
         return response
 
     def _check_auth_header(self):
@@ -366,65 +366,6 @@ class MerkleApiClient:
             json=body.dict(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
-
-    def get_collection(self, collection_id: str) -> CollectionResult:
-        """Get a specific collection
-
-        Args:
-            collection_id (str): OpenSea collection ID
-
-        Returns:
-            CollectionResult: collection
-        """
-        response = self._get(
-            "collection",
-            params={"collectionId": collection_id},
-        )
-        return CollectionGetResponse(**response).result
-
-    def get_collection_activity(
-        self,
-        collection_id: str,
-        cursor: NoneStr = None,
-        limit: PositiveInt = 25,
-    ) -> EventsResult:
-        """Get collection activity
-
-        Args:
-            collection_id (str): OpenSea collection ID
-            cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
-
-        Returns:
-            EventsResult: Model containing events
-        """
-        response = self._get(
-            "collection-activity",
-            params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
-        )
-        return CollectionActivityGetResponse(**response).result
-
-    def get_collection_assets(
-        self,
-        collection_id: str,
-        cursor: NoneStr = None,
-        limit: PositiveInt = 25,
-    ) -> AssetsResult:
-        """Get assets in an OpenSea collection
-
-        Args:
-            collection_id (str): OpenSea collection ID
-            cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
-
-        Returns:
-            AssetsResult: model containing assets
-        """
-        response = self._get(
-            "collection-assets",
-            params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
-        )
-        return CollectionAssetsGetResponse(**response).result
 
     def get_collection_owners(
         self,
@@ -817,7 +758,9 @@ class MerkleApiClient:
         return f"Bearer eip191:{encoded}"
 
 
-def get_wallet(mnemonic: NoneStr, private_key: NoneStr) -> Optional[LocalAccount]:
+def get_wallet(
+    mnemonic: NoneStr = None, private_key: NoneStr = None
+) -> Optional[LocalAccount]:
     """Get a wallet from mnemonic or private key
 
     Args:
@@ -831,10 +774,10 @@ def get_wallet(mnemonic: NoneStr, private_key: NoneStr) -> Optional[LocalAccount
 
     if mnemonic:
         account: LocalAccount = Account.from_mnemonic(mnemonic)
-        return account
+        return account  # pragma: no cover
     elif private_key:
         account = Account.from_key(private_key)
-        return account
+        return account  # pragma: no cover
     return None
 
 

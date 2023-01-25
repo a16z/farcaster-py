@@ -20,6 +20,21 @@ class MockResponse:
         return {"result": {"success": "true"}}
 
 
+class MockResponsePut:
+
+    # mock json() method always returns a specific testing dictionary
+    @staticmethod
+    def json():
+        return {
+            "result": {
+                "token": {
+                    "secret": "MK-ABC123...",
+                    "expiresAt": 1610000000000,
+                }
+            }
+        }
+
+
 @pytest.mark.vcr
 def test_auth_params(fcc: MerkleApiClient) -> None:
     """Unit test that tests auth params model
@@ -74,3 +89,31 @@ def test_delete_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
 
     response = fcc.delete_auth()
     assert response.success
+
+
+@pytest.mark.vcr
+def test_put_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
+    """Unit test that test put auth
+
+    Args:
+        monkeypatch: fixture
+        fcc: fixture
+
+    Returns:
+        None
+    """
+
+    def mock_put(*args: Any, **kwargs: Any) -> MockResponsePut:
+        return MockResponsePut()
+
+    def mock_header(*args: Any, **kwargs: Any) -> str:
+        return "eip191:V5Opo6K5M6JECBNurxHDtbts3Uqh/QpisEwm0ZSPqQdXrnTBvBZDZSME3HPeq/1pGP7ISwKJocGeWZESM8am8xs"
+
+    monkeypatch.setattr(requests, "put", mock_put)
+    monkeypatch.setattr(MerkleApiClient, "generate_custody_auth_header", mock_header)
+
+    now = int(time.time())
+    obj = {"timestamp": now * 1000, "expiresAt": int(now + 600) * 1000}
+    ap = AuthParams(**obj)
+    response = fcc.put_auth(auth_params=ap)
+    assert response.token.secret

@@ -1,0 +1,86 @@
+interactions:
+- request:
+    body: '{"method": "generateToken", "params": {"timestamp": 1674680167000, "expiresAt":
+      1674680767000}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '95'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: PUT
+    uri: https://api.farcaster.xyz/v2/auth
+  response:
+    body:
+      string: '{"errors":[{"message":"Must provide Authorization header with Bearer
+        token"}]}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 78f3e9e609219e08-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '78'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 25 Jan 2023 20:56:07 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lA96ewn0%2BjCfxKDvjjY2i0Tv4%2FzXQoiPTG72zU4jFPcaUpq21ghUiO8YBRLesDFNWBYfqDMXjFfU%2Bcir6n6dAejcfMRkgc2J%2F7R6wiIy3L4PgbfrQPFdn5BDxKSs66LWFC28ZdN407mSOto3C5uz"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"z452bv"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '100'
+      x-ratelimit-remaining:
+      - '99'
+      x-ratelimit-reset:
+      - '60'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 400
+      message: Bad Request
+version: 1
