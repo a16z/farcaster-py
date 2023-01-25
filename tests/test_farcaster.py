@@ -325,6 +325,9 @@ class TestRW:
 
         Returns:
             None
+
+        Raises:
+            Exception: if cast post fails
         """
         # post cast
         logging.info(this.cast_body.dict(by_alias=True))
@@ -346,6 +349,9 @@ class TestRW:
 
         Returns:
             None
+
+        Raises:
+            Exception: if cast like fails
         """
         assert pytest.cash_hash
         response = fcc.like_cast(pytest.cash_hash)
@@ -365,6 +371,9 @@ class TestRW:
 
         Returns:
             None
+
+        Raises:
+            Exception: if cast unlike fails
         """
         assert pytest.cash_hash
         response = fcc.delete_cast_likes(pytest.cash_hash)
@@ -384,6 +393,9 @@ class TestRW:
 
         Returns:
             None
+
+        Raises:
+            Exception: if recast fails
         """
         assert pytest.cash_hash
         response = fcc.recast(pytest.cash_hash)
@@ -403,6 +415,9 @@ class TestRW:
 
         Returns:
             None
+
+        Raises:
+            Exception: if recast delete fails
         """
         assert pytest.cash_hash
         response = fcc.delete_recast(pytest.cash_hash)
@@ -422,6 +437,9 @@ class TestRW:
 
         Returns:
             None
+
+        Raises:
+            Exception: if cast delete fails
         """
         # post cast
         assert pytest.cash_hash

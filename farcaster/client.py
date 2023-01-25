@@ -188,7 +188,7 @@ class MerkleApiClient:
         ).json()
         return AuthPutResponse(**response).result
 
-    def delete_auth(self, timestamp: PositiveInt) -> StatusResponse:
+    def delete_auth(self, timestamp: PositiveInt) -> StatusContent:
         """Delete an access token
 
         Args:
@@ -196,14 +196,14 @@ class MerkleApiClient:
                 token to delete
 
         Returns:
-            StatusResponse: Status of the deletion
+            StatusContent: Status of the deletion
         """
         body = AuthDeleteRequest(params=Timestamp(timestamp=timestamp))
         response = self._delete(
             "auth",
             json=body.dict(by_alias=True, exclude_none=True),
         )
-        return StatusResponse(**response)
+        return StatusResponse(**response).result
 
     def get_cast_likes(
         self,
@@ -231,7 +231,7 @@ class MerkleApiClient:
         """Like a given cast
 
         Args:
-            body (CastHash): hash of the cast to like
+            cast_hash (str): hash of the cast to like
 
         Returns:
             ReactionsResult: Result of liking the cast
@@ -243,21 +243,21 @@ class MerkleApiClient:
         )
         return CastReactionsPutResponse(**response).result
 
-    def delete_cast_likes(self, cast_hash: str) -> StatusResponse:
+    def delete_cast_likes(self, cast_hash: str) -> StatusContent:
         """Remove a like from a cast
 
         Args:
             cast_hash (str): hash of the cast to unlike
 
         Returns:
-            StatusResponse: Status of the deletion
+            StatusContent: Status of the deletion
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "cast-likes",
             json=body.dict(by_alias=True, exclude_none=True),
         )
-        return StatusResponse(**response)
+        return StatusResponse(**response).result
 
     def get_cast_recasters(
         self,
@@ -361,14 +361,14 @@ class MerkleApiClient:
             cast_hash (str): the hash of the cast to delete
 
         Returns:
-            StatusResponse: Status of the deletion
+            StatusContent: Status of the deletion
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "casts",
             json=body.dict(by_alias=True, exclude_none=True),
         )
-        return StatusResponse(**response)
+        return StatusResponse(**response).result
 
     def get_collection(self, collection_id: str) -> CollectionResult:
         """Get a specific collection
@@ -495,37 +495,37 @@ class MerkleApiClient:
         )
         return FollowingGetResponse(**response).result
 
-    def follow_user(self, fid: PositiveInt) -> StatusResponse:
+    def follow_user(self, fid: PositiveInt) -> StatusContent:
         """Follow a user
 
         Args:
             fid (PositiveInt): Farcaster ID of the user to follow
 
         Returns:
-            StatusResponse: Status of the follow
+            StatusContent: Status of the follow
         """
         body = FollowsPutRequest(target_fid=fid)
         response = self._put(
             "follows",
             json=body.dict(by_alias=True, exclude_none=True),
         )
-        return StatusResponse(**response)
+        return StatusResponse(**response).result
 
-    def unfollow_user(self, fid: PositiveInt) -> StatusResponse:
+    def unfollow_user(self, fid: PositiveInt) -> StatusContent:
         """Unfollow a user
 
         Args:
             fid (PositiveInt): Farcaster ID of the user to unfollow
 
         Returns:
-            StatusResponse: Status of the unfollow
+            StatusContent: Status of the unfollow
         """
         body = FollowsDeleteRequest(target_fid=fid)
         response = self._delete(
             "follows",
             json=body.dict(by_alias=True, exclude_none=True),
         )
-        return StatusResponse(**response)
+        return StatusResponse(**response).result
 
     def get_me(self) -> UserResult:
         """Get the current user
@@ -576,21 +576,21 @@ class MerkleApiClient:
         )
         return RecastsPutResponse(**response).result
 
-    def delete_recast(self, cast_hash: str) -> StatusResponse:
+    def delete_recast(self, cast_hash: str) -> StatusContent:
         """Delete a recast
 
         Args:
             cast_hash (str): the cast hash
 
         Returns:
-            StatusResponse: Status of the recast deletion
+            StatusContent: Status of the recast deletion
         """
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "recasts",
             json=body.dict(by_alias=True, exclude_none=True),
         )
-        return StatusResponse(**response)
+        return StatusResponse(**response).result
 
     def get_user(self, fid: int) -> UserResult:
         """Get a user
