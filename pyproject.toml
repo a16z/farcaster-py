@@ -139,7 +139,7 @@ filterwarnings = [
     "ignore::DeprecationWarning",
   ]
 log_cli = true
-# log_cli_level = 10
+log_cli_level = 30
 # Extra options:
 addopts = [
   "--strict-markers",

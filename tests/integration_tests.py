@@ -36,6 +36,16 @@ def fcc_from_pkey() -> None:
     assert fcc.expires_at == expiry
 
 
+def fcc_from_auth() -> None:
+    load_dotenv()
+    AUTH = os.getenv("AUTH")
+    assert AUTH, "AUTH env var not set"
+    fcc = MerkleApiClient(access_token=AUTH)
+    fid = fcc.get_user_by_username("apitest").user.fid
+    first_cast = fcc.get_casts(fid=fid).casts[-1]
+    print(first_cast.hash)
+
+
 def test_rotation() -> None:
     load_dotenv()
     PKEY = os.getenv("PKEY")

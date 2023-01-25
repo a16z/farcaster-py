@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"castHash": "0xf1bcc34739a7eac76dbf715bba0f225c39916c5af9bb8658abde79f721ed44e3"}'
+    body: '{}'
     headers:
       Accept:
       - '*/*'
@@ -9,35 +9,40 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '82'
+      - '2'
       Content-Type:
       - application/json
       User-Agent:
       - python-requests/2.28.2
-    method: DELETE
-    uri: https://api.farcaster.xyz/v2/recasts
+    method: GET
+    uri: https://api.farcaster.xyz/v2/verifications?fid=50&limit=25
   response:
     body:
-      string: '{"result":{"success":true}}'
+      string: !!binary |
+        H4sIAAAAAAAAAwTBTQ7CIBAG0Lt86y5GYIaWqxgX/CYkVg1gY0K4u+9NtNy/zwE3ceVWS41+1Per
+        w90nSk1wTBt8Si33Dgf6pWgohrKLVZYOHVnxrgyxJZ05HDZxFBNEsGHUM/fhzw/cTZi01SzWaF6P
+        tf4AAAD//wMAkCifu3oAAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed975e9b95c331-EWR
+      - 78ed9751ad2b8cad-EWR
       Connection:
       - keep-alive
-      Content-Length:
-      - '27'
+      Content-Encoding:
+      - gzip
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:12 GMT
+      - Wed, 25 Jan 2023 02:31:10 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OJWhtdGXUTBn1F7tChwsfwDzUBsqVdPkPhYEA5HB6dly3iyOleBnHxAJcezrh9Dxiydh%2FSVLJ5sNMN4q9zVh0e7EImobAzXYstsOTyDxXkmaB7XqOx%2BS7f7KovyUTEI0Tb9vNOXlw2XWJ48MdMY4"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=fcD2clQfxCBO8Ncff5l7hvYTfxndnkCj6ZQRyGVJD4pCx0lavEzGVuGsbq2rsHhApaf9vUJU29ryokvBv8EDNlNrY6VAa1O4vCzx%2FQQimUlfMUKLi4B%2FxCPJ6Ype52mLjmg8ASW7shMOHI2BT3vl"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
+      Transfer-Encoding:
+      - chunked
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -51,7 +56,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"1z12wlh"
+      - W/"1oq07in"
       origin-agent-cluster:
       - ?1
       referrer-policy:
@@ -75,7 +80,7 @@ interactions:
       x-ratelimit-remaining:
       - '997'
       x-ratelimit-reset:
-      - '53'
+      - '25'
       x-xss-protection:
       - '0'
     status:

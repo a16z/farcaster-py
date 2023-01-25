@@ -17,8 +17,6 @@ def test_auth_params(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    # response = fcc.put_auth()
-    # assert response
     now = int(time.time())
     obj = {"timestamp": now * 1000, "expiresAt": int(now + 600) * 1000}
     ap = AuthParams(**obj)

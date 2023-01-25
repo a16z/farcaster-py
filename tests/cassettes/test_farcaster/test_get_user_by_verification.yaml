@@ -15,17 +15,17 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/custody-address?fname=mason
+    uri: https://api.farcaster.xyz/v2/user-by-verification?address=0x000000000877cb2a6cbce87a34f0d2fd7cb4ad3e
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAAwTBSQ6AIAwAwL/0BRWKLDefAm05mZiwJBrC351Z0LTPe0BawLOPR75LpGnvkABf
-        JIrxQOeC91xMPrmwBp8tVRRTxXOhLFZh7x8AAP//AwDprqGhSgAAAA==
+        H4sIAAAAAAAAAzTBMQqAMAwAwK+EvKC0YsVZBBc/IA5pkuqihcZBEP/u5N2DWmuphv3y4KFmtCn2
+        OBcYpwF2MuBynsqXCpBIVTNwt/t1MXLy1HJi7SKFJjvxWSKnhiQovuv7AQAA//8DAMal1A5iAAAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed974b88e08c81-EWR
+      - 78ed97538e68e6d8-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -33,11 +33,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:09 GMT
+      - Wed, 25 Jan 2023 02:31:10 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tZosmVYbpN88hPKfv8VfgwuONgM9Q5pFCBYLjXRdPmmX1hfI1Jv53EoDECOlQfO3l7pnzOsVHmke0pi7KsxCl0F3Ip2DFc3Uvp%2FnfO9MUgjdIiYJuTBC73N9CYPQPV922j8ajGRPff2VEY13%2BNsG"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=2JMQ0wtNqhZzFNhMSMtkaoUEVjIe8mjARqCusXsoB9nDy%2B3cBQ7B7DvbEJXjUorJztVwJVOhRNwhagccJc1MeMcxltMflYTSN1eEXyXwcXVmsFbdZwWKqCcyVC1sXJ2mGPpaJNb0uS9Meads%2B8lR"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -55,7 +55,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"16kahp3"
+      - W/"z0vgl3"
       origin-agent-cluster:
       - ?1
       referrer-policy:
@@ -79,12 +79,12 @@ interactions:
       x-ratelimit-remaining:
       - '996'
       x-ratelimit-reset:
-      - '57'
+      - '54'
       x-xss-protection:
       - '0'
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
 - request:
     body: '{}'
     headers:
@@ -101,17 +101,22 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/custody-address?fid=50
+    uri: https://api.farcaster.xyz/v2/user-by-verification?address=0xDC40CbF86727093c52582405703e5b97D5C64B66
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAAwTBSQ6AIAwAwL/0BRWKLDefAm05mZiwJBrC351Z0LTPe0BawLOPR75LpGnvkABf
-        JIrxQOeC91xMPrmwBp8tVRRTxXOhLFZh7x8AAP//AwDprqGhSgAAAA==
+        H4sIAAAAAAAAA0SQX2viQBTFv0q4z7Mam20t87SosGpb2yK0YluWZHKjA5M76cydxCj57kvsv6cD
+        v3M4HM4JHPpgGOQJgkfXa6FzkJexOANKSwQJZeotgYBc+8qk7eqD3vU0mqfGgICqqM4tzoCEPXPl
+        5XBo9slgZ+3OYF+mLDESD5Qth7PxeHv3MNmQwlFzP2qXT+vV8VEdsstmksT77fUmrJY5typ5mizq
+        +0OTtXGIj89jeq/DzaKch9uHv9u8vEq2Fxd+ufeLf3FibrT6fVzPMgy/nt/XIKBGpwuNOUh2ATsB
+        lbOFNthPzbTthfHAICEdXR0j5dqKrYgqh3WEtNOE6KI/UWbsxtnAGJk08yKaWvJIvvWDV3ql+HB+
+        Yj7gRjOjAwElEmtLHuTLW9cJKKwxtkE3tYG4v3f8xTTtPuHoOhZQazzH6GPW6ScFskiNx++ufNJ+
+        I5XSGimfaYeKp6ln/2l1Xdf9BwAA//8DAG225W7lAQAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed974c3a9f8c81-EWR
+      - 78ed97541ee3e6d8-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -119,11 +124,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:09 GMT
+      - Wed, 25 Jan 2023 02:31:10 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vkXxCXV1OW6gcwI2uywQtq9x1Zdy654DcUSNUtftLEpwHzHisKGtos%2FvMFso5Wgk7qmKpF%2FSl%2BQsdB4Cn%2BTdWnUtUKr0AXVrOmK8GcScq%2FOWC6tVC7qI9cfeQrEA0yl4d1zZTuQCqxHzGcvaUjrT"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rBQS3jgCnWR3DPRW3fPOuVjk%2FtWUsE3onhnwUvNhWInVoaIvY7HZsUFcFYtPuPEk2Me7nbxPN9jzyEziXlvZvv%2FzyxE%2FMZhadd2ukPNZimYmGo%2BdzQh6Sym3qDEqNta7zQ0aqzNxDQLadRBUcKhH"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -141,7 +146,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"16kahp3"
+      - W/"1qboo49"
       origin-agent-cluster:
       - ?1
       referrer-policy:

@@ -50,7 +50,7 @@ test-record:
 
 .PHONY: test-ci
 test-ci:
-	PYTHONPATH=$(PYTHONPATH) poetry run pytest -c pyproject.toml
+	PYTHONPATH=$(PYTHONPATH) poetry run pytest --block-network -c pyproject.toml
 
 .PHONY: check-codestyle
 check-codestyle:

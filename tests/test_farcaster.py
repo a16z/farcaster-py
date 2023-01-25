@@ -275,6 +275,7 @@ def test_get_recent_users(fcc: MerkleApiClient) -> None:
     assert response.users[0].fid > response.users[1].fid
 
 
+@pytest.mark.vcr
 def test_get_verifications(fcc: MerkleApiClient) -> None:
     """Unit test that gets verifications
 
@@ -284,12 +285,12 @@ def test_get_verifications(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    # response = fcc.get_verifications(fid=50)
-    # logging.debug(response)
-    # assert response.verifications[0].fid == 50
-    pass
+    response = fcc.get_verifications(fid=50)
+    logging.debug(response)
+    assert response.verifications[0].fid == 50
 
 
+@pytest.mark.vcr
 def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
     """Unit test that gets user by verification
 
@@ -299,50 +300,48 @@ def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    # with pytest.raises(Exception):
-    #     response = fcc.get_user_by_verification(
-    #         address="0x000000000877cb2a6cbce87a34f0d2fd7cb4ad3e"
-    #     )
-    # response = fcc.get_user_by_verification(
-    #     address="0xDC40CbF86727093c52582405703e5b97D5C64B66"
-    # )
-    # assert response.user.username == "mason"
-    pass
+    with pytest.raises(Exception):
+        response = fcc.get_user_by_verification(
+            address="0x000000000877cb2a6cbce87a34f0d2fd7cb4ad3e"
+        )
+    response = fcc.get_user_by_verification(
+        address="0xDC40CbF86727093c52582405703e5b97D5C64B66"
+    )
+    assert response.user.username == "mason"
 
 
 class TestRW:
     """Read/write tests"""
 
-    @pytest.fixture(scope="module")
-    def cast(self, fcc: MerkleApiClient) -> ApiCast:
-        cast_body = CastsPostRequest(
-            text="Hello world from our WIP Farcaster Python SDK!"
-        )
-        response = fcc.post_cast(cast_body)
-        return response.cast
+    cast_hash = ""
 
     @pytest.mark.vcr
     @pytest.mark.dependency()
-    def test_post_cast(self, cast: ApiCast) -> None:
+    def test_post_cast(self, fcc: MerkleApiClient) -> None:
         """Unit test that posts cast
 
         Args:
-            cast: fixture
+            fcc: fixture
 
         Returns:
             None
         """
-        # posted cast
-        assert cast.hash
+        cast_body = CastsPostRequest(
+            text="Hello world from our WIP Farcaster Python SDK!"
+        )
+        response = fcc.post_cast(cast_body)
+        logging.debug(response.cast.dict())
+        assert response.cast
+        self.__class__.cast_hash = response.cast.hash
+        assert isinstance(self.__class__.cast_hash, str)
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
-    def test_like_cast(self, fcc: MerkleApiClient, cast: ApiCast) -> None:
+    def test_like_cast(self, fcc: MerkleApiClient) -> None:
         """Unit test that puts cast likes
 
         Args:
             fcc: fixture
-            cast: fixture
 
         Returns:
             None
@@ -350,8 +349,8 @@ class TestRW:
         Raises:
             Exception: if cast like fails
         """
-        assert cast.hash
-        response = fcc.like_cast(cast.hash)
+        assert self.__class__.cast_hash
+        response = fcc.like_cast(self.__class__.cast_hash)
         if response:
             print(response)
         else:
@@ -360,12 +359,11 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_like_cast"])
-    def test_delete_cast_likes(self, fcc: MerkleApiClient, cast: ApiCast) -> None:
+    def test_delete_cast_likes(self, fcc: MerkleApiClient) -> None:
         """Unit test that deletes cast likes
 
         Args:
             fcc: fixture
-            cast: fixture
 
         Returns:
             None
@@ -373,8 +371,8 @@ class TestRW:
         Raises:
             Exception: if cast unlike fails
         """
-        assert cast.hash
-        response = fcc.delete_cast_likes(cast.hash)
+        logging.debug(self.__class__.cast_hash)
+        response = fcc.delete_cast_likes(self.__class__.cast_hash)
         if response:
             print(response)
         else:
@@ -383,12 +381,11 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
-    def test_recast(self, fcc: MerkleApiClient, cast: ApiCast) -> None:
+    def test_recast(self, fcc: MerkleApiClient) -> None:
         """Unit test that recasts cast
 
         Args:
             fcc: fixture
-            cast: fixture
 
         Returns:
             None
@@ -396,8 +393,7 @@ class TestRW:
         Raises:
             Exception: if recast fails
         """
-        assert cast.hash
-        response = fcc.recast(cast.hash)
+        response = fcc.recast(self.__class__.cast_hash)
         if response:
             print(response)
         else:
@@ -406,12 +402,11 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_recast"])
-    def test_delete_recast(self, fcc: MerkleApiClient, cast: ApiCast) -> None:
+    def test_delete_recast(self, fcc: MerkleApiClient) -> None:
         """Unit test that deletes recast
 
         Args:
             fcc: fixture
-            cast: fixture
 
         Returns:
             None
@@ -419,8 +414,9 @@ class TestRW:
         Raises:
             Exception: if recast delete fails
         """
-        assert cast.hash
-        response = fcc.delete_recast(cast.hash)
+        assert self.__class__.cast_hash
+        logging.debug(self.__class__.cast_hash)
+        response = fcc.delete_recast(self.__class__.cast_hash)
         if response:
             print(response)
         else:
@@ -429,12 +425,11 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
-    def test_delete_cast(self, fcc: MerkleApiClient, cast: ApiCast) -> None:
+    def test_delete_cast(self, fcc: MerkleApiClient) -> None:
         """Unit test that deletes cast
 
         Args:
             fcc: fixture
-            cast: fixture
 
         Returns:
             None
@@ -442,8 +437,9 @@ class TestRW:
         Raises:
             Exception: if cast delete fails
         """
-        assert cast.hash
-        response = fcc.delete_cast(cast.hash)
+        assert self.__class__.cast_hash
+        logging.debug(self.__class__.cast_hash)
+        response = fcc.delete_cast(self.__class__.cast_hash)
         if response:
             print(response)
         else:
