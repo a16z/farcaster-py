@@ -541,6 +541,10 @@ class ReactionsResult(BaseModel):
     likes: List[ApiCastReaction]
 
 
+class ReactionsPutResult(BaseModel):
+    like: ApiCastReaction
+
+
 class CastReactionsGetResponse(BaseModel):
     result: ReactionsResult
     next: Optional[Next] = None
@@ -553,7 +557,7 @@ class CastReactionsPutRequest(BaseModel):
 
 
 class CastReactionsPutResponse(BaseModel):
-    result: ReactionsResult
+    result: ReactionsPutResult
 
 
 class CastReactionsDeleteRequest(BaseModel):
