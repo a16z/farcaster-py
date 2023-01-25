@@ -1,6 +1,5 @@
 from typing import Any
 
-import logging
 import time
 
 import pytest
