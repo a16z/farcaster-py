@@ -7,6 +7,7 @@ import time
 import canonicaljson
 import requests
 from eth_account.account import Account
+from eth_account.datastructures import SignedMessage
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
 from pydantic import NoneStr, PositiveInt
@@ -752,7 +753,7 @@ class MerkleApiClient:
         payload = auth_put_request.dict(by_alias=True, exclude_none=True)
         encoded_payload = canonicaljson.encode_canonical_json(payload)
         signable_message = encode_defunct(primitive=encoded_payload)
-        signed_message = self.wallet.sign_message(signable_message)
+        signed_message: SignedMessage = self.wallet.sign_message(signable_message)
         data_hex_array = bytearray(signed_message.signature)
         encoded = base64.b64encode(data_hex_array).decode()
         return f"Bearer eip191:{encoded}"
