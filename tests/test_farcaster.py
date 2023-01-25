@@ -1,11 +1,9 @@
-from typing import Optional
-
 import logging
 
 import pytest
 
 from farcaster.client import MerkleApiClient
-from farcaster.models import ApiCast, CastContent, CastHash, CastsPostRequest
+from farcaster.models import CastsPostRequest
 
 
 @pytest.mark.vcr
@@ -38,7 +36,7 @@ def test_nonexistent_get_cast(fcc: MerkleApiClient) -> None:
     # get cast
     with pytest.raises(Exception):
         # Should raise error
-        response = fcc.get_cast(
+        fcc.get_cast(
             "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d861"
         )
 
@@ -125,6 +123,7 @@ def test_get_recent_casts(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
+@pytest.mark.dependency()
 def test_follow_user(fcc: MerkleApiClient) -> None:
     """Unit test that follows user
 
@@ -134,10 +133,13 @@ def test_follow_user(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    pass
+    fid = fcc.get_user_by_username(username="mmm").user.fid
+    status = fcc.follow_user(fid=fid)
+    assert status.success
 
 
 @pytest.mark.vcr
+@pytest.mark.dependency(depends=["test_follow_user"])
 def test_unfollow_user(fcc: MerkleApiClient) -> None:
     """Unit test that unfollows user
 
@@ -147,7 +149,9 @@ def test_unfollow_user(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    pass
+    fid = fcc.get_user_by_username(username="mmm").user.fid
+    status = fcc.unfollow_user(fid=fid)
+    assert status.success
 
 
 @pytest.mark.vcr
@@ -345,17 +349,10 @@ class TestRW:
 
         Returns:
             None
-
-        Raises:
-            Exception: if cast like fails
         """
         assert self.__class__.cast_hash
         response = fcc.like_cast(self.__class__.cast_hash)
-        if response:
-            print(response)
-        else:
-            raise Exception("Failed to like cast")
-        pass
+        assert response.like.cast_hash
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_like_cast"])
@@ -367,17 +364,10 @@ class TestRW:
 
         Returns:
             None
-
-        Raises:
-            Exception: if cast unlike fails
         """
         logging.debug(self.__class__.cast_hash)
         response = fcc.delete_cast_likes(self.__class__.cast_hash)
-        if response:
-            print(response)
-        else:
-            raise Exception("Failed to 'unlike' cast")
-        pass
+        assert response.success
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
@@ -389,16 +379,9 @@ class TestRW:
 
         Returns:
             None
-
-        Raises:
-            Exception: if recast fails
         """
         response = fcc.recast(self.__class__.cast_hash)
-        if response:
-            print(response)
-        else:
-            raise Exception("Failed to recast cast")
-        pass
+        assert response.cast_hash
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_recast"])
@@ -410,18 +393,11 @@ class TestRW:
 
         Returns:
             None
-
-        Raises:
-            Exception: if recast delete fails
         """
         assert self.__class__.cast_hash
         logging.debug(self.__class__.cast_hash)
         response = fcc.delete_recast(self.__class__.cast_hash)
-        if response:
-            print(response)
-        else:
-            raise Exception("Failed to recast cast")
-        pass
+        assert response.success
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
@@ -433,15 +409,8 @@ class TestRW:
 
         Returns:
             None
-
-        Raises:
-            Exception: if cast delete fails
         """
         assert self.__class__.cast_hash
         logging.debug(self.__class__.cast_hash)
         response = fcc.delete_cast(self.__class__.cast_hash)
-        if response:
-            print(response)
-        else:
-            raise Exception("Failed to delete cast")
-        pass
+        assert response.success
