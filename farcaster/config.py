@@ -15,6 +15,6 @@ class ConfigurationParams(BaseModel):
 class Configuration(BaseModel):
     params: Optional[ConfigurationParams]
 
-    def __init__(self, **data: Any):
+    def __init__(self, **data: Any):  # pragma: no cover
         super().__init__(**data)
         self.params = ConfigurationParams(**data)

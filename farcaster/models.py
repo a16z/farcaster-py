@@ -498,11 +498,6 @@ class AssetsResult(BaseModel):
     assets: List[ApiAsset]
 
 
-class CollectionAssetsGetResponse(BaseModel):
-    result: AssetsResult
-    next: Optional[Next] = None
-
-
 class CastsResult(BaseModel):
     casts: List[ApiCast]
 
@@ -573,25 +568,12 @@ class CastRecastersGetResponse(BaseModel):
     next: Optional[Next] = None
 
 
-class CollectionResult(BaseModel):
-    collection: ApiAssetCollection
-
-
-class CollectionGetResponse(BaseModel):
-    result: CollectionResult
-
-
 class CollectionsResult(BaseModel):
     collections: List[ApiAssetCollection]
 
 
 class UserCollectionsGetResponse(BaseModel):
     result: CollectionsResult
-    next: Optional[Next] = None
-
-
-class CollectionActivityGetResponse(BaseModel):
-    result: EventsResult
     next: Optional[Next] = None
 
 
