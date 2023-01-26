@@ -11,6 +11,7 @@
 [![Semantic Versions](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--versions-e10079.svg)](https://github.com/a16z/farcaster-py/releases)
 [![License](https://img.shields.io/github/license/a16z/farcaster-py)](https://github.com/a16z/farcaster-py/blob/master/LICENSE)
 ![Coverage Report](assets/images/coverage.svg)
+[![chat](https://img.shields.io/badge/chat-telegram-blue)](https://t.me/+aW_ucWeBVUZiNThh)
 
 farcaster-py is a modern Python SDK for the Farcaster protocol<br></br>
 
