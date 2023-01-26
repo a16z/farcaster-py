@@ -93,3 +93,5 @@ print(response.cast.hash) # "0x...."
 and many, many more things.
 
 The full specification can be found on the [References](reference.md) page.
+
+Still have questions? Chat with us [here](https://t.me/+aW_ucWeBVUZiNThh).
