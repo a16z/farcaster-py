@@ -5,7 +5,7 @@ theme:
   name: "material"
   icon:
     logo: material/home
-  favicon: images/favicon.ico
+  favicon: images/favicon-32x32.webp
   features:
     - search.suggest
     - content.code.copy
@@ -28,6 +28,7 @@ theme:
         name: Switch to dark mode
       primary: deep purple
       accent: deep orange
+  logo: images/logo.webp
 
 plugins:
   - search
