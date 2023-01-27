@@ -337,15 +337,23 @@ class MerkleApiClient:
         )
         return CastsGetResponse(**response).result
 
-    def post_cast(self, body: CastsPostRequest) -> CastContent:
+    def post_cast(
+        self,
+        text: str,
+        embeds: Optional[List[AnyUrl]] = None,
+        parent: Optional[Parent] = None,
+    ) -> CastContent:
         """Post a cast to Farcaster
 
         Args:
-            body (CastsPostRequest): The cast data structure
+            text (str): text of the cast
+            embeds (Optional[List[AnyUrl]], optional): list of embeds, defaults to None
+            parent (Optional[Parent], optional): parent of the cast, defaults to None
 
         Returns:
             CastContent: The result of posting the cast
         """
+        body = CastsPostRequest(text=text, embeds=embeds, parent=parent)
         response = self._post(
             "casts",
             json=body.dict(by_alias=True, exclude_none=True),
