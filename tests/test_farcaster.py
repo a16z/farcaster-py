@@ -3,7 +3,6 @@ import logging
 import pytest
 
 from farcaster.client import MerkleApiClient
-from farcaster.models import CastsPostRequest
 
 
 @pytest.mark.vcr
