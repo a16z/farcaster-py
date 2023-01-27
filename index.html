@@ -14,7 +14,7 @@
       
         <link rel="next" href="reference/">
       
-      <link rel="icon" href="images/favicon.ico">
+      <link rel="icon" href="images/favicon-32x32.webp">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
     
     
@@ -115,8 +115,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="farcaster-py documentation" class="md-header__button md-logo" aria-label="farcaster-py documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+  <img src="images/logo.webp" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -235,8 +234,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="farcaster-py documentation" class="md-nav__button md-logo" aria-label="farcaster-py documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5Z"/></svg>
+  <img src="images/logo.webp" alt="logo">
 
     </a>
     farcaster-py documentation
@@ -437,11 +435,8 @@ Next, save your Farcaster mnemonic or private key to a <code>.env</code> file. N
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cast</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">username</span><span class="p">)</span> <span class="c1"># &quot;dwr&quot;</span>
 </code></pre></div>
 <p>Publish a cast</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">farcaster.models</span> <span class="kn">import</span> <span class="n">CastsPostRequest</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">cast_body</span> <span class="o">=</span> <span class="n">CastsPostRequest</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">post_cast</span><span class="p">(</span><span class="n">cast_body</span><span class="p">)</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cast</span><span class="o">.</span><span class="n">hash</span><span class="p">)</span> <span class="c1"># &quot;0x....&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">post_cast</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">cast</span><span class="o">.</span><span class="n">hash</span><span class="p">)</span> <span class="c1"># &quot;0x....&quot;</span>
 </code></pre></div>
 <p>Get a user by username</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">fcc</span><span class="o">.</span><span class="n">get_user_by_username</span><span class="p">(</span><span class="s2">&quot;mason&quot;</span><span class="p">)</span>
@@ -465,6 +460,7 @@ Next, save your Farcaster mnemonic or private key to a <code>.env</code> file. N
 </code></pre></div>
 <p>and many, many more things.</p>
 <p>The full specification can be found on the <a href="reference/">References</a> page.</p>
+<p>Still have questions? Chat with us <a href="https://t.me/+aW_ucWeBVUZiNThh">here</a>.</p>
 
 
 
