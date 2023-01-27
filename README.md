@@ -66,10 +66,7 @@ print(response.cast.author.username) # "dwr"
 Publish a cast
 
 ```python
-from farcaster.models import CastsPostRequest
-
-cast_body = CastsPostRequest(text="Hello world!")
-response = fcc.post_cast(cast_body)
+response = fcc.post_cast(text="Hello world!")
 print(response.cast.hash) # "0x...."
 ```
 
