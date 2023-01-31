@@ -764,14 +764,14 @@ files = [
 
 [[package]]
 name = "docconvert"
-version = "2.0.0"
+version = "2.1.0"
 description = "Convert and conform package docstrings to a new style"
 category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,>=2.7"
 files = [
-    {file = "docconvert-2.0.0-py2.py3-none-any.whl", hash = "sha256:89ab4c17341b1ab256023b553fd6408caa53e69ceb72783aa4e69227e075e569"},
-    {file = "docconvert-2.0.0.tar.gz", hash = "sha256:ce34816f8d7319ad6c1908d4df1b25dc6f1f009b76d9b14d395d4aae3ee139df"},
+    {file = "docconvert-2.1.0-py2.py3-none-any.whl", hash = "sha256:5ee1a6e046fa66b45c71f291169b668e5d9d8ecb11048b2d7dc8da89f3743a71"},
+    {file = "docconvert-2.1.0.tar.gz", hash = "sha256:87daee964d32770b3cbae3c68f923a397f58ef85b39223cd712d83ef244f7ba4"},
 ]
 
 [package.dependencies]
