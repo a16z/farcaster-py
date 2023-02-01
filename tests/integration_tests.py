@@ -34,7 +34,7 @@ def fcc_from_pkey() -> None:
     assert fcc.expires_at == expiry
 
 
-def fcc_from_auth() -> None:
+def fcc_from_auth() -> MerkleApiClient:
     load_dotenv()
     AUTH = os.getenv("AUTH")
     assert AUTH, "AUTH env var not set"
@@ -45,6 +45,7 @@ def fcc_from_auth() -> None:
     print(me)
     print(first_cast.hash)
     print(fcc.access_token)
+    return fcc
 
 
 def test_rotation() -> None:
@@ -61,3 +62,34 @@ def test_rotation() -> None:
         print(expiry)
         print(fcc.rotation_duration)
         time.sleep(25)
+
+
+def test_stream_casts() -> None:
+    load_dotenv()
+    MNEMONIC = os.getenv("MNEMONIC")
+    assert MNEMONIC, "MNEMONIC env var not set"
+    fcc = MerkleApiClient(mnemonic=MNEMONIC)
+    print(fcc.access_token)
+    for cast in fcc.stream_casts():
+        print(cast.hash)
+
+
+def test_stream_users() -> None:
+    load_dotenv()
+    MNEMONIC = os.getenv("MNEMONIC")
+    assert MNEMONIC, "MNEMONIC env var not set"
+    fcc = MerkleApiClient(mnemonic=MNEMONIC)
+    print(fcc.access_token)
+    for user in fcc.stream_users():
+        print(user.username)
+
+
+def test_stream_notifications() -> None:
+    load_dotenv()
+    MNEMONIC = os.getenv("MNEMONIC")
+    assert MNEMONIC, "MNEMONIC env var not set"
+    fcc = MerkleApiClient(mnemonic=MNEMONIC)
+    print(fcc.access_token)
+    for notification in fcc.stream_notifications():
+        print(notification.id)
+        print(notification.content.dict())
