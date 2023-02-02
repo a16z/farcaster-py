@@ -71,7 +71,7 @@ def test_stream_casts() -> None:
     fcc = MerkleApiClient(mnemonic=MNEMONIC)
     print(fcc.access_token)
     for cast in fcc.stream_casts():
-        print(cast.hash)
+        print(cast.dict())
 
 
 def test_stream_users() -> None:
@@ -81,7 +81,7 @@ def test_stream_users() -> None:
     fcc = MerkleApiClient(mnemonic=MNEMONIC)
     print(fcc.access_token)
     for user in fcc.stream_users():
-        print(user.username)
+        print(user.dict())
 
 
 def test_stream_notifications() -> None:
@@ -92,4 +92,4 @@ def test_stream_notifications() -> None:
     print(fcc.access_token)
     for notification in fcc.stream_notifications():
         print(notification.id)
-        print(notification.content.dict())
+        print(notification.dict())
