@@ -1,0 +1,124 @@
+interactions:
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.28.2
+    method: GET
+    uri: https://api.farcaster.xyz/v2/recent-users?limit=20
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7SZ3XLiyhGAX2Wii5Mbw/Iv4cqpFGDA2NhgDMb47JZr0LSkgdGMmB+E2Lgq16nK
+        A+Qq75YnyCOkhHe9h4ITY5u9oEDdmhnp65/pab5aEpRh2jr9ahkFUlmnv321PEqsU6dcLZxshByH
+        YJ1aszkoxUBaJxahKmI4uX5WXAgVWCdW5EWbaSSzTq1A60idfvokIuAKcDoNwRpnXRF+8igD9alk
+        O1AplspVxybFaX4KBaeSz+XsMgHilrxcVi1968RagqQeBWKdamng6cSKpEgnSJeaUpF+aVhp69Sq
+        nyGs0a0IQ2AUJPobajEhKcHoCnP033//8x/WiRUC11Tw9D2/PD2dWJ5gTMQgG8JwbZ0Wvkso97+J
+        KvkTa0lhcw9/Xurrj5usUw8zBS8TkXryTfT0dPKDZG6LpAQulDaEih2WA+Dij1jSLA19IzcMh8Xq
+        dFGcZGfRNqTnpf8PpZrUVGn0C6obyghIlEUtYXj6S3ioLtZiCVLBZ/6Zx3GcTZ8n+/ysz4KXO7Kr
+        ZI1eJ1rZJVrOfZyoU90iarhQRmGud4mOuEC3L7pXwd7TRu4Wym8HywATyn3kSxHrIHXFqZFcp5O+
+        Tqm0h1L5CJTsLUoh5gZYiF1XmB1OVxvlIYiuu0mrd3b7dkQ3BlRKIcWEOUEMsEwvsp/5xhtT+ZVQ
+        mLoog5qu4CKkLjKaMqoT5AmJEmEkSkcBQa4EklLFTGXRZx5uBnLQsZDzrCve5Zp5+wjQy9tpk6gA
+        S0nVvrwJUYDOv2tfBV/o3M0KePx28K+zsH9SmJa2WKj0IYC7sMPiWuB37CFTgm1nats5e1px8jnw
+        PK9EbOKVnTLkvSJ58x5yG1DtCsoRcB0YRbHSr7PL534SvOIWPM8oN9iN2xfxH7iPAkx4lopPvqu+
+        YatOC04xly8WS447LU6ruJDHJE/sQtWDKhTcrE+9v8a/lnO5X7DR4ldPyBDrN4EcgA/8AHT7El/h
+        COi2S5cldbWQ1YKzQ+9uo0EPAeb+IQwxfJrczBkb82Z7tJh5nUyPXSe17uycROvhxNGdy1qUu/dH
+        nWsTl+xypeu5xcbdVaM8HrUWvHc2aa0Xnhkn0i+uPMgUarWJOxD1TvO+cJm0Rlp7XeldzW8+yP8A
+        9HtqnWOQz2+Rd7HWe5y2sXmdVxPeXfCw8K9LPyPh7QvaY8TsdqUXCsHTz+5u+0NxiM89DtnFDfHV
+        GaOunjyO+2plmzar9jLDR14oXOEg31p3euFlpzW9p7fRpTvxo3avUowaJe8al5urUtue89Vwblpd
+        WzpJTLrTsAzV8djUZnV2PlDzD3pc1/PfGe9HwG4723uuACJiAozt2XQBnb3oDs+Z4FaLdqFYzRc9
+        UiB20SlXS9P8tOSWK/kqcYvZiPs/P2b3VdNHOJ/Y23WipG6AJVGCk9XuCeVFic5WB7pvvxnXBcHl
+        hplcmBo81pr3y9VgGl1PMxPS6t2v5qbYzsTVWiPXZ6OOO1/Taq92cw7e9dDpZpxu/tJ3FgvXCcp3
+        hXg10LPJTf2qg9ujh2q5/RC5ZibmH8XfkEmkBWphGYLc1KfXrSFyBWOQ7hHvc+4jZFS7smUcQpeU
+        7BZQz+JpsgZ50DnnclBUt81y6rZvS619kCHmwDVLkDIqAk6AIE+KEA1jqjXILOoLpZGbcOpilj0A
+        XHWPW1dOLAkeSAly9OPthdEgmQk3xcWHyW5X6mt/h+oDdgPUxoxhP9h0Pg7xdnsyu4j67CLX7fcH
+        fReHmce6EUkm6LdgaPz16LoSxoPMkD4M2425qfBxvxo6QXM2uclVW5W7zoPy/NpVL7xo1osyHl88
+        rvKNx3rjxpa1JcmxdUH22Ue9vcl9ygHk97NYInz8TksdI39vnxNmwHmyJ3en4kOcu1ZI2uwBfkrd
+        8JNOSvZ2sQ8RdUnC8G7l8KLJgg4OKqLioFwfem+HcQ7Jn1DnzyHSASDvR5MovexjH85qPfQb+r5k
+        hH0gWGSF9NGXjUt1EBEIIyZ0OiqmjKAxTItIaeN5WdQyjKEpFae/m+T5xVzY9E3Ql/dVsUfZEbcP
+        EDiKGAUSslJhxyDbulfNMRvf3uRni7ebYwBKGOmC2nRC0lWTTcOk+84MWzoCpe1in5k5ZEAHMWbz
+        PX3irpkDav5OfUgyLRQeA6ddmZ41TCbx6xM6uWxe3g1U21mBfVfJkBJzZmuxdIdsEdzfFrvDUGSu
+        ykkTov6cnpWuhxGVbisKvL4+vzfxrXLYIrOGXuO+DXcDb1EHM42d49QOHGu6hCzq4jgBiSjfxMqI
+        Uw0E3WqsQWVRQwJOz5zCQyGEgEKjqJtF5yBhY1km4sxUinijVZtICqgfPMsIVa4wafv1daMX98RG
+        vnKEtmJlu/lKwN0tRzayQwzcLLiXF32WyTRaM0Ufx+ePYzt37ixLa768eeRJ6fYyyThJb1Wv+HdT
+        kR8E+d5ZZnS2HDVbvAu2pKbVaJgYuLp8iEq5B7VQs8RZ3cxWrbOy4qacHz/OxQcNPP3en+yDpFEA
+        EjOkBNIB1gjzRHBALuZoYUAmaMqEO3cDTDlKG1YopjpIfcOkoxjmvsE+HPBnRH7PvxGVI5hvu9o3
+        8e75/Fn2ei4jtVH+/B2d4M5//v6vELlGA/pL8X0kyu8m8eXpxOLfBrhGKiHTbTW5iCdjwjozseo2
+        LhQe5yPS6FSuZvWq9fT0PwAAAP//AwDnPFmnKRsAAA==
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 792f7c708ef48c6f-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 02 Feb 2023 02:27:09 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xpiJGSSvHJNp3TRUC21ahQKLmc2R9dIK%2FAl7hoHMX19sxOqMnuhAMiQr7MDaZ97zXQhnuHBESfqzgtUX4Gf1iHWTIQzYhftmvzQLTn9JMN8KDRzATvXqvkCZ21K6jOQkA6Lx"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      alt-svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      content-security-policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      cross-origin-embedder-policy:
+      - require-corp
+      cross-origin-opener-policy:
+      - same-origin
+      cross-origin-resource-policy:
+      - same-origin
+      etag:
+      - W/"1q4rhi"
+      origin-agent-cluster:
+      - ?1
+      referrer-policy:
+      - no-referrer
+      strict-transport-security:
+      - max-age=15552000; includeSubDomains
+      vary:
+      - Origin
+      x-content-type-options:
+      - nosniff
+      x-dns-prefetch-control:
+      - 'off'
+      x-download-options:
+      - noopen
+      x-frame-options:
+      - SAMEORIGIN
+      x-permitted-cross-domain-policies:
+      - none
+      x-ratelimit-limit:
+      - '1000'
+      x-ratelimit-remaining:
+      - '998'
+      x-ratelimit-reset:
+      - '2'
+      x-xss-protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

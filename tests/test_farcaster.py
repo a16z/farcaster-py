@@ -313,6 +313,108 @@ def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
     assert response.user.username == "mason"
 
 
+@pytest.mark.vcr
+def test_stream_casts(fcc: MerkleApiClient) -> None:
+    """Unit test that tests streaming casts
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    casts = []
+    for cast in fcc.stream_casts(pause_after=-1):
+        if cast is None:
+            break
+        casts.append(cast)
+
+    assert len(casts) == 50
+
+
+@pytest.mark.vcr
+def test_stream_casts_skip_existing(fcc: MerkleApiClient) -> None:
+    """Unit test that tests streaming casts
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    for cast in fcc.stream_casts(pause_after=-1, skip_existing=True):
+        assert cast is None
+        break
+
+
+@pytest.mark.vcr
+def test_stream_users(fcc: MerkleApiClient) -> None:
+    """Unit test that tests streaming users
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    users = []
+    for user in fcc.stream_users(pause_after=-1):
+        if user is None:
+            break
+        users.append(user)
+
+    assert len(users) == 20
+
+
+@pytest.mark.vcr
+def test_stream_users_skip_existing(fcc: MerkleApiClient) -> None:
+    """Unit test that tests streaming users
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    for user in fcc.stream_users(pause_after=-1, skip_existing=True):
+        assert user is None
+        break
+
+
+@pytest.mark.vcr
+def test_stream_notifications(fcc: MerkleApiClient) -> None:
+    """Unit test that tests streaming notifications
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    notifications = []
+    for notification in fcc.stream_notifications(pause_after=-1):
+        if notification is None:
+            break
+        notifications.append(notification)
+
+    assert len(notifications) == 2
+
+
+@pytest.mark.vcr
+def test_stream_notifications_skip_existing(fcc: MerkleApiClient) -> None:
+    """Unit test that tests streaming notifications
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    for notification in fcc.stream_notifications(pause_after=-1, skip_existing=True):
+        assert notification is None
+        break
+
+
 class TestRW:
     """Read/write tests"""
 

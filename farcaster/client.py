@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Iterator, Optional
 
 import base64
 import logging
@@ -14,6 +14,7 @@ from pydantic import NoneStr, PositiveInt
 
 from farcaster.config import *
 from farcaster.models import *
+from farcaster.utils.stream_generator import stream_generator
 
 
 class MerkleApiClient:
@@ -25,7 +26,9 @@ class MerkleApiClient:
     config: ConfigurationParams
     wallet: Optional[LocalAccount]
     access_token: NoneStr
-    sessions: requests.Session
+    expires_at: Optional[PositiveInt]
+    rotation_duration: PositiveInt
+    session: requests.Session
 
     def __init__(
         self,
@@ -507,6 +510,49 @@ class MerkleApiClient:
         )
         return MentionAndReplyNotificationsGetResponse(**response).result
 
+    def _recent_notifications_list(
+        self,
+        cursor: NoneStr = None,
+        limit: PositiveInt = 25,
+    ) -> List[Union[MentionNotification, ReplyNotification]]:
+        """Get mention and reply notifications as a list
+
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            List[Union[MentionNotification, ReplyNotification]]: list of notifications
+        """
+        return self.get_mention_and_reply_notifications(
+            cursor=cursor, limit=limit
+        ).notifications
+
+    def stream_notifications(
+        self, **stream_options: Any
+    ) -> Iterator[Optional[Union[MentionNotification, ReplyNotification]]]:
+        """Stream all recent notifications
+
+        Possible stream options:
+            ``pause_after``: ``Optional[int]`` = ``None``, The number of times to call the API without finding a new item
+
+            ``skip_existing``: ``bool`` = ``False``, If ``True``, skip items that existed before the stream was created
+
+            ``max_counter``: ``PositiveInt`` = ``16``, The maximum number of seconds to wait between calls to the API
+
+        Args:
+            **stream_options: stream options
+
+        Returns:
+            Iterator[Optional[Union[MentionNotification, ReplyNotification]]]: iterator of notifications. Returns none if pause_after is reached
+        """
+        return stream_generator(
+            self._recent_notifications_list,
+            attribute_name="id",
+            limit=20,
+            **stream_options,
+        )
+
     def recast(self, cast_hash: str) -> CastHash:
         """Recast a cast
 
@@ -654,6 +700,43 @@ class MerkleApiClient:
         )
         return UsersGetResponse(**response).result
 
+    def _recent_users_list(
+        self,
+        cursor: NoneStr = None,
+        limit: PositiveInt = 25,
+    ) -> List[ApiUser]:
+        """Get recent users as a list
+
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 25
+
+        Returns:
+            List[ApiUser]: list of users
+        """
+        return self.get_recent_users(cursor=cursor, limit=limit).users
+
+    def stream_users(self, **stream_options: Any) -> Iterator[Optional[ApiUser]]:
+        """Stream all recent users.
+
+        Possible stream options:
+            ``pause_after``: ``Optional[int]`` = ``None``, The number of times to call the API without finding a new item
+
+            ``skip_existing``: ``bool`` = ``False``, If ``True``, skip items that existed before the stream was created
+
+            ``max_counter``: ``PositiveInt`` = ``16``, The maximum number of seconds to wait between calls to the API
+
+        Args:
+            **stream_options: stream options
+
+
+        Returns:
+            Iterator[Optional[ApiUser]]: iterator of users. Returns none if pause_after is reached
+        """
+        return stream_generator(
+            self._recent_users_list, attribute_name="fid", limit=20, **stream_options
+        )
+
     def get_custody_address(
         self,
         username: NoneStr = None,
@@ -718,6 +801,42 @@ class MerkleApiClient:
             params={"cursor": cursor, "limit": limit},
         )
         return CastsGetResponse(**response).result
+
+    def _recent_casts_lists(
+        self,
+        cursor: NoneStr = None,
+        limit: PositiveInt = 100,
+    ) -> List[ApiCast]:
+        """Get all recent casts and return them as a list
+
+        Args:
+            cursor (NoneStr, optional): cursor, defaults to None
+            limit (PositiveInt, optional): limit, defaults to 100
+
+        Returns:
+            List[ApiCast]: list of casts
+        """
+        return self.get_recent_casts(cursor=cursor, limit=limit).casts
+
+    def stream_casts(self, **stream_options: Any) -> Iterator[Optional[ApiCast]]:
+        """Stream all recent casts
+
+        Possible stream options:
+            ``pause_after``: ``Optional[int]`` = ``None``, The number of times to call the API without finding a new item
+
+            ``skip_existing``: ``bool`` = ``False``, If ``True``, skip items that existed before the stream was created
+
+            ``max_counter``: ``PositiveInt`` = ``16``, The maximum number of seconds to wait between calls to the API
+
+        Args:
+            **stream_options: stream options
+
+        Returns:
+            Iterator[Optional[ApiCast]]: iterator of casts. Returns none if pause_after is reached
+        """
+        return stream_generator(
+            self._recent_casts_lists, attribute_name="hash", limit=50, **stream_options
+        )
 
     def create_new_auth_token(self, expires_in: PositiveInt = 10) -> str:
         """Create a new access token for a user from the wallet credentials

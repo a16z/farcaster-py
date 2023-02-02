@@ -2,7 +2,7 @@
 
 import sys
 
-from .client import MerkleApiClient
+from .client import MerkleApiClient  # noqa
 
 if sys.version_info >= (3, 8):
     from importlib import metadata as importlib_metadata
