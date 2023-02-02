@@ -10,7 +10,11 @@ from farcaster.models import (
     MentionNotification,
     ReplyNotification,
 )
-from farcaster.utils.stream_generator import stream_generator
+from farcaster.utils.stream_generator import (
+    BoundedSet,
+    ExponentialCounter,
+    stream_generator,
+)
 
 
 def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
@@ -391,3 +395,31 @@ def test_stream_generator_notifications_skip_existing():
     ):
         assert cast is None
         break
+
+
+def test_bounded_set():
+    b_set = BoundedSet(3)
+    b_set.add(1)
+    assert 1 in b_set
+    b_set.add(2)
+    assert 2 in b_set
+    b_set.add(3)
+    assert 3 in b_set
+    b_set.add(4)
+    assert 1 not in b_set
+
+
+def test_exponential_counter():
+    counter = ExponentialCounter(5)
+    count1 = counter.counter()
+    assert count1 > 0 and count1 <= 1.5
+    count2 = counter.counter()
+    assert count2 > count1
+
+
+def test_exponential_counter_reset():
+    counter = ExponentialCounter(5)
+    [counter.counter() for _ in range(5)]
+    assert counter.counter() > 4
+    counter.reset()
+    assert counter.counter() < 2
