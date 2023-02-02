@@ -87,8 +87,9 @@ print(response.users) # [user1, user2, user3]
 Stream recent casts
 
 ```python
-for cast in fcc.stream_casts()
-    print(cast.text) # "Hello world!"
+for cast in fcc.stream_casts():
+    if cast:
+        print(cast.text) # "Hello world!"
 ```
 
 Get users who recently joined Farcaster
