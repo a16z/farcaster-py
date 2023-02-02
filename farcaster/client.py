@@ -528,7 +528,7 @@ class MerkleApiClient:
 
     def stream_notifications(
         self, **stream_options: Any
-    ) -> Iterator[Union[MentionNotification, ReplyNotification]]:
+    ) -> Iterator[Optional[Union[MentionNotification, ReplyNotification]]]:
         """Stream all recent notifications
 
         Possible stream options:
@@ -542,7 +542,7 @@ class MerkleApiClient:
             **stream_options: stream options
 
         Returns:
-            Iterator[ApiUser]: iterator of notifications
+            Iterator[Optional[Union[MentionNotification, ReplyNotification]]]: iterator of notifications. Returns none if pause_after is reached
         """
         return stream_generator(
             self._recent_notifications_list,
@@ -714,7 +714,7 @@ class MerkleApiClient:
         """
         return self.get_recent_users(cursor=cursor, limit=limit).users
 
-    def stream_users(self, **stream_options: Any) -> Iterator[ApiUser]:
+    def stream_users(self, **stream_options: Any) -> Iterator[Optional[ApiUser]]:
         """Stream all recent users.
 
         Possible stream options:
@@ -729,7 +729,7 @@ class MerkleApiClient:
 
 
         Returns:
-            Iterator[ApiUser]: iterator of users
+            Iterator[Optional[ApiUser]]: iterator of users. Returns none if pause_after is reached
         """
         return stream_generator(
             self._recent_users_list, attribute_name="fid", limit=20, **stream_options
@@ -816,7 +816,7 @@ class MerkleApiClient:
         """
         return self.get_recent_casts(cursor=cursor, limit=limit).casts
 
-    def stream_casts(self, **stream_options: Any) -> Iterator[ApiCast]:
+    def stream_casts(self, **stream_options: Any) -> Iterator[Optional[ApiCast]]:
         """Stream all recent casts
 
         Possible stream options:
@@ -830,7 +830,7 @@ class MerkleApiClient:
             **stream_options: stream options
 
         Returns:
-            Iterator[ApiCast]: iterator of casts
+            Iterator[Optional[ApiCast]]: iterator of casts. Returns none if pause_after is reached
         """
         return stream_generator(
             self._recent_casts_lists, attribute_name="hash", limit=50, **stream_options
