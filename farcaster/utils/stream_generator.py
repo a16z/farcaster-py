@@ -1,4 +1,6 @@
-from typing import Any, Callable, Iterator, List, Optional, Union
+from typing import Any, Callable, Iterator, List, Optional
+from typing import OrderedDict as OrderedDictType
+from typing import Union
 
 import logging
 import random
@@ -88,7 +90,7 @@ class BoundedSet:
     This class does not implement the complete set interface.
     """
 
-    _set: OrderedDict[Any, Any]
+    _set: OrderedDictType[Any, Any]
 
     def __contains__(self, item: Any) -> bool:
         """Test if the :class:`.BoundedSet` contains item."""

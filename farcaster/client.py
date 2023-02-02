@@ -26,7 +26,9 @@ class MerkleApiClient:
     config: ConfigurationParams
     wallet: Optional[LocalAccount]
     access_token: NoneStr
-    sessions: requests.Session
+    expires_at: Optional[PositiveInt]
+    rotation_duration: PositiveInt
+    session: requests.Session
 
     def __init__(
         self,
