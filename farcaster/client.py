@@ -531,6 +531,13 @@ class MerkleApiClient:
     ) -> Iterator[Union[MentionNotification, ReplyNotification]]:
         """Stream all recent notifications
 
+        Possible stream options:
+            ``pause_after``: ``Optional[int]`` = ``None``, The number of times to call the API without finding a new item
+
+            ``skip_existing``: ``bool`` = ``False``, If ``True``, skip items that existed before the stream was created
+
+            ``max_counter``: ``PositiveInt`` = ``16``, The maximum number of seconds to wait between calls to the API
+
         Args:
             **stream_options: stream options
 
@@ -708,10 +715,18 @@ class MerkleApiClient:
         return self.get_recent_users(cursor=cursor, limit=limit).users
 
     def stream_users(self, **stream_options: Any) -> Iterator[ApiUser]:
-        """Stream all recent users
+        """Stream all recent users.
+
+        Possible stream options:
+            ``pause_after``: ``Optional[int]`` = ``None``, The number of times to call the API without finding a new item
+
+            ``skip_existing``: ``bool`` = ``False``, If ``True``, skip items that existed before the stream was created
+
+            ``max_counter``: ``PositiveInt`` = ``16``, The maximum number of seconds to wait between calls to the API
 
         Args:
             **stream_options: stream options
+
 
         Returns:
             Iterator[ApiUser]: iterator of users
@@ -803,6 +818,13 @@ class MerkleApiClient:
 
     def stream_casts(self, **stream_options: Any) -> Iterator[ApiCast]:
         """Stream all recent casts
+
+        Possible stream options:
+            ``pause_after``: ``Optional[int]`` = ``None``, The number of times to call the API without finding a new item
+
+            ``skip_existing``: ``bool`` = ``False``, If ``True``, skip items that existed before the stream was created
+
+            ``max_counter``: ``PositiveInt`` = ``16``, The maximum number of seconds to wait between calls to the API
 
         Args:
             **stream_options: stream options
