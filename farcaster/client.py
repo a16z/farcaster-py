@@ -527,7 +527,7 @@ class MerkleApiClient:
         ).notifications
 
     def stream_notifications(
-        self, **stream_options: Union[str, int, Dict[str, str]]
+        self, **stream_options: Any
     ) -> Iterator[Union[MentionNotification, ReplyNotification]]:
         """Stream all recent notifications
 
@@ -707,9 +707,7 @@ class MerkleApiClient:
         """
         return self.get_recent_users(cursor=cursor, limit=limit).users
 
-    def stream_users(
-        self, **stream_options: Union[str, int, Dict[str, str]]
-    ) -> Iterator[ApiUser]:
+    def stream_users(self, **stream_options: Any) -> Iterator[ApiUser]:
         """Stream all recent users
 
         Args:
@@ -803,9 +801,7 @@ class MerkleApiClient:
         """
         return self.get_recent_casts(cursor=cursor, limit=limit).casts
 
-    def stream_casts(
-        self, **stream_options: Union[str, int, Dict[str, str]]
-    ) -> Iterator[ApiCast]:
+    def stream_casts(self, **stream_options: Any) -> Iterator[ApiCast]:
         """Stream all recent casts
 
         Args:

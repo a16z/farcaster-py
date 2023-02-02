@@ -1,9 +1,11 @@
-from typing import Any, Callable, Generator, List, Optional, Union
+from typing import Any, Callable, Iterator, List, Optional, Union
 
 import logging
 import random
 import time
 from collections import OrderedDict
+
+from pydantic import NoneStr, PositiveInt
 
 from farcaster.models import ApiCast, ApiUser, MentionNotification, ReplyNotification
 
@@ -16,17 +18,17 @@ Streamable = Union[
 
 def stream_generator(
     function: Callable[
-        [Optional[str], int],
+        [NoneStr, int],
         Streamable,
     ],
     *,
     attribute_name: str = "hash",
     pause_after: Optional[int] = None,
     skip_existing: bool = False,
-    max_counter: int = 16,
+    max_counter: PositiveInt = 16,
     limit: int = 50,
-    cursor: Optional[str] = None,
-) -> Generator[Any, None, None]:
+    cursor: NoneStr = None,
+) -> Iterator[Any]:
     """Yield new items from ``function`` as they become available.
 
     Args:
@@ -38,15 +40,14 @@ def stream_generator(
         limit: The maximum number of items to request from ``function`` at a time
         cursor: The cursor to use when calling ``function``
 
-    Returns:
-        A generator that yields new items from ``function`` as they become available.
+    Yields:
+        Iterator[Yieldable]: A generator that yields new items from ``function`` as they become available.
     """
     before_attribute = None
     exponential_counter = ExponentialCounter(max_counter=max_counter)
     seen_attributes = BoundedSet(301)
     without_before_counter = 0
     responses_without_new = 0
-    valid_pause_after = pause_after is not None
     while True:
         found = False
         newest_attribute = None
@@ -66,17 +67,18 @@ def stream_generator(
                 yield item
         before_attribute = newest_attribute
         skip_existing = False
-        if valid_pause_after and pause_after < 0:
+        if pause_after is not None and pause_after < 0:
             yield None
         elif found:
             exponential_counter.reset()
             responses_without_new = 0
         else:
             responses_without_new += 1
-            if valid_pause_after and responses_without_new > pause_after:
-                exponential_counter.reset()
-                responses_without_new = 0
-                yield None
+            if pause_after is not None:
+                if responses_without_new > pause_after:
+                    exponential_counter.reset()
+                    responses_without_new = 0
+                    yield None
             else:
                 time.sleep(exponential_counter.counter())
 
@@ -98,11 +100,11 @@ class BoundedSet:
         self.max_items = max_items
         self._set = OrderedDict()
 
-    def _access(self, item: Any):
+    def _access(self, item: Any) -> None:
         if item in self._set:
             self._set.move_to_end(item)
 
-    def add(self, item: Any):
+    def add(self, item: Any) -> None:
         """Add an item to the set discarding the oldest item if necessary."""
         self._access(item)
         self._set[item] = None
