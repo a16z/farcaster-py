@@ -11,6 +11,8 @@ from eth_account.datastructures import SignedMessage
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
 from pydantic import NoneStr, PositiveInt
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
 
 from farcaster.config import *
 from farcaster.models import *
@@ -45,6 +47,14 @@ class MerkleApiClient:
         self.expires_at = expires_at
         self.rotation_duration = rotation_duration
         self.session = requests.Session()
+        self.session.mount(
+            self.config.base_path,
+            HTTPAdapter(
+                max_retries=Retry(
+                    total=2, backoff_factor=1, status_forcelist=[520, 413, 429, 503]
+                )
+            ),
+        )
         if self.access_token:
             self.session.headers.update(
                 {"Authorization": f"Bearer {self.access_token}"}
