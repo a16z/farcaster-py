@@ -42,7 +42,7 @@ class ApiOpenGraphMetadata(BaseModel):
     description: NoneStr = None
     domain: NoneStr = None
     image: NoneStr = None
-    logo: Optional[AnyUrl] = None
+    logo: NoneStr = None
     use_large_image: Optional[bool]
     stripped_cast_text: NoneStr
 
