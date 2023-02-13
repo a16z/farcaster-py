@@ -455,7 +455,7 @@ class MerkleApiClient:
         )
         return FollowingGetResponse(**response).result
 
-    def get_all_following(self, fid: int) -> UsersResult:
+    def get_all_following(self, fid: Optional[int] = None) -> UsersResult:
         """Get all the users a user is following by iterating through the next cursors
 
         Args:
@@ -467,6 +467,8 @@ class MerkleApiClient:
         users: List[ApiUser] = []
         cursor = None
         limit = 100
+        if fid is None:
+            fid = self.get_me().fid
         while True:
             response = self._get(
                 "following",
@@ -512,18 +514,18 @@ class MerkleApiClient:
         )
         return StatusResponse(**response).result
 
-    def get_me(self) -> UserResult:
+    def get_me(self) -> ApiUser:
         """Get the current user
 
         Returns:
-            UserResult: model containing the current user
+            ApiUser: model containing the current user
         """
         response = self._get(
             "me",
         )
         response_model = MeGetResponse(**response).result
         self.config.username = response_model.user.username
-        return response_model
+        return response_model.user
 
     def get_mention_and_reply_notifications(
         self,
@@ -620,56 +622,56 @@ class MerkleApiClient:
         )
         return StatusResponse(**response).result
 
-    def get_user(self, fid: int) -> UserResult:
+    def get_user(self, fid: int) -> ApiUser:
         """Get a user
 
         Args:
             fid (int): Farcaster ID of the user
 
         Returns:
-            UserResult: model containing the user
+            ApiUser: model containing the user
         """
         response = self._get(
             "user",
             params={"fid": fid},
         )
-        return UserGetResponse(**response).result
+        return UserGetResponse(**response).result.user
 
     def get_user_by_username(
         self,
         username: str,
-    ) -> UserResult:
+    ) -> ApiUser:
         """Get a user by username
 
         Args:
             username (str): username of the user
 
         Returns:
-            UserResult: model containing the user
+            ApiUser: model containing the user
         """
         response = self._get(
             "user-by-username",
             params={"username": username},
         )
-        return UserByUsernameGetResponse(**response).result
+        return UserByUsernameGetResponse(**response).result.user
 
     def get_user_by_verification(
         self,
         address: str,
-    ) -> UserResult:
+    ) -> ApiUser:
         """Get a user by verification address
 
         Args:
             address (str): address of the user
 
         Returns:
-            UserResult: model containing the user
+            ApiUser: model containing the user
         """
         response = self._get(
             "user-by-verification",
             params={"address": address},
         )
-        return UserByUsernameGetResponse(**response).result
+        return UserByUsernameGetResponse(**response).result.user
 
     def get_user_collections(
         self,

@@ -135,7 +135,7 @@ def test_follow_user(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    fid = fcc.get_user_by_username(username="mmm").user.fid
+    fid = fcc.get_user_by_username(username="mmm").fid
     status = fcc.follow_user(fid=fid)
     assert status.success
 
@@ -151,7 +151,7 @@ def test_unfollow_user(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    fid = fcc.get_user_by_username(username="mmm").user.fid
+    fid = fcc.get_user_by_username(username="mmm").fid
     status = fcc.unfollow_user(fid=fid)
     assert status.success
 
@@ -212,8 +212,8 @@ def test_get_user(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    response = fcc.get_user(fid=50)
-    assert response.user.username == "mason"
+    user = fcc.get_user(fid=50)
+    assert user.username == "mason"
 
 
 @pytest.mark.vcr
@@ -226,9 +226,9 @@ def test_get_user_by_username(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    response = fcc.get_user_by_username(username="mason")
-    assert response.user.username == "mason"
-    assert response.user.fid == 50
+    user = fcc.get_user_by_username(username="mason")
+    assert user.username == "mason"
+    assert user.fid == 50
 
 
 @pytest.mark.vcr
@@ -276,8 +276,8 @@ def test_get_me(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    response = fcc.get_me()
-    assert response.user.username == "apitest"
+    user = fcc.get_me()
+    assert user.username == "apitest"
 
 
 @pytest.mark.vcr
@@ -321,13 +321,13 @@ def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
         None
     """
     with pytest.raises(Exception):
-        response = fcc.get_user_by_verification(
+        user = fcc.get_user_by_verification(
             address="0x000000000877cb2a6cbce87a34f0d2fd7cb4ad3e"
         )
-    response = fcc.get_user_by_verification(
+    user = fcc.get_user_by_verification(
         address="0xDC40CbF86727093c52582405703e5b97D5C64B66"
     )
-    assert response.user.username == "mason"
+    assert user.username == "mason"
 
 
 @pytest.mark.vcr

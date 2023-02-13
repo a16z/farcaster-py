@@ -73,8 +73,8 @@ print(response.cast.hash) # "0x...."
 Get a user by username
 
 ```python
-response = fcc.get_user_by_username("mason")
-print(response.user.username) # "mason"
+user = fcc.get_user_by_username("mason")
+print(user.username) # "mason"
 ```
 
 Get a user's followers using a fid (farcaster ID)
@@ -102,8 +102,8 @@ print(response.users) # [user1, user2, user3]
 Get your own user object
 
 ```python
-response = fcc.get_me()
-print(response.user.username) # "you"
+user = fcc.get_me()
+print(user.username) # "you"
 ```
 
 Recast a cast
