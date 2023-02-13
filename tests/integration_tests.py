@@ -12,7 +12,7 @@ def fcc_from_mnemonic() -> None:
     assert MNEMONIC, "MNEMONIC env var not set"
     fcc = MerkleApiClient(mnemonic=MNEMONIC, rotation_duration=200)
     assert fcc.wallet
-    assert fcc.get_user_by_username("mason").user.username == "mason"
+    assert fcc.get_user_by_username("mason").username == "mason"
     assert fcc.access_token
     assert fcc.rotation_duration == 200
     print(fcc.access_token)
@@ -26,7 +26,7 @@ def fcc_from_pkey() -> None:
     fcc = MerkleApiClient(private_key=PKEY)
     expiry = (int(time.time()) + (10 * 60)) * 1000
     assert fcc.wallet
-    assert fcc.get_user_by_username("mason").user.username == "mason"
+    assert fcc.get_user_by_username("mason").username == "mason"
     assert fcc.access_token
     assert fcc.rotation_duration == 10
     print(fcc.expires_at)
@@ -39,7 +39,7 @@ def fcc_from_auth() -> MerkleApiClient:
     AUTH = os.getenv("AUTH")
     assert AUTH, "AUTH env var not set"
     fcc = MerkleApiClient(access_token=AUTH)
-    fid = fcc.get_user_by_username("apitest").user.fid
+    fid = fcc.get_user_by_username("apitest").fid
     first_cast = fcc.get_casts(fid=fid).casts[-1]
     me = fcc.get_me()
     print(me)
@@ -55,7 +55,7 @@ def test_rotation() -> None:
     expiry = (int(time.time()) + (60)) * 1000
     while True:
         assert fcc.wallet
-        assert fcc.get_user_by_username("mason").user.username == "mason"
+        assert fcc.get_user_by_username("mason").username == "mason"
         assert fcc.access_token
         print(fcc.access_token)
         print(fcc.expires_at)
@@ -70,9 +70,12 @@ def test_stream_casts() -> None:
     assert MNEMONIC, "MNEMONIC env var not set"
     fcc = MerkleApiClient(mnemonic=MNEMONIC)
     print(fcc.access_token)
+    # fid = 50
+    # all_following = fcc.get_all_following(fid=fid)
+    # print(len(all_following.users))
     for cast in fcc.stream_casts():
         if cast:
-            print(cast.dict())
+            print(cast.hash)
 
 
 def test_stream_users() -> None:
@@ -99,4 +102,4 @@ def test_stream_notifications() -> None:
             print(notification.dict())
 
 
-# fcc_from_mnemonic()
+# test_stream_casts()
