@@ -70,9 +70,12 @@ def test_stream_casts() -> None:
     assert MNEMONIC, "MNEMONIC env var not set"
     fcc = MerkleApiClient(mnemonic=MNEMONIC)
     print(fcc.access_token)
+    # fid = 50
+    # all_following = fcc.get_all_following(fid=fid)
+    # print(len(all_following.users))
     for cast in fcc.stream_casts():
         if cast:
-            print(cast.dict())
+            print(cast.hash)
 
 
 def test_stream_users() -> None:
@@ -99,4 +102,4 @@ def test_stream_notifications() -> None:
             print(notification.dict())
 
 
-# fcc_from_mnemonic()
+# test_stream_casts()

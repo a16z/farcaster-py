@@ -1,7 +1,10 @@
+from typing import Any, List
+
 import logging
 
 import pytest
 
+from farcaster import models
 from farcaster.client import MerkleApiClient
 
 
@@ -186,6 +189,20 @@ def test_get_following(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
+def test_get_all_following(fcc: MerkleApiClient) -> None:
+    """Unit test that gets everyone who a user is following
+
+    Args:
+        fcc: fixture
+
+    Returns:
+        None
+    """
+    response = fcc.get_all_following(fid=50)
+    assert len(response.users) == 195
+
+
+@pytest.mark.vcr
 def test_get_user(fcc: MerkleApiClient) -> None:
     """Unit test that gets user
 
@@ -323,7 +340,7 @@ def test_stream_casts(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    casts = []
+    casts: List[models.ApiCast] = []
     for cast in fcc.stream_casts(pause_after=-1):
         if cast is None:
             break
@@ -357,7 +374,7 @@ def test_stream_users(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    users = []
+    users: List[models.ApiUser] = []
     for user in fcc.stream_users(pause_after=-1):
         if user is None:
             break
@@ -391,7 +408,7 @@ def test_stream_notifications(fcc: MerkleApiClient) -> None:
     Returns:
         None
     """
-    notifications = []
+    notifications: List[Any] = []
     for notification in fcc.stream_notifications(pause_after=-1):
         if notification is None:
             break

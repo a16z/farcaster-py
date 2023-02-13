@@ -455,6 +455,31 @@ class MerkleApiClient:
         )
         return FollowingGetResponse(**response).result
 
+    def get_all_following(self, fid: int) -> UsersResult:
+        """Get all the users a user is following by iterating through the next cursors
+
+        Args:
+            fid (int): Farcaster ID of the user
+
+        Returns:
+            UsersResult: model containing users
+        """
+        users: List[ApiUser] = []
+        cursor = None
+        limit = 100
+        while True:
+            response = self._get(
+                "following",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
+            response_model = FollowingGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if response_model.next is None:
+                break
+            cursor = response_model.next.cursor
+        return UsersResult(users=users)
+
     def follow_user(self, fid: PositiveInt) -> StatusContent:
         """Follow a user
 
