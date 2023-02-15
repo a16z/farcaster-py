@@ -33,7 +33,7 @@ poetry add farcaster
 
 ## Usage
 
-This SDK leverages the Warpcast API. [Warpcast](https://warpcast.com/) is one of many Farcaster clients. As more clients and APIs are created, these will be added to the SDK.
+This SDK leverages the Warpcast API. [Warpcast](https://warpcast.com/) is one of many Farcaster [clients](https://github.com/a16z/awesome-farcaster#clients). As more APIs are created and hosted by different clients, these will be added to the SDK.
 
 To use the Warpcast API you need to have a Farcaster account. We will use the mnemonic or private key of the Farcaster custody account (not your main wallet) to connect to the API.
 
