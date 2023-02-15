@@ -26,12 +26,12 @@ Next, save your Farcaster mnemonic or private key to a `.env` file. Now you can 
 
 ```python
 import os
-from farcaster import MerkleApiClient
+from farcaster import Warpcast
 from dotenv import load_dotenv
 
 load_dotenv()
 
-client = MerkleApiClient(mnemonic=os.environ.get("<MNEMONIC_ENV_VAR>"))
+client = Warpcast(mnemonic=os.environ.get("<MNEMONIC_ENV_VAR>"))
 
 print(client.get_healthcheck())
 ```

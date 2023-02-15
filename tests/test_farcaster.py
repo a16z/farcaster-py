@@ -5,11 +5,11 @@ import logging
 import pytest
 
 from farcaster import models
-from farcaster.client import MerkleApiClient
+from farcaster.client import Warpcast
 
 
 @pytest.mark.vcr
-def test_get_cast(fcc: MerkleApiClient) -> None:
+def test_get_cast(fcc: Warpcast) -> None:
     """Unit test that gets cast
 
     Args:
@@ -26,7 +26,7 @@ def test_get_cast(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_nonexistent_get_cast(fcc: MerkleApiClient) -> None:
+def test_nonexistent_get_cast(fcc: Warpcast) -> None:
     """Unit test that gets nonexistent cast
 
     Args:
@@ -44,7 +44,7 @@ def test_nonexistent_get_cast(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_all_casts_in_thread(fcc: MerkleApiClient) -> None:
+def test_get_all_casts_in_thread(fcc: Warpcast) -> None:
     """Unit test that gets all casts in thread
 
     Args:
@@ -61,7 +61,7 @@ def test_get_all_casts_in_thread(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_casts(fcc: MerkleApiClient) -> None:
+def test_get_casts(fcc: Warpcast) -> None:
     """Unit test that gets a user's recent casts
 
     Args:
@@ -77,7 +77,7 @@ def test_get_casts(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_cast_likes(fcc: MerkleApiClient) -> None:
+def test_get_cast_likes(fcc: Warpcast) -> None:
     """Unit test that gets cast likes
 
     Args:
@@ -93,7 +93,7 @@ def test_get_cast_likes(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
+def test_get_cast_recasters(fcc: Warpcast) -> None:
     """Unit test that gets cast recasters
 
     Args:
@@ -109,7 +109,7 @@ def test_get_cast_recasters(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_recent_casts(fcc: MerkleApiClient) -> None:
+def test_get_recent_casts(fcc: Warpcast) -> None:
     """Unit test that gets all recent casts
 
     Args:
@@ -126,7 +126,7 @@ def test_get_recent_casts(fcc: MerkleApiClient) -> None:
 
 @pytest.mark.vcr
 @pytest.mark.dependency()
-def test_follow_user(fcc: MerkleApiClient) -> None:
+def test_follow_user(fcc: Warpcast) -> None:
     """Unit test that follows user
 
     Args:
@@ -142,7 +142,7 @@ def test_follow_user(fcc: MerkleApiClient) -> None:
 
 @pytest.mark.vcr
 @pytest.mark.dependency(depends=["test_follow_user"])
-def test_unfollow_user(fcc: MerkleApiClient) -> None:
+def test_unfollow_user(fcc: Warpcast) -> None:
     """Unit test that unfollows user
 
     Args:
@@ -157,7 +157,7 @@ def test_unfollow_user(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_followers(fcc: MerkleApiClient) -> None:
+def test_get_followers(fcc: Warpcast) -> None:
     """Unit test that gets followers
 
     Args:
@@ -173,7 +173,7 @@ def test_get_followers(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_following(fcc: MerkleApiClient) -> None:
+def test_get_following(fcc: Warpcast) -> None:
     """Unit test that gets who a user is following
 
     Args:
@@ -189,7 +189,7 @@ def test_get_following(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_all_following(fcc: MerkleApiClient) -> None:
+def test_get_all_following(fcc: Warpcast) -> None:
     """Unit test that gets everyone who a user is following
 
     Args:
@@ -203,7 +203,7 @@ def test_get_all_following(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_user(fcc: MerkleApiClient) -> None:
+def test_get_user(fcc: Warpcast) -> None:
     """Unit test that gets user
 
     Args:
@@ -217,7 +217,7 @@ def test_get_user(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_user_by_username(fcc: MerkleApiClient) -> None:
+def test_get_user_by_username(fcc: Warpcast) -> None:
     """Unit test that gets user by username
 
     Args:
@@ -232,7 +232,7 @@ def test_get_user_by_username(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_user_cast_likes(fcc: MerkleApiClient) -> None:
+def test_get_user_cast_likes(fcc: Warpcast) -> None:
     """Unit test that gets user cast likes
 
     Args:
@@ -248,7 +248,7 @@ def test_get_user_cast_likes(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_custody_address(fcc: MerkleApiClient) -> None:
+def test_get_custody_address(fcc: Warpcast) -> None:
     """Unit test that gets custody address
 
     Args:
@@ -267,7 +267,7 @@ def test_get_custody_address(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_me(fcc: MerkleApiClient) -> None:
+def test_get_me(fcc: Warpcast) -> None:
     """Unit test that gets user
 
     Args:
@@ -281,7 +281,7 @@ def test_get_me(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_recent_users(fcc: MerkleApiClient) -> None:
+def test_get_recent_users(fcc: Warpcast) -> None:
     """Unit test that gets recent users
 
     Args:
@@ -296,7 +296,7 @@ def test_get_recent_users(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_verifications(fcc: MerkleApiClient) -> None:
+def test_get_verifications(fcc: Warpcast) -> None:
     """Unit test that gets verifications
 
     Args:
@@ -311,7 +311,7 @@ def test_get_verifications(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
+def test_get_user_by_verification(fcc: Warpcast) -> None:
     """Unit test that gets user by verification
 
     Args:
@@ -331,7 +331,7 @@ def test_get_user_by_verification(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_stream_casts(fcc: MerkleApiClient) -> None:
+def test_stream_casts(fcc: Warpcast) -> None:
     """Unit test that tests streaming casts
 
     Args:
@@ -350,7 +350,7 @@ def test_stream_casts(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_stream_casts_skip_existing(fcc: MerkleApiClient) -> None:
+def test_stream_casts_skip_existing(fcc: Warpcast) -> None:
     """Unit test that tests streaming casts
 
     Args:
@@ -365,7 +365,7 @@ def test_stream_casts_skip_existing(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_stream_users(fcc: MerkleApiClient) -> None:
+def test_stream_users(fcc: Warpcast) -> None:
     """Unit test that tests streaming users
 
     Args:
@@ -384,7 +384,7 @@ def test_stream_users(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_stream_users_skip_existing(fcc: MerkleApiClient) -> None:
+def test_stream_users_skip_existing(fcc: Warpcast) -> None:
     """Unit test that tests streaming users
 
     Args:
@@ -399,7 +399,7 @@ def test_stream_users_skip_existing(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_stream_notifications(fcc: MerkleApiClient) -> None:
+def test_stream_notifications(fcc: Warpcast) -> None:
     """Unit test that tests streaming notifications
 
     Args:
@@ -418,7 +418,7 @@ def test_stream_notifications(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_stream_notifications_skip_existing(fcc: MerkleApiClient) -> None:
+def test_stream_notifications_skip_existing(fcc: Warpcast) -> None:
     """Unit test that tests streaming notifications
 
     Args:
@@ -439,7 +439,7 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency()
-    def test_post_cast(self, fcc: MerkleApiClient) -> None:
+    def test_post_cast(self, fcc: Warpcast) -> None:
         """Unit test that posts cast
 
         Args:
@@ -456,7 +456,7 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
-    def test_like_cast(self, fcc: MerkleApiClient) -> None:
+    def test_like_cast(self, fcc: Warpcast) -> None:
         """Unit test that puts cast likes
 
         Args:
@@ -471,7 +471,7 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_like_cast"])
-    def test_delete_cast_likes(self, fcc: MerkleApiClient) -> None:
+    def test_delete_cast_likes(self, fcc: Warpcast) -> None:
         """Unit test that deletes cast likes
 
         Args:
@@ -486,7 +486,7 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
-    def test_recast(self, fcc: MerkleApiClient) -> None:
+    def test_recast(self, fcc: Warpcast) -> None:
         """Unit test that recasts cast
 
         Args:
@@ -500,7 +500,7 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_recast"])
-    def test_delete_recast(self, fcc: MerkleApiClient) -> None:
+    def test_delete_recast(self, fcc: Warpcast) -> None:
         """Unit test that deletes recast
 
         Args:
@@ -516,7 +516,7 @@ class TestRW:
 
     @pytest.mark.vcr
     @pytest.mark.dependency(depends=["TestRW::test_post_cast"])
-    def test_delete_cast(self, fcc: MerkleApiClient) -> None:
+    def test_delete_cast(self, fcc: Warpcast) -> None:
         """Unit test that deletes cast
 
         Args:

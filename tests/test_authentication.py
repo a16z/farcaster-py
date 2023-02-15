@@ -5,7 +5,7 @@ import time
 import pytest
 import requests
 
-from farcaster.client import MerkleApiClient, now_ms
+from farcaster.client import Warpcast, now_ms
 from farcaster.models import *
 
 
@@ -35,7 +35,7 @@ class MockResponsePut:
 
 
 @pytest.mark.vcr
-def test_auth_params(fcc: MerkleApiClient) -> None:
+def test_auth_params(fcc: Warpcast) -> None:
     """Unit test that tests auth params model
 
     Args:
@@ -56,7 +56,7 @@ def test_now_ms() -> None:
 
 
 @pytest.mark.vcr
-def test_create_new_auth_token_no_wallet(fcc: MerkleApiClient) -> None:
+def test_create_new_auth_token_no_wallet(fcc: Warpcast) -> None:
     """Unit test that puts auth
 
     Args:
@@ -70,7 +70,7 @@ def test_create_new_auth_token_no_wallet(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_delete_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
+def test_delete_auth(monkeypatch: Any, fcc: Warpcast) -> None:
     """Unit test that deletes auth
 
     Args:
@@ -91,7 +91,7 @@ def test_delete_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_put_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
+def test_put_auth(monkeypatch: Any, fcc: Warpcast) -> None:
     """Unit test that test put auth
 
     Args:
@@ -109,7 +109,7 @@ def test_put_auth(monkeypatch: Any, fcc: MerkleApiClient) -> None:
         return "eip191:V5Opo6K5M6JECBNurxHDtbts3Uqh/QpisEwm0ZSPqQdXrnTBvBZDZSME3HPeq/1pGP7ISwKJocGeWZESMxxxxxx"
 
     monkeypatch.setattr(requests, "put", mock_put)
-    monkeypatch.setattr(MerkleApiClient, "generate_custody_auth_header", mock_header)
+    monkeypatch.setattr(Warpcast, "generate_custody_auth_header", mock_header)
 
     now = int(time.time())
     obj = {"timestamp": now * 1000, "expiresAt": int(now + 600) * 1000}

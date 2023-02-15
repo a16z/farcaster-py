@@ -3,15 +3,15 @@ import os
 import pytest
 from dotenv import load_dotenv
 
-from farcaster.client import MerkleApiClient
+from farcaster.client import Warpcast
 
 
 @pytest.fixture(scope="session", autouse=True)
-def fcc() -> MerkleApiClient:
+def fcc() -> Warpcast:
     load_dotenv()
     access_token = os.getenv("AUTH")
     assert access_token, "AUTH env var not set"
-    return MerkleApiClient(access_token=access_token)
+    return Warpcast(access_token=access_token)
 
 
 @pytest.fixture(scope="module")

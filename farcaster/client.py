@@ -19,8 +19,8 @@ from farcaster.models import *
 from farcaster.utils.stream_generator import stream_generator
 
 
-class MerkleApiClient:
-    """The MerkleApiClient class is a wrapper around the Farcaster API.
+class Warpcast:
+    """The Warpcast class is a wrapper around the Farcaster API.
     It also provides a number of helpful methods and utilities for interacting with the protocol.
     Pydantic models are used under the hood to validate the data returned from the API.
     """

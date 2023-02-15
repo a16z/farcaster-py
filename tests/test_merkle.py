@@ -1,10 +1,10 @@
 import pytest
 
-from farcaster.client import MerkleApiClient
+from farcaster.client import Warpcast
 
 
 @pytest.mark.vcr
-def test_mention_reply_notifications(fcc: MerkleApiClient) -> None:
+def test_mention_reply_notifications(fcc: Warpcast) -> None:
     """Unit test that gets a user's recent notifications. Has to be the user who owns the access token
 
     Args:
@@ -18,7 +18,7 @@ def test_mention_reply_notifications(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_user_collections(fcc: MerkleApiClient) -> None:
+def test_get_user_collections(fcc: Warpcast) -> None:
     """Unit test that gets a user's collections
 
     Args:
@@ -32,7 +32,7 @@ def test_get_user_collections(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_collection_owners(fcc: MerkleApiClient) -> None:
+def test_get_collection_owners(fcc: Warpcast) -> None:
     """Unit test that gets a collection's owners
 
     Args:
@@ -46,7 +46,7 @@ def test_get_collection_owners(fcc: MerkleApiClient) -> None:
 
 
 @pytest.mark.vcr
-def test_get_healthcheck(fcc: MerkleApiClient) -> None:
+def test_get_healthcheck(fcc: Warpcast) -> None:
     """Unit test that gets healthcheck
 
     Args:
