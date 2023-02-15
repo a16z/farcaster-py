@@ -7,7 +7,7 @@ from farcaster.client import Warpcast
 
 
 @pytest.fixture(scope="session", autouse=True)
-def fcc() -> Warpcast:
+def client() -> Warpcast:
     load_dotenv()
     access_token = os.getenv("AUTH")
     assert access_token, "AUTH env var not set"

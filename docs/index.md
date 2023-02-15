@@ -40,35 +40,35 @@ print(client.get_healthcheck())
 Get a cast
 
 ```python
-response = fcc.get_cast("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
+response = client.get_cast("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
 print(response.cast.author.username) # "dwr"
 ```
 
 Publish a cast
 
 ```python
-response = fcc.post_cast(text="Hello world!")
+response = client.post_cast(text="Hello world!")
 print(response.cast.hash) # "0x...."
 ```
 
 Get a user by username
 
 ```python
-user = fcc.get_user_by_username("mason")
+user = client.get_user_by_username("mason")
 print(user.username) # "mason"
 ```
 
 Get a user's followers using a fid (farcaster ID)
 
 ```python
-response = fcc.get_followers(fid=50)
+response = client.get_followers(fid=50)
 print(response.users) # [user1, user2, user3]
 ```
 
 Stream recent casts
 
 ```python
-for cast in fcc.stream_casts():
+for cast in client.stream_casts():
     if cast:
         print(cast.text) # "Hello world!"
 ```
@@ -76,21 +76,21 @@ for cast in fcc.stream_casts():
 Get users who recently joined Farcaster
 
 ```python
-response = fcc.get_recent_users()
+response = client.get_recent_users()
 print(response.users) # [user1, user2, user3]
 ```
 
 Get your own user object
 
 ```python
-user = fcc.get_me()
+user = client.get_me()
 print(user.username) # "you"
 ```
 
 Recast a cast
 
 ```python
-response = fcc.recast("0x....")
+response = client.recast("0x....")
 print(response.cast.hash) # "0x...."
 ```
 

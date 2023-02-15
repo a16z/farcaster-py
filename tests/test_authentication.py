@@ -35,11 +35,11 @@ class MockResponsePut:
 
 
 @pytest.mark.vcr
-def test_auth_params(fcc: Warpcast) -> None:
+def test_auth_params(client: Warpcast) -> None:
     """Unit test that tests auth params model
 
     Args:
-        fcc: fixture
+        client: fixture
 
     Returns:
         None
@@ -56,26 +56,26 @@ def test_now_ms() -> None:
 
 
 @pytest.mark.vcr
-def test_create_new_auth_token_no_wallet(fcc: Warpcast) -> None:
+def test_create_new_auth_token_no_wallet(client: Warpcast) -> None:
     """Unit test that puts auth
 
     Args:
-        fcc: fixture
+        client: fixture
 
     Returns:
         None
     """
     with pytest.raises(Exception, match="^Wallet not set$"):
-        fcc.create_new_auth_token(expires_in=10)
+        client.create_new_auth_token(expires_in=10)
 
 
 @pytest.mark.vcr
-def test_delete_auth(monkeypatch: Any, fcc: Warpcast) -> None:
+def test_delete_auth(monkeypatch: Any, client: Warpcast) -> None:
     """Unit test that deletes auth
 
     Args:
         monkeypatch: fixture
-        fcc: fixture
+        client: fixture
 
     Returns:
         None
@@ -86,17 +86,17 @@ def test_delete_auth(monkeypatch: Any, fcc: Warpcast) -> None:
 
     monkeypatch.setattr(requests.Session, "delete", mock_delete)
 
-    response = fcc.delete_auth()
+    response = client.delete_auth()
     assert response.success
 
 
 @pytest.mark.vcr
-def test_put_auth(monkeypatch: Any, fcc: Warpcast) -> None:
+def test_put_auth(monkeypatch: Any, client: Warpcast) -> None:
     """Unit test that test put auth
 
     Args:
         monkeypatch: fixture
-        fcc: fixture
+        client: fixture
 
     Returns:
         None
@@ -114,5 +114,5 @@ def test_put_auth(monkeypatch: Any, fcc: Warpcast) -> None:
     now = int(time.time())
     obj = {"timestamp": now * 1000, "expiresAt": int(now + 600) * 1000}
     ap = AuthParams(**obj)
-    response = fcc.put_auth(auth_params=ap)
+    response = client.put_auth(auth_params=ap)
     assert response.token.secret
