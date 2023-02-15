@@ -16,13 +16,11 @@ poetry add farcaster
 
 
 ## Usage
-To use the Farcaster API you need to have a Farcaster account. We will use the mnemonic or private key of the Farcaster custody account (not your main wallet) to connect to the API.
+This SDK leverages the Warpcast API. [Warpcast](https://warpcast.com/) is one of many Farcaster clients. As more clients and APIs are created, these will be added to the SDK.
 
-First install dotenv:
-```bash
-pip install python-dotenv # Or 'poetry add python-dotenv'
-```
-Next, save your Farcaster mnemonic or private key to a `.env` file. Now you can initialize the client, and automatically connect to the Farcaster API!
+To use the Warpcast API you need to have a Farcaster account. We will use the mnemonic or private key of the Farcaster custody account (not your main wallet) to connect to the API.
+
+First, save your Farcaster mnemonic or private key to a `.env` file. Now you can initialize the client, and automatically connect to the Farcaster API!
 
 ```python
 import os
