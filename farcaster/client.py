@@ -221,7 +221,7 @@ class Warpcast:
         cast_hash: str,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> ReactionsResult:
+    ) -> IterableReactionsResult:
         """Get the likes for a given cast
 
         Args:
@@ -232,11 +232,15 @@ class Warpcast:
         Returns:
             ReactionsResult: ReactionsResult model of likes
         """
-        response = self._get(
-            "cast-likes",
-            params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+        response = CastReactionsGetResponse(
+            **self._get(
+                "cast-likes",
+                params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+            )
         )
-        return CastReactionsGetResponse(**response).result
+        return IterableReactionsResult(
+            likes=response.result.likes, cursor=response.next.cursor
+        )
 
     def like_cast(self, cast_hash: str) -> ReactionsPutResult:
         """Like a given cast
@@ -333,7 +337,7 @@ class Warpcast:
         fid: int,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> CastsResult:
+    ) -> IterableCastsResult:
         """Get the casts for a given fid of a user
 
         Args:
@@ -344,11 +348,15 @@ class Warpcast:
         Returns:
             CastsResult: Model containing the casts
         """
-        response = self._get(
-            "casts",
-            params={"fid": fid, "cursor": cursor, "limit": limit},
+        response = CastsGetResponse(
+            **self._get(
+                "casts",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
         )
-        return CastsGetResponse(**response).result
+        return IterableCastsResult(
+            casts=response.result.casts, cursor=response.next.cursor
+        )
 
     def post_cast(
         self,
@@ -394,7 +402,7 @@ class Warpcast:
         collection_id: str,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> UsersResult:
+    ) -> IterableUsersResult:
         """Get the owners of an OpenSea collection
 
         Args:
@@ -405,18 +413,26 @@ class Warpcast:
         Returns:
             UsersResult: model containing users
         """
-        response = self._get(
-            "collection-owners",
-            params={"collectionId": collection_id, "cursor": cursor, "limit": limit},
+        response = CollectionOwnersGetResponse(
+            **self._get(
+                "collection-owners",
+                params={
+                    "collectionId": collection_id,
+                    "cursor": cursor,
+                    "limit": limit,
+                },
+            )
         )
-        return CollectionOwnersGetResponse(**response).result
+        return IterableUsersResult(
+            users=response.result.users, cursor=response.next.cursor
+        )
 
     def get_followers(
         self,
         fid: int,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> UsersResult:
+    ) -> IterableUsersResult:
         """Get the followers of a user
 
         Args:
@@ -427,18 +443,22 @@ class Warpcast:
         Returns:
             UsersResult: model containing users
         """
-        response = self._get(
-            "followers",
-            params={"fid": fid, "cursor": cursor, "limit": limit},
+        response = FollowersGetResponse(
+            **self._get(
+                "followers",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
         )
-        return FollowersGetResponse(**response).result
+        return IterableUsersResult(
+            users=response.result.users, cursor=response.next.cursor
+        )
 
     def get_following(
         self,
         fid: int,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> UsersResult:
+    ) -> IterableUsersResult:
         """Get the users a user is following
 
         Args:
@@ -449,11 +469,15 @@ class Warpcast:
         Returns:
             UsersResult: model containing users
         """
-        response = self._get(
-            "following",
-            params={"fid": fid, "cursor": cursor, "limit": limit},
+        response = FollowingGetResponse(
+            **self._get(
+                "following",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
         )
-        return FollowingGetResponse(**response).result
+        return IterableUsersResult(
+            users=response.result.users, cursor=response.next.cursor
+        )
 
     def get_all_following(self, fid: Optional[int] = None) -> UsersResult:
         """Get all the users a user is following by iterating through the next cursors
@@ -823,7 +847,7 @@ class Warpcast:
         self,
         cursor: NoneStr = None,
         limit: PositiveInt = 100,
-    ) -> CastsResult:
+    ) -> IterableCastsResult:
         """Get all recent casts
 
         Args:
@@ -833,11 +857,15 @@ class Warpcast:
         Returns:
             CastsResult: model containing casts
         """
-        response = self._get(
-            "recent-casts",
-            params={"cursor": cursor, "limit": limit},
+        response = CastsGetResponse(
+            **self._get(
+                "recent-casts",
+                params={"cursor": cursor, "limit": limit},
+            )
         )
-        return CastsGetResponse(**response).result
+        return IterableCastsResult(
+            casts=response.result.casts, cursor=response.next.cursor
+        )
 
     def _recent_casts_lists(
         self,

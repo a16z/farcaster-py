@@ -502,6 +502,11 @@ class CastsResult(BaseModel):
     casts: List[ApiCast]
 
 
+class IterableCastsResult(BaseModel):
+    casts: List[ApiCast]
+    cursor: Optional[str] = None
+
+
 class CastsGetResponse(BaseModel):
     result: CastsResult
     next: Optional[Next] = None
@@ -534,6 +539,11 @@ class ReactionsResult(BaseModel):
     likes: List[ApiCastReaction]
 
 
+class IterableReactionsResult(BaseModel):
+    likes: List[ApiCastReaction]
+    cursor: Optional[str] = None
+
+
 class ReactionsPutResult(BaseModel):
     like: ApiCastReaction
 
@@ -561,6 +571,11 @@ class CastReactionsDeleteRequest(BaseModel):
 
 class UsersResult(BaseModel):
     users: List[ApiUser]
+
+
+class IterableUsersResult(BaseModel):
+    users: List[ApiUser]
+    cursor: Optional[str] = None
 
 
 class CastRecastersGetResponse(BaseModel):
