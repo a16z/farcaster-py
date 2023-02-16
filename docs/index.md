@@ -16,22 +16,21 @@ poetry add farcaster
 
 
 ## Usage
-To use the Farcaster API you need to have a Farcaster account. We will use the mnemonic or private key of the Farcaster custody account (not your main wallet) to connect to the API.
 
-First install dotenv:
-```bash
-pip install python-dotenv # Or 'poetry add python-dotenv'
-```
-Next, save your Farcaster mnemonic or private key to a `.env` file. Now you can initialize the client, and automatically connect to the Farcaster API!
+This SDK leverages the Warpcast API. [Warpcast](https://warpcast.com/) is one of many Farcaster [clients](https://github.com/a16z/awesome-farcaster#clients). As more APIs are created and hosted by different clients, these will be added to the SDK.
+
+To use the Warpcast API you need to have a Farcaster account. We will use the mnemonic or private key of the Farcaster custody account (not your main wallet) to connect to the API.
+
+First, save your Farcaster mnemonic or private key to a `.env` file. Now you can initialize the client, and automatically connect to the Farcaster API!
 
 ```python
 import os
-from farcaster import MerkleApiClient
+from farcaster import Warpcast
 from dotenv import load_dotenv
 
 load_dotenv()
 
-client = MerkleApiClient(mnemonic=os.environ.get("<MNEMONIC_ENV_VAR>"))
+client = Warpcast(mnemonic=os.environ.get("<MNEMONIC_ENV_VAR>"))
 
 print(client.get_healthcheck())
 ```
@@ -41,35 +40,35 @@ print(client.get_healthcheck())
 Get a cast
 
 ```python
-response = fcc.get_cast("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
+response = client.get_cast("0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f")
 print(response.cast.author.username) # "dwr"
 ```
 
 Publish a cast
 
 ```python
-response = fcc.post_cast(text="Hello world!")
+response = client.post_cast(text="Hello world!")
 print(response.cast.hash) # "0x...."
 ```
 
 Get a user by username
 
 ```python
-user = fcc.get_user_by_username("mason")
+user = client.get_user_by_username("mason")
 print(user.username) # "mason"
 ```
 
 Get a user's followers using a fid (farcaster ID)
 
 ```python
-response = fcc.get_followers(fid=50)
+response = client.get_followers(fid=50)
 print(response.users) # [user1, user2, user3]
 ```
 
 Stream recent casts
 
 ```python
-for cast in fcc.stream_casts():
+for cast in client.stream_casts():
     if cast:
         print(cast.text) # "Hello world!"
 ```
@@ -77,21 +76,21 @@ for cast in fcc.stream_casts():
 Get users who recently joined Farcaster
 
 ```python
-response = fcc.get_recent_users()
+response = client.get_recent_users()
 print(response.users) # [user1, user2, user3]
 ```
 
 Get your own user object
 
 ```python
-user = fcc.get_me()
+user = client.get_me()
 print(user.username) # "you"
 ```
 
 Recast a cast
 
 ```python
-response = fcc.recast("0x....")
+response = client.recast("0x....")
 print(response.cast.hash) # "0x...."
 ```
 

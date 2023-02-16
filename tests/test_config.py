@@ -1,30 +1,30 @@
 import pytest
 
-from farcaster.client import MerkleApiClient, get_wallet
+from farcaster.client import Warpcast, get_wallet
 
 
-def test_get_base_path(fcc: MerkleApiClient) -> None:
+def test_get_base_path(client: Warpcast) -> None:
     """Unit test that gets a user's recent notifications. Has to be the user who owns the access token
 
     Args:
-        fcc: fixture
+        client: fixture
 
     Returns:
         None
     """
-    assert fcc.get_base_path()
+    assert client.get_base_path()
 
 
-def test_get_base_options(fcc: MerkleApiClient) -> None:
+def test_get_base_options(client: Warpcast) -> None:
     """Unit test that gets a user's recent notifications. Has to be the user who owns the access token
 
     Args:
-        fcc: fixture
+        client: fixture
 
     Returns:
         None
     """
-    assert fcc.get_base_options() is None
+    assert client.get_base_options() is None
 
 
 def test_get_wallet() -> None:
