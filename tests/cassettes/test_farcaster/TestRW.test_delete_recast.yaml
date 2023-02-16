@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"castHash": "0xf1bcc34739a7eac76dbf715bba0f225c39916c5af9bb8658abde79f721ed44e3"}'
+    body: '{"castHash": "0xb0dafd3d0470f1a3d60998fec8fb8cc496ec787daa2dc7caebb2c6abc42ed09c"}'
     headers:
       Accept:
       - '*/*'
@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: DELETE
-    uri: https://api.farcaster.xyz/v2/recasts
+    uri: https://api.warpcast.com/v2/recasts
   response:
     body:
       string: '{"result":{"success":true}}'
@@ -23,7 +23,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed975e9b95c331-EWR
+      - 79a8b6ba1d158cc5-EWR
       Connection:
       - keep-alive
       Content-Length:
@@ -31,13 +31,15 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:12 GMT
+      - Thu, 16 Feb 2023 19:33:13 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OJWhtdGXUTBn1F7tChwsfwDzUBsqVdPkPhYEA5HB6dly3iyOleBnHxAJcezrh9Dxiydh%2FSVLJ5sNMN4q9zVh0e7EImobAzXYstsOTyDxXkmaB7XqOx%2BS7f7KovyUTEI0Tb9vNOXlw2XWJ48MdMY4"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kRFfM%2BOYw4ldaUNjpMAZWmDbLctYKWjhC0YQ74HBS8kItMN9Ui5P5bCF1WirQ6G9spPKmp1S8AF6oJcjg7RUPaWo%2B8uLHuyhBvfkedn3OJE47UUrU7m5Jaoq02HlXtLV22e%2BNQUwBN4MuPbmJFM%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -73,9 +75,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '997'
+      - '994'
       x-ratelimit-reset:
-      - '53'
+      - '51'
       x-xss-protection:
       - '0'
     status:

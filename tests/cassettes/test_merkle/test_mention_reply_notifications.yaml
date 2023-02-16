@@ -15,27 +15,33 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/mention-and-reply-notifications?limit=10
+    uri: https://api.warpcast.com/v2/mention-and-reply-notifications?limit=10
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA+RTwXLTMBD9FXUvXERiO01i+wR0gGaGAQ6d6YHmsLHXsagtqZJMmmY8w50TR078
-        G1/AJzBynLSlUzrM9AQnSU/y233vrTdgyDaVg3QDUjlRiAydUNJC+mEDbq0JUsjQuqc1SX8BHEQO
-        KQSXozCZUhTFo3AyRoowSZJFGGFBcRJP40kchHkcjBd5HkwTjIq4iJEmh3kSTaJgFCUxcHCiJuuw
-        1pCGk+nheBqFozCKRxwwc8r4pgpfbRROEw6NJSOx9h2tqMpUTcAhF1ZXuH67xU+3OHuhHHDQhfYU
-        jakghdI5bdPhUAxEvWzMIFP18Cpanx5nV4OPegkcPpERhaAc0gIrSy0HbVQhKvIkC6H84ujS7esI
-        uWSSVsw3ZplT7BUa7xUZ4ND75Y2cty2HQlWVWpE5Uo10kE6CHSTkssfClkOmpCPZ5eGp/FqiLR/N
-        8dIQ5sePyIiNK//PqPoCP79//cLO5Jk8pjV7hlo4su6gQ3Yab9Y7YDPJlMnJeHhJjq1VwxrtT1YT
-        5Qwtu2hEdl6t/VYra8WiIlaSoR+fv1mGrBLWMVUw68kzVddKdo/PKWcXDdlODSuMqq9Fp76hYtdF
-        n8pCucHl+uqPv+INd/qM41EQ3cq4F30n4+fvZ+xke/FwwOfk3r1sBlr+ZcCzJzVDVhiSD0c5vptk
-        0M45oHOYlf5j65mVJvnaoC47zdc9p8Ph/Q7mqkYhIYX7nzSW3qBZ0qzGJfXSOFhnhNaUH6F1J//O
-        TLXzloMhXQnqTM12fnsUsz6m33DPdAvdgWS2mXJYocvKO5SfBHUxy+1UbLY19gO0o9kftyz7+Wrb
-        dt62vwAAAP//AwDX81JTDgcAAA==
+        H4sIAAAAAAAAA+xVy1LdRhD9lWE22YiL3hppFSAYkxg7TjDYjimqr6ZHd4ykETMj7oNSVfZZZZlV
+        /i1fkE9I6T6ACzYkVWziZDWaltR9us/p7iuq0bSlpdkVrZWVQuZgpaoNzX66onbaIM1oDsZuamzK
+        KXWo5DSj7iQFZEkCwo1SBkOeCy4iLwaeR0GMSRrHbMgCbwguuCGL3CBExjhPE87DEH03oQ61skJj
+        oWpo5sVJGHupy5gX+w6F3CrdQxJ9tNBnsUNbg7qGqsfTyAmW1KFcmqaE6cuF9VLWOdaWOrQRTf9z
+        q0ua0ZG1jcm2tspRMCiUKkrsPeWqtljbQa6qrZP2+M3eTJzp4KKYBbkIK3v+tnkBNpq9fD+cfPdR
+        HW9ul3wsdl+zzbN30VSc/Jgf7uxB2VwOj4vGhta+1e3k6Jt0/zBlweabb3dmh7KM9n94/cy7eH8G
+        h++oQy9RSyGR08zqFjuHNloJWWIPdShVf1ic2FV+I8jPB5PpjGyS67sZ2LG0FjV1aIX1iqjTrnOo
+        UGWpxqh3VVtbmvksXNlkXSyNSdQ5dJl6H68ntj9HYEZPxupII/DnK4/cTX1wYzdlUR7nLvg+5DyH
+        oQh8XwQY8tBPfBS5G4cBBu4QPJeHAecgPB7EEfR0gsbaPr3H7daObsmMBa6/JjNopEVj7wlt+/sD
+        crR48UmlyYGsilbPtTU7R/tqrx00dbEmAQGleVADB19VBIjQWD/OdeDfp9rtHArrCf7fR0/aR8sg
+        J2rsEGnJWOlzMyC7qi40WLPx4IDrh6lEM+/BG740Qr7EcsfeN+qadWVEvQDu0DHYfHTP5aXEeS71
+        Au3VIsa1Aldurq8LL9cC7brOWV8Dy3LdLILASxP0fRZ4cQToQ5qmQ88HgSxlCYuZ63HmRkPO3SQF
+        XzDBAOOQp37su4Gfsvt1ihLfCzyfBXcXQeAl6ZqAx1jmqsJ7Ej5Z2MmO+ntN6k9PnuezwcfmHzbp
+        Io6sC1LjmPTADLGKPAO94OZxecWfaF3vkSH9FBVfH9JP4PHOrPkPUbUM8Ofvv/5CPtQf6uc4JV8v
+        d8fG3LLK8Xa8DXJQE6U56t5coCVT1ZK26W+mQeQEDLloZX5eTvvHRhkjhyWSEWr84+ffDAFSSmOJ
+        EsT0znNVVaqef3yOnFy0aObZEKFVdZN01gMSKxRLVobK9iPywVa8VZ0vdGGeOhSshXzU/z0fpKrB
+        el9DM5onfQM629r6fAm5qkDWNKOf/6Q1+AJ0gQcVFHg9e43VsmmQ74KxR1+OqLrT7l+18E677i8A
+        AAD//wMA1cy8ahYNAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed976268a017a5-EWR
+      - 79a8b6bdc8cd8cbd-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -43,15 +49,17 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:13 GMT
+      - Thu, 16 Feb 2023 19:33:14 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=o1ujQpJSMOdtQ7q%2BLimLk%2Ffq2yva4g4O7L5u%2Bk%2B%2FX6zIhar27C8awJquJA1PdcYw3lKPAf4FjtNznEVMTG8xCSHnzvOMmdKxAAFFlmK4s%2Fr4r9MGyIZYIKmEkuEeT3KiwgM5Mv8qsT8u1ynfSAqm"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lNKEMHw%2BjoLsGjN5S936P31YLqTh8YdLhtZxH1X3RzsnSdPHVRSCWKRB9BR4Q%2FZ%2FZvORFLBzRn3pmdoftHfnACqi%2BkOXJhJRLxU6vTLVFuWhOuMiIa%2Bp605UlWfpmWfae8iIL664l3fyUdBwOMU%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -65,7 +73,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"m31fd3"
+      - W/"owl899"
       origin-agent-cluster:
       - ?1
       referrer-policy:
@@ -87,9 +95,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '996'
+      - '990'
       x-ratelimit-reset:
-      - '23'
+      - '49'
       x-xss-protection:
       - '0'
     status:

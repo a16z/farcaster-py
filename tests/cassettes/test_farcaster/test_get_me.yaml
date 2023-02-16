@@ -15,20 +15,20 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/me
+    uri: https://api.warpcast.com/v2/me
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA0SOQUvEMBCF/0p5Fy+hXRRBctPVw15U0Jt4iO2kDqZJSKara8l/l7a76+nBN4/v
-        zYREeXQCPWHMlOa03EHfXG0u1YK8GQgaJrJQFih0nKMzh8eV3z7vqtf1EG1cPMlB41MkZt00XPPQ
-        j6luw9D8fpE8PYx19D0U9pTYMnXQ1rhMRSGmYNnRLPngMIfQj0BjdzFUprKJPBQG8sLBZ+i391IU
-        bHAufFPahtEL9PWJsO+PaKOwZ1oqfjVO/53j/NnT3R3OqDX+hXx3z4la2Zos+fRsKeUPAAD//wMA
-        9390+TwBAAA=
+        H4sIAAAAAAAAA0SOMU/DMBCF/0r0FhYrqdoFeYPC0AWQYEMMJjm3Jxzbsi+FEvm/oyRtmZ703dP3
+        bkSiPDiBHjFkSlNa7qBvN6u1mpE3PUHDRBbKAoWOc3Tm9LTwu5dd9bYcoo2zJzloHERi1k3DNff7
+        IdVt6JvfL5Lnx6GOfg+FIyW2TB20NS5TUYgpWHY0ST45TCH0I9DY3fSVqWwiD4WevHDwGfr9oxQF
+        G5wL35S2YfACvVlfEPv9ma0Ujkxzxy/K8b9z3r+KuvvTFbXGv5LvHjhRK1uTJV++LaX8AQAA//8D
+        AHVDZnU9AQAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed974e0b0e19cf-EWR
+      - 79a8b69b4a378cbd-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -36,15 +36,17 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:09 GMT
+      - Thu, 16 Feb 2023 19:33:09 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=bXSrZkWtjIR8mlvLyjx%2BD3PK5R3mq9uWFjps5cfbW8Xg2LW%2FHak0WYY%2B8NNDGsJPspi7jrAf19jrNRtFG7O51oHAuVbRBD9O0mv2emK%2BGMmqTXhdbHEjlNi9cTe8SFQz%2FpxQ%2F50%2FHSKizWp9579S"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Dl5qPNagt%2FKEA%2FG5Hu80xkOs5kAGCsEY2fpBNxLRn12lLayrOET0CD0r5h9AfHsF5e5u%2BhofdBdqoQHI8hLTdZB%2F2hvW3308dwIo2lPKKAoh2bGH0JDATRkhnJ8xYvh5W%2FGzRRQEewDnwftrQQ4%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -58,7 +60,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"1afs3nj"
+      - W/"18br3zd"
       origin-agent-cluster:
       - ?1
       referrer-policy:
@@ -80,9 +82,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '998'
+      - '994'
       x-ratelimit-reset:
-      - '58'
+      - '55'
       x-xss-protection:
       - '0'
     status:

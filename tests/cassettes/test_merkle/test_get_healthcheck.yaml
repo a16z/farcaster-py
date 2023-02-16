@@ -19,7 +19,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed976879a51825-EWR
+      - 79a8b6c3ab41330c-EWR
       Connection:
       - keep-alive
       Content-Length:
@@ -27,13 +27,15 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:14 GMT
+      - Thu, 16 Feb 2023 19:33:15 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ctpXbQGYGUSe3h47I4PXEF3Wa88HGyM9MHzr8%2FsiP7Fxk9Pn%2B13cSPPveJWEFCTFp1Ok9tkFESh3GNKWvfH53rxVU4XS07EuepgrDNNaGuFqjVBA3FZJ8YCzWl%2Fou1AzoLMQfbmr4VzGYTQDJ4ZU"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vc0oQZzri8Esa09oeaMpQJLVsMlEYs8nkH%2BQZDWR6rW3fT5%2BrBHNU%2FsXtlacyskcNbR4aVkGKt1wc9tMJDSsFa%2FEnxjISo4kOKvzGhV6eV2x%2F0UBxhmwbx8i8GXjCXQw7NKv7DzXl2ci1UYEWzXO"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -69,9 +71,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '993'
+      - '999'
       x-ratelimit-reset:
-      - '51'
+      - '60'
       x-xss-protection:
       - '0'
     status:

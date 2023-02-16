@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/custody-address?fname=mason
+    uri: https://api.warpcast.com/v2/custody-address?fname=mason
   response:
     body:
       string: !!binary |
@@ -25,7 +25,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed974b88e08c81-EWR
+      - 79a8b6990b1d1a13-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -33,15 +33,17 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:09 GMT
+      - Thu, 16 Feb 2023 19:33:08 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tZosmVYbpN88hPKfv8VfgwuONgM9Q5pFCBYLjXRdPmmX1hfI1Jv53EoDECOlQfO3l7pnzOsVHmke0pi7KsxCl0F3Ip2DFc3Uvp%2FnfO9MUgjdIiYJuTBC73N9CYPQPV922j8ajGRPff2VEY13%2BNsG"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lxdXxdx0n6PhNq6ZWdi46EYErc00YCXPeSefOPRUU2ie6EZwyhUEpr134kj1ouJycr3bQWOqJ%2FmbrK8009eHnUGt0OggY2LyfInsAhuyVhd4Pjtptf%2F9bPGi1TNhchqBzVKUlF5TFNthPWYo40Y%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -77,9 +79,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '996'
+      - '992'
       x-ratelimit-reset:
-      - '57'
+      - '54'
       x-xss-protection:
       - '0'
     status:
@@ -101,7 +103,7 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/custody-address?fid=50
+    uri: https://api.warpcast.com/v2/custody-address?fid=50
   response:
     body:
       string: !!binary |
@@ -111,7 +113,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed974c3a9f8c81-EWR
+      - 79a8b6998c1f1a13-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -119,15 +121,17 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:09 GMT
+      - Thu, 16 Feb 2023 19:33:08 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vkXxCXV1OW6gcwI2uywQtq9x1Zdy654DcUSNUtftLEpwHzHisKGtos%2FvMFso5Wgk7qmKpF%2FSl%2BQsdB4Cn%2BTdWnUtUKr0AXVrOmK8GcScq%2FOWC6tVC7qI9cfeQrEA0yl4d1zZTuQCqxHzGcvaUjrT"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=99OOuOdvzDZWSNKsqWlMTk1M5WkPgYuX3zXkdw7yRGbmFLvcJsRPkMt%2B8dqQYCbgcqoJ%2BnDIyLpyBoqJv4N5qTLowphWeEt5OLM4ACUpKbJdUaMQa0SHUC3VSS%2BgFg45Z4UV2%2FqpyQXuibpSiAY%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -165,7 +169,7 @@ interactions:
       x-ratelimit-remaining:
       - '995'
       x-ratelimit-reset:
-      - '56'
+      - '55'
       x-xss-protection:
       - '0'
     status:

@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: GET
-    uri: https://api.farcaster.xyz/v2/verifications?fid=50&limit=25
+    uri: https://api.warpcast.com/v2/verifications?fid=50&limit=25
   response:
     body:
       string: !!binary |
@@ -26,7 +26,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed9751ad2b8cad-EWR
+      - 79a8b69f7c313338-EWR
       Connection:
       - keep-alive
       Content-Encoding:
@@ -34,15 +34,17 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:10 GMT
+      - Thu, 16 Feb 2023 19:33:09 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=fcD2clQfxCBO8Ncff5l7hvYTfxndnkCj6ZQRyGVJD4pCx0lavEzGVuGsbq2rsHhApaf9vUJU29ryokvBv8EDNlNrY6VAa1O4vCzx%2FQQimUlfMUKLi4B%2FxCPJ6Ype52mLjmg8ASW7shMOHI2BT3vl"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=T%2Fww800JVSwI26O%2FOEli5h4QRFhfkIB75B3NgwSa2XzdrUHR2Hiwj%2BlPp%2BT1LcNRMA622SXJf0tV9N1r6IpCP82EwIWP5tRiShrA07I6Iw%2B4IRSKGRb4E1kAiaVHO06kviFRiuh%2BUuTEaSC6kHE%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -78,9 +80,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '997'
+      - '993'
       x-ratelimit-reset:
-      - '25'
+      - '54'
       x-xss-protection:
       - '0'
     status:

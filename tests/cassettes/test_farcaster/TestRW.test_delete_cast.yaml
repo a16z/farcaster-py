@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"castHash": "0xf1bcc34739a7eac76dbf715bba0f225c39916c5af9bb8658abde79f721ed44e3"}'
+    body: '{"castHash": "0xb0dafd3d0470f1a3d60998fec8fb8cc496ec787daa2dc7caebb2c6abc42ed09c"}'
     headers:
       Accept:
       - '*/*'
@@ -15,7 +15,7 @@ interactions:
       User-Agent:
       - python-requests/2.28.2
     method: DELETE
-    uri: https://api.farcaster.xyz/v2/casts
+    uri: https://api.warpcast.com/v2/casts
   response:
     body:
       string: '{"result":{"success":true}}'
@@ -23,7 +23,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 78ed97609e088c0c-EWR
+      - 79a8b6bbf81217a9-EWR
       Connection:
       - keep-alive
       Content-Length:
@@ -31,13 +31,15 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 25 Jan 2023 02:31:12 GMT
+      - Thu, 16 Feb 2023 19:33:14 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kjkN%2BzLMgjTEXoeX%2FXTKdguGVth5G%2Bj1pWxuj0sxYWrmjCxLj8d9P0LoYGAP4G6Sa%2FLyWVwbE4Dgs%2B4jvYrulrG4gn8WMnKV%2FeIi3nHUykkNkhfSlAysnf%2FCoMr2tpT%2F7lD%2Bqv8ZIcwn77dPggkd"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mt3yaI4g%2F6tEnleGm8qEFjswwDS7Dky8i%2FyDGI9AncrYt5kE6u6xVjNmc1GSYnPvr7aDDizyN%2BTRXFZK9MHrLcq8L5y3WuLS%2BfEXe6BqX%2BiCX3zEDHMCo%2F0uOIK8jakIS%2BPIflRU4%2BPr5AJfWzA%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
+      access-control-expose-headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       content-security-policy:
@@ -73,9 +75,9 @@ interactions:
       x-ratelimit-limit:
       - '1000'
       x-ratelimit-remaining:
-      - '994'
+      - '986'
       x-ratelimit-reset:
-      - '54'
+      - '48'
       x-xss-protection:
       - '0'
     status:
