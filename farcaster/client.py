@@ -167,7 +167,7 @@ class Warpcast:
         self,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> EventsResult:
+    ) -> IterableEventsResult:
         """Get events for a given asset
 
         Args:
@@ -176,13 +176,17 @@ class Warpcast:
                 to 25
 
         Returns:
-            EventsResult: Returns the EventsResult model
+            IterableEventsResult: Returns the EventsResult model with an optional cursor
         """
-        response = self._get(
-            "asset-events",
-            params={"cursor": cursor, "limit": limit},
+        response = AssetEventsGetResponse(
+            **self._get(
+                "asset-events",
+                params={"cursor": cursor, "limit": limit},
+            )
         )
-        return AssetEventsGetResponse(**response).result
+        return IterableEventsResult(
+            events=response.result.events, cursor=getattr(response.next, "cursor", None)
+        )
 
     def put_auth(self, auth_params: AuthParams) -> TokenResult:
         """Generate a custody bearer token and use it to generate an access token
@@ -230,7 +234,7 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            ReactionsResult: ReactionsResult model of likes
+            IterableReactionsResult: Model containing the likes with an optional cursor
         """
         response = CastReactionsGetResponse(
             **self._get(
@@ -239,7 +243,7 @@ class Warpcast:
             )
         )
         return IterableReactionsResult(
-            likes=response.result.likes, cursor=response.next.cursor
+            likes=response.result.likes, cursor=getattr(response.next, "cursor", None)
         )
 
     def like_cast(self, cast_hash: str) -> ReactionsPutResult:
@@ -279,7 +283,7 @@ class Warpcast:
         cast_hash: str,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> UsersResult:
+    ) -> IterableUsersResult:
         """Get the recasters for a given cast
 
         Args:
@@ -288,13 +292,17 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            UsersResult: Model containing the recasters
+            IterableUsersResult: Model containing the recasters with an optional cursor
         """
-        response = self._get(
-            "cast-recasters",
-            params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+        response = CastRecastersGetResponse(
+            **self._get(
+                "cast-recasters",
+                params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+            )
         )
-        return CastRecastersGetResponse(**response).result
+        return IterableUsersResult(
+            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+        )
 
     def get_cast(
         self,
@@ -346,7 +354,7 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            CastsResult: Model containing the casts
+            IterableCastsResult: Model containing the casts with an optional cursor
         """
         response = CastsGetResponse(
             **self._get(
@@ -355,7 +363,7 @@ class Warpcast:
             )
         )
         return IterableCastsResult(
-            casts=response.result.casts, cursor=response.next.cursor
+            casts=response.result.casts, cursor=getattr(response.next, "cursor", None)
         )
 
     def post_cast(
@@ -411,7 +419,7 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            UsersResult: model containing users
+            IterableUsersResult: model containing users with an optional cursor
         """
         response = CollectionOwnersGetResponse(
             **self._get(
@@ -424,7 +432,7 @@ class Warpcast:
             )
         )
         return IterableUsersResult(
-            users=response.result.users, cursor=response.next.cursor
+            users=response.result.users, cursor=getattr(response.next, "cursor", None)
         )
 
     def get_followers(
@@ -441,7 +449,7 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            UsersResult: model containing users
+            IterableUsersResult: model containing users with an optional cursor
         """
         response = FollowersGetResponse(
             **self._get(
@@ -450,7 +458,7 @@ class Warpcast:
             )
         )
         return IterableUsersResult(
-            users=response.result.users, cursor=response.next.cursor
+            users=response.result.users, cursor=getattr(response.next, "cursor", None)
         )
 
     def get_following(
@@ -467,7 +475,7 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            UsersResult: model containing users
+            IterableUsersResult: model containing users with an optional cursor
         """
         response = FollowingGetResponse(
             **self._get(
@@ -476,7 +484,7 @@ class Warpcast:
             )
         )
         return IterableUsersResult(
-            users=response.result.users, cursor=response.next.cursor
+            users=response.result.users, cursor=getattr(response.next, "cursor", None)
         )
 
     def get_all_following(self, fid: Optional[int] = None) -> UsersResult:
@@ -555,7 +563,7 @@ class Warpcast:
         self,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> NotificationsResult:
+    ) -> IterableNotificationsResult:
         """Get mention and reply notifications
 
         Args:
@@ -563,13 +571,18 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            NotificationsResult: model containing notifications
+            IterableNotificationsResult: model containing notifications with an optional cursor
         """
-        response = self._get(
-            "mention-and-reply-notifications",
-            params={"cursor": cursor, "limit": limit},
+        response = MentionAndReplyNotificationsGetResponse(
+            **self._get(
+                "mention-and-reply-notifications",
+                params={"cursor": cursor, "limit": limit},
+            )
         )
-        return MentionAndReplyNotificationsGetResponse(**response).result
+        return IterableNotificationsResult(
+            notifications=response.result.notifications,
+            cursor=getattr(response.next, "cursor", None),
+        )
 
     def _recent_notifications_list(
         self,
@@ -702,7 +715,7 @@ class Warpcast:
         owner_fid: int,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> CollectionsResult:
+    ) -> IterableCollectionsResult:
         """Get the collections of a user
 
         Args:
@@ -711,20 +724,25 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            CollectionsResult: model containing collections
+            IterableCollectionsResult: model containing collections with an optional cursor
         """
-        response = self._get(
-            "user-collections",
-            params={"ownerFid": owner_fid, "cursor": cursor, "limit": limit},
+        response = UserCollectionsGetResponse(
+            **self._get(
+                "user-collections",
+                params={"ownerFid": owner_fid, "cursor": cursor, "limit": limit},
+            )
         )
-        return UserCollectionsGetResponse(**response).result
+        return IterableCollectionsResult(
+            collections=response.result.collections,
+            cursor=getattr(response.next, "cursor", None),
+        )
 
     def get_verifications(
         self,
         fid: int,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> VerificationsResult:
+    ) -> IterableVerificationsResult:
         """Get the verifications of a user
 
         Args:
@@ -733,19 +751,24 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            VerificationsResult: model containing verifications
+            IterableVerificationsResult: model containing verifications with an optional cursor
         """
-        response = self._get(
-            "verifications",
-            params={"fid": fid, "cursor": cursor, "limit": limit},
+        response = VerificationsGetResponse(
+            **self._get(
+                "verifications",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
         )
-        return VerificationsGetResponse(**response).result
+        return IterableVerificationsResult(
+            verifications=response.result.verifications,
+            cursor=getattr(response.next, "cursor", None),
+        )
 
     def get_recent_users(
         self,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> UsersResult:
+    ) -> IterableUsersResult:
         """Get recent users
 
         Args:
@@ -753,13 +776,17 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            UsersResult: model containing users
+            IterableUsersResult: model containing users with an optional cursor
         """
-        response = self._get(
-            "recent-users",
-            params={"cursor": cursor, "limit": limit},
+        response = UsersGetResponse(
+            **self._get(
+                "recent-users",
+                params={"cursor": cursor, "limit": limit},
+            )
         )
-        return UsersGetResponse(**response).result
+        return IterableUsersResult(
+            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+        )
 
     def _recent_users_list(
         self,
@@ -826,7 +853,7 @@ class Warpcast:
         fid: int,
         cursor: NoneStr = None,
         limit: PositiveInt = 25,
-    ) -> Likes:
+    ) -> IterableLikes:
         """Get the likes of a user
 
         Args:
@@ -835,13 +862,17 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
-            Likes: model containing likes
+            IterableLikes: model containing likes with an optional cursor
         """
-        response = self._get(
-            "user-cast-likes",
-            params={"fid": fid, "cursor": cursor, "limit": limit},
+        response = UserCastLikesGetResponse(
+            **self._get(
+                "user-cast-likes",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
         )
-        return UserCastLikesGetResponse(**response).result
+        return IterableLikes(
+            likes=response.result.likes, cursor=getattr(response.next, "cursor", None)
+        )
 
     def get_recent_casts(
         self,
@@ -855,7 +886,7 @@ class Warpcast:
             limit (PositiveInt, optional): limit, defaults to 100
 
         Returns:
-            CastsResult: model containing casts
+            IterableCastsResult: model containing casts with an optional cursor
         """
         response = CastsGetResponse(
             **self._get(
@@ -864,7 +895,7 @@ class Warpcast:
             )
         )
         return IterableCastsResult(
-            casts=response.result.casts, cursor=response.next.cursor
+            casts=response.result.casts, cursor=getattr(response.next, "cursor", None)
         )
 
     def _recent_casts_lists(

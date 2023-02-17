@@ -454,6 +454,11 @@ class EventsResult(BaseModel):
     events: List[ApiAssetEvent]
 
 
+class IterableEventsResult(BaseModel):
+    events: List[ApiAssetEvent]
+    cursor: NoneStr = None
+
+
 class AssetEventsGetResponse(BaseModel):
     result: EventsResult
     next: Optional[Next] = None
@@ -504,7 +509,7 @@ class CastsResult(BaseModel):
 
 class IterableCastsResult(BaseModel):
     casts: List[ApiCast]
-    cursor: Optional[str] = None
+    cursor: NoneStr = None
 
 
 class CastsGetResponse(BaseModel):
@@ -541,7 +546,7 @@ class ReactionsResult(BaseModel):
 
 class IterableReactionsResult(BaseModel):
     likes: List[ApiCastReaction]
-    cursor: Optional[str] = None
+    cursor: NoneStr = None
 
 
 class ReactionsPutResult(BaseModel):
@@ -575,7 +580,7 @@ class UsersResult(BaseModel):
 
 class IterableUsersResult(BaseModel):
     users: List[ApiUser]
-    cursor: Optional[str] = None
+    cursor: NoneStr = None
 
 
 class CastRecastersGetResponse(BaseModel):
@@ -585,6 +590,11 @@ class CastRecastersGetResponse(BaseModel):
 
 class CollectionsResult(BaseModel):
     collections: List[ApiAssetCollection]
+
+
+class IterableCollectionsResult(BaseModel):
+    collections: List[ApiAssetCollection]
+    cursor: NoneStr = None
 
 
 class UserCollectionsGetResponse(BaseModel):
@@ -623,6 +633,11 @@ class CustodyAddressGetResponse(BaseModel):
 
 class Likes(BaseModel):
     likes: List[ApiCastReaction]
+
+
+class IterableLikes(BaseModel):
+    likes: List[ApiCastReaction]
+    cursor: NoneStr = None
 
 
 class UserCastLikesGetResponse(BaseModel):
@@ -673,6 +688,11 @@ class NotificationsResult(BaseModel):
     notifications: List[Union[MentionNotification, ReplyNotification]]
 
 
+class IterableNotificationsResult(BaseModel):
+    notifications: List[Union[MentionNotification, ReplyNotification]]
+    cursor: NoneStr = None
+
+
 class MentionAndReplyNotificationsGetResponse(BaseModel):
     result: NotificationsResult
     next: Optional[Next] = None
@@ -692,6 +712,11 @@ class UserByUsernameGetResponse(BaseModel):
 
 class VerificationsResult(BaseModel):
     verifications: List[ApiVerification]
+
+
+class IterableVerificationsResult(BaseModel):
+    verifications: List[ApiVerification]
+    cursor: NoneStr = None
 
 
 class VerificationsGetResponse(BaseModel):
