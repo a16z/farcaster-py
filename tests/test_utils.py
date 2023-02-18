@@ -3,13 +3,7 @@ from typing import List, Union
 
 from pydantic import NoneStr
 
-from farcaster.models import (
-    AnyUrl,
-    ApiCast,
-    ApiUser,
-    MentionNotification,
-    ReplyNotification,
-)
+from farcaster.models import ApiCast, ApiUser, MentionNotification, ReplyNotification
 from farcaster.utils.stream_generator import (
     BoundedSet,
     ExponentialCounter,
@@ -26,14 +20,7 @@ def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
                 "display_name": "world",
                 "registered_at": None,
                 "pfp": {
-                    "url": AnyUrl(
-                        "https://openseauserdata.com/files/20.svg",
-                        scheme="https",
-                        host="openseauserdata.com",
-                        tld="com",
-                        host_type="domain",
-                        path="/files/20.svg",
-                    ),
+                    "url": "https://openseauserdata.com/files/20.svg",
                     "verified": True,
                 },
                 "profile": {"bio": {"text": "foo", "mentions": []}},
@@ -54,14 +41,7 @@ def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
                 "display_name": "world1",
                 "registered_at": None,
                 "pfp": {
-                    "url": AnyUrl(
-                        "https://openseauserdata.com/files/20.svg",
-                        scheme="https",
-                        host="openseauserdata.com",
-                        tld="com",
-                        host_type="domain",
-                        path="/files/20.svg",
-                    ),
+                    "url": "https://openseauserdata.com/files/20.svg",
                     "verified": True,
                 },
                 "profile": {"bio": {"text": "foo1", "mentions": []}},
@@ -82,14 +62,7 @@ def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
                 "display_name": "world2",
                 "registered_at": None,
                 "pfp": {
-                    "url": AnyUrl(
-                        "https://openseauserdata.com/files/20.svg",
-                        scheme="https",
-                        host="openseauserdata.com",
-                        tld="com",
-                        host_type="domain",
-                        path="/files/20.svg",
-                    ),
+                    "url": "https://openseauserdata.com/files/20.svg",
                     "verified": True,
                 },
                 "profile": {"bio": {"text": "foo2", "mentions": []}},
@@ -119,14 +92,7 @@ def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
                     "display_name": "1",
                     "registered_at": None,
                     "pfp": {
-                        "url": AnyUrl(
-                            "https://lh3.googleusercontent.com/1",
-                            scheme="https",
-                            host="lh3.googleusercontent.com",
-                            tld="com",
-                            host_type="domain",
-                            path="1",
-                        ),
+                        "url": "https://lh3.googleusercontent.com/1",
                         "verified": True,
                     },
                     "profile": {"bio": {"text": "1", "mentions": []}},
@@ -160,14 +126,7 @@ def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
                     "display_name": "2",
                     "registered_at": None,
                     "pfp": {
-                        "url": AnyUrl(
-                            "https://lh3.googleusercontent.com/2",
-                            scheme="https",
-                            host="lh3.googleusercontent.com",
-                            tld="com",
-                            host_type="domain",
-                            path="2",
-                        ),
+                        "url": "https://lh3.googleusercontent.com/2",
                         "verified": True,
                     },
                     "profile": {"bio": {"text": "2", "mentions": []}},
@@ -201,14 +160,7 @@ def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
                     "display_name": "3",
                     "registered_at": None,
                     "pfp": {
-                        "url": AnyUrl(
-                            "https://lh3.googleusercontent.com/3",
-                            scheme="https",
-                            host="lh3.googleusercontent.com",
-                            tld="com",
-                            host_type="domain",
-                            path="3",
-                        ),
+                        "url": "https://lh3.googleusercontent.com/3",
                         "verified": True,
                     },
                     "profile": {"bio": {"text": "3", "mentions": []}},
@@ -249,14 +201,7 @@ def mock_get_recent_notifications(
                     "display_name": "1",
                     "registered_at": None,
                     "pfp": {
-                        "url": AnyUrl(
-                            "https://lh3.googleusercontent.com/1",
-                            scheme="https",
-                            host="lh3.googleusercontent.com",
-                            tld="com",
-                            host_type="domain",
-                            path="1",
-                        ),
+                        "url": "https://lh3.googleusercontent.com/1",
                         "verified": True,
                     },
                     "profile": {"bio": {"text": "1", "mentions": []}},
@@ -279,14 +224,7 @@ def mock_get_recent_notifications(
                     "display_name": "1",
                     "registered_at": None,
                     "pfp": {
-                        "url": AnyUrl(
-                            "https://lh3.googleusercontent.com/1",
-                            scheme="https",
-                            host="lh3.googleusercontent.com",
-                            tld="com",
-                            host_type="domain",
-                            path="1",
-                        ),
+                        "url": "https://lh3.googleusercontent.com/1",
                         "verified": True,
                     },
                     "profile": {"bio": {"text": "1", "mentions": []}},
@@ -309,14 +247,7 @@ def mock_get_recent_notifications(
                     "display_name": "1",
                     "registered_at": None,
                     "pfp": {
-                        "url": AnyUrl(
-                            "https://lh3.googleusercontent.com/1",
-                            scheme="https",
-                            host="lh3.googleusercontent.com",
-                            tld="com",
-                            host_type="domain",
-                            path="1",
-                        ),
+                        "url": "https://lh3.googleusercontent.com/1",
                         "verified": True,
                     },
                     "profile": {"bio": {"text": "1", "mentions": []}},

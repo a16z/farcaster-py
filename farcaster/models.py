@@ -1,7 +1,6 @@
 from typing import List, Optional, Union
 
 from humps import camelize
-from pydantic import AnyUrl
 from pydantic import BaseModel as PydanticBaseModel
 from pydantic import Field, NoneStr, PositiveInt
 
@@ -37,7 +36,7 @@ class ApiToken(BaseModel):
 
 
 class ApiOpenGraphMetadata(BaseModel):
-    url: AnyUrl
+    url: str
     title: NoneStr = None
     description: NoneStr = None
     domain: NoneStr = None
@@ -58,7 +57,7 @@ class ApiOpenSeaNft(BaseModel):
 
 
 class ApiPfp(BaseModel):
-    url: AnyUrl
+    url: str
     verified: bool
 
 
@@ -524,7 +523,7 @@ class Parent(BaseModel):
 
 class CastsPostRequest(BaseModel):
     text: str
-    embeds: Optional[List[AnyUrl]] = None
+    embeds: Optional[List[str]] = None
     parent: Optional[Parent] = None
 
 
