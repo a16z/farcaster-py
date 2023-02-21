@@ -1,5 +1,5 @@
 # farcaster-py
-a
+
 <div align="center">
 
 [![Build status](https://github.com/a16z/farcaster-py/workflows/build/badge.svg?branch=main&event=push)](https://github.com/a16z/farcaster-py/actions?query=workflow%3Abuild)
