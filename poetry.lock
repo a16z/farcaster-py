@@ -2145,14 +2145,14 @@ pytest = ">=3.0.0,<8.0.0"
 
 [[package]]
 name = "pytest-recording"
-version = "0.12.1"
+version = "0.12.2"
 description = "A pytest plugin that allows you recording of network interactions via VCR.py"
 category = "dev"
 optional = false
 python-versions = ">=3.5"
 files = [
-    {file = "pytest-recording-0.12.1.tar.gz", hash = "sha256:0d1f36d10dea5090cab8ecd230e5dc937c97b9fed193874b330d2926ddea028f"},
-    {file = "pytest_recording-0.12.1-py3-none-any.whl", hash = "sha256:6b5546b822b270b8d7338f70950453be45e4aa5bfd884d97583dfa47288380f9"},
+    {file = "pytest-recording-0.12.2.tar.gz", hash = "sha256:7c8949c24e5546a699f8fbbff0c5d6896cd09463378ac3d3f1ebb110d2186847"},
+    {file = "pytest_recording-0.12.2-py3-none-any.whl", hash = "sha256:f055f97eb98bbefd0453a7796aa3a6833502c173421928b9d878cf1420b36406"},
 ]
 
 [package.dependencies]
