@@ -369,14 +369,14 @@ class Warpcast:
     def post_cast(
         self,
         text: str,
-        embeds: Optional[List[AnyUrl]] = None,
+        embeds: Optional[List[str]] = None,
         parent: Optional[Parent] = None,
     ) -> CastContent:
         """Post a cast to Farcaster
 
         Args:
             text (str): text of the cast
-            embeds (Optional[List[AnyUrl]], optional): list of embeds, defaults to None
+            embeds (Optional[List[str]], optional): list of embeds, defaults to None
             parent (Optional[Parent], optional): parent of the cast, defaults to None
 
         Returns:
