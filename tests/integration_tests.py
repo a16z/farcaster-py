@@ -70,9 +70,6 @@ def test_stream_casts() -> None:
     assert MNEMONIC, "MNEMONIC env var not set"
     client = Warpcast(mnemonic=MNEMONIC)
     print(client.access_token)
-    # fid = 50
-    # all_following = client.get_all_following(fid=fid)
-    # print(len(all_following.users))
     for cast in client.stream_casts():
         if cast:
             print(cast.hash)
