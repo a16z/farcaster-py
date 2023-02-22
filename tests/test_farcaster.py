@@ -203,6 +203,18 @@ def test_get_all_following(client: Warpcast) -> None:
 
 
 @pytest.mark.vcr
+def test_get_all_followers(client: Warpcast) -> None:
+    """Unit test that gets everyone who follows a user
+    Args:
+        client: fixture
+    Returns:
+        None
+    """
+    response = client.get_all_followers(fid=50)
+    assert len(response.users) >= 200
+
+
+@pytest.mark.vcr
 def test_get_user(client: Warpcast) -> None:
     """Unit test that gets user
 
