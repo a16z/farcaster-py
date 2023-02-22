@@ -461,6 +461,31 @@ class Warpcast:
             users=response.result.users, cursor=getattr(response.next, "cursor", None)
         )
 
+    def get_all_followers(self, fid: Optional[int] = None) -> UsersResult:
+        """Get all followers of a user by iterating through the next cursors
+        Args:
+            fid (int): Farcaster ID of the user
+        Returns:
+            UsersResult: model containing users
+        """
+        users: List[ApiUser] = []
+        cursor = None
+        limit = 100
+        if fid is None:
+            fid = self.get_me().fid
+        while True:
+            response = self._get(
+                "followers",
+                params={"fid": fid, "cursor": cursor, "limit": limit},
+            )
+            response_model = FollowersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if response_model.next is None:
+                break
+            cursor = response_model.next.cursor
+        return UsersResult(users=users)
+
     def get_following(
         self,
         fid: int,
