@@ -875,14 +875,14 @@ test = ["pytest (>=6.2.5,<7)", "pytest-xdist (>=2.4.0,<3)", "tox (>=3.14.6,<4)"]
 
 [[package]]
 name = "eth-keyfile"
-version = "0.6.0"
+version = "0.6.1"
 description = "A library for handling the encrypted keyfiles used to store ethereum private keys."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "eth-keyfile-0.6.0.tar.gz", hash = "sha256:d30597cdecb8ccd3b56bb275cd86fcdc7a279f86eafa92ddc49f66512f0bff67"},
-    {file = "eth_keyfile-0.6.0-py3-none-any.whl", hash = "sha256:7a874b179771827ffc7e38403ec412b8b3ff1a8c5cc945169609e799fadc7000"},
+    {file = "eth-keyfile-0.6.1.tar.gz", hash = "sha256:471be6e5386fce7b22556b3d4bde5558dbce46d2674f00848027cb0a20abdc8c"},
+    {file = "eth_keyfile-0.6.1-py3-none-any.whl", hash = "sha256:609773a1ad5956944a33348413cad366ec6986c53357a806528c8f61c4961560"},
 ]
 
 [package.dependencies]
@@ -891,7 +891,7 @@ eth-utils = ">=2,<3"
 pycryptodome = ">=3.6.6,<4"
 
 [package.extras]
-dev = ["bumpversion (>=0.5.3,<1)", "eth-keys (>=0.4.0,<0.5.0)", "eth-utils (>=2,<3)", "flake8 (==4.0.1)", "idna (==2.7)", "pluggy (>=1.0.0,<2)", "pycryptodome (>=3.6.6,<4)", "pytest (>=6.2.5,<7)", "requests (>=2.20,<3)", "setuptools (>=36.2.0)", "tox (>=2.7.0)", "twine", "wheel"]
+dev = ["bumpversion (>=0.5.3,<1)", "eth-keys (>=0.4.0,<0.5.0)", "eth-utils (>=2,<3)", "flake8 (==4.0.1)", "idna (==2.7)", "pluggy (>=1.0.0,<2)", "pycryptodome (>=3.6.6,<4)", "pytest (>=6.2.5,<7)", "requests (>=2.20,<3)", "setuptools (>=38.6.0)", "tox (>=2.7.0)", "twine", "wheel"]
 keyfile = ["eth-keys (>=0.4.0,<0.5.0)", "eth-utils (>=2,<3)", "pycryptodome (>=3.6.6,<4)"]
 lint = ["flake8 (==4.0.1)"]
 test = ["pytest (>=6.2.5,<7)"]
