@@ -800,15 +800,25 @@ class Warpcast:
         Returns:
             IterableCollectionsResult: model containing collections with an optional cursor
         """
-        response = UserCollectionsGetResponse(
-            **self._get(
+        collections: List[ApiAssetCollection] = []
+        while True:
+            response = self._get(
                 "user-collections",
-                params={"ownerFid": owner_fid, "cursor": cursor, "limit": limit},
+                params={
+                    "ownerFid": owner_fid,
+                    "cursor": cursor,
+                    "limit": min(limit, 100),
+                },
             )
-        )
+            response_model = UserCollectionsGetResponse(**response)
+            if response_model.result.collections:
+                collections.extend(response_model.result.collections)
+            if not response_model.next or len(collections) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableCollectionsResult(
-            collections=response.result.collections,
-            cursor=getattr(response.next, "cursor", None),
+            collections=collections[:limit],
+            cursor=getattr(response_model.next, "cursor", None),
         )
 
     def get_verifications(

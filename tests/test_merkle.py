@@ -27,7 +27,7 @@ def test_get_user_collections(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_user_collections(owner_fid=50)
+    response = client.get_user_collections(owner_fid=2, limit=101)
     assert len(response.collections) > 1
 
 
