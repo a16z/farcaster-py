@@ -299,7 +299,7 @@ class Warpcast:
         Args:
             cast_hash (str): cast hash
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: Model containing the recasters with an optional cursor
@@ -477,7 +477,7 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
@@ -534,7 +534,7 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
@@ -636,7 +636,7 @@ class Warpcast:
 
         Args:
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableNotificationsResult: model containing notifications with an optional cursor
@@ -795,7 +795,7 @@ class Warpcast:
         Args:
             owner_fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableCollectionsResult: model containing collections with an optional cursor
@@ -857,7 +857,7 @@ class Warpcast:
 
         Args:
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
@@ -949,7 +949,7 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableLikes: model containing likes with an optional cursor
