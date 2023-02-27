@@ -383,7 +383,7 @@ class Warpcast:
             )
             response_model = CastsGetResponse(**response)
             if response_model.result.casts:
-                casts += response_model.result.casts
+                casts.extend(response_model.result.casts)
             if not response_model.next or len(casts) >= limit:
                 break
             cursor = response_model.next.cursor
@@ -458,7 +458,7 @@ class Warpcast:
             )
             response_model = CollectionOwnersGetResponse(**response)
             if response_model.result.users:
-                users += response_model.result.users
+                users.extend(response_model.result.users)
             if not response_model.next or len(users) >= limit:
                 break
             cursor = response_model.next.cursor
