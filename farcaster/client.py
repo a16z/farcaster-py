@@ -231,19 +231,29 @@ class Warpcast:
         Args:
             cast_hash (str): cast hash
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableReactionsResult: Model containing the likes with an optional cursor
         """
-        response = CastReactionsGetResponse(
-            **self._get(
+        likes: List[ApiCastReaction] = []
+        while True:
+            response = self._get(
                 "cast-likes",
-                params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+                params={
+                    "castHash": cast_hash,
+                    "cursor": cursor,
+                    "limit": min(limit, 100),
+                },
             )
-        )
+            response_model = CastReactionsGetResponse(**response)
+            if response_model.result.likes:
+                likes = response_model.result.likes
+            if not response_model.next or len(likes) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableReactionsResult(
-            likes=response.result.likes, cursor=getattr(response.next, "cursor", None)
+            likes=likes[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def like_cast(self, cast_hash: str) -> ReactionsPutResult:
@@ -289,19 +299,28 @@ class Warpcast:
         Args:
             cast_hash (str): cast hash
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: Model containing the recasters with an optional cursor
         """
-        response = CastRecastersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "cast-recasters",
-                params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+                params={
+                    "castHash": cast_hash,
+                    "cursor": cursor,
+                    "limit": min(limit, 100),
+                },
             )
-        )
+            response_model = CastRecastersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users, cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_cast(
@@ -351,19 +370,25 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableCastsResult: Model containing the casts with an optional cursor
         """
-        response = CastsGetResponse(
-            **self._get(
+        casts: List[ApiCast] = []
+        while True:
+            response = self._get(
                 "casts",
-                params={"fid": fid, "cursor": cursor, "limit": limit},
+                params={"fid": fid, "cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = CastsGetResponse(**response)
+            if response_model.result.casts:
+                casts.extend(response_model.result.casts)
+            if not response_model.next or len(casts) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableCastsResult(
-            casts=response.result.casts, cursor=getattr(response.next, "cursor", None)
+            casts=casts[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def post_cast(
@@ -416,23 +441,29 @@ class Warpcast:
         Args:
             collection_id (str): OpenSea collection ID
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = CollectionOwnersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "collection-owners",
                 params={
                     "collectionId": collection_id,
                     "cursor": cursor,
-                    "limit": limit,
+                    "limit": min(limit, 100),
                 },
             )
-        )
+            response_model = CollectionOwnersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_followers(
@@ -446,19 +477,25 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = FollowersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "followers",
-                params={"fid": fid, "cursor": cursor, "limit": limit},
+                params={"fid": fid, "cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = FollowersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_all_followers(self, fid: Optional[int] = None) -> UsersResult:
@@ -497,19 +534,25 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = FollowingGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "following",
-                params={"fid": fid, "cursor": cursor, "limit": limit},
+                params={"fid": fid, "cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = FollowingGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_all_following(self, fid: Optional[int] = None) -> UsersResult:
@@ -593,20 +636,26 @@ class Warpcast:
 
         Args:
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableNotificationsResult: model containing notifications with an optional cursor
         """
-        response = MentionAndReplyNotificationsGetResponse(
-            **self._get(
+        notifications: List[Union[MentionNotification, ReplyNotification]] = []
+        while True:
+            response = self._get(
                 "mention-and-reply-notifications",
-                params={"cursor": cursor, "limit": limit},
+                params={"cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = MentionAndReplyNotificationsGetResponse(**response)
+            if response_model.result.notifications:
+                notifications.extend(response_model.result.notifications)
+            if not response_model.next or len(notifications) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableNotificationsResult(
-            notifications=response.result.notifications,
-            cursor=getattr(response.next, "cursor", None),
+            notifications=notifications[:limit],
+            cursor=getattr(response_model.next, "cursor", None),
         )
 
     def _recent_notifications_list(
@@ -746,20 +795,30 @@ class Warpcast:
         Args:
             owner_fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableCollectionsResult: model containing collections with an optional cursor
         """
-        response = UserCollectionsGetResponse(
-            **self._get(
+        collections: List[ApiAssetCollection] = []
+        while True:
+            response = self._get(
                 "user-collections",
-                params={"ownerFid": owner_fid, "cursor": cursor, "limit": limit},
+                params={
+                    "ownerFid": owner_fid,
+                    "cursor": cursor,
+                    "limit": min(limit, 100),
+                },
             )
-        )
+            response_model = UserCollectionsGetResponse(**response)
+            if response_model.result.collections:
+                collections.extend(response_model.result.collections)
+            if not response_model.next or len(collections) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableCollectionsResult(
-            collections=response.result.collections,
-            cursor=getattr(response.next, "cursor", None),
+            collections=collections[:limit],
+            cursor=getattr(response_model.next, "cursor", None),
         )
 
     def get_verifications(
@@ -798,19 +857,25 @@ class Warpcast:
 
         Args:
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = UsersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "recent-users",
-                params={"cursor": cursor, "limit": limit},
+                params={"cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = UsersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def _recent_users_list(
@@ -884,19 +949,25 @@ class Warpcast:
         Args:
             fid (int): Farcaster ID of the user
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableLikes: model containing likes with an optional cursor
         """
-        response = UserCastLikesGetResponse(
-            **self._get(
+        likes: List[ApiCastReaction] = []
+        while True:
+            response = self._get(
                 "user-cast-likes",
-                params={"fid": fid, "cursor": cursor, "limit": limit},
+                params={"fid": fid, "cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = UserCastLikesGetResponse(**response)
+            if response_model.result.likes:
+                likes.extend(response_model.result.likes)
+            if not response_model.next or len(likes) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableLikes(
-            likes=response.result.likes, cursor=getattr(response.next, "cursor", None)
+            likes=likes[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_recent_casts(
@@ -913,14 +984,20 @@ class Warpcast:
         Returns:
             IterableCastsResult: model containing casts with an optional cursor
         """
-        response = CastsGetResponse(
-            **self._get(
+        casts: List[ApiCast] = []
+        while True:
+            response = self._get(
                 "recent-casts",
-                params={"cursor": cursor, "limit": limit},
+                params={"cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = CastsGetResponse(**response)
+            if response_model.result.casts:
+                casts.extend(response_model.result.casts)
+            if not response_model.next or len(casts) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableCastsResult(
-            casts=response.result.casts, cursor=getattr(response.next, "cursor", None)
+            casts=casts[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def _recent_casts_lists(

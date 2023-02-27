@@ -72,8 +72,8 @@ def test_get_casts(client: Warpcast) -> None:
     """
     response1 = client.get_casts(fid=50)
     assert len(response1.casts) == 25
-    response2 = client.get_casts(fid=50, limit=10)
-    assert len(response2.casts) == 10
+    response2 = client.get_casts(fid=3, limit=150)
+    assert len(response2.casts) == 150
 
 
 @pytest.mark.vcr
@@ -87,9 +87,10 @@ def test_get_cast_likes(client: Warpcast) -> None:
         None
     """
     response = client.get_cast_likes(
-        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
+        cast_hash="0x5fbc51755100112aaecbc0b5f5fbdc07bc4aa311afb10bfe2436f5fa6824cfd1",
+        limit=150,
     )
-    assert response.likes[0].reactor.fid == 43
+    assert len(response.likes) > 50
 
 
 @pytest.mark.vcr
@@ -103,9 +104,10 @@ def test_get_cast_recasters(client: Warpcast) -> None:
         None
     """
     response = client.get_cast_recasters(
-        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
+        cast_hash="0xdbf9f2f37b806f2d613a8b20ea96597956a9c02e3a49abeb75c84e5a1f9bd5f9",
+        limit=100,
     )
-    assert response.users[0].username == "adrienne"
+    assert len(response.users) > 20
 
 
 @pytest.mark.vcr
@@ -120,8 +122,8 @@ def test_get_recent_casts(client: Warpcast) -> None:
     """
     response1 = client.get_recent_casts()
     assert len(response1.casts) == 100
-    response2 = client.get_recent_casts(limit=50)
-    assert len(response2.casts) == 50
+    response2 = client.get_recent_casts(limit=150)
+    assert len(response2.casts) == 150
 
 
 @pytest.mark.vcr
@@ -168,8 +170,8 @@ def test_get_followers(client: Warpcast) -> None:
     """
     response = client.get_followers(fid=50)
     assert len(response.users) == 25
-    response = client.get_followers(fid=50, limit=100)
-    assert len(response.users) == 100
+    response = client.get_followers(fid=50, limit=150)
+    assert len(response.users) == 150
 
 
 @pytest.mark.vcr
@@ -184,8 +186,8 @@ def test_get_following(client: Warpcast) -> None:
     """
     response = client.get_following(fid=50)
     assert len(response.users) == 25
-    response = client.get_following(fid=50, limit=100)
-    assert len(response.users) == 100
+    response = client.get_following(fid=3, limit=1000)
+    assert len(response.users) == 1000
 
 
 @pytest.mark.vcr
@@ -255,8 +257,8 @@ def test_get_user_cast_likes(client: Warpcast) -> None:
     """
     response = client.get_user_cast_likes(fid=50)
     assert len(response.likes) == 25
-    response = client.get_user_cast_likes(fid=50, limit=100)
-    assert len(response.likes) == 100
+    response = client.get_user_cast_likes(fid=50, limit=200)
+    assert len(response.likes) == 200
 
 
 @pytest.mark.vcr
@@ -302,9 +304,9 @@ def test_get_recent_users(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_recent_users()
-    assert len(response.users) == 25
-    assert response.users[0].fid > response.users[1].fid
+    response = client.get_recent_users(limit=200)
+    assert len(response.users) == 200
+    assert response.users[0].fid > response.users[101].fid
 
 
 @pytest.mark.vcr

@@ -13,8 +13,8 @@ def test_mention_reply_notifications(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_mention_and_reply_notifications(limit=10)
-    assert len(response.notifications) == 2
+    response = client.get_mention_and_reply_notifications(limit=150)
+    assert len(response.notifications) > 2
 
 
 @pytest.mark.vcr
@@ -27,7 +27,7 @@ def test_get_user_collections(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_user_collections(owner_fid=50)
+    response = client.get_user_collections(owner_fid=2, limit=101)
     assert len(response.collections) > 1
 
 
@@ -41,8 +41,8 @@ def test_get_collection_owners(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_collection_owners(collection_id="proof-of-merge")
-    assert len(response.users) > 1
+    response = client.get_collection_owners(collection_id="proof-of-merge", limit=10000)
+    assert len(response.users) > 101
 
 
 @pytest.mark.vcr
