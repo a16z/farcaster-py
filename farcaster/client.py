@@ -641,15 +641,21 @@ class Warpcast:
         Returns:
             IterableNotificationsResult: model containing notifications with an optional cursor
         """
-        response = MentionAndReplyNotificationsGetResponse(
-            **self._get(
+        notifications: List[Union[MentionNotification, ReplyNotification]] = []
+        while True:
+            response = self._get(
                 "mention-and-reply-notifications",
-                params={"cursor": cursor, "limit": limit},
+                params={"cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = MentionAndReplyNotificationsGetResponse(**response)
+            if response_model.result.notifications:
+                notifications.extend(response_model.result.notifications)
+            if not response_model.next or len(notifications) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableNotificationsResult(
-            notifications=response.result.notifications,
-            cursor=getattr(response.next, "cursor", None),
+            notifications=notifications[:limit],
+            cursor=getattr(response_model.next, "cursor", None),
         )
 
     def _recent_notifications_list(

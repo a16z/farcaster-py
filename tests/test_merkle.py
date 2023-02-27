@@ -13,8 +13,8 @@ def test_mention_reply_notifications(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_mention_and_reply_notifications(limit=10)
-    assert len(response.notifications) == 2
+    response = client.get_mention_and_reply_notifications(limit=150)
+    assert len(response.notifications) > 2
 
 
 @pytest.mark.vcr
