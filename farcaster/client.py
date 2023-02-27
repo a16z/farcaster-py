@@ -539,14 +539,20 @@ class Warpcast:
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = FollowingGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "following",
-                params={"fid": fid, "cursor": cursor, "limit": limit},
+                params={"fid": fid, "cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = FollowingGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_all_following(self, fid: Optional[int] = None) -> UsersResult:
