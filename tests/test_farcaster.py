@@ -87,9 +87,10 @@ def test_get_cast_likes(client: Warpcast) -> None:
         None
     """
     response = client.get_cast_likes(
-        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
+        cast_hash="0x5fbc51755100112aaecbc0b5f5fbdc07bc4aa311afb10bfe2436f5fa6824cfd1",
+        limit=150,
     )
-    assert response.likes[0].reactor.fid == 43
+    assert len(response.likes) > 50
 
 
 @pytest.mark.vcr

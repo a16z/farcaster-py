@@ -231,20 +231,29 @@ class Warpcast:
         Args:
             cast_hash (str): cast hash
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableReactionsResult: Model containing the likes with an optional cursor
         """
-
-        response = CastReactionsGetResponse(
-            **self._get(
+        likes: List[ApiCastReaction] = []
+        while True:
+            response = self._get(
                 "cast-likes",
-                params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+                params={
+                    "castHash": cast_hash,
+                    "cursor": cursor,
+                    "limit": min(limit, 100),
+                },
             )
-        )
+            response_model = CastReactionsGetResponse(**response)
+            if response_model.result.likes:
+                likes = response_model.result.likes
+            if not response_model.next or len(likes) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableReactionsResult(
-            likes=response.result.likes, cursor=getattr(response.next, "cursor", None)
+            likes=likes[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def like_cast(self, cast_hash: str) -> ReactionsPutResult:
