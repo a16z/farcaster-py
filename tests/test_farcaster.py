@@ -122,8 +122,8 @@ def test_get_recent_casts(client: Warpcast) -> None:
     """
     response1 = client.get_recent_casts()
     assert len(response1.casts) == 100
-    response2 = client.get_recent_casts(limit=50)
-    assert len(response2.casts) == 50
+    response2 = client.get_recent_casts(limit=150)
+    assert len(response2.casts) == 150
 
 
 @pytest.mark.vcr

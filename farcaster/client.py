@@ -984,14 +984,20 @@ class Warpcast:
         Returns:
             IterableCastsResult: model containing casts with an optional cursor
         """
-        response = CastsGetResponse(
-            **self._get(
+        casts: List[ApiCast] = []
+        while True:
+            response = self._get(
                 "recent-casts",
-                params={"cursor": cursor, "limit": limit},
+                params={"cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = CastsGetResponse(**response)
+            if response_model.result.casts:
+                casts.extend(response_model.result.casts)
+            if not response_model.next or len(casts) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableCastsResult(
-            casts=response.result.casts, cursor=getattr(response.next, "cursor", None)
+            casts=casts[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def _recent_casts_lists(
