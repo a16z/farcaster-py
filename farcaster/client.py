@@ -954,14 +954,20 @@ class Warpcast:
         Returns:
             IterableLikes: model containing likes with an optional cursor
         """
-        response = UserCastLikesGetResponse(
-            **self._get(
+        likes: List[ApiCastReaction] = []
+        while True:
+            response = self._get(
                 "user-cast-likes",
-                params={"fid": fid, "cursor": cursor, "limit": limit},
+                params={"fid": fid, "cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = UserCastLikesGetResponse(**response)
+            if response_model.result.likes:
+                likes.extend(response_model.result.likes)
+            if not response_model.next or len(likes) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableLikes(
-            likes=response.result.likes, cursor=getattr(response.next, "cursor", None)
+            likes=likes[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_recent_casts(

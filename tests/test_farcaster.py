@@ -257,8 +257,8 @@ def test_get_user_cast_likes(client: Warpcast) -> None:
     """
     response = client.get_user_cast_likes(fid=50)
     assert len(response.likes) == 25
-    response = client.get_user_cast_likes(fid=50, limit=100)
-    assert len(response.likes) == 100
+    response = client.get_user_cast_likes(fid=50, limit=200)
+    assert len(response.likes) == 200
 
 
 @pytest.mark.vcr
