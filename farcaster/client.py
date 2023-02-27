@@ -862,14 +862,20 @@ class Warpcast:
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = UsersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "recent-users",
-                params={"cursor": cursor, "limit": limit},
+                params={"cursor": cursor, "limit": min(limit, 100)},
             )
-        )
+            response_model = UsersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def _recent_users_list(

@@ -304,9 +304,9 @@ def test_get_recent_users(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_recent_users()
-    assert len(response.users) == 25
-    assert response.users[0].fid > response.users[1].fid
+    response = client.get_recent_users(limit=200)
+    assert len(response.users) == 200
+    assert response.users[0].fid > response.users[101].fid
 
 
 @pytest.mark.vcr
