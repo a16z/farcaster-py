@@ -41,8 +41,8 @@ def test_get_collection_owners(client: Warpcast) -> None:
     Returns:
         None
     """
-    response = client.get_collection_owners(collection_id="proof-of-merge")
-    assert len(response.users) > 1
+    response = client.get_collection_owners(collection_id="proof-of-merge", limit=10000)
+    assert len(response.users) > 101
 
 
 @pytest.mark.vcr

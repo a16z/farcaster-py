@@ -416,23 +416,29 @@ class Warpcast:
         Args:
             collection_id (str): OpenSea collection ID
             cursor (NoneStr, optional): cursor, defaults to None
-            limit (PositiveInt, optional): limit, defaults to 25
+            limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
             IterableUsersResult: model containing users with an optional cursor
         """
-        response = CollectionOwnersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "collection-owners",
                 params={
                     "collectionId": collection_id,
                     "cursor": cursor,
-                    "limit": limit,
+                    "limit": min(limit, 100),
                 },
             )
-        )
+            response_model = CollectionOwnersGetResponse(**response)
+            if response_model.result.users:
+                users += response_model.result.users
+            if not response_model.next or len(users) >= limit:
+                break
+            cursor = response_model.next.cursor
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users[:limit], cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_followers(
