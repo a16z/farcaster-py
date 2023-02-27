@@ -104,9 +104,10 @@ def test_get_cast_recasters(client: Warpcast) -> None:
         None
     """
     response = client.get_cast_recasters(
-        "0x321712dc8eccc5d2be38e38c1ef0c8916c49949a80ffe20ec5752bb23ea4d86f"
+        cast_hash="0xdbf9f2f37b806f2d613a8b20ea96597956a9c02e3a49abeb75c84e5a1f9bd5f9",
+        limit=100,
     )
-    assert response.users[0].username == "adrienne"
+    assert len(response.users) > 20
 
 
 @pytest.mark.vcr

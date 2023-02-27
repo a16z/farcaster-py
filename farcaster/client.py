@@ -304,14 +304,23 @@ class Warpcast:
         Returns:
             IterableUsersResult: Model containing the recasters with an optional cursor
         """
-        response = CastRecastersGetResponse(
-            **self._get(
+        users: List[ApiUser] = []
+        while True:
+            response = self._get(
                 "cast-recasters",
-                params={"castHash": cast_hash, "cursor": cursor, "limit": limit},
+                params={
+                    "castHash": cast_hash,
+                    "cursor": cursor,
+                    "limit": min(limit, 100),
+                },
             )
-        )
+            response_model = CastRecastersGetResponse(**response)
+            if response_model.result.users:
+                users.extend(response_model.result.users)
+            if not response_model.next or len(users) >= limit:
+                break
         return IterableUsersResult(
-            users=response.result.users, cursor=getattr(response.next, "cursor", None)
+            users=users, cursor=getattr(response_model.next, "cursor", None)
         )
 
     def get_cast(
