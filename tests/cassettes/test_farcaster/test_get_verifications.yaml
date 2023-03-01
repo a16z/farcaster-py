@@ -26,7 +26,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 79a8b69f7c313338-EWR
+      - 7a12fef20ca78e9c-DEN
       Connection:
       - keep-alive
       Content-Encoding:
@@ -34,11 +34,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 16 Feb 2023 19:33:09 GMT
+      - Wed, 01 Mar 2023 17:07:22 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=T%2Fww800JVSwI26O%2FOEli5h4QRFhfkIB75B3NgwSa2XzdrUHR2Hiwj%2BlPp%2BT1LcNRMA622SXJf0tV9N1r6IpCP82EwIWP5tRiShrA07I6Iw%2B4IRSKGRb4E1kAiaVHO06kviFRiuh%2BUuTEaSC6kHE%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=8v4DFTfvXFu8i7WnjaHzmTPQblPvOgiYFPKvlrkWod1N9PL%2B2W8%2B4Gn5ihrP9FdfUXVeuQ%2BbpqDugoc5AlTh4ZmyF7w9IMSVU1fnucSDnZmww0H5ouKfmCAueMm03CJ999c%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -78,11 +78,11 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-ratelimit-limit:
-      - '1000'
+      - '500'
       x-ratelimit-remaining:
-      - '993'
+      - '489'
       x-ratelimit-reset:
-      - '54'
+      - '2'
       x-xss-protection:
       - '0'
     status:
