@@ -200,7 +200,6 @@ class ApiRecaster(BaseModel):
     fid: PositiveInt
     username: NoneStr = None
     display_name: NoneStr
-    recast_hash: str
 
 
 class Ancestors(BaseModel):

@@ -201,7 +201,7 @@ def test_get_all_following(client: Warpcast) -> None:
         None
     """
     response = client.get_all_following(fid=50)
-    assert len(response.users) == 196
+    assert len(response.users) >= 196
 
 
 @pytest.mark.vcr

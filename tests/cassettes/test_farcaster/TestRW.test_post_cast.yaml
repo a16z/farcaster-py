@@ -18,27 +18,27 @@ interactions:
     uri: https://api.warpcast.com/v2/casts
   response:
     body:
-      string: '{"result":{"cast":{"hash":"0xb0dafd3d0470f1a3d60998fec8fb8cc496ec787daa2dc7caebb2c6abc42ed09c","threadHash":"0xb0dafd3d0470f1a3d60998fec8fb8cc496ec787daa2dc7caebb2c6abc42ed09c","author":{"fid":8302,"username":"apitest","displayName":"API
+      string: '{"result":{"cast":{"hash":"0xab1e87dc4a4c50adfafe6bab1d0f37a4227cc9add46c0c9ce5d605323da38ffa","_hashV2":"0x1f3d21a2b5ed2acf2c213d792c400813809ea9b5","threadHash":"0xab1e87dc4a4c50adfafe6bab1d0f37a4227cc9add46c0c9ce5d605323da38ffa","_threadHashV2":"0x1f3d21a2b5ed2acf2c213d792c400813809ea9b5","author":{"fid":8302,"username":"apitest","displayName":"API
         Test","pfp":{"url":"https://i.imgur.com/zketOEu.png","verified":false},"profile":{"bio":{"text":"I''m
-        a fren","mentions":[]}},"followerCount":32,"followingCount":0},"text":"Hello
-        world from our WIP Farcaster Python SDK!","timestamp":1676575992332,"replies":{"count":0},"reactions":{"count":0},"recasts":{"count":0,"recasters":[]},"watches":{"count":0},"viewerContext":{"reacted":false,"recast":false,"watched":false}}}}'
+        a fren","mentions":[]},"location":{"placeId":"","description":""}},"followerCount":33,"followingCount":0},"text":"Hello
+        world from our WIP Farcaster Python SDK!","timestamp":1677690443933,"replies":{"count":0},"reactions":{"count":0},"recasts":{"count":0,"recasters":[]},"watches":{"count":0},"viewerContext":{"reacted":false,"recast":false,"watched":false}}}}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 79a8b6afe8221774-EWR
+      - 7a12fefa49c11f26-DEN
       Connection:
       - keep-alive
       Content-Length:
-      - '656'
+      - '815'
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Thu, 16 Feb 2023 19:33:12 GMT
+      - Wed, 01 Mar 2023 17:07:24 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vncZFfFlWHvDUete3Y5ufaYDLWAQddgcQgT2x2t3qXh771UHuW3SrovpdR3cvVMraHV20TcZaydqlpZt1erfdHoEWb4M8q01m0Rox53AHA3egfmLfhKpsV6fWs5jqRRNoJAI%2FuZ2gGyTiCRzdB8%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Pqvcn764Sk0kiZ5nNoXY86e%2Fdi%2F20p1Ab2Iep4STMC6qYY3k43I6REdwAv7MnxMBUmYFoN3Tnp4kkrGSlg486v5kh%2F4DfAMkiMm6SDQr6WpxRgBRJqUM80%2BE5RWVVNXda6Y%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       access-control-expose-headers:
@@ -56,7 +56,7 @@ interactions:
       cross-origin-resource-policy:
       - same-origin
       etag:
-      - W/"p8s1fd"
+      - W/"1azawf0"
       origin-agent-cluster:
       - ?1
       referrer-policy:
@@ -76,11 +76,11 @@ interactions:
       x-permitted-cross-domain-policies:
       - none
       x-ratelimit-limit:
-      - '1000'
+      - '500'
       x-ratelimit-remaining:
-      - '987'
+      - '493'
       x-ratelimit-reset:
-      - '50'
+      - '3'
       x-xss-protection:
       - '0'
     status:
