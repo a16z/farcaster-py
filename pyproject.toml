@@ -39,6 +39,7 @@ pyhumps = "^3.7.2"
 requests = "^2.28.1"
 canonicaljson = "^1.6.4"
 eth-account = "^0.8.0"
+parsimonious = "^0.8.1"
 
 [tool.poetry.group.dev.dependencies]
 bandit = "^1.7.1"
