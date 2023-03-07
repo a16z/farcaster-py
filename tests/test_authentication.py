@@ -12,7 +12,6 @@ from farcaster.models import *
 # custom class to be the mock return value
 # will override the requests.Response returned from requests.get
 class MockResponse:
-
     # mock json() method always returns a specific testing dictionary
     @staticmethod
     def json():
@@ -20,7 +19,6 @@ class MockResponse:
 
 
 class MockResponsePut:
-
     # mock json() method always returns a specific testing dictionary
     @staticmethod
     def json():
