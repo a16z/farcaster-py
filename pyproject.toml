@@ -37,7 +37,7 @@ python-dotenv = "^0.21.0"
 pydantic = "^1.9.2"
 pyhumps = "^3.7.2"
 requests = "^2.28.1"
-canonicaljson = "^1.6.4"
+canonicaljson = ">=1.6.4,<3.0.0"
 eth-account = "^0.8.0"
 parsimonious = "^0.8.1"
 
