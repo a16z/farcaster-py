@@ -177,7 +177,7 @@ class ApiCastReaction(BaseModel):
     hash: str
     reactor: ApiUser
     timestamp: PositiveInt
-    cast_hash: str = Field(..., regex=r"^0[xX][0-9a-fA-F]{64}|[0-9a-fA-F]{40}$")
+    cast_hash: str = Field(..., regex=r"^0x[0-9a-fA-F]{40}$")
 
 
 class ApiNewCollection(BaseModel):
