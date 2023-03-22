@@ -224,13 +224,13 @@ files = [
 
 [[package]]
 name = "cairocffi"
-version = "1.4.0"
+version = "1.5.0"
 description = "cffi-based cairo bindings for Python"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "cairocffi-1.4.0.tar.gz", hash = "sha256:509339b32ccd8d7b00c2204c32736cde78db53a32e6a162d312478d25626cd9a"},
+    {file = "cairocffi-1.5.0.tar.gz", hash = "sha256:d105b49009d9b4970a459e38ff030cb5dfc8c8ee231e867d28f77ee9df44495e"},
 ]
 
 [package.dependencies]
