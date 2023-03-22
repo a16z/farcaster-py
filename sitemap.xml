@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://a16z.github.io/farcaster-py/</loc>
-         <lastmod>2023-03-15</lastmod>
+         <lastmod>2023-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://a16z.github.io/farcaster-py/reference/</loc>
-         <lastmod>2023-03-15</lastmod>
+         <lastmod>2023-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
