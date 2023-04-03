@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "farcaster"
-version = "0.7.5"
+version = "0.7.6"
 description = "farcaster-py is a Python SDK for the Farcaster Protocol"
 readme = "README.md"
 authors = ["Andreessen Horowitz <crypto-engineering@a16z.com>"]
@@ -31,7 +31,7 @@ classifiers = [  #! Update me
 ]
 
 [tool.poetry.dependencies]
-python = ">3.7.1,<4.0.0"
+python = ">3.7.1,<3.11"
 importlib_metadata = {version = "^4.5.0", python = "<3.8"}
 python-dotenv = "^0.21.0"
 pydantic = "^1.9.2"
