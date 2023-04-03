@@ -18,70 +18,70 @@ interactions:
     uri: https://api.warpcast.com/v2/casts
   response:
     body:
-      string: '{"result":{"cast":{"hash":"0xab1e87dc4a4c50adfafe6bab1d0f37a4227cc9add46c0c9ce5d605323da38ffa","_hashV2":"0x1f3d21a2b5ed2acf2c213d792c400813809ea9b5","threadHash":"0xab1e87dc4a4c50adfafe6bab1d0f37a4227cc9add46c0c9ce5d605323da38ffa","_threadHashV2":"0x1f3d21a2b5ed2acf2c213d792c400813809ea9b5","author":{"fid":8302,"username":"apitest","displayName":"API
+      string: '{"result":{"cast":{"hash":"0xca901cc238bc52c561b0f747d2592298c93afbd5","_hashV1":"0xd520f2536b1bc17b87af7802bf686cc01fefa51bee96ffd9086eca6804a73115","_hashV2":"0xca901cc238bc52c561b0f747d2592298c93afbd5","threadHash":"0xca901cc238bc52c561b0f747d2592298c93afbd5","_threadHashV1":"0xd520f2536b1bc17b87af7802bf686cc01fefa51bee96ffd9086eca6804a73115","_threadHashV2":"0xca901cc238bc52c561b0f747d2592298c93afbd5","author":{"fid":8302,"username":"apitest","displayName":"API
         Test","pfp":{"url":"https://i.imgur.com/zketOEu.png","verified":false},"profile":{"bio":{"text":"I''m
-        a fren","mentions":[]},"location":{"placeId":"","description":""}},"followerCount":33,"followingCount":0},"text":"Hello
-        world from our WIP Farcaster Python SDK!","timestamp":1677690443933,"replies":{"count":0},"reactions":{"count":0},"recasts":{"count":0,"recasters":[]},"watches":{"count":0},"viewerContext":{"reacted":false,"recast":false,"watched":false}}}}'
+        a fren","mentions":[]},"location":{"placeId":"","description":""}},"followerCount":39,"followingCount":1},"text":"Hello
+        world from our WIP Farcaster Python SDK!","timestamp":1680539369000,"replies":{"count":0},"reactions":{"count":0},"recasts":{"count":0,"recasters":[]},"watches":{"count":0},"viewerContext":{"reacted":false,"recast":false,"watched":false}}}}'
     headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7a12fefa49c11f26-DEN
+      - 7b22b0ce5d7643ab-EWR
       Connection:
       - keep-alive
       Content-Length:
-      - '815'
-      Content-Type:
-      - application/json; charset=utf-8
-      Date:
-      - Wed, 01 Mar 2023 17:07:24 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Pqvcn764Sk0kiZ5nNoXY86e%2Fdi%2F20p1Ab2Iep4STMC6qYY3k43I6REdwAv7MnxMBUmYFoN3Tnp4kkrGSlg486v5kh%2F4DfAMkiMm6SDQr6WpxRgBRJqUM80%2BE5RWVVNXda6Y%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      access-control-expose-headers:
-      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-      content-security-policy:
+      - '931'
+      Content-Security-Policy:
       - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
         ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
         ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
-      cross-origin-embedder-policy:
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Embedder-Policy:
       - require-corp
-      cross-origin-opener-policy:
+      Cross-Origin-Opener-Policy:
       - same-origin
-      cross-origin-resource-policy:
+      Cross-Origin-Resource-Policy:
       - same-origin
-      etag:
-      - W/"1azawf0"
-      origin-agent-cluster:
+      Date:
+      - Mon, 03 Apr 2023 16:29:28 GMT
+      Etag:
+      - W/"ddbnd3"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
       - ?1
-      referrer-policy:
+      Referrer-Policy:
       - no-referrer
-      strict-transport-security:
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PQ04XCksxp0rGKrRPUDhPQ91aBQfAxHAuZ9YDo6ZtLIP%2F5EaGIylVX8p3JpGt0P5%2FSFJ6GgECjFYLIm7CBNYT23Nk7J0n8BKO5Ll3AqOY0ErIPeHQV%2F64j%2BUL1Wik3jdoCc%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
       - max-age=15552000; includeSubDomains
-      vary:
+      Vary:
       - Origin
-      x-content-type-options:
+      X-Content-Type-Options:
       - nosniff
-      x-dns-prefetch-control:
+      X-Dns-Prefetch-Control:
       - 'off'
-      x-download-options:
+      X-Download-Options:
       - noopen
-      x-frame-options:
+      X-Frame-Options:
       - SAMEORIGIN
-      x-permitted-cross-domain-policies:
+      X-Permitted-Cross-Domain-Policies:
       - none
-      x-ratelimit-limit:
-      - '500'
-      x-ratelimit-remaining:
-      - '493'
-      x-ratelimit-reset:
-      - '3'
-      x-xss-protection:
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2493'
+      X-Ratelimit-Reset:
+      - '5'
+      X-Xss-Protection:
       - '0'
     status:
       code: 201

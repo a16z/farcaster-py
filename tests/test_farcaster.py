@@ -512,6 +512,7 @@ class TestRW:
         Returns:
             None
         """
+        assert self.__class__.cast_hash
         response = client.recast(self.__class__.cast_hash)
         assert response.cast_hash
 
