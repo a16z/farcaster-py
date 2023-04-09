@@ -148,7 +148,7 @@ class Warpcast:
         Returns:
             bool: Status of the API
         """
-        response = self.session.get("https://api.farcaster.xyz/healthcheck")
+        response = self.session.get("https://api.warpcast.com/healthcheck")
         return response.ok
 
     def get_asset(self, token_id: int) -> AssetResult:
@@ -200,7 +200,7 @@ class Warpcast:
         header = self.generate_custody_auth_header(auth_params)
         body = AuthPutRequest(params=auth_params)
         response = requests.put(
-            "https://api.farcaster.xyz/v2/auth",
+            self.config.base_path + "auth",
             json=body.dict(by_alias=True, exclude_none=True),
             headers={"Authorization": header},
         ).json()
