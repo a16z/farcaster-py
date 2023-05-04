@@ -1065,22 +1065,19 @@ typing-extensions = {version = ">=3.7.4.3", markers = "python_version < \"3.8\""
 
 [[package]]
 name = "griffe"
-version = "0.27.1"
+version = "0.27.2"
 description = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "griffe-0.27.1-py3-none-any.whl", hash = "sha256:867008786a17532ec529cbf58cee7c4f131b85d61f38691c2046b1883f7be253"},
-    {file = "griffe-0.27.1.tar.gz", hash = "sha256:f213e87f99bf3b76d2d4da999d5a38c2ec01b9a6ce3660c5ab52b663d785edba"},
+    {file = "griffe-0.27.2-py3-none-any.whl", hash = "sha256:8d6bc40e7bede3fb5879598c1f71b8902d245804ab59ae55516f864b2bdc25c6"},
+    {file = "griffe-0.27.2.tar.gz", hash = "sha256:833990074c8c0b323a55f37f72265fdd841cb0a756122303505bf4bc80800e82"},
 ]
 
 [package.dependencies]
 cached-property = {version = "*", markers = "python_version < \"3.8\""}
 colorama = ">=0.4"
-
-[package.extras]
-async = ["aiofiles (>=0.7,<1.0)"]
 
 [[package]]
 name = "hexbytes"
