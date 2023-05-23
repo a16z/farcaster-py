@@ -13,33 +13,24 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.30.0
     method: GET
     uri: https://api.warpcast.com/v2/mention-and-reply-notifications?limit=100
   response:
     body:
       string: !!binary |
-        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
+        H4sIAAAAAAAAA+xV227cNhD9FXXeAmjXWt1Xb4mdW9t17naSJjBmqZGWNZdUyNmroX8PuBcnroMC
+        KfpU9IngGXBmzpwz0g1YcgvFUN2ANiwbKZCl0Q6qP26ANx1BBQIdDyx1agMhyBoqiNblOE1irMsy
+        xxjzMs3HVCZ1kRIJikd5UdZJPKWmgBBYzskxzjuoRnmR5qNxVJajPA4BBRvrSzc+axqXeQgLR1bj
+        3Nft5JoUhFBL1yncnO/RpdSCNEMIXdP5xwuroIIZc+eqkxM1S4atMa0in0kYzaR5KMz85HJx8e7x
+        trmyyZd2m4gmnfP1++535Gx7/nG6/u1PczF4qOpVc/qqHFx9yDbN5RsxefQYVbecXrQdp8zv7WL9
+        9mz8dDIuk8G7Xx9tJ1JlT1+/ejL68vEKJx8ghCVZ2UiqoWpQOepD6KxppCLf61QafzCt+UhwhuJ6
+        uN5sg0Fwe19vtkMmRa3F+Sf9Sb9UhI6Cs0kwp8Do4O0hFkjtmLAOTBM40rXUbYDBmbQkODhFx0H1
+        AEKYkz6K+rkPQZm9yL6TTqGg515TP2hywspuHwPo+xAao5RZkT01C81QZUV0xKRuD2CRZDst5ZJe
+        6CfinHhl7DVUbBee/kEDX807yZ8zdLOfttHMEtbPji+jmIq8KaOIMJliOsYiS0Z1FolpkjXFOBPj
+        gupRSd4naEnzP3/5cMGz73xaJlF8x6fYSSbH95z6Df+hU1doOz+QnTlxiYx22On25yz0r6qbxvfF
+        jX4o7bEvvDua/1f4v7nCB7KXZhUGkgMfc8Pg1OjWIrtf/vYj738cktxu/Q+W6j3qq+0I/QX3K3EH
+        PYJkj+xXyGJ2L+VS0o6l3nd7s69xq+Ixze11n+VW5L7vP/f9VwAAAP//AwDaSy3QEQcAAA==
     headers:
       Access-Control-Expose-Headers:
       - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
@@ -48,7 +39,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7b22b0d32e84c481-EWR
+      - 7cc0ee3548c12ebf-LAX
       Connection:
       - keep-alive
       Content-Encoding:
@@ -66,9 +57,9 @@ interactions:
       Cross-Origin-Resource-Policy:
       - same-origin
       Date:
-      - Mon, 03 Apr 2023 16:29:29 GMT
+      - Tue, 23 May 2023 23:03:08 GMT
       Etag:
-      - W/"gws677"
+      - W/"jhbwj2"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Origin-Agent-Cluster:
@@ -76,7 +67,7 @@ interactions:
       Referrer-Policy:
       - no-referrer
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=NthwClI3qBdws1o5TZp3qVfB0zFnzat7UvkENzdJXnQsk1ME06i%2BtIrIafXNAzRo0NibsbTy0nDfwN68IdNgAq78H5N9K3Q7U38kyoBlq%2FuNZiC7zYohIH6yeT2XWkyY8qM%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=JB6vmI7XJjsHWPHJJP%2Fbm1Udo%2BhpB1J%2BU%2BV23heJk3Dkp3ThA1ArU9uR9mAp7UkpFpOrNHdbhVI2DszprujtM7%2FDNH5%2BrGjktm73USfUza4BWECZ8d6J3UFGw4NXjovKoc0%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -98,9 +89,9 @@ interactions:
       X-Ratelimit-Limit:
       - '2500'
       X-Ratelimit-Remaining:
-      - '2486'
+      - '2498'
       X-Ratelimit-Reset:
-      - '4'
+      - '9'
       X-Xss-Protection:
       - '0'
     status:

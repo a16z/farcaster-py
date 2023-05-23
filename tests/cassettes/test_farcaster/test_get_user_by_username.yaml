@@ -13,20 +13,21 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.30.0
     method: GET
     uri: https://api.warpcast.com/v2/user-by-username?username=mason
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA0SQb2/aMBDGv4p1rz0IpEDrVxsgDehK6dAosE6V41yCVcdObSchoHz3KdB1r073
-        u+ee+3MGi65QHtgZCoe2jYmMgQ0CegGaZwgMMu6MBgqxdLni9fJKH1pKZlwpoJAn+cXFKmBw8D53
-        rNtVh7CTGpMqbM2E0R617wiTdaej0f5hNd5qgb3qsVcvNuvl6Ukco0E1DoPD/nZbLBexr0W4Gc/L
-        x2MV1UERnJ5H+r0s7ufZrPix+r6Ps2G47/fd4uDmr0Go7qW4Oa2nERZfnt/XQKFEKxOJMTBvC2wo
-        5NYkUmG7aiRNGzwePTDgveGJCFvn3lCSWywJ6lRqREu+kkiZrTWFR6J45CiZGO1Qu9p1XvSLDo6X
-        T8w6vpLeowUKGWovjXbAfv9pKCgjeJu383LFBc5jYDA5zBePVfoaDDeryrz93JWD8OaJrya3aftr
-        dMLK/NoGS6zIztg3SpY7Sn6tv0HTUEiMUqZCOzGF9sCGd4N/TOr0A/Z7IwqlxItMX689/1cBS7hy
-        +OkVj+tPJLheo46n0qLwE+68+yg1TdP8BQAA//8DAMCbQ+U8AgAA
+        H4sIAAAAAAAAA0SQXW/aMBSG/0p0rj0IhI8qVxugDega6KJRoK0qxzkJFo6d2k5CQPnvU6Dtro7O
+        I73n47mARlMIC/4FCoO6rQmPwR+65AokzRB8yKhREgjE3OSC1sGNPrTUmVMhgECe5NcpWoAPB2tz
+        43e74uB1UqVSge0wpqRFaTtMZd3ZeLx/WE+2kmGvWvXq5SYMzo/sFA2riece9nfbIljGtmbeZrIo
+        V6cqqt3CPT+N5XtZ3C+yefF7/WsfZyNv3++b5cEs3lxP3HM2OIezCItvT+8hEChR84RjDH5ChcGG
+        QK5VwgW2t0ZctcXiyYIPtDc6O0zXuVXEyTWWDsqUS0TtfHciobZaFRYdQSNDnKmSBqWpTedFvkj3
+        dFUx79iKW4saCGQoLVfSgP/82hAQitG2b/flgjJcxODD9LBYrqr0zR1t1pU6/tmVQ2/wSNfTu7SV
+        jYZpnt9iEGDl7JQ+EifYEedv+AOahkCihFAV6qkqpAV/NBh+Mi7TD9gf9AhQZnmJK/mTBWgrpY/g
+        W10ggZLjNS9vGi7/4x/OvpbEk/oLMSpDlPGMa2R2So01n4YbAkwJgez6/qqSrfzn16b5BwAA//8D
+        ALCr6BlsAgAA
     headers:
       Access-Control-Expose-Headers:
       - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
@@ -35,7 +36,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7b22b0c5ccbd4386-EWR
+      - 7cc0ee1399381032-LAX
       Connection:
       - keep-alive
       Content-Encoding:
@@ -53,9 +54,9 @@ interactions:
       Cross-Origin-Resource-Policy:
       - same-origin
       Date:
-      - Mon, 03 Apr 2023 16:29:27 GMT
+      - Tue, 23 May 2023 23:03:03 GMT
       Etag:
-      - W/"90uqfw"
+      - W/"mo6j0v"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Origin-Agent-Cluster:
@@ -63,7 +64,7 @@ interactions:
       Referrer-Policy:
       - no-referrer
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2B9Nt4eumQkPDaBnaIR8jGh6tZjKfuNIsI6ATHyIHkONlM47ZCAi6NguhFOMTVDe51F3FlQ539ANJCMSJ5T8nUFrsT%2FXoZSTrbj66woLvDhng7gv2d9%2Bd8tZ7l0V%2FyDAMTBE%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OjC0b7a74%2FrCx3RK3zlYRz3F4hObgBsITPn7xMltrKx%2B5rU88PMBdgmAdHDMnZi27BidIw%2BNaetGTbhzaR%2F2fmYyQBgsvF5pFSTkvmcKJQYrL1MdGIox53R04Ej46FeOSZI%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -85,9 +86,9 @@ interactions:
       X-Ratelimit-Limit:
       - '2500'
       X-Ratelimit-Remaining:
-      - '2497'
+      - '2499'
       X-Ratelimit-Reset:
-      - '9'
+      - '10'
       X-Xss-Protection:
       - '0'
     status:

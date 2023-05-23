@@ -26,7 +26,7 @@ First, save your Farcaster mnemonic or private key to a `.env` file. Now you can
 ```python
 import os
 from farcaster import Warpcast
-from dotenv import load_dotenv
+from dotenv import load_dotenv # can be installed with `pip install python-dotenv`
 
 load_dotenv()
 

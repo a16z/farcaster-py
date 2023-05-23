@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"castHash": "0xca901cc238bc52c561b0f747d2592298c93afbd5"}'
+    body: '{"castHash": "0x74031a19e3c2a5acd34c8f54dd9e7b2b3e0f87a7"}'
     headers:
       Accept:
       - '*/*'
@@ -13,7 +13,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.30.0
     method: DELETE
     uri: https://api.warpcast.com/v2/cast-likes
   response:
@@ -27,7 +27,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7b22b0d03d10c439-EWR
+      - 7cc0ee307ed77e92-LAX
       Connection:
       - keep-alive
       Content-Length:
@@ -45,7 +45,7 @@ interactions:
       Cross-Origin-Resource-Policy:
       - same-origin
       Date:
-      - Mon, 03 Apr 2023 16:29:29 GMT
+      - Tue, 23 May 2023 23:03:07 GMT
       Etag:
       - W/"1z12wlh"
       NEL:
@@ -55,7 +55,7 @@ interactions:
       Referrer-Policy:
       - no-referrer
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=JUCdtGrZ84P1h0qNqnmde9FFyi8Csg%2FzUNS1Q7Dlb7mGYtUlPs%2BnaCYHq3DLDEG88IgWzF%2Bimz6AlIlgV98jblcBib4wCBS2YZ6LTfvip2PIPtYvAjqr80Z1zcrKu3oGIeg%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=b9XUzk%2FAAEhnaI4Cso90SFEpx%2FFFAZ8Drg6SGczeQ3Usr9Zw7xX4GwX6TxhDtB9M9FkSj0n1Wd2qYRoIGWHcUT8GlzJwu7dXcrlCb9wyY3iLSFkHCIrKPrMTUsFWo0R6kuA%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -75,9 +75,9 @@ interactions:
       X-Ratelimit-Limit:
       - '2500'
       X-Ratelimit-Remaining:
-      - '2495'
+      - '2499'
       X-Ratelimit-Reset:
-      - '6'
+      - '10'
       X-Xss-Protection:
       - '0'
     status:

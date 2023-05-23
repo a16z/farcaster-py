@@ -429,7 +429,7 @@ def test_stream_notifications(client: Warpcast) -> None:
             break
         notifications.append(notification)
 
-    assert len(notifications) == 2
+    assert len(notifications) == 1
 
 
 @pytest.mark.vcr

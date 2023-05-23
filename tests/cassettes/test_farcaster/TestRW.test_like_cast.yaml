@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"castHash": "0xca901cc238bc52c561b0f747d2592298c93afbd5"}'
+    body: '{"castHash": "0x74031a19e3c2a5acd34c8f54dd9e7b2b3e0f87a7"}'
     headers:
       Accept:
       - '*/*'
@@ -13,21 +13,19 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.28.2
+      - python-requests/2.30.0
     method: PUT
     uri: https://api.warpcast.com/v2/cast-likes
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA5RSy44UMQz8lZUvXFozeUzSSd8AITEX4IC4IIQSx96Ntl/qziw7jPrfUc9jVxz3
-        FLlcZZcdn2Ci+dAWaE7Q5kda33IcCZpLWMFDmB+gAfFso8ZktLMpaKprsohWORKhZmkYIwmtiQJC
-        Bb9X0Q95lrnkKSoSEQXW0XjphUkUNRGHHQrHQdXMNu5cMiIaNprVDj0TJyWMrl/Kqbe6mChgGaZ1
-        JM4JGqeFquAw09SHbp0wjLnQXKCClOexDccvF/z9t/3d90ti5HHVH6YWGngoZZyb7TZvcnd/mDY4
-        dNu/j1S+fjpsxv4eKniiKXOmBA2HdqalgnEaOLfnvcY8nNdLzwUa2L/r7sIdT9RDBR31JQ/9DM3P
-        X0sF7YBhjVf62AakfYIGVp8045THSw5gWSrgoW2HPzR9HA59gUb7G5T7+ysmK3jKdOb0l+6nV87V
-        6kuh9OF4c79UUHJHcwndCI20ThjttfVCiAowzOXz7TYweCERlXYRjUJjZRRc7+qkjFfKO/Q6cExm
-        /cyb8HofySjBymgbZURZR1cHrp1Qka2ziEIycTAyEnnLnLxwljBYJ3ah1lL+X1K9zc2yLP8AAAD/
-        /wMAnsSJ1gEDAAA=
+        H4sIAAAAAAAAA1xRy47bMAz8lzkLG/mRRNaxBYruZfcDih5oidoIK1uCpCQbBP73wnm0QE8EhzMk
+        h7wiczmGCn1F8J+8xnpJDH1PBQ5UDtCQX+RaHnZsqNkpa8ZO7Rx3jTLSjsPgmq6nluSothDITKbG
+        vDZz3kKrTrYCx8J5pmntTclXLhUC1pcU6PL2P55cWuXHHKBxqDUVvdmcKSdDpb6YOG3oRJXyS5o/
+        IHDi7J1nC+0oFF4EUo7Oh5uh0cebL/6q0IDAxHP1cS7Qv34vAiEaWvOVlAIZfrV3nuVisk/3GrAs
+        Ai6GEM+cv8fjXKH79gn5+eOBSQEy1Z/4ff5h3rieY/587CVw8nxTz/dtrv/UfymPEfbb5elmEah+
+        4lJpStDNTvVKtYPaSykF1oP8fD5p38uuoWbgzrS0JWO73ii37a0deD+2Y8fSqT3tsSzLHwAAAP//
+        AwCXG+0h/AEAAA==
     headers:
       Access-Control-Expose-Headers:
       - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
@@ -36,7 +34,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7b22b0cf89890cbe-EWR
+      - 7cc0ee2f3cd17d0a-LAX
       Connection:
       - keep-alive
       Content-Encoding:
@@ -54,9 +52,9 @@ interactions:
       Cross-Origin-Resource-Policy:
       - same-origin
       Date:
-      - Mon, 03 Apr 2023 16:29:28 GMT
+      - Tue, 23 May 2023 23:03:07 GMT
       Etag:
-      - W/"19yc8n7"
+      - W/"1eom7d0"
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Origin-Agent-Cluster:
@@ -64,7 +62,7 @@ interactions:
       Referrer-Policy:
       - no-referrer
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tL2yXB1ocu4XYhVoIixNcjk1wDunZPRTtVuWqqDder9MRCxHMaWXo9mzFEO7NJxLvaF6MPR7nqMyH0aOgwctqYm1AB%2FLa1eKjHfn4B%2FBzJlulOi4TO5UnyAcTzg1M%2B%2BfGoE%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Dgj0%2FNSH4utzlRYXSYV%2F1Ys63%2BVKRZ0DormkEMBTl6rFKbSVLUdmvAh13oSnxXSsj1ZWvoDLghq21%2FEt3jJkHFh4fvg2D2wG%2FXyS%2BbzFXtTD1wfuO8GNtPLTFHkHZ17Q%2F1E%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -86,7 +84,7 @@ interactions:
       X-Ratelimit-Limit:
       - '2500'
       X-Ratelimit-Remaining:
-      - '2494'
+      - '2498'
       X-Ratelimit-Reset:
       - '7'
       X-Xss-Protection:
