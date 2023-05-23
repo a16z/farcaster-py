@@ -229,11 +229,18 @@ class ViewerContext2(BaseModel):
     watched: Optional[bool] = None
 
 
+class ParentSource(BaseModel):
+    type: str
+    url: str
+
+
 class ApiCast(BaseModel):
     hash: str
     thread_hash: NoneStr
     parent_hash: NoneStr
     author: ApiUser
+    parent_author: Optional[ApiUser] = None
+    parent_source: Optional[ParentSource] = None
     text: str
     timestamp: PositiveInt
     mentions: Optional[List[ApiUser]] = None
