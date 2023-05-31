@@ -229,10 +229,10 @@ class ViewerContext2(BaseModel):
     watched: Optional[bool] = None
 
 
-
 class ParentSource(BaseModel):
     type: str
     url: str
+
 
 class ApiCastUrlEmbed(BaseModel):
     type: str
