@@ -229,9 +229,35 @@ class ViewerContext2(BaseModel):
     watched: Optional[bool] = None
 
 
+
 class ParentSource(BaseModel):
     type: str
     url: str
+
+class ApiCastUrlEmbed(BaseModel):
+    type: str
+    open_graph: ApiOpenGraphMetadata
+    user: Optional[ApiUser]
+    asset: Optional[ApiAsset]
+    collection: Optional[ApiAssetCollection]
+
+
+class ApiCastImageEmbed(BaseModel):
+    type: str
+    url: str
+    sourceUrl: str
+    alt: str
+
+
+class ApiCastUnknownEmbed(BaseModel):
+    type: str
+    source: str
+
+
+class ApiCastEmbeds(BaseModel):
+    images: List[ApiCastImageEmbed]
+    urls: List[ApiCastUrlEmbed]
+    unknowns: List[ApiCastUnknownEmbed]
 
 
 class ApiCast(BaseModel):
@@ -245,6 +271,7 @@ class ApiCast(BaseModel):
     timestamp: PositiveInt
     mentions: Optional[List[ApiUser]] = None
     attachments: Optional[ApiCastAttachments] = None
+    embeds: Optional[ApiCastEmbeds] = None
     ancestors: Optional[Ancestors] = None
     replies: Replies
     reactions: Reactions
