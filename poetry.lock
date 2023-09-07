@@ -236,12 +236,13 @@ files = [
 
 [[package]]
 name = "cairocffi"
-version = "1.5.1"
+version = "1.6.1"
 description = "cffi-based cairo bindings for Python"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "cairocffi-1.5.1.tar.gz", hash = "sha256:071ab7b72e3533300b0bfd55a52056b4ffdc1ed6e656779e2aced9b709b8a295"},
+    {file = "cairocffi-1.6.1-py3-none-any.whl", hash = "sha256:aa78ee52b9069d7475eeac457389b6275aa92111895d78fbaa2202a52dac112e"},
+    {file = "cairocffi-1.6.1.tar.gz", hash = "sha256:78e6bbe47357640c453d0be929fa49cd05cce2e1286f3d2a1ca9cbda7efdb8b7"},
 ]
 
 [package.dependencies]
@@ -250,7 +251,7 @@ cffi = ">=1.1.0"
 [package.extras]
 doc = ["sphinx", "sphinx_rtd_theme"]
 test = ["flake8", "isort", "numpy", "pikepdf", "pytest"]
-xcb = ["xcffib (>=0.3.2)"]
+xcb = ["xcffib (>=1.4.0)"]
 
 [[package]]
 name = "cairosvg"
