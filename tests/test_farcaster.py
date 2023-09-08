@@ -4,8 +4,7 @@ import logging
 
 import pytest
 
-from farcaster import models
-from farcaster.client import Warpcast
+from farcaster import Warpcast, models
 
 
 @pytest.mark.vcr

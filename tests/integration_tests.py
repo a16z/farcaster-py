@@ -3,7 +3,7 @@ import time
 
 from dotenv import load_dotenv
 
-from farcaster.client import Warpcast
+from farcaster import Warpcast
 
 
 def client_from_mnemonic() -> None:

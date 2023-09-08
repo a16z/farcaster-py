@@ -6,7 +6,6 @@ import time
 
 import canonicaljson
 import requests
-from eth_account.account import Account
 from eth_account.datastructures import SignedMessage
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
@@ -17,6 +16,7 @@ from urllib3.util import Retry
 from farcaster.config import *
 from farcaster.models import *
 from farcaster.utils.stream_generator import stream_generator
+from farcaster.utils.wallet import get_wallet
 
 
 class Warpcast:
@@ -1082,29 +1082,6 @@ class Warpcast:
         data_hex_array = bytearray(signed_message.signature)
         encoded = base64.b64encode(data_hex_array).decode()
         return f"Bearer eip191:{encoded}"
-
-
-def get_wallet(
-    mnemonic: NoneStr = None, private_key: NoneStr = None
-) -> Optional[LocalAccount]:
-    """Get a wallet from mnemonic or private key
-
-    Args:
-        mnemonic (NoneStr): mnemonic
-        private_key (NoneStr): private key
-
-    Returns:
-        Optional[LocalAccount]: wallet
-    """
-    Account.enable_unaudited_hdwallet_features()
-
-    if mnemonic:
-        account: LocalAccount = Account.from_mnemonic(mnemonic)
-        return account  # pragma: no cover
-    elif private_key:
-        account = Account.from_key(private_key)
-        return account  # pragma: no cover
-    return None
 
 
 def now_ms() -> int:
