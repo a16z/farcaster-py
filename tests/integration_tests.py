@@ -99,4 +99,19 @@ def test_stream_notifications() -> None:
             print(notification.dict())
 
 
+def test_get_cast() -> None:
+    load_dotenv()
+    MNEMONIC = os.getenv("MNEMONIC")
+    assert MNEMONIC, "MNEMONIC env var not set"
+    client = Warpcast(mnemonic=MNEMONIC)
+    print(client.access_token)
+    # for cast in client.stream_casts():
+    #     if cast:
+    #         print(cast.hash)
+    #         print(cast.author)
+    #     exit()
+    print(client.get_cast("0x0068085492bf247914ab0c1cac94c9353d97c48f"))
+
+
 # test_stream_casts()
+test_get_cast()
