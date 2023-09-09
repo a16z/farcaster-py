@@ -57,7 +57,7 @@ def stream_generator(
         if before_attribute is None:
             dynamic_limit -= without_before_counter
             without_before_counter = (without_before_counter + 1) % int(limit / 2)
-        logging.debug("Limit: ", dynamic_limit)
+        logging.debug(f"Limit: {dynamic_limit}")
         for item in reversed(list(function(cursor, dynamic_limit))):
             attribute = getattr(item, attribute_name)
             if attribute in seen_attributes:
