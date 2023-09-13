@@ -1,7 +1,5 @@
 # import pytest
-from typing import List, Union
-
-from pydantic import NoneStr
+from typing import List, Optional, Union
 
 from farcaster.models import ApiCast, ApiUser, MentionNotification, ReplyNotification
 from farcaster.utils.stream_generator import (
@@ -11,9 +9,9 @@ from farcaster.utils.stream_generator import (
 )
 
 
-def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
+def mock_get_recent_users(cursor: Optional[str], limit: int) -> List[ApiUser]:
     return [
-        ApiUser.parse_obj(
+        ApiUser.model_validate(
             {
                 "fid": 1,
                 "username": "hello",
@@ -34,7 +32,7 @@ def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
                 },
             }
         ),
-        ApiUser.parse_obj(
+        ApiUser.model_validate(
             {
                 "fid": 2,
                 "username": "hello1",
@@ -55,7 +53,7 @@ def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
                 },
             }
         ),
-        ApiUser.parse_obj(
+        ApiUser.model_validate(
             {
                 "fid": 3,
                 "username": "hello2",
@@ -79,9 +77,9 @@ def mock_get_recent_users(cursor: NoneStr, limit: int) -> List[ApiUser]:
     ]
 
 
-def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
+def mock_get_recent_casts(cursor: Optional[str], limit: int) -> List[ApiCast]:
     return [
-        ApiCast.parse_obj(
+        ApiCast.model_validate(
             {
                 "hash": "0x1",
                 "thread_hash": "0x2",
@@ -116,7 +114,7 @@ def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
                 "viewer_context": None,
             }
         ),
-        ApiCast.parse_obj(
+        ApiCast.model_validate(
             {
                 "hash": "0x2",
                 "thread_hash": "0x3",
@@ -151,7 +149,7 @@ def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
                 "viewer_context": None,
             }
         ),
-        ApiCast.parse_obj(
+        ApiCast.model_validate(
             {
                 "hash": "0x3",
                 "thread_hash": "0x4",
@@ -190,10 +188,10 @@ def mock_get_recent_casts(cursor: NoneStr, limit: int) -> List[ApiCast]:
 
 
 def mock_get_recent_notifications(
-    cursor: NoneStr, limit: int
+    cursor: Optional[str], limit: int
 ) -> List[Union[MentionNotification, ReplyNotification]]:
     return [
-        ReplyNotification.parse_obj(
+        ReplyNotification.model_validate(
             {
                 "type": "cast-reply",
                 "id": "0x1",
@@ -216,7 +214,7 @@ def mock_get_recent_notifications(
                 "content": {"cast": mock_get_recent_casts(None, 1)[0]},
             }
         ),
-        MentionNotification.parse_obj(
+        MentionNotification.model_validate(
             {
                 "type": "cast-mention",
                 "id": "0x2",
@@ -239,7 +237,7 @@ def mock_get_recent_notifications(
                 "content": {"cast": mock_get_recent_casts(None, 1)[0]},
             }
         ),
-        ReplyNotification.parse_obj(
+        ReplyNotification.model_validate(
             {
                 "type": "cast-reply",
                 "id": "0x3",

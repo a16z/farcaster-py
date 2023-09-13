@@ -3,7 +3,7 @@ import os
 import pytest
 from dotenv import load_dotenv
 
-from farcaster.client import Warpcast
+from farcaster import Warpcast
 
 
 @pytest.fixture(scope="session", autouse=True)

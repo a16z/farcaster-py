@@ -7,7 +7,7 @@ import random
 import time
 from collections import OrderedDict
 
-from pydantic import NoneStr, PositiveInt
+from pydantic import PositiveInt
 
 from farcaster.models import ApiCast, ApiUser, MentionNotification, ReplyNotification
 
@@ -20,7 +20,7 @@ Streamable = Union[
 
 def stream_generator(
     function: Callable[
-        [NoneStr, int],
+        [Optional[str], int],
         Streamable,
     ],
     *,
@@ -29,7 +29,7 @@ def stream_generator(
     skip_existing: bool = False,
     max_counter: PositiveInt = 16,
     limit: int = 50,
-    cursor: NoneStr = None,
+    cursor: Optional[str] = None,
 ) -> Iterator[Any]:
     """Yield new items from ``function`` as they become available.
 

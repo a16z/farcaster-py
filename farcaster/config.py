@@ -6,10 +6,10 @@ FARCASTER_API_BASE_URL = "https://api.warpcast.com/v2/"
 
 
 class ConfigurationParams(BaseModel):
-    username: NoneStr
-    password: NoneStr
+    username: Optional[str] = None
+    password: Optional[str] = None
     base_path: str = FARCASTER_API_BASE_URL
-    base_options: Optional[Dict[Any, Any]]
+    base_options: Optional[Dict[Any, Any]] = None
 
 
 class Configuration(BaseModel):

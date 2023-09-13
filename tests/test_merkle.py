@@ -1,6 +1,6 @@
 import pytest
 
-from farcaster.client import Warpcast
+from farcaster import Warpcast
 
 
 @pytest.mark.vcr
