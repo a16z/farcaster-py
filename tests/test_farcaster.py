@@ -4,8 +4,7 @@ import logging
 
 import pytest
 
-from farcaster import models
-from farcaster.client import Warpcast
+from farcaster import Warpcast, models
 
 
 @pytest.mark.vcr
@@ -466,7 +465,7 @@ class TestRW:
         response = client.post_cast(
             text="Hello world from our WIP Farcaster Python SDK!"
         )
-        logging.debug(response.cast.dict())
+        logging.debug(response.cast.model_dump())
         assert response.cast
         self.__class__.cast_hash = response.cast.hash
         assert isinstance(self.__class__.cast_hash, str)

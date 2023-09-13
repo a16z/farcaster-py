@@ -2,13 +2,11 @@ from typing import List, Optional, Union
 
 from humps import camelize
 from pydantic import BaseModel as PydanticBaseModel
-from pydantic import Field, NoneStr, PositiveInt
+from pydantic import ConfigDict, Field, PositiveInt, RootModel
 
 
 class BaseModel(PydanticBaseModel):
-    class Config:
-        alias_generator = camelize
-        allow_population_by_field_name = True
+    model_config = ConfigDict(alias_generator=camelize, populate_by_name=True)
 
 
 class ApiError(BaseModel):
@@ -26,8 +24,8 @@ class ApiKeyStoreKey(BaseModel):
     base64_signature: str
     timestamp: PositiveInt
     fid: Optional[PositiveInt] = None
-    device_id: NoneStr = None
-    device_name: NoneStr = None
+    device_id: Optional[str] = None
+    device_name: Optional[str] = None
 
 
 class ApiToken(BaseModel):
@@ -37,17 +35,17 @@ class ApiToken(BaseModel):
 
 class ApiOpenGraphMetadata(BaseModel):
     url: str
-    title: NoneStr = None
-    description: NoneStr = None
-    domain: NoneStr = None
-    image: NoneStr = None
-    logo: NoneStr = None
-    use_large_image: Optional[bool]
-    stripped_cast_text: NoneStr
+    title: Optional[str] = None
+    description: Optional[str] = None
+    domain: Optional[str] = None
+    image: Optional[str] = None
+    logo: Optional[str] = None
+    use_large_image: Optional[bool] = None
+    stripped_cast_text: Optional[str] = None
 
 
 class ApiCastAttachments(BaseModel):
-    open_graph: Optional[List[ApiOpenGraphMetadata]]
+    open_graph: Optional[List[ApiOpenGraphMetadata]] = None
 
 
 class ApiOpenSeaNft(BaseModel):
@@ -72,46 +70,46 @@ class ApiProfile(BaseModel):
 
 class ViewerContext(BaseModel):
     following: Optional[bool] = None
-    followed_by: Optional[bool]
-    can_send_direct_casts: Optional[bool]
+    followed_by: Optional[bool] = None
+    can_send_direct_casts: Optional[bool] = None
 
 
 class ApiUser(BaseModel):
     fid: PositiveInt
-    username: NoneStr = None
-    display_name: NoneStr
-    registered_at: Optional[PositiveInt]
+    username: Optional[str] = None
+    display_name: Optional[str] = None
+    registered_at: Optional[PositiveInt] = None
     pfp: Optional[ApiPfp] = None
     profile: ApiProfile
     follower_count: int
     following_count: int
-    referrer_username: NoneStr
-    viewer_context: Optional[ViewerContext]
+    referrer_username: Optional[str] = None
+    viewer_context: Optional[ViewerContext] = None
 
 
 class ApiUserPreferences(BaseModel):
-    send_email_on_mention: Optional[bool]
-    send_email_on_reply: Optional[bool]
-    send_email_on_reaction: Optional[bool]
-    send_email_on_follow: Optional[bool]
-    send_weekly_update_emails: Optional[bool]
-    send_product_update_emails: Optional[bool]
+    send_email_on_mention: Optional[bool] = None
+    send_email_on_reply: Optional[bool] = None
+    send_email_on_reaction: Optional[bool] = None
+    send_email_on_follow: Optional[bool] = None
+    send_weekly_update_emails: Optional[bool] = None
+    send_product_update_emails: Optional[bool] = None
 
 
 class ApiAssetCollection(BaseModel):
     id: str
     name: str
-    description: NoneStr = None
+    description: Optional[str] = None
     item_count: int
     owner_count: int
     farcaster_owner_count: int
     image_url: str
-    floor_price: NoneStr
+    floor_price: Optional[str] = None
     volume_traded: str
-    external_url: NoneStr
+    external_url: Optional[str] = None
     open_sea_url: str
-    twitter_username: NoneStr
-    schema_name: NoneStr
+    twitter_username: Optional[str] = None
+    schema_name: Optional[str] = None
 
 
 class LastSale(BaseModel):
@@ -134,15 +132,15 @@ class ApiAsset(BaseModel):
     contract_address: str
     token_id: str
     image_url: str
-    external_url: NoneStr
+    external_url: Optional[str] = None
     open_sea_url: str
     like_count: int
     uri: str
     collection: ApiAssetCollection
     owner: Optional[ApiUser] = None
-    last_sale: Optional[LastSale]
+    last_sale: Optional[LastSale] = None
     mint: Optional[Mint] = None
-    viewer_context: Optional[ViewerContext1]
+    viewer_context: Optional[ViewerContext1] = None
 
 
 class ApiAssetGroup(BaseModel):
@@ -177,7 +175,7 @@ class ApiCastReaction(BaseModel):
     hash: str
     reactor: ApiUser
     timestamp: PositiveInt
-    cast_hash: str = Field(..., regex=r"^0x[0-9a-fA-F]{40}$")
+    cast_hash: str = Field(..., pattern=r"^0x[0-9a-fA-F]{40}$")
 
 
 class ApiNewCollection(BaseModel):
@@ -198,8 +196,8 @@ class ApiTrendingCollection(BaseModel):
 
 class ApiRecaster(BaseModel):
     fid: PositiveInt
-    username: NoneStr = None
-    display_name: NoneStr
+    username: Optional[str] = None
+    display_name: Optional[str] = None
 
 
 class Ancestors(BaseModel):
@@ -237,9 +235,9 @@ class ParentSource(BaseModel):
 class ApiCastUrlEmbed(BaseModel):
     type: str
     open_graph: ApiOpenGraphMetadata
-    user: Optional[ApiUser]
-    asset: Optional[ApiAsset]
-    collection: Optional[ApiAssetCollection]
+    user: Optional[ApiUser] = None
+    asset: Optional[ApiAsset] = None
+    collection: Optional[ApiAssetCollection] = None
 
 
 class ApiCastImageEmbed(BaseModel):
@@ -262,8 +260,8 @@ class ApiCastEmbeds(BaseModel):
 
 class ApiCast(BaseModel):
     hash: str
-    thread_hash: NoneStr
-    parent_hash: NoneStr
+    thread_hash: Optional[str] = None
+    parent_hash: Optional[str] = None
     author: ApiUser
     parent_author: Optional[ApiUser] = None
     parent_source: Optional[ParentSource] = None
@@ -279,7 +277,7 @@ class ApiCast(BaseModel):
     watches: Watches
     deleted: Optional[bool] = None
     recast: Optional[bool] = None
-    viewer_context: Optional[ViewerContext2]
+    viewer_context: Optional[ViewerContext2] = None
 
 
 class ViewerContext3(BaseModel):
@@ -290,7 +288,7 @@ class ApiDirectCast(BaseModel):
     sender: ApiUser
     text: str
     timestamp: PositiveInt
-    viewer_context: Optional[ViewerContext3]
+    viewer_context: Optional[ViewerContext3] = None
 
 
 class ApiDirectCastConversation(BaseModel):
@@ -372,15 +370,19 @@ class ApiNotificationWatchedCastReply(BaseModel):
     content: ReplyContent
 
 
-class ApiNotification(BaseModel):
-    __root__: Union[
-        ApiNotificationCastReaction,
-        ApiNotificationCastMention,
-        ApiNotificationCastReply,
-        ApiNotificationFollow,
-        ApiNotificationRecast,
-        ApiNotificationWatchedCastReply,
-    ] = Field(..., title="ApiNotification")
+class ApiNotification(
+    RootModel[
+        Union[
+            ApiNotificationCastReaction,
+            ApiNotificationCastMention,
+            ApiNotificationCastReply,
+            ApiNotificationFollow,
+            ApiNotificationRecast,
+            ApiNotificationWatchedCastReply,
+        ]
+    ]
+):
+    pass
 
 
 class ApiCastReactionNotificationGroup(BaseModel):
@@ -431,15 +433,19 @@ class ApiWatchedCastReplyNotificationGroup(BaseModel):
     preview_items: List[ApiNotificationWatchedCastReply]
 
 
-class ApiNotificationGroup(BaseModel):
-    __root__: Union[
-        ApiCastReactionNotificationGroup,
-        ApiCastMentionNotificationGroup,
-        ApiCastReplyNotificationGroup,
-        ApiFollowNotificationGroup,
-        ApiRecastNotificationGroup,
-        ApiWatchedCastReplyNotificationGroup,
-    ] = Field(..., title="ApiNotificationGroup")
+class ApiNotificationGroup(
+    RootModel[
+        Union[
+            ApiCastReactionNotificationGroup,
+            ApiCastMentionNotificationGroup,
+            ApiCastReplyNotificationGroup,
+            ApiFollowNotificationGroup,
+            ApiRecastNotificationGroup,
+            ApiWatchedCastReplyNotificationGroup,
+        ]
+    ]
+):
+    pass
 
 
 class ApiCastFeedItem(BaseModel):
@@ -464,10 +470,10 @@ class UnreadDirectCastPushNotification(BaseModel):
     type: str
 
 
-class PushNotificationPayload(BaseModel):
-    __root__: Union[ViewCastPushNotification, UnreadDirectCastPushNotification] = Field(
-        ..., title="PushNotificationPayload"
-    )
+class PushNotificationPayload(
+    RootModel[Union[ViewCastPushNotification, UnreadDirectCastPushNotification]]
+):
+    pass
 
 
 class Result(BaseModel):
@@ -479,7 +485,7 @@ class HealthcheckGetResponse(BaseModel):
 
 
 class Next(BaseModel):
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class EventsResult(BaseModel):
@@ -488,7 +494,7 @@ class EventsResult(BaseModel):
 
 class IterableEventsResult(BaseModel):
     events: List[ApiAssetEvent]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class AssetEventsGetResponse(BaseModel):
@@ -541,7 +547,7 @@ class CastsResult(BaseModel):
 
 class IterableCastsResult(BaseModel):
     casts: List[ApiCast]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class CastsGetResponse(BaseModel):
@@ -578,7 +584,7 @@ class ReactionsResult(BaseModel):
 
 class IterableReactionsResult(BaseModel):
     likes: List[ApiCastReaction]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class ReactionsPutResult(BaseModel):
@@ -612,7 +618,7 @@ class UsersResult(BaseModel):
 
 class IterableUsersResult(BaseModel):
     users: List[ApiUser]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class CastRecastersGetResponse(BaseModel):
@@ -626,7 +632,7 @@ class CollectionsResult(BaseModel):
 
 class IterableCollectionsResult(BaseModel):
     collections: List[ApiAssetCollection]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class UserCollectionsGetResponse(BaseModel):
@@ -656,7 +662,7 @@ class FollowsDeleteRequest(BaseModel):
 
 
 class CustodyAddress(BaseModel):
-    custody_address: str = Field(..., regex=r"^0[xX][0-9a-fA-F]{40}$")
+    custody_address: str = Field(..., pattern=r"^0[xX][0-9a-fA-F]{40}$")
 
 
 class CustodyAddressGetResponse(BaseModel):
@@ -669,7 +675,7 @@ class Likes(BaseModel):
 
 class IterableLikes(BaseModel):
     likes: List[ApiCastReaction]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class UserCastLikesGetResponse(BaseModel):
@@ -722,7 +728,7 @@ class NotificationsResult(BaseModel):
 
 class IterableNotificationsResult(BaseModel):
     notifications: List[Union[MentionNotification, ReplyNotification]]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class MentionAndReplyNotificationsGetResponse(BaseModel):
@@ -748,7 +754,7 @@ class VerificationsResult(BaseModel):
 
 class IterableVerificationsResult(BaseModel):
     verifications: List[ApiVerification]
-    cursor: NoneStr = None
+    cursor: Optional[str] = None
 
 
 class VerificationsGetResponse(BaseModel):
