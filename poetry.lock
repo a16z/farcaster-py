@@ -815,13 +815,13 @@ pipenv = ["pipenv (<=2022.12.19)"]
 
 [[package]]
 name = "eth-abi"
-version = "4.2.0"
+version = "4.2.1"
 description = "eth_abi: Python utilities for working with Ethereum ABI definitions, especially encoding and decoding"
 optional = false
 python-versions = ">=3.7.2, <4"
 files = [
-    {file = "eth_abi-4.2.0-py3-none-any.whl", hash = "sha256:0d50469de2f9948bacd764fc3f8f337a090bbb6ac3a759ef22c094bf56c1e6d9"},
-    {file = "eth_abi-4.2.0.tar.gz", hash = "sha256:a9adae5e0c2b9a35703b76856d6db3a0498effdf1243011b2d56280165db1cdd"},
+    {file = "eth_abi-4.2.1-py3-none-any.whl", hash = "sha256:abd83410a5326145bf178675c276de0ed154f6dc695dcad1beafaa44d97f44ae"},
+    {file = "eth_abi-4.2.1.tar.gz", hash = "sha256:60d88788d53725794cdb07c0f0bb0df2a31a6e1ad19644313fe6117ac24eeeb0"},
 ]
 
 [package.dependencies]
