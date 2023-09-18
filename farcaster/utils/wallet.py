@@ -2,17 +2,16 @@ from typing import Optional
 
 from eth_account.account import Account
 from eth_account.signers.local import LocalAccount
-from pydantic import NoneStr
 
 
 def get_wallet(
-    mnemonic: NoneStr = None, private_key: NoneStr = None
+    mnemonic: Optional[str] = None, private_key: Optional[str] = None
 ) -> Optional[LocalAccount]:
     """Get a wallet from mnemonic or private key
 
     Args:
-        mnemonic (NoneStr): mnemonic
-        private_key (NoneStr): private key
+        mnemonic (Optional[str]): mnemonic
+        private_key (Optional[str]): private key
 
     Returns:
         Optional[LocalAccount]: wallet

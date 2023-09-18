@@ -52,7 +52,7 @@ def get_hub_client(
 class Hub:
     config: ConfigurationParams
     wallet: Optional[LocalAccount]
-    access_token: NoneStr
+    access_token: Optional[str]
     expires_at: Optional[PositiveInt]
     rotation_duration: PositiveInt
     client: HubServiceStub
@@ -62,9 +62,9 @@ class Hub:
         hub_address: str = "nemes.farcaster.xyz:2283",
         use_ssl: bool = True,
         use_async: bool = False,
-        mnemonic: NoneStr = None,
-        private_key: NoneStr = None,
-        access_token: NoneStr = None,
+        mnemonic: Optional[str] = None,
+        private_key: Optional[str] = None,
+        access_token: Optional[str] = None,
         expires_at: Optional[PositiveInt] = None,
         rotation_duration: PositiveInt = 10,
         **data: Any,
