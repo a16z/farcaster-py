@@ -17,6 +17,7 @@ def client() -> Warpcast:
 @pytest.fixture(scope="session", autouse=True)
 def hub() -> Hub:
     load_dotenv()
+    # CI/CD uses test mnemonic corresponding to a dummy account @apitest
     mnemonic = os.getenv("MNEMONIC")
     farcaster_hub = os.getenv("FARCASTER_HUB")
     use_ssl = os.getenv("FARCASTER_USE_SSL") == "true"
