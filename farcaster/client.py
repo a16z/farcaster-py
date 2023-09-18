@@ -9,7 +9,7 @@ import requests
 from eth_account.datastructures import SignedMessage
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
-from pydantic import NoneStr, PositiveInt
+from pydantic import PositiveInt
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
 
@@ -27,16 +27,16 @@ class Warpcast:
 
     config: ConfigurationParams
     wallet: Optional[LocalAccount]
-    access_token: NoneStr
+    access_token: Optional[str]
     expires_at: Optional[PositiveInt]
     rotation_duration: PositiveInt
     session: requests.Session
 
     def __init__(
         self,
-        mnemonic: NoneStr = None,
-        private_key: NoneStr = None,
-        access_token: NoneStr = None,
+        mnemonic: Optional[str] = None,
+        private_key: Optional[str] = None,
+        access_token: Optional[str] = None,
         expires_at: Optional[PositiveInt] = None,
         rotation_duration: PositiveInt = 10,
         **data: Any,
@@ -165,13 +165,13 @@ class Warpcast:
 
     def get_asset_events(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableEventsResult:
         """Get events for a given asset
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): events to receive, defaults
                 to 25
 
@@ -201,7 +201,7 @@ class Warpcast:
         body = AuthPutRequest(params=auth_params)
         response = requests.put(
             self.config.base_path + "auth",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
             headers={"Authorization": header},
         ).json()
         return AuthPutResponse(**response).result
@@ -216,21 +216,21 @@ class Warpcast:
         body = AuthDeleteRequest(params=Timestamp(timestamp=timestamp))
         response = self._delete(
             "auth",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
 
     def get_cast_likes(
         self,
         cast_hash: str,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableReactionsResult:
         """Get the likes for a given cast
 
         Args:
             cast_hash (str): cast hash
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -268,7 +268,7 @@ class Warpcast:
         body = CastHash(cast_hash=cast_hash)
         response = self._put(
             "cast-likes",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return CastReactionsPutResponse(**response).result
 
@@ -284,21 +284,21 @@ class Warpcast:
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "cast-likes",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
 
     def get_cast_recasters(
         self,
         cast_hash: str,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableUsersResult:
         """Get the recasters for a given cast
 
         Args:
             cast_hash (str): cast hash
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -362,14 +362,14 @@ class Warpcast:
     def get_casts(
         self,
         fid: int,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableCastsResult:
         """Get the casts for a given fid of a user
 
         Args:
             fid (int): Farcaster ID of the user
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -410,7 +410,7 @@ class Warpcast:
         body = CastsPostRequest(text=text, embeds=embeds, parent=parent)
         response = self._post(
             "casts",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return CastsPostResponse(**response).result
 
@@ -426,21 +426,21 @@ class Warpcast:
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "casts",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
 
     def get_collection_owners(
         self,
         collection_id: str,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableUsersResult:
         """Get the owners of an OpenSea collection
 
         Args:
             collection_id (str): OpenSea collection ID
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -469,14 +469,14 @@ class Warpcast:
     def get_followers(
         self,
         fid: int,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableUsersResult:
         """Get the followers of a user
 
         Args:
             fid (int): Farcaster ID of the user
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -526,14 +526,14 @@ class Warpcast:
     def get_following(
         self,
         fid: int,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableUsersResult:
         """Get the users a user is following
 
         Args:
             fid (int): Farcaster ID of the user
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -594,7 +594,7 @@ class Warpcast:
         body = FollowsPutRequest(target_fid=fid)
         response = self._put(
             "follows",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
 
@@ -610,7 +610,7 @@ class Warpcast:
         body = FollowsDeleteRequest(target_fid=fid)
         response = self._delete(
             "follows",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
 
@@ -629,13 +629,13 @@ class Warpcast:
 
     def get_mention_and_reply_notifications(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableNotificationsResult:
         """Get mention and reply notifications
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -660,13 +660,13 @@ class Warpcast:
 
     def _recent_notifications_list(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> List[Union[MentionNotification, ReplyNotification]]:
         """Get mention and reply notifications as a list
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
@@ -713,7 +713,7 @@ class Warpcast:
         body = CastHash(cast_hash=cast_hash)
         response = self._put(
             "recasts",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return RecastsPutResponse(**response).result
 
@@ -729,7 +729,7 @@ class Warpcast:
         body = CastHash(cast_hash=cast_hash)
         response = self._delete(
             "recasts",
-            json=body.dict(by_alias=True, exclude_none=True),
+            json=body.model_dump(by_alias=True, exclude_none=True),
         )
         return StatusResponse(**response).result
 
@@ -787,14 +787,14 @@ class Warpcast:
     def get_user_collections(
         self,
         owner_fid: int,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableCollectionsResult:
         """Get the collections of a user
 
         Args:
             owner_fid (int): Farcaster ID of the user
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -824,14 +824,14 @@ class Warpcast:
     def get_verifications(
         self,
         fid: int,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableVerificationsResult:
         """Get the verifications of a user
 
         Args:
             fid (int): Farcaster ID of the user
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
@@ -850,13 +850,13 @@ class Warpcast:
 
     def get_recent_users(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableUsersResult:
         """Get recent users
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -880,13 +880,13 @@ class Warpcast:
 
     def _recent_users_list(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> List[ApiUser]:
         """Get recent users as a list
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25
 
         Returns:
@@ -917,13 +917,13 @@ class Warpcast:
 
     def get_custody_address(
         self,
-        username: NoneStr = None,
+        username: Optional[str] = None,
         fid: Optional[int] = None,
     ) -> CustodyAddress:
         """Get the custody address of a user
 
         Args:
-            username (NoneStr, optional): username of a user, defaults
+            username (Optional[str], optional): username of a user, defaults
                 to None
             fid (Optional[int], optional): Farcaster ID, defaults to
                 None
@@ -941,14 +941,14 @@ class Warpcast:
     def get_user_cast_likes(
         self,
         fid: int,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 25,
     ) -> IterableLikes:
         """Get the likes of a user
 
         Args:
             fid (int): Farcaster ID of the user
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 25, otherwise min(limit, 100)
 
         Returns:
@@ -972,13 +972,13 @@ class Warpcast:
 
     def get_recent_casts(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 100,
     ) -> IterableCastsResult:
         """Get all recent casts
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 100
 
         Returns:
@@ -1002,13 +1002,13 @@ class Warpcast:
 
     def _recent_casts_lists(
         self,
-        cursor: NoneStr = None,
+        cursor: Optional[str] = None,
         limit: PositiveInt = 100,
     ) -> List[ApiCast]:
         """Get all recent casts and return them as a list
 
         Args:
-            cursor (NoneStr, optional): cursor, defaults to None
+            cursor (Optional[str], optional): cursor, defaults to None
             limit (PositiveInt, optional): limit, defaults to 100
 
         Returns:
@@ -1075,7 +1075,7 @@ class Warpcast:
         if not self.wallet:
             raise Exception("Wallet not set")
         auth_put_request = AuthPutRequest(params=params)
-        payload = auth_put_request.dict(by_alias=True, exclude_none=True)
+        payload = auth_put_request.model_dump(by_alias=True, exclude_none=True)
         encoded_payload = canonicaljson.encode_canonical_json(payload)
         signable_message = encode_defunct(primitive=encoded_payload)
         signed_message: SignedMessage = self.wallet.sign_message(signable_message)

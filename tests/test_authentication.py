@@ -33,7 +33,6 @@ class MockResponsePut:
         }
 
 
-@pytest.mark.vcr
 def test_auth_params(client: Warpcast) -> None:
     """Unit test that tests auth params model
 
@@ -46,7 +45,7 @@ def test_auth_params(client: Warpcast) -> None:
     now = int(time.time())
     obj = {"timestamp": now * 1000, "expiresAt": int(now + 600) * 1000}
     ap = AuthParams(**obj)
-    assert ap.dict(by_alias=True) == obj
+    assert ap.model_dump(by_alias=True) == obj
 
 
 def test_now_ms() -> None:
@@ -54,7 +53,6 @@ def test_now_ms() -> None:
     assert abs(now_ms() - int(time.time() * 1000)) < 1000
 
 
-@pytest.mark.vcr
 def test_create_new_auth_token_no_wallet(client: Warpcast) -> None:
     """Unit test that puts auth
 
@@ -68,7 +66,6 @@ def test_create_new_auth_token_no_wallet(client: Warpcast) -> None:
         client.create_new_auth_token(expires_in=10)
 
 
-@pytest.mark.vcr
 def test_delete_auth(monkeypatch: Any, client: Warpcast) -> None:
     """Unit test that deletes auth
 
@@ -89,7 +86,6 @@ def test_delete_auth(monkeypatch: Any, client: Warpcast) -> None:
     assert response.success
 
 
-@pytest.mark.vcr
 def test_put_auth(monkeypatch: Any, client: Warpcast) -> None:
     """Unit test that test put auth
 

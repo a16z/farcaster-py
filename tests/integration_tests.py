@@ -83,7 +83,7 @@ def test_stream_users() -> None:
     print(client.access_token)
     for user in client.stream_users():
         if user:
-            print(user.dict())
+            print(user.model_dump())
 
 
 def test_stream_notifications() -> None:
@@ -96,7 +96,7 @@ def test_stream_notifications() -> None:
         if notification:
             print(notification.id)
         if notification:
-            print(notification.dict())
+            print(notification.model_dump())
 
 
 # test_stream_casts()
