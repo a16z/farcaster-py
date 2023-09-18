@@ -43,5 +43,6 @@ jobs:
         env:
           AUTH: "foobar"
           MNEMONIC: ${{ secrets.MNEMONIC }}
+          FARCASTER_HUB: ${{ secrets.FARCASTER_HUB }}
         run: |
           make test-ci
