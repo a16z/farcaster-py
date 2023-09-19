@@ -247,13 +247,13 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "bump-pydantic"
-version = "0.6.1"
+version = "0.7.0"
 description = "Convert Pydantic from V1 to V2 ♻"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "bump_pydantic-0.6.1-py3-none-any.whl", hash = "sha256:258fd7f642e903b425c7210f0d2aaae2cf26291d53a225325c906e59807926d4"},
-    {file = "bump_pydantic-0.6.1.tar.gz", hash = "sha256:05c72427917c608ad124b56122349f66108f8ab7e2c64b2a844dcafb4a3de3a8"},
+    {file = "bump_pydantic-0.7.0-py3-none-any.whl", hash = "sha256:f8920da00302b4883eb255b15a12ccc536859ace1437099815f525573b5b3840"},
+    {file = "bump_pydantic-0.7.0.tar.gz", hash = "sha256:c74d88550225b6c413b3b87e750d04054a2234724b0cc5592011502ac994ff7e"},
 ]
 
 [package.dependencies]
@@ -3123,4 +3123,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.0,<4.0.0"
-content-hash = "5b6fa5aab81950b8432fe8440e29a22622e1f370e0ee8144ea6e916e9d1f7071"
+content-hash = "62eb40f63ccc7736c8570d5d9632a1598a6314baf9bbb1254b0c9780522fac8e"
