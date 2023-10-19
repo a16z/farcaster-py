@@ -396,6 +396,7 @@ class Warpcast:
         text: str,
         embeds: Optional[List[str]] = None,
         parent: Optional[Parent] = None,
+        channel_key: Optional[str] = None,
     ) -> CastContent:
         """Post a cast to Farcaster
 
@@ -403,11 +404,12 @@ class Warpcast:
             text (str): text of the cast
             embeds (Optional[List[str]], optional): list of embeds, defaults to None
             parent (Optional[Parent], optional): parent of the cast, defaults to None
+            channel_key (Optional[str], optional): channel of the cast, defaults to None
 
         Returns:
             CastContent: The result of posting the cast
         """
-        body = CastsPostRequest(text=text, embeds=embeds, parent=parent)
+        body = CastsPostRequest(text=text, embeds=embeds, parent=parent, channel_key=channel_key)
         response = self._post(
             "casts",
             json=body.model_dump(by_alias=True, exclude_none=True),
