@@ -409,7 +409,9 @@ class Warpcast:
         Returns:
             CastContent: The result of posting the cast
         """
-        body = CastsPostRequest(text=text, embeds=embeds, parent=parent, channel_key=channel_key)
+        body = CastsPostRequest(
+            text=text, embeds=embeds, parent=parent, channel_key=channel_key
+        )
         response = self._post(
             "casts",
             json=body.model_dump(by_alias=True, exclude_none=True),
