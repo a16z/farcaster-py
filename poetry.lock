@@ -950,19 +950,22 @@ test = ["eth-hash[pycryptodome]", "pytest (>=6.2.5,<7)", "pytest-xdist", "tox (=
 
 [[package]]
 name = "eth-typing"
-version = "3.4.0"
+version = "3.5.1"
 description = "eth-typing: Common type annotations for ethereum python packages"
 optional = false
 python-versions = ">=3.7.2, <4"
 files = [
-    {file = "eth-typing-3.4.0.tar.gz", hash = "sha256:7f49610469811ee97ac43eaf6baa294778ce74042d41e61ecf22e5ebe385590f"},
-    {file = "eth_typing-3.4.0-py3-none-any.whl", hash = "sha256:347d50713dd58ab50063b228d8271624ab2de3071bfa32d467b05f0ea31ab4c5"},
+    {file = "eth-typing-3.5.1.tar.gz", hash = "sha256:e21a8b0688581a6765f72fa184d86d06c3949e354d4af5293798abc0b4255989"},
+    {file = "eth_typing-3.5.1-py3-none-any.whl", hash = "sha256:9d80c7d112a8774bddeb7278b1bc2f17ca4c062825476ce6bc9cba4d47956010"},
 ]
 
+[package.dependencies]
+typing-extensions = ">=4.0.1"
+
 [package.extras]
-dev = ["black (>=23)", "build (>=0.9.0)", "bumpversion (>=0.5.3)", "flake8 (==6.0.0)", "flake8-bugbear (==23.3.23)", "ipython", "isort (>=5.10.1)", "mypy (==0.971)", "pydocstyle (>=6.0.0)", "pytest (>=7.0.0)", "pytest-watch (>=4.1.0)", "pytest-xdist (>=2.4.0)", "sphinx (>=5.0.0)", "sphinx-rtd-theme (>=1.0.0)", "towncrier (>=21,<22)", "tox (>=4.0.0)", "twine", "wheel"]
-doc = ["sphinx (>=5.0.0)", "sphinx-rtd-theme (>=1.0.0)", "towncrier (>=21,<22)"]
-lint = ["black (>=23)", "flake8 (==6.0.0)", "flake8-bugbear (==23.3.23)", "isort (>=5.10.1)", "mypy (==0.971)", "pydocstyle (>=6.0.0)"]
+dev = ["black (>=23)", "build (>=0.9.0)", "bumpversion (>=0.5.3)", "flake8 (==6.0.0)", "flake8-bugbear (==23.3.23)", "ipython", "isort (>=5.10.1)", "mypy (==0.971)", "pydocstyle (>=6.0.0)", "pytest (>=7.0.0)", "pytest-watch (>=4.1.0)", "pytest-xdist (>=2.4.0)", "sphinx (>=5.0.0)", "sphinx-rtd-theme (>=1.0.0)", "towncrier (>=21,<22)", "tox (>=4.0.0)", "twine", "types-setuptools", "wheel"]
+docs = ["sphinx (>=5.0.0)", "sphinx-rtd-theme (>=1.0.0)", "towncrier (>=21,<22)"]
+lint = ["black (>=23)", "flake8 (==6.0.0)", "flake8-bugbear (==23.3.23)", "isort (>=5.10.1)", "mypy (==0.971)", "pydocstyle (>=6.0.0)", "types-setuptools"]
 test = ["pytest (>=7.0.0)", "pytest-xdist (>=2.4.0)"]
 
 [[package]]
