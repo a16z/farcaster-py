@@ -1068,13 +1068,13 @@ test = ["black", "coverage[toml]", "ddt (>=1.1.1,!=1.4.3)", "mypy", "pre-commit"
 
 [[package]]
 name = "griffe"
-version = "0.36.2"
+version = "0.36.8"
 description = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "griffe-0.36.2-py3-none-any.whl", hash = "sha256:ba71895a3f5f606b18dcd950e8a1f8e7332a37f90f24caeb002546593f2e0eee"},
-    {file = "griffe-0.36.2.tar.gz", hash = "sha256:333ade7932bb9096781d83092602625dfbfe220e87a039d2801259a1bd41d1c2"},
+    {file = "griffe-0.36.8-py3-none-any.whl", hash = "sha256:51560f718cfb9de18f2bc3255bea082922869d96558c4e0322121a7fff02025e"},
+    {file = "griffe-0.36.8.tar.gz", hash = "sha256:beb350c6771b1d59c8fcff1f7516af2dd7a2adf18ed16996190744415dfb0659"},
 ]
 
 [package.dependencies]
