@@ -564,6 +564,7 @@ class CastsPostRequest(BaseModel):
     text: str
     embeds: Optional[List[str]] = None
     parent: Optional[Parent] = None
+    channel_key: Optional[str] = None
 
 
 class CastsPostResponse(BaseModel):
