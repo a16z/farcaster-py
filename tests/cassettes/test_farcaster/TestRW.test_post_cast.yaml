@@ -84,4 +84,250 @@ interactions:
     status:
       code: 201
       message: Created
+- request:
+    body: '{"text": "Hello world from our WIP Farcaster Python SDK!"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '58'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: POST
+    uri: https://api.warpcast.com/v2/casts
+  response:
+    body:
+      string: '{"result":{"cast":{"hash":"0x3eaac1dd260d56250c488c8bea6a7788005d9add","threadHash":"0x3eaac1dd260d56250c488c8bea6a7788005d9add","author":{"fid":8302,"username":"apitest","displayName":"API
+        Test","pfp":{"url":"https://i.imgur.com/zketOEu.png","verified":false},"profile":{"bio":{"text":"I''m
+        a fren","mentions":[]},"location":{"placeId":"","description":""}},"followerCount":4,"followingCount":1,"activeOnFcNetwork":false},"text":"Hello
+        world from our WIP Farcaster Python SDK!","timestamp":1704744424000,"replies":{"count":0},"reactions":{"count":0},"recasts":{"count":0,"recasters":[]},"watches":{"count":0},"tags":[],"quoteCount":0,"combinedRecastCount":0,"viewerContext":{"reacted":false,"recast":false,"watched":false}}}}'
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8427108c6b164388-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '725'
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:07:04 GMT
+      Etag:
+      - W/"8s2qht"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=QFpB8qEXniYvVTUuRXrvKst7EgHrjYjI4Bi1l8nVyAshjpBkqrMlWs%2Fv0s45vESEqhKPlITUgEETYTD%2BPv44ds6jIzxJ8PBxPAuEB4aZ3Rwd6ngx3iRdRLRHxlPoD8r4gFY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2496'
+      X-Ratelimit-Reset:
+      - '3'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 201
+      message: Created
+- request:
+    body: '{"text": "Hello world from our WIP Farcaster Python SDK!"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '58'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: POST
+    uri: https://api.warpcast.com/v2/casts
+  response:
+    body:
+      string: '{"errors":[{"message":"Expired authentication token"}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 842737c5dc0e4400-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '55'
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:33:51 GMT
+      Etag:
+      - W/"6tf3tf"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ngLq68yFXdCfoaYReZxWVrvTIgsqp1bslRprZPYoqS8viCuMyhe9peAPBxYyvcsBQCeGJjWnWnMgw9LcBTKm8gtgUEYWdpzCTikVLHUIa4%2BT7QUwMVsdZs%2Bu6hDKnpp%2F28M%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: '{"text": "Hello world from our WIP Farcaster Python SDK!"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '58'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: POST
+    uri: https://api.warpcast.com/v2/casts
+  response:
+    body:
+      string: '{"result":{"cast":{"hash":"0x6d501488ee8bee99aa0ecc486ac69e33ed33b950","threadHash":"0x6d501488ee8bee99aa0ecc486ac69e33ed33b950","author":{"fid":8302,"username":"apitest","displayName":"API
+        Test","pfp":{"url":"https://i.imgur.com/zketOEu.png","verified":false},"profile":{"bio":{"text":"I''m
+        a fren","mentions":[]},"location":{"placeId":"","description":""}},"followerCount":4,"followingCount":1,"activeOnFcNetwork":false},"text":"Hello
+        world from our WIP Farcaster Python SDK!","timestamp":1704746091000,"replies":{"count":0},"reactions":{"count":0},"recasts":{"count":0,"recasters":[]},"watches":{"count":0},"tags":[],"quoteCount":0,"combinedRecastCount":0,"viewerContext":{"reacted":false,"recast":false,"watched":false}}}}'
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 84273939d9639e05-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '725'
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:34:51 GMT
+      Etag:
+      - W/"1tvjizz"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=QPkel5cQ4%2F7%2FPSFpG2bqo0tuWX9zWN9EYSKlyiip5K2sYXfQJIc6FbDAJ1xARLMRJE%2BE6dVGYb43wdeglX6WJMJ8gpMO21kvUOEAW3RluoTkeCFLdK3ZpXz4nl84WKXXyK4%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2499'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 201
+      message: Created
 version: 1
