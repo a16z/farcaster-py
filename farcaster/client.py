@@ -68,6 +68,8 @@ class Warpcast:
             self.create_new_auth_token(expires_in=self.rotation_duration)
 
     def get_base_path(self):
+        if self.config.neynar_api_key:
+            return self.config.neynar_base_path
         return self.config.base_path
 
     def get_base_options(self):

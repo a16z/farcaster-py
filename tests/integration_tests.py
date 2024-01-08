@@ -99,4 +99,19 @@ def test_stream_notifications() -> None:
             print(notification.model_dump())
 
 
-# test_stream_casts()
+def client_from_neynar() -> None:
+    load_dotenv()
+    NEYNAR_API_KEY = os.getenv("NEYNAR_API_KEY")
+    assert NEYNAR_API_KEY, "PKEY env var not set"
+    client = Warpcast(neynar_api_key=NEYNAR_API_KEY)
+    # expiry = (int(time.time()) + (10 * 60)) * 1000
+    # assert client.wallet
+    assert client.get_user_by_username("mason").username == "mason"
+    # assert client.access_token
+    # assert client.rotation_duration == 10
+    # print(client.expires_at)
+    # print(client.access_token)
+    # assert client.expires_at == expiry
+
+
+client_from_neynar()
