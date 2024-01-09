@@ -6,7 +6,6 @@ import time
 
 import canonicaljson
 import requests
-from eth_account.account import Account
 from eth_account.datastructures import SignedMessage
 from eth_account.messages import encode_defunct
 from eth_account.signers.local import LocalAccount
@@ -17,6 +16,7 @@ from urllib3.util import Retry
 from farcaster.config import *
 from farcaster.models import *
 from farcaster.utils.stream_generator import stream_generator
+from farcaster.utils.wallet import get_wallet
 
 
 class Warpcast:
@@ -42,13 +42,14 @@ class Warpcast:
         **data: Any,
     ):
         self.config = ConfigurationParams(**data)
+        print(self.config)
         self.wallet = get_wallet(mnemonic, private_key)
         self.access_token = access_token
         self.expires_at = expires_at
         self.rotation_duration = rotation_duration
         self.session = requests.Session()
         self.session.mount(
-            self.config.base_path,
+            self.get_base_path(),
             HTTPAdapter(
                 max_retries=Retry(
                     total=2, backoff_factor=1, status_forcelist=[520, 413, 429, 503]
@@ -61,7 +62,13 @@ class Warpcast:
             )
             if not self.expires_at:
                 self.expires_at = 33228645430000  # 3000-01-01
-
+        elif self.config.neynar_api_key:
+            self.session.headers.update(
+                {
+                    "api_key": self.config.neynar_api_key,
+                    "accept": "application/json",
+                }
+            )
         elif not self.wallet:
             raise Exception("No wallet or access token provided")
         else:
@@ -85,7 +92,7 @@ class Warpcast:
         self._check_auth_header()
         logging.debug(f"GET {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.get(
-            self.config.base_path + path, params=params, json=json, headers=headers
+            self.get_base_path() + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
             raise Exception(response["errors"])  # pragma: no cover
@@ -101,7 +108,7 @@ class Warpcast:
         self._check_auth_header()
         logging.debug(f"POST {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.post(
-            self.config.base_path + path, params=params, json=json, headers=headers
+            self.get_base_path() + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
             raise Exception(response["errors"])  # pragma: no cover
@@ -117,7 +124,7 @@ class Warpcast:
         self._check_auth_header()
         logging.debug(f"PUT {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.put(
-            self.config.base_path + path, params=params, json=json, headers=headers
+            self.get_base_path() + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
             raise Exception(response["errors"])  # pragma: no cover
@@ -133,16 +140,17 @@ class Warpcast:
         self._check_auth_header()
         logging.debug(f"DELETE {path} {params} {json} {headers}")
         response: Dict[Any, Any] = self.session.delete(
-            self.config.base_path + path, params=params, json=json, headers=headers
+            self.get_base_path() + path, params=params, json=json, headers=headers
         ).json()
         if "errors" in response:
             raise Exception(response["errors"])  # pragma: no cover
         return response
 
     def _check_auth_header(self):
-        assert self.expires_at
-        if self.expires_at < now_ms() + 1000:
-            self.create_new_auth_token(expires_in=self.rotation_duration)
+        if not self.config.neynar_api_key:
+            assert self.expires_at, "No access token"
+            if self.expires_at < now_ms() + 1000:
+                self.create_new_auth_token(expires_in=self.rotation_duration)
 
     def get_healthcheck(self) -> bool:
         """Check if API is up and running
@@ -1088,29 +1096,6 @@ class Warpcast:
         data_hex_array = bytearray(signed_message.signature)
         encoded = base64.b64encode(data_hex_array).decode()
         return f"Bearer eip191:{encoded}"
-
-
-def get_wallet(
-    mnemonic: Optional[str] = None, private_key: Optional[str] = None
-) -> Optional[LocalAccount]:
-    """Get a wallet from mnemonic or private key
-
-    Args:
-        mnemonic (Optional[str]): mnemonic
-        private_key (Optional[str]): private key
-
-    Returns:
-        Optional[LocalAccount]: wallet
-    """
-    Account.enable_unaudited_hdwallet_features()
-
-    if mnemonic:
-        account: LocalAccount = Account.from_mnemonic(mnemonic)
-        return account  # pragma: no cover
-    elif private_key:
-        account = Account.from_key(private_key)
-        return account  # pragma: no cover
-    return None
 
 
 def now_ms() -> int:

@@ -112,6 +112,18 @@ def client_from_neynar() -> None:
     # print(client.expires_at)
     # print(client.access_token)
     # assert client.expires_at == expiry
+    # import requests
+
+    # url = "https://api.neynar.com/v1/farcaster/user-by-username?username=mason"
+
+    # headers = {
+    #     "accept": "application/json",
+    #     "api_key": "898E34EC-7630-4DDF-813D-4E28074AA454"
+    # }
+
+    # response = requests.get(url, headers=headers)
+
+    # print(response.text)
 
 
-client_from_neynar()
+# client_from_neynar()
