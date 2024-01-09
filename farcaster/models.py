@@ -56,12 +56,12 @@ class ApiOpenSeaNft(BaseModel):
 
 class ApiPfp(BaseModel):
     url: str
-    verified: bool
+    verified: Optional[bool] = None
 
 
 class Bio(BaseModel):
     text: str
-    mentions: List[str]
+    mentions: Optional[List[str]] = None
 
 
 class ApiProfile(BaseModel):

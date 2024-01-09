@@ -174,4 +174,702 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.warpcast.com/v2/user-by-username?username=mmm
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1yRy04DMQxF/+Wuo7ZQGGay4yGkCgESiBVikcZOicgkUZLpQ9X8O0opD7GyfOxr
+        X9l7JM6DK5B7DJlTjcYSZDs/uxAH5FXPkOj7HgJkc3Rq9/CXRRMP8uQg8V5KzHI6tRPbr4Y00aGf
+        3nt1SXo2iX4FgTUnaywTpFEu8ygQUzDWcR2ytKGGwtsCCZPYQ6BnX2zwGfL1bRRwQaua18bolOYF
+        QaKa46yTjV81YBwFTHAubDhdh8EXyNNvYv3qiGYCShe75kd/qx+4bEL6OFoTWFs+iP2Xof2v+qfl
+        uIGudj9IK//Mnm5sYl2uVS4ZsqSBBd5VfokuKGJa+GXY3vHuWKtmrV/bwmmRn9hwSvUb3xODc6wP
+        R3jc+Hq71zcB3pak8r+X6SGXQLtLosQ5Q2K2pbZRc2rmLRF1p03LylB73hk23XnXNTN91ixP5uoE
+        4zh+AgAA//8DAFlhn9sRAgAA
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 842710054974c407-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:06:42 GMT
+      Etag:
+      - W/"3tz29h"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=NDlC1gp7oer7V9adAu9FgCIAO2CjtOFxFlmDbDXUs9J%2BDIC9Mv7cZR%2F9OiA4zBWEjdsJSOgRYwx5%2BLBhgS5VNUfoym3XDpzeeAULvQHe3a4nfCEEBa89Uc9LoeUsQOds154%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2499'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"targetFid": 8347}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '19'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: PUT
+    uri: https://api.warpcast.com/v2/follows
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWKkotLs0pUbKqViouTU5OLS5WsiopKk3VUSotTi1yLChwzs8rSa0AK0hOzHNM
+        SfHJzMuGKqqtrQUAAAD//wMAPsXM+EEAAAA=
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 84271005ea4fc407-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:06:42 GMT
+      Etag:
+      - W/"1aswyza"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=oDlpCIXTf2ctKSvemmmW22MVFPiK4fuYNQZNFhKeA%2FoCg316PCQvRpMsE5wvP2Rk%2Fy2DB5j%2BjfFUoBAX4fFArAzeEj6I54SnRRMwoksiSAQyMJQDK6UKMmKccsQb7KhD6i0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2499'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.warpcast.com/v2/user-by-username?username=mmm
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1yRy04DMQxF/+Wuo7ZQGGay4yGkCgESiBVikcZOicgkUZLpQ9X8O0opD7GyfOxr
+        X9l7JM6DK5B7DJlTjcYSZDs/uxAH5FXPkOj7HgJkc3Rq9/CXRRMP8uQg8V5KzHI6tRPbr4Y00aGf
+        3nt1SXo2iX4FgTUnaywTpFEu8ygQUzDWcR2ytKGGwtsCCZPYQ6BnX2zwGfL1bRRwQaua18bolOYF
+        QaKa46yTjV81YBwFTHAubDhdh8EXyNNvYv3qiGYCShe75kd/qx+4bEL6OFoTWFs+iP2Xof2v+qfl
+        uIGudj9IK//Mnm5sYl2uVS4ZsqSBBd5VfokuKGJa+GXY3vHuWKtmrV/bwmmRn9hwSvUb3xODc6wP
+        R3jc+Hq71zcB3pak8r+X6SGXQLtLosQ5Q2K2pbZRc2rmLRF1p03LylB73hk23XnXNTN91ixP5uoE
+        4zh+AgAA//8DAFlhn9sRAgAA
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 84271a8e6a054398-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:13:54 GMT
+      Etag:
+      - W/"3tz29h"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mLqtls0YuyM%2BhTnBPDiUT7ZzUaBTAVV%2FpXYHVysKDmnPyJ5kkJInaekXJHSBE5hbulxXUz6jdUmwJwkFli1RFaZs1T5I8%2BvvzhDpauBrLP8OWgGvqFexHAoH8VP7%2BBqKOqw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2499'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"targetFid": 8347}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '19'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: PUT
+    uri: https://api.warpcast.com/v2/follows
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWKkotLs0pUbKqViouTU5OLS5WsiopKk3VUSotTi1yLChwzs8rSa0AK0hOzHNM
+        SfHJzMuGKqqtrQUAAAD//wMAPsXM+EEAAAA=
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 84271a8edaac4398-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:13:54 GMT
+      Etag:
+      - W/"1aswyza"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KOPRlIDBWFVV0zNqtjr6k8G5aoBoE971Lm0Pv5wtt5gL9tiEYTTBlQiwERtup67w0WSnevFG3tXzpkG6GFcqMD6x7J%2B%2BC3u%2FXJRK1XbyU66okz%2FBsFzPDj4jNe%2Fl9CCL07Q%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2499'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.warpcast.com/v2/user-by-username?username=mmm
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1yRy04DMQxF/8XrqE8YZrIrRUgVgkogVqiLNHZKRCaJnEwfqubfUdpSECvLx772
+        lX0EptS5DPIIXSIu0VgEWU9v7sQJedUSSGjbFgSgTdGpw8tfFk08ydmBhM+cY5LDoR3YdtPxQId2
+        +OzVDPVoEP0GBGyJrbGEII1yiXoBkYOxjsqQtQ0lZNpnkGCYPAhoyWcbfAL5seoFuKBVyUtjdErT
+        AkFCMUdJs43nGkDfCzDBubAjnofOZ5CTH2L95oJGApTOdktL/6hfKO8Cf12sCdhaOon92dDxV31t
+        uWzA+8MVaeXfyOODZdJ5rlJO19KnSu/RBYWEC78O+yc6JJCZOypurd/aTLxIr2SIubzjZ2RwjvTp
+        CsudL8f7WAmgfWaV/v1MdykHPMwQmVICCaM91pWaYjWtEbGZVDUpg/VtY8g0t01TjfRNtR5P1Rj6
+        vv8GAAD//wMAKnLtFBICAAA=
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 842737415e5dc345-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:33:29 GMT
+      Etag:
+      - W/"53yols"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=AtWiu8MC9mYB%2BMZFeO6SqPJAtJZGaEEDfTB6GA1SkFuhxXy6ElgI6oQ%2B8mjtpDO5LAZl0smC6kr%2BeZJDybzQGCoRjncdB9HQZRvEAo0%2BS9PRtfu4hBeKP5ztFTIHW6QBurs%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '499'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"targetFid": 8347}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '19'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: PUT
+    uri: https://api.warpcast.com/v2/follows
+  response:
+    body:
+      string: '{"errors":[{"message":"Expired authentication token"}]}'
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 84273741ae92c345-EWR
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '55'
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:33:29 GMT
+      Etag:
+      - W/"6tf3tf"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rKDrMCfY5NrcUyZBP7I8NWd5IKd5enGZ4pMbOolAkBgLHoGyWO%2B7bLXO8KtGzYbt1pSouaI6Vx3DxtB7ym%2FttOcpgbI6xZJFjABt6ZaCNyPljtG4AT7%2Fkb38uPcabOTYR6g%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: '{}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.warpcast.com/v2/user-by-username?username=mmm
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1yRy04DMQxF/+Wuo7ZQGGay4yGkCgESiBVikcZOicgkUZLpQ9X8O0opD7GyfOxr
+        X9l7JM6DK5B7DJlTjcYSZDs/uxAH5FXPkOj7HgJkc3Rq9/CXRRMP8uQg8V5KzHI6tRPbr4Y00aGf
+        3nt1SXo2iX4FgTUnaywTpFEu8ygQUzDWcR2ytKGGwtsCCZPYQ6BnX2zwGfL1bRRwQaua18bolOYF
+        QaKa46yTjV81YBwFTHAubDhdh8EXyNNvYv3qiGYCShe75kd/qx+4bEL6OFoTWFs+iP2Xof2v+qfl
+        uIGudj9IK//Mnm5sYl2uVS4ZsqSBBd5VfokuKGJa+GXY3vHuWKtmrV/bwmmRn9hwSvUb3xODc6wP
+        R3jc+Hq71zcB3pak8r+X6SGXQLtLosQ5Q2K2pbZRc2rmLRF1p03LylB73hk23XnXNTN91ixP5uoE
+        4zh+AgAA//8DAFlhn9sRAgAA
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 842738b01d0f4398-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:34:28 GMT
+      Etag:
+      - W/"3tz29h"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=JQN8VX0Vuz7OudHr20%2B3JH6w9LvhDVFA2%2FDbRcHaVs6ZfxrPZh7byamZMDNejkCYnZCFQBmcPUe8a0a5OBjb50vIAUuzwW0pNYOBCVHysDCSGARf7yCRp2G83n%2F6me3fQEs%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2498'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"targetFid": 8347}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '19'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.31.0
+    method: PUT
+    uri: https://api.warpcast.com/v2/follows
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWKkotLs0pUbKqViouTU5OLS5WsiopKk3VUSotTi1yLChwzs8rSa0AK0hOzHNM
+        SfHJzMuGKqqtrQUAAAD//wMAPsXM+EEAAAA=
+    headers:
+      Access-Control-Expose-Headers:
+      - x-ratelimit-limit, x-ratelimit-remaining, x-ratelimit-reset
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 842738b05d674398-EWR
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'';base-uri ''self'';font-src ''self'' https: data:;form-action
+        ''self'';frame-ancestors ''self'';img-src ''self'' data:;object-src ''none'';script-src
+        ''self'';script-src-attr ''none'';style-src ''self'' https: ''unsafe-inline'';upgrade-insecure-requests'
+      Content-Type:
+      - application/json; charset=utf-8
+      Cross-Origin-Opener-Policy:
+      - same-origin
+      Cross-Origin-Resource-Policy:
+      - same-origin
+      Date:
+      - Mon, 08 Jan 2024 20:34:28 GMT
+      Etag:
+      - W/"1aswyza"
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Origin-Agent-Cluster:
+      - ?1
+      Referrer-Policy:
+      - no-referrer
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wfjbtzINpLweN1wsYb1p73KFAilg1PhAgl8rrPnIng5xbAH5xKwywqrLaUIrSgNYoBVGQcEGWrQxa2sLH0ZYzIIPNQT%2Be%2B3flZZihT9iJXh36x4c34t7XFxy%2BT9xEQPVzdY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Ratelimit-Limit:
+      - '2500'
+      X-Ratelimit-Remaining:
+      - '2497'
+      X-Ratelimit-Reset:
+      - '10'
+      X-Xss-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1
