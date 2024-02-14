@@ -1,9 +1,10 @@
 ---
-name: 🐛 Bug report
-about: If something isn't working 🔧
+name: "\U0001F41B Bug report"
+about: "If something isn't working \U0001F527"
 title: ''
 labels: bug
-assignees:
+assignees: ''
+
 ---
 
 ## 🐛 Bug Report
