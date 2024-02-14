@@ -2236,16 +2236,17 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtuale
 
 [[package]]
 name = "pytest-dependency"
-version = "0.5.1"
+version = "0.6.0"
 description = "Manage dependencies of tests"
 optional = false
-python-versions = "*"
+python-versions = ">=3.4"
 files = [
-    {file = "pytest-dependency-0.5.1.tar.gz", hash = "sha256:c2a892906192663f85030a6ab91304e508e546cddfe557d692d61ec57a1d946b"},
+    {file = "pytest-dependency-0.6.0.tar.gz", hash = "sha256:934b0e6a39d95995062c193f7eaeed8a8ffa06ff1bcef4b62b0dc74a708bacc1"},
 ]
 
 [package.dependencies]
-pytest = ">=3.6.0"
+pytest = ">=3.7.0"
+setuptools = "*"
 
 [[package]]
 name = "pytest-html"
@@ -3165,4 +3166,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.0,<4.0.0"
-content-hash = "6a8ce675effcf0fdbaf2a242fd486c7edfa387213af1e6925379155af137748d"
+content-hash = "3f5ed0a8afc585337f9b12bb3064fe0403494e6aac69c05b2bf24ba604dd68d3"
