@@ -32,7 +32,7 @@ classifiers = [  #! Update me
 
 [tool.poetry.dependencies]
 python = ">=3.8.0,<4.0.0"
-importlib_metadata = {version = "^4.5.0", python = "<3.8"}
+importlib_metadata = {version = ">=4.5,<8.0", python = "<3.8"}
 python-dotenv = ">=0.21,<1.1"
 pydantic = ">=1.9.2,<3.0.0"
 pyhumps = "^3.7.2"
@@ -56,7 +56,7 @@ pyupgrade = "^3.3.1"
 safety = "^2.1.1"
 coverage = "^7.2.1"
 coverage-badge = "^1.1.0"
-pytest-dependency = "^0.5.1"
+pytest-dependency = ">=0.5.1,<0.7.0"
 pytest-html = "^3.1.1"
 pytest-cov = "^4.0.0"
 pytest-recording = "^0.12.1"
@@ -64,7 +64,7 @@ docconvert = "^2.0.0"
 mkdocs = "^1.4.2"
 mkdocs-material = "^9.0.5"
 mkdocstrings = ">=0.19.1,<0.24.0"
-mkdocstrings-python = ">=0.8.3,<0.11.0"
+mkdocstrings-python = ">=0.8.3,<1.9.0"
 pillow = ">=9.4,<11.0"
 cairosvg = "^2.6.0"
 bump-pydantic = "^0.6.1"
