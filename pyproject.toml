@@ -63,13 +63,13 @@ pytest-recording = "^0.12.1"
 docconvert = "^2.0.0"
 mkdocs = "^1.4.2"
 mkdocs-material = "^9.0.5"
-mkdocstrings = ">=0.19.1,<0.24.0"
+mkdocstrings = ">=0.19.1,<0.25.0"
 mkdocstrings-python = ">=0.8.3,<1.9.0"
 pillow = ">=9.4,<11.0"
 cairosvg = "^2.6.0"
 bump-pydantic = ">=0.6.1,<0.9.0"
 types-requests = "^2.31.0.2"
-vcrpy = "^5.1.0"
+vcrpy = ">=5.1,<7.0"
 
 [tool.black]
 # https://github.com/psf/black
