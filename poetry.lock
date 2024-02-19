@@ -34,24 +34,6 @@ wrapt = [
 ]
 
 [[package]]
-name = "attrs"
-version = "23.1.0"
-description = "Classes Without Boilerplate"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "attrs-23.1.0-py3-none-any.whl", hash = "sha256:1f28b4522cdc2fb4256ac1a020c78acf9cba2c6b461ccd2c126f3aa8e8335d04"},
-    {file = "attrs-23.1.0.tar.gz", hash = "sha256:6279836d581513a26f1bf235f9acd333bc9115683f14f7e8fae46c98fc50e015"},
-]
-
-[package.extras]
-cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
-dev = ["attrs[docs,tests]", "pre-commit"]
-docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
-tests = ["attrs[tests-no-zope]", "zope-interface"]
-tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
-
-[[package]]
 name = "babel"
 version = "2.14.0"
 description = "Internationalization utilities"
@@ -2258,19 +2240,22 @@ test = ["black (>=22.1.0)", "flake8 (>=4.0.1)", "pre-commit (>=2.17.0)", "tox (>
 
 [[package]]
 name = "pytest-recording"
-version = "0.12.2"
+version = "0.13.1"
 description = "A pytest plugin that allows you recording of network interactions via VCR.py"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.7"
 files = [
-    {file = "pytest-recording-0.12.2.tar.gz", hash = "sha256:7c8949c24e5546a699f8fbbff0c5d6896cd09463378ac3d3f1ebb110d2186847"},
-    {file = "pytest_recording-0.12.2-py3-none-any.whl", hash = "sha256:f055f97eb98bbefd0453a7796aa3a6833502c173421928b9d878cf1420b36406"},
+    {file = "pytest_recording-0.13.1-py3-none-any.whl", hash = "sha256:e5c75feb2593eb4ed9362182c6640bfe19004204bf9a6082d62c91b5fdb50a3e"},
+    {file = "pytest_recording-0.13.1.tar.gz", hash = "sha256:1265d679f39263f115968ec01c2a3bfed250170fd1b0d9e288970b2e4a13737a"},
 ]
 
 [package.dependencies]
-attrs = "*"
 pytest = ">=3.5.0"
 vcrpy = ">=2.0.1"
+
+[package.extras]
+dev = ["pytest-recording[tests]"]
+tests = ["pytest-httpbin", "pytest-mock", "requests", "werkzeug (==3.0.1)"]
 
 [[package]]
 name = "python-dateutil"
@@ -3154,4 +3139,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.0,<4.0.0"
-content-hash = "66436fb79c3343a89cec4a07277641e0507970ecd84959cbd7a5c813112e85e8"
+content-hash = "14e799d75378b0868d4c255e277b34e886fd16d937e6db14902e03476f68c16e"
