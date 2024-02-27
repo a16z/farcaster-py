@@ -29,6 +29,21 @@ files = [
 typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.11\""}
 
 [[package]]
+name = "astunparse"
+version = "1.6.3"
+description = "An AST unparser for Python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "astunparse-1.6.3-py2.py3-none-any.whl", hash = "sha256:c2652417f2c8b5bb325c885ae329bdf3f86424075c4fd1a128674bc6fba4b8e8"},
+    {file = "astunparse-1.6.3.tar.gz", hash = "sha256:5ad93a8456f0d084c3456d059fd9a92cce667963232cbf763eac3bc5b7940872"},
+]
+
+[package.dependencies]
+six = ">=1.6.1,<2.0"
+wheel = ">=0.23.0,<1.0"
+
+[[package]]
 name = "babel"
 version = "2.14.0"
 description = "Internationalization utilities"
@@ -1045,16 +1060,17 @@ dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
 name = "griffe"
-version = "0.40.1"
+version = "0.41.0"
 description = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "griffe-0.40.1-py3-none-any.whl", hash = "sha256:5b8c023f366fe273e762131fe4bfd141ea56c09b3cb825aa92d06a82681cfd93"},
-    {file = "griffe-0.40.1.tar.gz", hash = "sha256:66c48a62e2ce5784b6940e603300fcfb807b6f099b94e7f753f1841661fd5c7c"},
+    {file = "griffe-0.41.0-py3-none-any.whl", hash = "sha256:8aa7fc6eb00cb80af9c0198178c6b7110cb59fa2c5187bb13ea25eebbe4dd928"},
+    {file = "griffe-0.41.0.tar.gz", hash = "sha256:850128c3198c18713eaf0a6cc8572e590a16b1965f72a4e871e66cf84740903f"},
 ]
 
 [package.dependencies]
+astunparse = {version = ">=1.6", markers = "python_version < \"3.9\""}
 colorama = ">=0.4"
 
 [[package]]
@@ -2888,6 +2904,20 @@ files = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
     {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
 ]
+
+[[package]]
+name = "wheel"
+version = "0.42.0"
+description = "A built-package format for Python"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "wheel-0.42.0-py3-none-any.whl", hash = "sha256:177f9c9b0d45c47873b619f5b650346d632cdc35fb5e4d25058e09c9e581433d"},
+    {file = "wheel-0.42.0.tar.gz", hash = "sha256:c45be39f7882c9d34243236f2d63cbd58039e360f85d0913425fbd7ceea617a8"},
+]
+
+[package.extras]
+test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 
 [[package]]
 name = "wrapt"
