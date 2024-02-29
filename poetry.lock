@@ -911,13 +911,13 @@ test = ["pytest (>=7.0.0)", "pytest-xdist (>=2.4.0)"]
 
 [[package]]
 name = "eth-keyfile"
-version = "0.7.0"
+version = "0.8.0"
 description = "eth-keyfile: A library for handling the encrypted keyfiles used to store ethereum private keys"
 optional = false
 python-versions = ">=3.8, <4"
 files = [
-    {file = "eth-keyfile-0.7.0.tar.gz", hash = "sha256:6bdb8110c3a50439deb68a04c93c9d5ddd5402353bfae1bf4cfca1d6dff14fcf"},
-    {file = "eth_keyfile-0.7.0-py3-none-any.whl", hash = "sha256:6a89b231a2fe250c3a8f924f2695bb9cce33ddd0d6f7ebbcdacd183d7f83d537"},
+    {file = "eth-keyfile-0.8.0.tar.gz", hash = "sha256:02e3c2e564c7403b92db3fef8ecae3d21123b15787daecd5b643a57369c530f9"},
+    {file = "eth_keyfile-0.8.0-py3-none-any.whl", hash = "sha256:9e09f5bc97c8309876c06bdea7a94f0051c25ba3109b5df37afb815418322efe"},
 ]
 
 [package.dependencies]
@@ -1420,13 +1420,13 @@ mkdocs = ">=1.1"
 
 [[package]]
 name = "mkdocs-material"
-version = "9.5.11"
+version = "9.5.12"
 description = "Documentation that simply works"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocs_material-9.5.11-py3-none-any.whl", hash = "sha256:788ee0f3e036dca2dc20298d65e480297d348a44c9d7b2ee05c5262983e66072"},
-    {file = "mkdocs_material-9.5.11.tar.gz", hash = "sha256:7af7f8af0dea16175558f3fb9245d26c83a17199baa5f157755e63d7437bf971"},
+    {file = "mkdocs_material-9.5.12-py3-none-any.whl", hash = "sha256:d6f0c269f015e48c76291cdc79efb70f7b33bbbf42d649cfe475522ebee61b1f"},
+    {file = "mkdocs_material-9.5.12.tar.gz", hash = "sha256:5f69cef6a8aaa4050b812f72b1094fda3d079b9a51cf27a247244c03ec455e97"},
 ]
 
 [package.dependencies]
