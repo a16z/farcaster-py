@@ -1230,13 +1230,13 @@ dev = ["Sphinx (>=5.1.1)", "black (==23.9.1)", "build (>=0.10.0)", "coverage (>=
 
 [[package]]
 name = "markdown"
-version = "3.5.2"
+version = "3.6"
 description = "Python implementation of John Gruber's Markdown."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "Markdown-3.5.2-py3-none-any.whl", hash = "sha256:d43323865d89fc0cb9b20c75fc8ad313af307cc087e84b657d9eec768eddeadd"},
-    {file = "Markdown-3.5.2.tar.gz", hash = "sha256:e1ac7b3dc550ee80e602e71c1d168002f062e49f1b11e26a36264dafd4df2ef8"},
+    {file = "Markdown-3.6-py3-none-any.whl", hash = "sha256:48f276f4d8cfb8ce6527c8f79e2ee29708508bf4d40aa410fbc3b4ee832c850f"},
+    {file = "Markdown-3.6.tar.gz", hash = "sha256:ed4f41f6daecbeeb96e576ce414c41d2d876daa9a16cb35fa8ed8c2ddfad0224"},
 ]
 
 [package.dependencies]
@@ -1489,18 +1489,17 @@ python-legacy = ["mkdocstrings-python-legacy (>=0.2.1)"]
 
 [[package]]
 name = "mkdocstrings-python"
-version = "1.9.0"
+version = "1.8.0"
 description = "A Python handler for mkdocstrings."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "mkdocstrings_python-1.9.0-py3-none-any.whl", hash = "sha256:fad27d7314b4ec9c0359a187b477fb94c65ef561fdae941dca1b717c59aae96f"},
-    {file = "mkdocstrings_python-1.9.0.tar.gz", hash = "sha256:6e1a442367cf75d30cf69774cbb1ad02aebec58bfff26087439df4955efecfde"},
+    {file = "mkdocstrings_python-1.8.0-py3-none-any.whl", hash = "sha256:4209970cc90bec194568682a535848a8d8489516c6ed4adbe58bbc67b699ca9d"},
+    {file = "mkdocstrings_python-1.8.0.tar.gz", hash = "sha256:1488bddf50ee42c07d9a488dddc197f8e8999c2899687043ec5dd1643d057192"},
 ]
 
 [package.dependencies]
 griffe = ">=0.37"
-markdown = ">=3.3,<3.6"
 mkdocstrings = ">=0.20"
 
 [[package]]
