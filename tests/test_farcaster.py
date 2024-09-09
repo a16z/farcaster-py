@@ -8,6 +8,43 @@ from farcaster import Warpcast, models
 
 
 @pytest.mark.vcr
+def test_get_conversation_participants(client: Warpcast) -> None:
+    """Unit test that gets a conversation and the participants in it
+
+    Args:
+        client: fixture
+
+    Returns:
+        None
+
+    """
+
+    # This will only work for my account as it's a group conversation on my account
+    response = client.get_conversation_participants(
+        "5d741f42a6016e1f0bb1eb9ef15a049cdfdffd72c486aa5f72a150da34ade054"
+    )
+
+    assert len(response) > 0
+
+
+@pytest.mark.vcr
+def test_get_non_existent_conversation(client: Warpcast) -> None:
+    """Unit test that gets a nonexistent conversation
+
+    Args:
+        client: fixture
+
+    Returns:
+        None
+
+    """
+
+    with pytest.raises(Exception):
+        # Should raise error
+        client.get_conversation_participants("nonexistent")
+
+
+@pytest.mark.vcr
 def test_get_cast(client: Warpcast) -> None:
     """Unit test that gets cast
 
