@@ -3,7 +3,7 @@
 ## Dependencies
 
 We use `poetry` to manage the [dependencies](https://github.com/python-poetry/poetry).
-If you dont have `poetry`, you should install with `make poetry-download`.
+If you don’t have `poetry`, you should install with `make poetry-download`.
 
 To install dependencies and prepare [`pre-commit`](https://pre-commit.com/) hooks you would need to run `install` command:
 
@@ -27,7 +27,7 @@ make codestyle
 Many checks are configured for this project. Command `make check-codestyle` will check black, isort and darglint.
 The `make check-safety` command will look at the security of your code.
 
-Comand `make lint` applies all checks.
+Command `make lint` applies all checks.
 
 ### Before submitting
 
