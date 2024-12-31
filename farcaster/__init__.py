@@ -3,6 +3,7 @@
 import sys
 
 from .client import Warpcast  # noqa
+from .hub.client import Hub  # noqa
 
 if sys.version_info >= (3, 8):
     from importlib import metadata as importlib_metadata
