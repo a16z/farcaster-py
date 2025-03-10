@@ -1,4 +1,4 @@
-from typing import Any, Dict, Iterator, Optional
+from typing import Any, Dict, Iterator, List, Optional
 
 import base64
 import logging
@@ -322,6 +322,38 @@ class Warpcast:
         return IterableUsersResult(
             users=users, cursor=getattr(response_model.next, "cursor", None)
         )
+
+    def get_conversation_participants(self, conversation_id: str) -> List[ApiUser]:
+        """Get partcipants of a specific conversation
+
+        Args:
+            conversation_id (str): conversation id
+
+        Returns:
+            List[ApiUser]: Conversation content and metadata
+
+        Raises:
+            Exception: If the conversation with the given id is not found.
+        """
+        conversation_search_limit: int = 100
+        response = self._get(
+            "direct-cast-conversation-list",
+            params={
+                "limit": conversation_search_limit,
+                "category": "default",
+                "filter": "group",
+            },
+        )
+
+        # Filter to get the conversation that matches hash
+        for conversation in response["result"]["conversations"]:
+            if conversation["conversationId"] == conversation_id:
+                return [
+                    ApiUser(**participant)
+                    for participant in conversation["participants"]
+                ]
+
+        raise Exception(f"Unable to find conversation with id : {hash}")
 
     def get_cast(
         self,
