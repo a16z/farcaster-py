@@ -112,7 +112,7 @@ print(response.cast.hash) # "0x...."
 
 and many, many more things. The full specification can be found on the [Reference page](https://a16z.github.io/farcaster-py/reference).
 
-*Please note that support for Python 3.7 is no longer actively maintained. Python 3.8, 3.9, or 3.10 are recommended.*
+*Please note that support for Python 3.8 is no longer actively maintained. Python 3.9, or 3.10+ are recommended.*
 ## 🛡 License
 
 [![License](https://img.shields.io/github/license/a16z/farcaster-py)](https://github.com/a16z/farcaster-py/blob/main/LICENSE)
