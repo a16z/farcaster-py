@@ -1,5 +1,8 @@
 # farcaster-py
 
+**Note**: This project is not actively maintained, but we welcome external contributions and forks. If you’d like to contribute, please open a PR or fork this repository.
+
+
 <div align="center">
 
 [![Build status](https://github.com/a16z/farcaster-py/workflows/build/badge.svg?branch=main&event=push)](https://github.com/a16z/farcaster-py/actions?query=workflow%3Abuild)
