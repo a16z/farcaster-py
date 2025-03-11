@@ -1,7 +1,7 @@
 bitarray==2.6.2 ; python_full_version > "3.7.1" and python_version < "4"
 cached-property==1.5.2 ; python_full_version > "3.7.1" and python_version < "3.8"
 canonicaljson==1.6.4 ; python_full_version > "3.7.1" and python_full_version < "4.0.0"
-certifi==2022.12.7 ; python_full_version > "3.7.1" and python_version < "4"
+certifi==2024.7.4 ; python_full_version > "3.7.1" and python_version < "4"
 charset-normalizer==3.0.1 ; python_full_version > "3.7.1" and python_version < "4"
 cytoolz==0.12.1 ; python_full_version > "3.7.1" and python_version < "4" and implementation_name == "cpython"
 eth-abi==3.0.1 ; python_full_version > "3.7.1" and python_version < "4"
